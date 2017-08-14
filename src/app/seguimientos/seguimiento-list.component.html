@@ -1,0 +1,42 @@
+
+<h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
+  {{title}}
+</h3>
+<div class="datos">
+  <div *ngFor="let solicitud of solicitudes"  >
+  	<div><strong>Núm. Solicitud: </strong>{{solicitud.id_solicitud}}</div>
+  	<div><strong>Trámite: </strong>{{solicitud.tramite}}</div>
+  	<div><strong>Solicitante: </strong>{{solicitud.solicitante}}</div>
+  </div>
+  <div *ngFor="let tramite of tramites  ">
+  	<div><strong>Subsecretaría: </strong>{{tramite.unidadAdministrativa}}</div>
+  	<div><strong>Dirección: </strong>{{tramite.direccion}}</div>
+  </div>
+</div>
+<div class="table-responsive listado ">
+  <table class="table table-condensed table-hover">
+  	<thead  style="color: #7b7d80;">
+  		<th width="25%">Fecha</th>
+  		<th width="45%">Observaciones</th>
+  		<th width="10%">Estatus</th>
+  		<th width="10%">Adjunto?</th>
+  		<th width="10%">Acciones</th>
+  	</thead>
+  	<tbody *ngFor="let seguimiento of seguimientos">
+  		<tr>
+  			<td width="25%">{{seguimiento.fecha}}</td>
+  			<td width="45%">{{seguimiento.observaciones}}</td>
+  			<td width="10%">{{seguimiento.estatus}}</td>
+  			<td width="10%" [ngSwitch]="seguimiento.adjunto" style="text-align:center;">
+  				<span *ngSwitchCase="true"><img src="../assets/img/ok.png" width="16px" height="16px" title="Sí contiene adjuntos" ></span>
+          		<span *ngSwitchCase="false"><img src="../assets/img/mal.png" title="Nocontiene adjuntos"></span>
+          </td>
+  			<td width="10%">
+					<img src="../assets/img/reporte_adjuntos.png" width="26px" height="26px" (click)="onSelect(seguimiento)" title="Ver archivos adjuntos">
+					<a><img src="../assets/img/upload.png" width="26x" height="26px" (click)="onSelect2(seguimiento)" title="Adjuntar archivos" ></a>
+				</td>
+  		</tr>
+  	</tbody>
+  </table>
+</div>
+

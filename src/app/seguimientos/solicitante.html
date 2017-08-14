@@ -1,0 +1,10 @@
+<form *ngIf="solicitante" >
+  <div>
+      <h2>{{solicitante.name}} details!</h2>
+      <div><label>id: </label>{{solicitante.id}}</div>
+      <div>
+        <label>name: </label>
+        <input type="text" [(ngModel)]="solicitante.name" placeholder="name" ngControl="name" [ngModelOptions]="{standalone: true}" />
+      </div>
+  </div>
+</form>

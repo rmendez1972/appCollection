@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-lg-10  col-md-10 col-md-12 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-0 col-xs-offset-0">
+    <h3 class="bg-primary encabezado"><span class="icon-bubbles"></span>{{title}}</h3>
+    <!-- <div class="datos" style="margin-top: 0px; font-size: 18px"> -->
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">Mapa de las Oficinas de la SEDUVI en Chetumal</div>
+      <div class="panel-body">
+        <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="true" >
+          <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [label]="label">
+          </sebm-google-map-marker>
+        </sebm-google-map>
+        <br>
+        <div class="datos">
+          <div><strong>Domicilio: </strong>Av. Alvaro Obregón #474, Chetumal Q.Roo.</div>
+          <div><strong>Teléfono: </strong>83-21877.</div>
+          <div><strong>Subsecretaría: </strong>Técnica.</div>
+          <div><small><strong>Dirección: </strong>Informática.</small></div>
+          <div><small><strong>Departamento: </strong>Sistemas.</small></div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>
+
+
+

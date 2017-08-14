@@ -1,0 +1,41 @@
+
+<h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
+  {{title}}
+</h3>
+<div class="datos">
+  <div *ngFor="let solicitud of solicitudes"  >
+  	<div><strong>Núm. Solicitud: </strong>{{solicitud.id_solicitud}}</div>
+  	<div><strong>Trámite: </strong>{{solicitud.tramite}}</div>
+  	<div><strong>Solicitante: </strong>{{solicitud.solicitante}}</div>
+  </div>
+  <div *ngFor="let tramite of tramites  ">
+  	<div><strong>Subsecretaría: </strong>{{tramite.unidadAdministrativa}}</div>
+  	<div><strong>Dirección: </strong>{{tramite.direccion}}</div>
+  </div>
+</div>
+<div class="table-responsive listado ">
+  <table class="table table-condensed table-hover">
+  	<thead  style="color: #7b7d80;">
+  		<th width="20%">Clave SEDETUS</th>
+  		<th width="20%">Fecha Mov.</th>
+      <th width="20%">Clave de Mov..</th>
+  		<th width="20%">Capital</th>
+
+  		<th width="20%">Acciones</th>
+  	</thead>
+  	<tbody *ngFor="let mov of mov_edoscta">
+  		<tr>
+  			<td width="20%">{{mov.clave_b}}</td>
+  			<td width="20%">{{mov.fecha_mov}}</td>
+        <td width="20%">{{mov.clave_mov}}</td>
+  			<td width="20%">{{mov.capital}}</td>
+
+  			<td width="20%">
+					<img src="../assets/img/reporte_adjuntos.png" width="26px" height="26px" (click)="onSelect(seguimiento)" title="Ver archivos adjuntos">
+					<a><img src="../assets/img/upload.png" width="26x" height="26px" (click)="onSelect2(seguimiento)" title="Adjuntar archivos" ></a>
+				</td>
+  		</tr>
+  	</tbody>
+  </table>
+</div>
+

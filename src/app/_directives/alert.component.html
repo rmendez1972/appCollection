@@ -1,0 +1,1 @@
+﻿<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error', 'fade': message, 'in': message, 'alert-dismissable': message }"  style="margin-top: 30px"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>{{message.text}}</strong></div>
