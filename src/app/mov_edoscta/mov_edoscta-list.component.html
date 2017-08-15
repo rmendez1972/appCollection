@@ -3,16 +3,16 @@
   {{title}}
 </h3>
 <div class="datos">
-  <div *ngFor="let solicitud of solicitudes"  >
-  	<div><strong>Núm. Solicitud: </strong>{{solicitud.id_solicitud}}</div>
-  	<div><strong>Trámite: </strong>{{solicitud.tramite}}</div>
-  	<div><strong>Solicitante: </strong>{{solicitud.solicitante}}</div>
+  <div *ngFor="let ben of benef"  >
+  	<div><strong>Nombre: </strong>{{ben.nombre}}</div>
+    <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
+    <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
+    <div><strong>Curp: </strong>{{ben.curp}}</div>
+    <div><strong>Numero Contrato: </strong>{{ben.numcontrato}}</div>
+
   </div>
-  <div *ngFor="let tramite of tramites  ">
-  	<div><strong>Subsecretaría: </strong>{{tramite.unidadAdministrativa}}</div>
-  	<div><strong>Dirección: </strong>{{tramite.direccion}}</div>
-  </div>
-</div>
+
+
 <div class="table-responsive listado ">
   <table class="table table-condensed table-hover">
   	<thead  style="color: #7b7d80;">

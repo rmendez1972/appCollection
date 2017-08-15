@@ -16,7 +16,7 @@ constructor() {}
 
 
   		getUrlmov_edoscta():String{
-	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJson';
+	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef';
 	  	}
 
 	  	getUrladjuntos():String{

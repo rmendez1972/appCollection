@@ -2,10 +2,11 @@ import { Component, OnInit, HostBinding, trigger, transition, animate, style, st
 import { Solicitante } from './solicitante';
 
 import { Mov_edocta } from './mov_edocta';
+import { Benef } from './benef';
 import { Solicitud } from './solicitud';
 import { Tramite } from './tramite';
 import { Seguimiento } from './seguimiento';
-import { SeguimientoService} from './seguimiento.service';
+import { Mov_edoctaService} from './mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //import { AuthGuard } from '../_guards/index';
 
@@ -62,6 +63,7 @@ export class Mov_edosctaListComponent implements OnInit {
   private errorMessage: string;
   private solicitantes: Solicitante[];
   private mov_edoscta: Mov_edocta[];
+  private benef: Benef[];
   private solicitudes: Solicitud[];
   private tramites: Tramite[];
   private seguimientos: Seguimiento[];
@@ -72,6 +74,7 @@ export class Mov_edosctaListComponent implements OnInit {
   private a: Observable<Seguimiento[]>;
 
   private k: Observable<Mov_edocta[]>;
+  private l: Observable<Benef[]>;
 
   private e: Observable<Seguimiento[]>;
 
@@ -84,7 +87,7 @@ export class Mov_edosctaListComponent implements OnInit {
   	constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private seguimientoservice: SeguimientoService,
+      private mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService
     )
     {
@@ -95,6 +98,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
   	ngOnInit() {
       this.getMov_edoscta();
+      this.getBenef();
       //this.getSolicitantes(this.idsolicitud,this.idsolicitante);
       //this.getSolicitud(this.idsolicitud,this.idsolicitante);
       //this.getTramite(this.idsolicitud,this.idsolicitante);
@@ -114,7 +118,7 @@ export class Mov_edosctaListComponent implements OnInit {
         {
 
           this.selectedId= +params['id'];
-          return this.seguimientoservice.getMov_edoscta()
+          return this.mov_edoctaservice.getMov_edoscta()
         })
 
         this.k.subscribe(
@@ -125,113 +129,25 @@ export class Mov_edosctaListComponent implements OnInit {
 
     };
 
-
-    getSolicitantes(idSolicitud: number,idSolicitante:number) {
-        this.x=this.route.params
+    getBenef() {
+        this.l=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
           this.selectedId= +params['id'];
-          return this.seguimientoservice.getSolicitantes(idSolicitud,idSolicitante)
+          return this.mov_edoctaservice.getBenef()
         })
 
-        this.x.subscribe(
+        this.l.subscribe(
 
-                       solicitantes => this.solicitantes = solicitantes,
+                       movimientos => this.benef = movimientos,
                        error =>  this.errorMessage = <any>error);
 
 
     };
 
-    getSolicitud(idSolicitud: number,idSolicitante:number) {
-        this.y=this.route.params
-        // (+) converts string 'id' to a number
-        .switchMap((params: Params) =>
-        {
 
-          //this.selectedId= +params['id'];
-          return this.seguimientoservice.getSolicitudes(idSolicitud,idSolicitante);
-        })
-
-        this.y.subscribe(
-                       solicitud => this.solicitudes = solicitud,
-                       error =>  this.errorMessage = <any>error);
-
-
-
-    };
-
-    getTramite(idSolicitud: number,idSolicitante:number) {
-        this.z=this.route.params
-        // (+) converts string 'id' to a number
-        .switchMap((params: Params) =>
-        {
-
-          //this.selectedId= +params['id'];
-          return this.seguimientoservice.getTramites(idSolicitud,idSolicitante)
-        })
-
-        this.z.subscribe(
-                       tramite => this.tramites = tramite,
-                       error =>  this.errorMessage = <any>error);
-
-    };
-
-
-    getSeguimiento(idSolicitud: number,idSolicitante:number) {
-        this.a=this.route.params
-        // (+) converts string 'id' to a number
-        .switchMap((params: Params) =>
-        {
-
-          //this.selectedId= +params['id'];
-          return this.seguimientoservice.getSeguimientos(idSolicitud,idSolicitante)
-        })
-
-        this.a.subscribe(
-                       seguimiento => {
-
-                        this.seguimientos = seguimiento;
-
-                        if (this.seguimientos.length > 0){
-
-                          this.alertService.success("Núm. de solicitud recuperada exitosamente!");
-                        }else{
-
-                         this.alertService.error("Este núm. solicitud NO le pertenece, lo sentimos intente con otro núm. de solicitud!");
-                        }
-                       },
-
-                       error => {
-                         this.errorMessage = <any>error;
-                         this.alertService.error("Este núm. solicitud NO existe, lo sentimos intente con otro núm. de solicitud!");
-                       }
-                      );
-
-    };
-
-
-
-
-    addSolicitante (name: string) {
-      if (!name) { return; }
-      this.seguimientoservice.addSolicitante(name)
-                     .subscribe(
-                       solicitante  => this.solicitantes.push(solicitante),
-                       error =>  this.errorMessage = <any>error);
-    }
-
-  	onSelect(seguimiento: Seguimiento) {
-    	this.router.navigate(['/adjunto', seguimiento.id_seguimiento, this.idsolicitud]);
-    }
-
-    onSelect2(seguimiento: Seguimiento) {
-      console.log(seguimiento.id_seguimiento, seguimiento.observaciones, seguimiento.estatus);
-    	this.router.navigate(['/upload', seguimiento.id_seguimiento, this.idsolicitud, this.idsolicitante]);
-    }
-
-    isSelected(seguimiento: Seguimiento) {/*alert ('dentro hero.id'+hero.id+' selectedId '+this.selectedId);*/ return seguimiento.id_seguimiento === this.selectedId; }
 
 
 }

@@ -5,7 +5,7 @@ import { FormsModule }    from '@angular/forms';
 import { Mov_edosctaListComponent }    from './mov_edoscta-list.component';
 import { SeguimientoDetailComponent }  from './seguimiento-detail.component';
 import { ServiceUrl } from '../serviceUrl';
-import { SeguimientoService } from './seguimiento.service';
+import { Mov_edoctaService } from './mov_edocta.service';
 
 import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 
@@ -21,7 +21,7 @@ import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
     SeguimientoDetailComponent
   ],
   providers: [
-    ServiceUrl,SeguimientoService
+    ServiceUrl,Mov_edoctaService
   ]
 })
 export class Mov_edosctaModule {}
