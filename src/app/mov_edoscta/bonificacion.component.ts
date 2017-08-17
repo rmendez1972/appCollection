@@ -58,20 +58,17 @@ export class BonificacionComponent implements OnInit {
   }
 
 
-  private mid_benef:number;
-  
-
   private errorMessage: string;
   private bonific: Bonific[];
- 
+
   private k: Observable<Bonific[]>;
- 
-  @Input() id_benef:number;
+
+
   @Input() valorcriterio:String;
   @Input() criterio:String;
   @Output() onMessage = new EventEmitter<String>();
 
-    
+
 
 
   	constructor(
@@ -84,8 +81,7 @@ export class BonificacionComponent implements OnInit {
 
 
   	ngOnInit() {
-      this.mid_benef=this.id_benef;
-      //this.getBonificaciones();
+
     };
 
     message(mensaje:String){
@@ -95,13 +91,14 @@ export class BonificacionComponent implements OnInit {
 
 
     getBonificaciones() {
+
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
           //this.selectedId= +params['id'];
-          return this.bonificservice.getBonificaciones(this.mid_benef)
+          return this.bonificservice.getBonificaciones(this.criterio,this.valorcriterio)
         })
 
         this.k.subscribe(
@@ -115,5 +112,5 @@ export class BonificacionComponent implements OnInit {
 
     };
 
-   
+
 }

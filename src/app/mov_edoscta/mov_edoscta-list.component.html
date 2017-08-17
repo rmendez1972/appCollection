@@ -3,6 +3,7 @@
   {{title}}
 </h3>
 
+
 <select class="form-control" name="criterio" id="criterio" [(ngModel)]="model.criterio">
     <option value="clave_b">Clave SEDETUS</option> 
     <option value="nombre" selected>Nombre de Beneficiario</option>
@@ -20,6 +21,7 @@
     <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
     <div><strong>Curp: </strong>{{ben.curp}}</div>
     <div><strong>Numero Contrato: </strong>{{ben.numcontrato}}</div>
+    <div><strong>ID: </strong>{{ben.id_beneficiario}}</div>
 
   </div>
 
@@ -51,12 +53,10 @@
 
   <input type="date" name="fecha de corte" id="fecha_corte">
 
-  <div *ngFor="let ben of benef"  >
-    <input type="text" name="id_benef" id="id_benef" value="{{ben.id_beneficiario}}" [(ngModel)]="model.id_beneficiario">
-  </div>
-
   <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
 
 </div>
-<app-bonific [id_benef]="64" [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
+
+<app-bonific [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
+
 
