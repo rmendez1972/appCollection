@@ -28,9 +28,9 @@ export class BonificService {
       }
 
 	//getMov_edoscta
-  getBonificaciones(id_benef:number): Observable<Bonific[]> {
+  getBonificaciones(criterio:String, valorcriterio:String): Observable<Bonific[]> {
 
-     return this.http.get(this.bonificacionUrl+id_benef)
+     return this.http.get(this.bonificacionUrl+criterio+'&valorcriterio='+valorcriterio)
                     .map(this.extractDataBon)
                     .catch(this.handleError);
 
@@ -48,7 +48,7 @@ export class BonificService {
 
   }
 
-  
+
 
   private handleError (error: Response | any) {
 

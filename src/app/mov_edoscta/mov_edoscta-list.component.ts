@@ -102,7 +102,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
   	ngOnInit() {
-      
+
       //this.getSolicitantes(this.idsolicitud,this.idsolicitante);
       //this.getSolicitud(this.idsolicitud,this.idsolicitante);
       //this.getTramite(this.idsolicitud,this.idsolicitante);
@@ -119,8 +119,8 @@ export class Mov_edosctaListComponent implements OnInit {
       this.getBenef(this.model.criterio,this.model.valorcriterio);
 
     }
-    
-    
+
+
 
     getMov_edoscta(criterio:String,valorcriterio:String) {
         this.k=this.route.params
@@ -152,7 +152,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
         this.l.subscribe(
 
-                       movimientos => this.benef = movimientos,
+                       beneficiario => this.benef = beneficiario,
                        error =>  this.errorMessage = <any>error);
 
 
