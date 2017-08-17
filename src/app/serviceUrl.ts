@@ -11,12 +11,17 @@ public URLlogin: String;
 public URLcambiapassword: String;
 public URLupload: String;
 public URLfilename: String;
+public URLbonificacion:String;
 
 constructor() {}
 
 
   		getUrlmov_edoscta():String{
-	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef';
+	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
+	  	}
+
+	  	getUrlbonificacion():String{
+	  			return this.URLbonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyIdbenef&id_benef=';
 	  	}
 
 	  	getUrladjuntos():String{

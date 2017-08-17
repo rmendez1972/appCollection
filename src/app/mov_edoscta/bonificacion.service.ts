@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Solicitante } from './solicitante';
-import { Solicitud } from './solicitud';
-import { Tramite } from './tramite';
-import { Seguimiento } from './seguimiento';
 
-import { Mov_edocta } from './mov_edocta';
-import { Benef } from './benef';
+import { Bonific } from './bonific';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 //import {Observable} from 'rxjs/Rx';
@@ -17,10 +12,10 @@ import { AlertService} from '../_services/index';
 
 
 @Injectable()
-export class Mov_edoctaService {
+export class BonificService {
 
   //private seguimientosUrl: string;
-  private mov_edosctaUrl: string;
+  private bonificacionUrl: string;
 
 
   constructor (private http: Http,
@@ -28,49 +23,32 @@ export class Mov_edoctaService {
       private alertService: AlertService)
       {
         //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
-        this.mov_edosctaUrl=String(this.url.getUrlmov_edoscta());
+        this.bonificacionUrl=String(this.url.getUrlbonificacion());
 
       }
 
 	//getMov_edoscta
-  getMov_edoscta(criterio:String,valorcriterio:String): Observable<Mov_edocta[]> {
+  getBonificaciones(id_benef:number): Observable<Bonific[]> {
 
-     return this.http.get(this.mov_edosctaUrl+criterio+"&valorcriterio="+valorcriterio)
-                    .map(this.extractDataMov)
-                    .catch(this.handleError);
-
-  }
-
-  //getBenef
-  getBenef(criterio:String,valorcriterio:String): Observable<Benef[]> {
-
-     return this.http.get(this.mov_edosctaUrl+criterio+"&valorcriterio="+valorcriterio)
-                    .map(this.extractDataBenef)
+     return this.http.get(this.bonificacionUrl+id_benef)
+                    .map(this.extractDataBon)
                     .catch(this.handleError);
 
   }
 
 
 
-  private extractDataMov(res: Response) {
+
+  private extractDataBon(res: Response) {
 
     let body = res.json();
-    console.log(body.mov_edoscta);
+    console.log(body.bonificacion);
 
-    return body.mov_edoscta || { };
+    return body.bonificacion || { };
 
   }
 
-  private extractDataBenef(res: Response) {
-
-    let body = res.json();
-    console.log(body.beneficiario);
-
-    return body.beneficiario || { };
-
-  }
-
-
+  
 
   private handleError (error: Response | any) {
 
