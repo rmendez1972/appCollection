@@ -16,7 +16,7 @@ constructor() {}
 
 
   		getUrlmov_edoscta():String{
-	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJson';
+	  			return this.URL='http://localhost:8083/cobranza/controladormov_edocta?operacion=listarJson';
 	  	}
 
 	  	getUrladjuntos():String{
@@ -32,7 +32,7 @@ constructor() {}
 	  	}
 
 	  	getUrllogin():String{
-	  			return this.URLlogin='http://localhost:8080/cobranza/controladorlogin?operacion=apilogin&username=';
+	  			return this.URLlogin='http://localhost:8083/cobranza/controladorlogin?operacion=apilogin&username=';
 	  	}
 
 		getUrlCambiaPassword():String{
