@@ -61,6 +61,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
   private errorMessage: string;
+  model:any={};
   private solicitantes: Solicitante[];
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
@@ -83,6 +84,10 @@ export class Mov_edosctaListComponent implements OnInit {
   public idsolicitud:number;
   public idsolicitante:number;
 
+  private miMensaje:String;
+
+
+
 
   	constructor(
       private router: Router,
@@ -97,8 +102,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
   	ngOnInit() {
-      this.getMov_edoscta();
-      this.getBenef();
+      
       //this.getSolicitantes(this.idsolicitud,this.idsolicitante);
       //this.getSolicitud(this.idsolicitud,this.idsolicitante);
       //this.getTramite(this.idsolicitud,this.idsolicitante);
@@ -110,15 +114,22 @@ export class Mov_edosctaListComponent implements OnInit {
 
   	title = 'Estado de Cuenta';
     selectedSolicitante: Solicitante;
+    localizaBenefMov(){
+      this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);
+      this.getBenef(this.model.criterio,this.model.valorcriterio);
 
-    getMov_edoscta() {
+    }
+    
+    
+
+    getMov_edoscta(criterio:String,valorcriterio:String) {
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
           this.selectedId= +params['id'];
-          return this.mov_edoctaservice.getMov_edoscta()
+          return this.mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
         })
 
         this.k.subscribe(
@@ -129,14 +140,14 @@ export class Mov_edosctaListComponent implements OnInit {
 
     };
 
-    getBenef() {
+    getBenef(criterio:String,valorcriterio:String) {
         this.l=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
           this.selectedId= +params['id'];
-          return this.mov_edoctaservice.getBenef()
+          return this.mov_edoctaservice.getBenef(criterio,valorcriterio)
         })
 
         this.l.subscribe(
@@ -148,6 +159,12 @@ export class Mov_edosctaListComponent implements OnInit {
     };
 
 
+    onMessage(mensaje:String){
+      console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
+      this.miMensaje = mensaje;
+
+
+    }
 
 
 }
