@@ -136,7 +136,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
                        movimientos => this.mov_edoscta = movimientos,
                        error =>  this.errorMessage = <any>error);
-
+        this.alertService.success("Estado de cuenta encontrado exitosamente...");
 
     };
 

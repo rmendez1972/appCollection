@@ -2,16 +2,28 @@
 <h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
   {{title}}
 </h3>
+<form id="form_UA"   class="form-horizontal">
+  <div class="form-group">
+    <label for="fecha" class="col-xs-12 col-md-2 control-label col-md-offset-3">Criterio de Busqueda:</label>
+    <div class="col-xs-12 col-md-3">
+      <select class="form-control" name="criterio" id="criterio" [(ngModel)]="model.criterio">
+          <option value="clave_b">Clave SEDETUS</option> 
+          <option value="nombre" selected>Nombre de Beneficiario</option>
+      </select>
+    </div>
+  </div>
 
+  <div class="form-group">
+    <label for="varcriterio" class="col-xs-12 col-md-2 control-label col-md-offset-3">Valor:</label>
+    <div class="col-xs-12 col-md-3">
+      <input class="form-control" type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio" />
+    </div>
+  </div>
 
-<select class="form-control" name="criterio" id="criterio" [(ngModel)]="model.criterio">
-    <option value="clave_b">Clave SEDETUS</option> 
-    <option value="nombre" selected>Nombre de Beneficiario</option>
-</select>
-
-<input class="form-control" type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
-
-<input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
+  <div class="form-group" style="text-align:center">
+    <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
+  </div>
+</form>
 
 
 <div class="datos">
@@ -50,12 +62,19 @@
   		</tr>
   	</tbody>
   </table>
-
-  <input type="date" name="fecha de corte" id="fecha_corte">
-
-  <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
-
 </div>
+<form id="form_UA"   class="form-horizontal">
+  <div class="form-group">
+    <label for="fecha" class="col-xs-12 col-md-2 control-label col-md-offset-3">Fecha de corte:</label>
+    <div class="col-xs-12 col-md-3">
+      <input type="date" name="fecha de corte" id="fecha_corte" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group" style="text-align:center">
+    <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+  </div>
+</form>
 
 <app-bonific [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
 
