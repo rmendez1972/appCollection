@@ -3,9 +3,10 @@ import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
 
 import { Mov_edosctaListComponent }    from './mov_edoscta-list.component';
-import { SeguimientoDetailComponent }  from './seguimiento-detail.component';
+import { BonificacionComponent }  from './bonificacion.component';
 import { ServiceUrl } from '../serviceUrl';
-import { SeguimientoService } from './seguimiento.service';
+import { Mov_edoctaService } from './mov_edocta.service';
+import { BonificService } from './bonificacion.service';
 
 import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 
@@ -18,10 +19,10 @@ import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
   ],
   declarations: [
     Mov_edosctaListComponent,
-    SeguimientoDetailComponent
+    BonificacionComponent
   ],
   providers: [
-    ServiceUrl,SeguimientoService
+    ServiceUrl,Mov_edoctaService,BonificService
   ]
 })
 export class Mov_edosctaModule {}
