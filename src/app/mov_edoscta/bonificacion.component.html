@@ -1,18 +1,30 @@
 <div class="table-responsive listado ">
   <table class="table table-condensed table-hover">
   	<thead  style="color: #7b7d80;">
-    <th>id</th>
-  		<th width="20%">Nombre Beneficiario</th>
-  		
-  		
+  		<th width="20%">Clave Bonificación</th>
+      <th width="20%">Estatus</th>
+      <th width="20%">Imp Cap</th>
+      <th width="20%">Imp Adm</th>
+      <th width="20%">Imp Int</th>
+      <th width="20%">Imp Osg</th>
+      <th width="20%">Imp Seg</th>
+      <th width="20%">Autoriza</th>
+      <th width="20%">Recibo</th>
+      <th width="20%">Serie</th>
   	</thead>
   	<tbody *ngFor="let bon of bonific">
   		<tr>
-      <td>{{id_benef}}</td>
-  			<td width="20%">{{bon.nombrebenef}}</td>
+  			<td width="20%">{{bon.clavebonific}}</td>
+        <td width="20%">{{bon.estatus}}</td>
+        <td width="20%">{{bon.imp_cap}}</td>
+        <td width="20%">{{bon.imp_adm}}</td>
+        <td width="20%">{{bon.imp_int}}</td>
+        <td width="20%">{{bon.imp_osg}}</td>
+        <td width="20%">{{bon.imp_seg}}</td>
+        <td width="20%">{{bon.nombreautoriza}}</td>
+        <td width="20%">{{bon.recibo}}</td>
+        <td width="20%">{{bon.serie}}</td>
   		</tr>
   	</tbody>
   </table>
-  <p>{{valorcriterio}}</p>
-  <p>{{criterio}}</p>
 </div>

@@ -3,12 +3,12 @@
   {{title}}
 </h3>
 
-<select name="criterio" id="criterio" [(ngModel)]="model.criterio">
+<select class="form-control" name="criterio" id="criterio" [(ngModel)]="model.criterio">
     <option value="clave_b">Clave SEDETUS</option> 
     <option value="nombre" selected>Nombre de Beneficiario</option>
 </select>
 
-<input type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
+<input class="form-control" type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
 
 <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
 
@@ -41,7 +41,6 @@
   			<td width="20%">{{mov.fecha_mov}}</td>
         <td width="20%">{{mov.clave_mov}}</td>
   			<td width="20%">{{mov.capital}}</td>
-
   			<td width="20%">
 					<img src="../assets/img/reporte_adjuntos.png" width="26px" height="26px" (click)="onSelect(seguimiento)" title="Ver archivos adjuntos">
 					<a><img src="../assets/img/upload.png" width="26x" height="26px" (click)="onSelect2(seguimiento)" title="Adjuntar archivos" ></a>
@@ -49,12 +48,15 @@
   		</tr>
   	</tbody>
   </table>
-  <input type="date" name="fecha de corte" id="fecha_corte">
-  
-  <input type="hidden" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
 
+  <input type="date" name="fecha de corte" id="fecha_corte">
+
+  <div *ngFor="let ben of benef"  >
+    <input type="text" name="id_benef" id="id_benef" value="{{ben.id_beneficiario}}" [(ngModel)]="model.id_beneficiario">
+  </div>
 
   <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+
 </div>
-<app-bonific [id_benef]="63" [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
+<app-bonific [id_benef]="64" [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
 
