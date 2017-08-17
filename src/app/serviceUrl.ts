@@ -22,7 +22,7 @@ constructor() {}
 	  	}
 
 	  	getUrlbonificacion():String{
-	  			return this.URLbonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyIdbenef&id_benef=';
+	  			return this.URLbonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyCriterio&criterio=';
 	  	}
 
 	  	getUrladjuntos():String{
