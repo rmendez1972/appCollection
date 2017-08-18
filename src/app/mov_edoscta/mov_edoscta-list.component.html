@@ -2,7 +2,18 @@
 <h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
   {{title}}
 </h3>
+<form id="form_UA"   class="form-horizontal">
+  <div class="form-group">
+    <label for="fecha" class="col-xs-12 col-md-2 control-label col-md-offset-3">Criterio de Busqueda:</label>
+    <div class="col-xs-12 col-md-3">
+      <select class="form-control" name="criterio" id="criterio" [(ngModel)]="model.criterio">
+          <option value="clave_b">Clave SEDETUS</option> 
+          <option value="nombre" selected>Nombre de Beneficiario</option>
+      </select>
+    </div>
+  </div>
 
+<<<<<<< HEAD
 <form name="form" class="form-horizontal"  #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !criterio.valid }">
             <label for="criterio" class="col-md-2 control-label">Criterio de Búsqueda</label>
@@ -31,6 +42,19 @@
 
 
 
+=======
+  <div class="form-group">
+    <label for="varcriterio" class="col-xs-12 col-md-2 control-label col-md-offset-3">Valor:</label>
+    <div class="col-xs-12 col-md-3">
+      <input class="form-control" type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio" />
+    </div>
+  </div>
+
+  <div class="form-group" style="text-align:center">
+    <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
+  </div>
+</form>
+>>>>>>> 5538b8a2795500cac3484b6e95afc2635d4a3c4f
 
 
 <div class="datos">
@@ -62,7 +86,6 @@
   			<td width="20%">{{mov.fecha_mov}}</td>
         <td width="20%">{{mov.clave_mov}}</td>
   			<td width="20%">{{mov.capital}}</td>
-
   			<td width="20%">
 					<img src="../assets/img/reporte_adjuntos.png" width="26px" height="26px" (click)="onSelect(seguimiento)" title="Ver archivos adjuntos">
 					<a><img src="../assets/img/upload.png" width="26x" height="26px" (click)="onSelect2(seguimiento)" title="Adjuntar archivos" ></a>
@@ -70,13 +93,27 @@
   		</tr>
   	</tbody>
   </table>
-  <input type="date" name="fecha de corte" id="fecha_corte">
+</div>
+<form id="form_UA"   class="form-horizontal">
+  <div class="form-group">
+    <label for="fecha" class="col-xs-12 col-md-2 control-label col-md-offset-3">Fecha de corte:</label>
+    <div class="col-xs-12 col-md-3">
+      <input type="date" name="fecha de corte" id="fecha_corte" class="form-control">
+    </div>
+  </div>
 
-  <input type="hidden" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
+  <div class="form-group" style="text-align:center">
+    <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+  </div>
+</form>
 
-
+<<<<<<< HEAD
   <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
 </div>
 <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
 <app-bonific   [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
+=======
+<app-bonific [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
+
+>>>>>>> 5538b8a2795500cac3484b6e95afc2635d4a3c4f
 

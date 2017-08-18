@@ -140,7 +140,7 @@ export class Mov_edosctaListComponent implements OnInit {
                          this.miMensajeMovs = "Recuperación Exitosa de los movimientos de estado de Cuenta";
                         },
                        error =>  this.errorMessage = <any>error);
-
+        this.alertService.success("Estado de cuenta encontrado exitosamente...");
 
     };
 
