@@ -84,7 +84,8 @@ export class Mov_edosctaListComponent implements OnInit {
   public idsolicitud:number;
   public idsolicitante:number;
 
-  private miMensaje:String;
+  private miMensajeBons:String;
+  private miMensajeMovs:String;
 
 
 
@@ -134,7 +135,10 @@ export class Mov_edosctaListComponent implements OnInit {
 
         this.k.subscribe(
 
-                       movimientos => this.mov_edoscta = movimientos,
+                       movimientos => {
+                         this.mov_edoscta = movimientos;
+                         this.miMensajeMovs = "Recuperación Exitosa de los movimientos de estado de Cuenta";
+                        },
                        error =>  this.errorMessage = <any>error);
 
 
@@ -161,7 +165,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
-      this.miMensaje = mensaje;
+      this.miMensajeBons = mensaje;
 
 
     }

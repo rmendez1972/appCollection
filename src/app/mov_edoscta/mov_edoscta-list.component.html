@@ -3,14 +3,34 @@
   {{title}}
 </h3>
 
-<select name="criterio" id="criterio" [(ngModel)]="model.criterio">
-    <option value="clave_b">Clave SEDETUS</option>
-    <option value="nombre" selected>Nombre de Beneficiario</option>
-</select>
+<form name="form" class="form-horizontal"  #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !criterio.valid }">
+            <label for="criterio" class="col-md-2 control-label">Criterio de Búsqueda</label>
+            <div class="col-md-10">
+                <select name="criterio" id="criterio" class="form-control" #criterio="ngModel" [(ngModel)]="model.criterio">
+                  <option value="clave_b" selected>Clave SEDETUS</option>
+                  <option value="nombre" >Nombre de Beneficiario</option>
+                </select>
 
-<input type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
+                <div *ngIf="f.submitted && !criterio.valid" class="help-block">Criterio es obligatorio</div>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valorcriterio.valid }">
+            <label for="password" class="col-sm-2 control-label">Valor Criterio</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="valorcriterio" [(ngModel)]="model.valorcriterio" #valorcriterio="ngModel" required />
+                <div *ngIf="f.submitted && !valorcriterio.valid" class="help-block">Valor Criterio es obligatorio</div>
+            </div>
+        </div>
+        <div class="form-group" style="text-align:center">
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
 
-<input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
+        </div>
+</form>
+
+
+
+
 
 
 <div class="datos">
@@ -26,7 +46,7 @@
 
 
 <div class="table-responsive listado ">
-  <h3 *ngIf=miMensaje > {{miMensaje}} </h3>
+  <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
   <table class="table table-condensed table-hover">
   	<thead  style="color: #7b7d80;">
   		<th width="20%">Clave SEDETUS</th>
@@ -57,6 +77,6 @@
 
   <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
 </div>
-
+<h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
 <app-bonific   [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
 
