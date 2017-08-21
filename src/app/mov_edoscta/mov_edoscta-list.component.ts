@@ -104,17 +104,13 @@ export class Mov_edosctaListComponent implements OnInit {
 
   	ngOnInit() {
 
-      //this.getSolicitantes(this.idsolicitud,this.idsolicitante);
-      //this.getSolicitud(this.idsolicitud,this.idsolicitante);
-      //this.getTramite(this.idsolicitud,this.idsolicitante);
-      //this.getSeguimiento(this.idsolicitud,this.idsolicitante);
     };
 
 
 
 
-  	title = 'Estado de Cuenta';
-    selectedSolicitante: Solicitante;
+  	title = 'Estado de Cuenta por Programas';
+
     localizaBenefMov(){
       this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);
       this.getBenef(this.model.criterio,this.model.valorcriterio);
@@ -137,10 +133,10 @@ export class Mov_edosctaListComponent implements OnInit {
 
                        movimientos => {
                          this.mov_edoscta = movimientos;
-                         this.miMensajeMovs = "Recuperación Exitosa de los movimientos de estado de Cuenta";
+                         this.miMensajeMovs = "Recuperación Exitosa de los Movimientos de Estado de Cuenta";
                         },
                        error =>  this.errorMessage = <any>error);
-        this.alertService.success("Estado de cuenta encontrado exitosamente...");
+
 
     };
 
@@ -164,7 +160,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
     onMessage(mensaje:String){
-      console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
+
       this.miMensajeBons = mensaje;
 
 

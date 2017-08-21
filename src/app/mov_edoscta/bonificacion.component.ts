@@ -63,7 +63,7 @@ export class BonificacionComponent implements OnInit {
 
   private k: Observable<Bonific[]>;
 
-
+  @Input() fecha_corte:String;
   @Input() valorcriterio:String;
   @Input() criterio:String;
   @Output() onMessage = new EventEmitter<String>();
@@ -91,7 +91,8 @@ export class BonificacionComponent implements OnInit {
 
 
     getBonificaciones() {
-
+      console.log('fecha_corte '+this.fecha_corte)
+      if (this.fecha_corte!=undefined){
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
@@ -109,7 +110,7 @@ export class BonificacionComponent implements OnInit {
                         },
                        error =>  this.errorMessage = <any>error);
 
-
+      }
     };
 
 
