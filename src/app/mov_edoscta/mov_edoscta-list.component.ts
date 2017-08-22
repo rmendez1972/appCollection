@@ -86,6 +86,9 @@ export class Mov_edosctaListComponent implements OnInit {
 
   private miMensajeBons:String;
   private miMensajeMovs:String;
+  private fecha:String;
+  private bonific:String = "fa fa-check";
+  private nobonific: String = "fa fa-times";
 
 
 
@@ -95,6 +98,7 @@ export class Mov_edosctaListComponent implements OnInit {
       private route: ActivatedRoute,
       private mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService
+
     )
     {
       this.idsolicitud= this.route.snapshot.params['id']; //recuperando en el constructor el parametro pasado de idsolicitud
@@ -103,6 +107,8 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
   	ngOnInit() {
+
+      this.model.fecha_corte=new Date();
 
     };
 
@@ -165,6 +171,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
     }
+
 
 
 }
