@@ -541,3 +541,13 @@ csmall2 {
 	border-radius: 6px;
 	padding-top:1%;
 }
+
+/* calses para dejar tramsparente el panel-body bootsrtrap*/
+.transparent{
+    background-color: rgba(0,0,0,0.03);
+}
+
+.panel{
+    background-color: transparent;
+    //border: 1px #222;
+}
