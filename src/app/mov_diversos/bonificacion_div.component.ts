@@ -63,6 +63,7 @@ export class BonificacionDivComponent implements OnInit {
 
   private k: Observable<Bonific_div[]>;
 
+  @Input() fecha_corte:String;
   @Input() valorcriterio:String;
   @Input() criterio:String;
   @Output() onMessage = new EventEmitter<String>();
@@ -105,7 +106,7 @@ export class BonificacionDivComponent implements OnInit {
 
                        bonificaciones_div =>{
                          this.bonific_div = bonificaciones_div;
-                         this.message('Recuperacion exitosa');
+                         this.message('Recuperacion Exitosa de las bonificaciones de diversos');
                         },
                        error =>  this.errorMessage = <any>error);
 

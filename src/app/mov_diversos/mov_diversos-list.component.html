@@ -3,79 +3,112 @@
   {{title}}
 </h3>
 
-<select name="criterio" id="criterio" [(ngModel)]="model.criterio">
-    <option value="clave_b">Clave SEDETUS</option>
-    <option value="nombre" selected>Nombre de Beneficiario</option>
-</select>
-
-<input type="text" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
-<input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov_diversos()" />
-
 <div class="datos">
-  <div *ngFor="let ben of benef_div"  >
-  	<div><strong>Nombre: </strong>{{ben.nombre}}</div>
-    <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
-    <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
-    <div><strong>Curp: </strong>{{ben.curp}}</div>
-    <div><strong>Numero Contrato: </strong>{{ben.numcontrato}}</div>
-    <div><strong>ID: </strong>{{ben.id_bendiv}}</div>
+    <form name="form" class="form-inline"  #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !criterio.valid }">
+            <label for="criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
+            <div class="col-md-2">
+                <select name="criterio" id="criterio"  class="form-control" #criterio="ngModel" [(ngModel)]="model.criterio">
+                  <option [value]="clave_b" [selected]="clave_b">Clave SEDETUS</option>
+                  <option [value]="nombre" >Nombre de Beneficiario</option>
+                </select>
+                <div *ngIf="f.submitted && !criterio.valid" class="help-block">Criterio es obligatorio</div>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valor_criterio.valid }">
+            <label for="valor_criterio" class="col-sm-4 control-label">Valor Criterio</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" name="valor_criterio" [ngModel]="model.valorcriterio | uppercase"  (ngModelChange)="model.valorcriterio = $event"  #valor_criterio="ngModel" required />
+                <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Valor Criterio es obligatorio</div>
+            </div>
+        </div>
+        <div class="form-group" style="text-align:center">
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov_diversos()" />
 
+        </div>
+</form>
+  <div class="panel panel-default" style="background-color:transparent;">
+    <div class="panel panel-heading"><strong>Generales del Beneficiario</strong></div>
+    <div *ngFor="let ben of benef_div"  >
+      <div><strong>Nombre: </strong>{{ben.nombre}}</div>
+      <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
+      <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
+      <div><strong>Curp: </strong>{{ben.curp}}</div>
+      <div><strong>Numero Contrato: </strong>{{ben.numcontrato}}</div>
+      <div><strong>ID: </strong>{{ben.id_bendiv}}</div>
+    </div>
   </div>
  
 
-  <div class="table-responsive listado ">
-    <div *ngIf=miMensaje > {{miMensaje}} </div>
-    <table class="table table-condensed table-hover">
-      <thead  style="color: #7b7d80;">
-        <tr style="font-size: 12px;font-stretch: condensed;">
-          <th width="">Fecha Mov.</th>
-          <th width="">Clave Mov.</th>
-          <th width="">Descripción</th>
-          <th width="">poliza</th>
-          <th width="">Cargo</th>
-          <th width="">Abono</th>
-          <th width="">Mora</th>
-          <th width="">Otros</th>
-          <th width="">Interés</th>
-          <th width="">Seguro</th>
-          <th width="">bonific</th>
-          <th width="">Recibo</th>
-          <th width="">Serie</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let mov of mov_diversos">
-        <tr style="font-size: 12px;font-stretch: condensed;color:#000;">
-          <td width="">{{mov.fecha_div}}</td>
-          <td width="">{{mov.clave_div}}</td>
-          <td width="">{{mov.descripcion}}</td>
-          <td width="">{{mov.poliza}}</td>
-          <td width="">{{mov.cargo}}</td>
-          <td width="">{{mov.abono}}</td>
-          <td width="">{{mov.moratorios}}</td>
-          <td width="">{{mov.otros}}</td>
-          <td width="">{{mov.interes}}</td>
-          <td width="">{{mov.seguro}}</td>
-          <td width="" *ngIf="mov.bonific=='1'">
-              <span class="fa fa-check" title="movimiento con bonificación" style="color:#3fb7fe;"></span>
-          </td>
-          <td width="" *ngIf="mov.bonific=='0'">
-              <span class="fa fa-times" title="movimiento con bonificación" style="color:#3fb7fe;"></span>
-          </td>
-          <td width="">{{mov.recibo}}</td>
-          <td width="">{{mov.serie}}</td>
+  <div class="panel panel-default"  style="background-color:transparent;">
+    <div class="panel panel-heading"><strong>Movimientos Aplicados del Beneficiario Diverso</strong></div>
+      <div class="table-responsive listado ">
+        <div *ngIf=miMensajeMovs ><span class="label label-success">{{miMensajeMovs}}</span></div>
+        <table class="table table-condensed table-hover">
+          <thead  style="color: #7b7d80;">
+            <tr style="font-size: 12px;font-stretch: condensed;">
+              <th width="">Fecha Mov.</th>
+              <th width="">Clave Mov.</th>
+              <th width="">Descripción</th>
+              <th width="">poliza</th>
+              <th width="">Cargo</th>
+              <th width="">Abono</th>
+              <th width="">Mora</th>
+              <th width="">Otros</th>
+              <th width="">Interés</th>
+              <th width="">Seguro</th>
+              <th width="">bonific</th>
+              <th width="">Recibo</th>
+              <th width="">Serie</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let mov of mov_diversos">
+            <tr style="font-size: 12px;font-stretch: condensed;color:#000;">
+              <td width="">{{mov.fecha_div}}</td>
+              <td width="">{{mov.clave_div}}</td>
+              <td width="">{{mov.descripcion}}</td>
+              <td width="">{{mov.poliza}}</td>
+              <td width="">{{mov.cargo}}</td>
+              <td width="">{{mov.abono}}</td>
+              <td width="">{{mov.moratorios}}</td>
+              <td width="">{{mov.otros}}</td>
+              <td width="">{{mov.interes}}</td>
+              <td width="">{{mov.seguro}}</td>
+              <td [ngSwitch]="mov.bonific">                  
+                <div *ngSwitchCase="1" [ngClass]="bonific"    [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>
+                <div *ngSwitchCase="0" [ngClass]="nobonific"  [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"> </div>
+              </td>
+              <td width="">{{mov.recibo}}</td>
+              <td width="">{{mov.serie}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        
+       </div>
+    </div>
+    
+    <form name="form" class="form-inline"  #f2="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !fechacorte.valid }">
+            <label for="fechacorte" class="col-md-4 control-label">Fecha de Corte</label>
+            <div class="col-md-6">
+                <input type="date" name="fechacorte" id="fechacorte" class="form-control"  [ngModel]="model.fecha_corte | date:'yyyy-MM-dd'" (ngModelChange)="model.fecha_corte = $event" #fechacorte="ngModel" required>
+                <div *ngIf="f2.submitted && !fechacorte.valid" class="help-block">Fecha de Corte es obligatorio</div>
 
-          <!--<td width="20%">
-            <img src="../assets/img/reporte_adjuntos.png" width="26px" height="26px" (click)="onSelect(seguimiento)" title="Ver archivos adjuntos">
-            <a><img src="../assets/img/upload.png" width="26x" height="26px" (click)="onSelect2(seguimiento)" title="Adjuntar archivos" ></a>
-          </td>-->
-        </tr>
-      </tbody>
-    </table>
-    <input type="date" name="fecha de corte" id="fecha_corte">
-    <input type="hidden" name="valorcriterio" id="valorcriterio" placeholder="Introduce tu criterio de busqueda" [(ngModel)]="model.valorcriterio">
-    <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align:center">
+          <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+        </div>
+    </form>
+    
+    <div class="panel panel-default">
+      <div class="panel panel-heading"><strong>Bonificaciones del Beneficiario Diverso.</strong></div>
+        <div class="panel-body">
+          <div *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></div>
+          <app-bonific-div  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>
+        </div>
+      </div>
+
   </div>
-
-
-<app-bonific-div   [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>
-

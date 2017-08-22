@@ -77,7 +77,12 @@ export class Mov_diversosListComponent implements OnInit {
   private idSolicitud:  number;
   public  idsolicitud:  number;
   public  idsolicitante:number;
-  private miMensaje:    String;
+  //private miMensaje:    String;
+
+  private miMensajeBons:String;
+  private miMensajeMovs:String;
+  private bonific:String = "fa fa-check";
+  private nobonific: String = "fa fa-times";
 
   constructor(
       private router: Router,
@@ -92,7 +97,7 @@ export class Mov_diversosListComponent implements OnInit {
 
 
   	ngOnInit() {
-
+      this.model.fecha_corte=new Date()
     };
 
   	title = 'Estado de Cuenta Movimientos diversos';
@@ -114,9 +119,15 @@ export class Mov_diversosListComponent implements OnInit {
         })
 
         this.k.subscribe(
+          
+          movimientos => {
+            this.mov_diversos = movimientos;
+            this.miMensajeMovs = "Recuperación Exitosa de los Movimientos diversos";
+           },
+          error =>  this.errorMessage = <any>error);
 
-                       movimientos => this.mov_diversos = movimientos,
-                       error =>  this.errorMessage = <any>error);
+          //movimientos => this.mov_diversos = movimientos,
+          //error =>  this.errorMessage = <any>error);
     };
 
     getBenef_div(criterio:String,valorcriterio:String) {
@@ -138,8 +149,9 @@ export class Mov_diversosListComponent implements OnInit {
     };
 
     onMessage(mensaje:String){
-      console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
-      this.miMensaje = mensaje;
+      //console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
+      //this.miMensaje = mensaje;
+      this.miMensajeBons = mensaje;
     }
 
 }
