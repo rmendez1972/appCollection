@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SeguimientoRoutingModule } from './seguimientos/seguimientos-routing.module';
 
 import { Mov_edosctaRoutingModule } from './mov_edoscta/mov_edoscta-routing.module';
+import { Mov_diversosRoutingModule } from './mov_diversos/mov_diversos-routing.module';//igh
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers/index';
@@ -25,10 +26,8 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menus/menu.component';
 import { SeguimientosModule } from './seguimientos/seguimientos.module';
 
-
 import { Mov_edosctaModule } from './mov_edoscta/mov_edoscta.module';
-
-
+import { Mov_diversosModule } from './mov_diversos/mov_diversos.module';//igh
 
 import { AdjuntosModule } from './adjuntos/adjuntos.module';
 
@@ -44,10 +43,6 @@ import { UploadComponent } from './upload/upload.component';
 
 
 //import { BuscarSolicitudComponent } from './buscar-solicitud/buscar-solicitud.component';
-
-
-
-
 
 
 @NgModule({
@@ -70,8 +65,10 @@ import { UploadComponent } from './upload/upload.component';
     AppRoutingModule,
     SeguimientoRoutingModule,
     Mov_edosctaRoutingModule,
+    Mov_diversosRoutingModule,//igh
     SeguimientosModule,
     Mov_edosctaModule,
+    Mov_diversosModule,//igh
     AdjuntosModule,
     BotonBuscarModule,
     ContactoModule,
