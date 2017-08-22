@@ -86,9 +86,17 @@ export class Mov_edosctaListComponent implements OnInit {
 
   private miMensajeBons:String;
   private miMensajeMovs:String;
+  private miMensajeerrorMovs:String;
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
+
+  optionsSelect = [
+       {id:1, value: "clave_b", name: "Clave SEDETUS"},
+       {id:2, value: "nombre", name: "Nombre de Beneficiario"}
+
+  ];
+  private seleccionado:String="clave_b";
 
 
 
@@ -109,6 +117,7 @@ export class Mov_edosctaListComponent implements OnInit {
   	ngOnInit() {
 
       this.model.fecha_corte=new Date();
+      this.model.valorcriterio=null;
 
     };
 
@@ -118,9 +127,16 @@ export class Mov_edosctaListComponent implements OnInit {
   	title = 'Estado de Cuenta por Programas';
 
     localizaBenefMov(){
-      this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);
-      this.getBenef(this.model.criterio,this.model.valorcriterio);
-
+      console.log('valor de model.criterio '+this.model.criterio);
+      console.log('valor de model.valorcriterio '+this.model.valorcriterio);
+      if ((this.model.criterio!=undefined) && (this.model.valorcriterio!=null )){
+        this.miMensajeerrorMovs=null;
+        this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);
+        this.getBenef(this.model.criterio,this.model.valorcriterio);
+      }else{
+        this.miMensajeMovs=null;
+        this.miMensajeerrorMovs = "Error en recuperación de Movimientos de Estado de Cuenta, por favor llena los campos..";
+      }
     }
 
 

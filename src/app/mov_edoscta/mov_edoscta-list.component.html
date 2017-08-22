@@ -3,16 +3,18 @@
   {{title}}
 </h3>
 <br>
-<form name="form" class="form-inline"  #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !criterio.valid }">
+<div class="datos">
+  <br>
+  <form name="form" class="form-inline"  #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
             <label for="criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
             <div class="col-md-2">
-                <select name="criterio" id="criterio"  class="form-control" #criterio="ngModel" [(ngModel)]="model.criterio">
-                  <option [value]="clave_b" [selected]="clave_b">Clave SEDETUS</option>
-                  <option [value]="nombre" >Nombre de Beneficiario</option>
+                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" >
+                  <option value="undefined" selected>Selecciona un Criterio...</option>
+                  <option *ngFor="let option of optionsSelect"  value="{{option.value}}">{{option.name}}</option>
                 </select>
 
-                <div *ngIf="f.submitted && !criterio.valid" class="help-block">Criterio es obligatorio</div>
+                <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Criterio es obligatorio</div>
             </div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valor_criterio.valid }">
@@ -26,13 +28,20 @@
             <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
 
         </div>
-</form>
-<br>
+  </form>
+  <br>
 
+<<<<<<< HEAD
 <div class="datos">
   <div class="panel panel-default">
     <div class="panel panel-heading">Generales del Beneficiario Diverso</div>
       <div class="panel-body" *ngFor="let ben of benef" >
+=======
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">Generales del Beneficiario</div>
+      <div class="panel-body transparent" *ngFor="let ben of benef" >
+>>>>>>> fb123da45b0c142c5f7e61a05c7792540cc92d2c
         <div><strong>Nombre: </strong>{{ben.nombre}}</div>
         <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
         <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
@@ -45,11 +54,12 @@
 
 
 
-  <div class="panel panel-default">
-    <div class="panel panel-heading">Movimientos Aplicados del Beneficiario</div>
-      <div class="panel-body">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Movimientos Aplicados del Beneficiario</div>
+      <div class="panel-body transparent">
         <div class="table-responsive">
         <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
+        <h3 *ngIf=miMensajeerrorMovs><span class="label label-danger">{{miMensajeerrorMovs}}</span></h3>
         <table class="table table-condensed table-hover table-bordered">
         <thead  style="color: #7b7d80;">
   		    <th >Fecha Mov.</th>
@@ -93,7 +103,7 @@
   	    </tbody>
         </table>
   <br>
-<form name="form" class="form-inline"  #f2="ngForm" novalidate>
+<form *ngIf="miMensajeMovs" name="form" class="form-inline"  #f2="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !fechacorte.valid }">
             <label for="fechacorte" class="col-md-4 control-label">Fecha de Corte</label>
             <div class="col-md-6">
@@ -111,9 +121,9 @@
 </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel panel-heading">Bonificaciones del Beneficiario</div>
-    <div class="panel-body">
+<div class="panel panel-primary">
+  <div class="panel-heading">Bonificaciones del Beneficiario</div>
+    <div class="panel-body transparent">
       <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
       <app-bonific  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
     </div>
