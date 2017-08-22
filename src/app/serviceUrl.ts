@@ -12,20 +12,31 @@ public URLcambiapassword: String;
 public URLupload: String;
 public URLfilename: String;
 public URLbonificacion:String;
+public URLdiversos:String; //ismael
+public URLbonificacion_div:String; //ismael
 
 constructor() {}
 
 
   		getUrlmov_edoscta():String{
-	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
-	  	}
+
+	  			return this.URL='http://localhost:8083/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
+		}
+		
+		getUrlmov_diversos():String{			
+			return this.URLdiversos='http://localhost:8083/cobranza/controladormov_diversos?operacion=listarJsonbyIdbenef&criterio=';
+		}  
 
 	  	getUrlbonificacion():String{
-	  			return this.URLbonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyCriterio&criterio=';
-	  	}
+	  			return this.URLbonificacion='http://localhost:8083/cobranza/controladormovbonific?operacion=listarJsonbyCriterio&criterio=';
+		}
+		  
+		getUrlbonificacion_div():String{
+			return this.URLbonificacion_div='http://localhost:8083/cobranza/controladormovbonific?operacion=listarJsonbyCriterioDiv&criterio=';
+		}  
 
 	  	getUrladjuntos():String{
-	  			return this.URLadjuntos='http://localhost:8080/Tramites/controladoradjunto?operacion=listarjson&id_seguimiento=';
+	  			return this.URLadjuntos='http://localhost:8083/Tramites/controladoradjunto?operacion=listarjson&id_seguimiento=';
 	  	}
 
 	  	getUrladjuntosdescarga():String{
@@ -37,7 +48,7 @@ constructor() {}
 	  	}
 
 	  	getUrllogin():String{
-	  			return this.URLlogin='http://localhost:8080/cobranza/controladorlogin?operacion=apilogin&username=';
+	  			return this.URLlogin='http://localhost:8083/cobranza/controladorlogin?operacion=apilogin&username=';
 	  	}
 
 		getUrlCambiaPassword():String{
