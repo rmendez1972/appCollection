@@ -9,6 +9,7 @@ import { Mov_edoctaService } from './mov_edocta.service';
 import { BonificService } from './bonificacion.service';
 
 import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
+import { centavos } from '../_pipes/centavos.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
   ],
   declarations: [
     Mov_edosctaListComponent,
-    BonificacionComponent
+    BonificacionComponent,
+    centavos
   ],
   providers: [
     ServiceUrl,Mov_edoctaService,BonificService

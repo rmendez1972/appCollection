@@ -15,6 +15,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { centavos } from '../_pipes/centavos.pipe';
 
 
 @Component({
@@ -133,6 +134,7 @@ export class Mov_edosctaListComponent implements OnInit {
         this.miMensajeerrorMovs=null;
         this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);
         this.getBenef(this.model.criterio,this.model.valorcriterio);
+
       }else{
         this.miMensajeMovs=null;
         this.miMensajeerrorMovs = "Error en recuperación de Movimientos de Estado de Cuenta, por favor llena los campos..";
