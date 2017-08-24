@@ -550,21 +550,11 @@ csmall2 {
 
 .panel{
     background-color: transparent;
+
     //border: 1px #222;
 }
 
-/*Clase para el div de los datos generales de la solicidtud*/
-.encabezado2{
-	/*margin-top:30px;*/
-	background-color: #00A6CA;
-	font-family:Conv_roundedelegance;
-	line-height: normal;
-	vertical-align: center;
-	border-radius: 6px;
-	padding-top:1%;
-	padding-left:5px;
-	color:#fff;
-}
+
 
 .ng-valid[required], .ng-valid.required  {
   border-left: 7px solid #42A948; /* green */
@@ -573,3 +563,4 @@ csmall2 {
 .ng-invalid:not(form)  {
   border-left: 7px solid #a94442; /* red */
 }
+

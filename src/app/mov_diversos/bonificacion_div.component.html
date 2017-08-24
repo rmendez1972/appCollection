@@ -1,12 +1,10 @@
 
-
-<div class="table-responsive listado ">
-    <div class="encabezado2" ><span class="fa fa-money"></span>
-      {{title}}
-    </div>
+<div class="table-responsive">
+    <!--<div class="encabezado2" ><span class="fa fa-money"></span>{{title}}</div>-->
+    
   <table class="table table-condensed table-hover">
   	<thead  style="color: #7b7d80;">
-      <tr style="font-size: 12px;font-stretch: condensed;">
+      <tr style="font-size: 12px;font-stretch: condensed;" *ngIf=bonific_div>
         <th width="">Capital</th>
         <th width="">Interés</th>
         <th width="">Admon</th>

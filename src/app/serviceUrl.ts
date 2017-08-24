@@ -21,11 +21,13 @@ constructor() {}
   		getUrlmov_edoscta():String{
 
 	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
+
 		}
 
 		getUrlmov_diversos():String{
 			return this.URLdiversos='http://localhost:8080/cobranza/controladormov_diversos?operacion=listarJsonbyIdbenef&criterio=';
 		}
+
 
 	  	getUrlbonificacion():String{
 	  			return this.URLbonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyCriterio&criterio=';
@@ -33,7 +35,9 @@ constructor() {}
 
 		getUrlbonificacion_div():String{
 			return this.URLbonificacion_div='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyCriterioDiv&criterio=';
+
 		}
+
 
 	  	getUrladjuntos():String{
 	  			return this.URLadjuntos='http://localhost:8080/Tramites/controladoradjunto?operacion=listarjson&id_seguimiento=';
@@ -61,5 +65,30 @@ constructor() {}
 
 		getUrlfilename():String{
 	  			return this.URLupload='http://localhost:8080/Tramites/controladoradjunto?operacion=grabarfromApp&id_seguimiento=';
-	  	}
+		}
+
+		//URL de catalagos
+		getUrlcpp():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorcpp?operacion=listarJson';
+		}
+
+		getUrlsalmin():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorsalmin?operacion=listarJson';
+		}
+
+		getUrlsalmindf():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorsalmindf?operacion=listarJson';
+		}
+
+		getUrlclavemov():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorclavemov?operacion=listarJson';
+		}
+
+		getUrlclavediv():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorclavediversos?operacion=listarJson';
+		}
+
+		getUrlbonificaciones():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
+		}
 }
