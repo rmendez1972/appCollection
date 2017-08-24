@@ -63,10 +63,11 @@ export class BonificacionDivComponent implements OnInit {
 
   private k: Observable<Bonific_div[]>;
 
-  private miMensajeerrorMovs:String;
-  private miMensajeBons:String;
-  private miMensajeBonsError:String;
+  //private miMensajeerrorMovs:String;
+  //private miMensajeBons:String;
+  //private miMensajeBonsError:String;
 
+ 
   @Input() fecha_corte:String;
   @Input() valorcriterio:String;
   @Input() criterio:String;
@@ -93,16 +94,10 @@ export class BonificacionDivComponent implements OnInit {
 
     message(mensaje:String){
       this.onMessage.emit(mensaje);
-
-      
-      
-
     };
 
     message2(mensaje2:String){
       this.onMessage2.emit(mensaje2);
-      
-
     };
 
 
@@ -122,13 +117,15 @@ export class BonificacionDivComponent implements OnInit {
           bonificaciones_div =>{
             this.bonific_div = bonificaciones_div;
             if (this.bonific_div.length>0){
-              this.miMensajeBonsError=null;
+              //this.miMensajeBonsError=null;
+              this.message2('');
               this.message('Recuperacion Exitosa de las bonificaciones de diversos');
               
             }
             else{
-              this.miMensajeBons=null;
-              this.message('Sin bonificaciones');
+              //this.miMensajeBons=null;
+              this.message('');
+              this.message2('Sin bonificaciones');
               
 
               

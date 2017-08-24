@@ -66,8 +66,9 @@ export class Mov_diversosListComponent implements OnInit {
   private benef_div: Benef_div[];
   private k: Observable<Mov_diversos[]>;
   private l: Observable<Benef_div[]>;
+
   private miMensajeBons:String;
-  private miMensajeBonsError:String;
+  private miMensajeBonsError:String;//igh
 
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
