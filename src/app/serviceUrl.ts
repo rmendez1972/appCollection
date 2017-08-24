@@ -61,5 +61,30 @@ constructor() {}
 
 		getUrlfilename():String{
 	  			return this.URLupload='http://localhost:8080/Tramites/controladoradjunto?operacion=grabarfromApp&id_seguimiento=';
-	  	}
+		}
+		 
+		//URL de catalagos	
+		getUrlcpp():String{			
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorcpp?operacion=listarJson';
+		}
+
+		getUrlsalmin():String{			
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorsalmin?operacion=listarJson';
+		}
+
+		getUrlsalmindf():String{			
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorsalmindf?operacion=listarJson';
+		}
+
+		getUrlclavemov():String{			
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorclavemov?operacion=listarJson';
+		}
+
+		getUrlclavediv():String{			
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorclavediversos?operacion=listarJson';
+		}
+
+		getUrlbonificaciones():String{			
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
+		}
 }
