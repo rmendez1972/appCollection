@@ -1,113 +1,114 @@
-
+<!--
+  Vista para listar los movimiento diversos de un bebeficiario y sus bonificaciones
+  Ismael García
+  18/08/2017
+  Última modificación: 23/08/2018
+  app-diversos
+-->
 <h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
   {{title}}
 </h3>
 
 <div class="datos">
     <form name="form" class="form-inline"  #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !criterio.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
             <label for="criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
             <div class="col-md-2">
-                <select name="criterio" id="criterio"  class="form-control" #criterio="ngModel" [(ngModel)]="model.criterio">
-                  <option [value]="clave_b" [selected]="clave_b">Clave SEDETUS</option>
-                  <option [value]="nombre" >Nombre de Beneficiario</option>
-                </select>
-                <div *ngIf="f.submitted && !criterio.valid" class="help-block">Criterio es obligatorio</div>
+                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" >
+                    <option value="undefined" selected>Selecciona un Criterio...</option>
+                    <option *ngFor="let option of optionsSelect"  value="{{option.value}}">{{option.name}}</option>
+                  </select>
+                <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Criterio es obligatorio</div>
             </div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valor_criterio.valid }">
             <label for="valor_criterio" class="col-sm-4 control-label">Valor Criterio</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" name="valor_criterio" [ngModel]="model.valorcriterio | uppercase"  (ngModelChange)="model.valorcriterio = $event"  #valor_criterio="ngModel" required />
-                <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Valor Criterio es obligatorio</div>
+                <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Obligatorio</div>
             </div>
         </div>
         <div class="form-group" style="text-align:center">
-            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov_diversos()" />
-
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov_diversos(); bonificacion.getBonificaciones()" />
+            <!--<input type="submit" value="Aceptar" class="btn btn-primary" ng-click="localizaBenefMov_diversos(); bonificacion.getBonificaciones()" />-->
+            
         </div>
 </form>
-  <div class="panel panel-default" style="background-color:transparent;">
-    <div class="panel panel-heading"><strong>Generales del Beneficiario</strong></div>
-    <div *ngFor="let ben of benef_div"  >
+  <div class="panel panel-primary">
+    <div class="panel-heading">Generales del Beneficiario</div>
+    <div class="panel-body transparent" *ngFor="let ben of benef_div">
       <div><strong>Nombre: </strong>{{ben.nombre}}</div>
       <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
-      <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
       <div><strong>Curp: </strong>{{ben.curp}}</div>
       <div><strong>Numero Contrato: </strong>{{ben.numcontrato}}</div>
       <div><strong>ID: </strong>{{ben.id_bendiv}}</div>
     </div>
   </div>
- 
 
-  <div class="panel panel-default"  style="background-color:transparent;">
-    <div class="panel panel-heading"><strong>Movimientos Aplicados del Beneficiario Diverso</strong></div>
-      <div class="table-responsive listado ">
-        <div *ngIf=miMensajeMovs ><span class="label label-success">{{miMensajeMovs}}</span></div>
-        <table class="table table-condensed table-hover">
-          <thead  style="color: #7b7d80;">
-            <tr style="font-size: 12px;font-stretch: condensed;">
-              <th width="">Fecha Mov.</th>
-              <th width="">Clave Mov.</th>
-              <th width="">Descripción</th>
-              <th width="">poliza</th>
-              <th width="">Cargo</th>
-              <th width="">Abono</th>
-              <th width="">Mora</th>
-              <th width="">Otros</th>
-              <th width="">Interés</th>
-              <th width="">Seguro</th>
-              <th width="">bonific</th>
-              <th width="">Recibo</th>
-              <th width="">Serie</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let mov of mov_diversos">
-            <tr style="font-size: 12px;font-stretch: condensed;color:#000;">
-              <td width="">{{mov.fecha_div}}</td>
-              <td width="">{{mov.clave_div}}</td>
-              <td width="">{{mov.descripcion}}</td>
-              <td width="">{{mov.poliza}}</td>
-              <td width="">{{mov.cargo}}</td>
-              <td width="">{{mov.abono}}</td>
-              <td width="">{{mov.moratorios}}</td>
-              <td width="">{{mov.otros}}</td>
-              <td width="">{{mov.interes}}</td>
-              <td width="">{{mov.seguro}}</td>
-              <td [ngSwitch]="mov.bonific">                  
-                <div *ngSwitchCase="1" [ngClass]="bonific"    [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>
-                <div *ngSwitchCase="0" [ngClass]="nobonific"  [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"> </div>
-              </td>
-              <td width="">{{mov.recibo}}</td>
-              <td width="">{{mov.serie}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Movimientos Aplicados del Beneficiario Diverso</div>
+      <div class="panel-body transparent">
+        <div class="table-responsive">
+          <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
+          <h3 *ngIf=miMensajeerrorMovs><span class="label label-danger">{{miMensajeerrorMovs}}</span></h3>
+          <table class="table table-condensed table-hover">
+            <thead  style="color: #7b7d80;" *ngIf=mov_diversos>
+              <tr style="font-size: 12px;font-stretch: condensed;">
+                <th width="">Fecha Mov.</th>
+                <th width="">Clave Mov.</th>
+                <th width="">Descripción</th>
+                <th width="">poliza</th>
+                <th width="">Cargo</th>
+                <th width="">Abono</th>
+                <th width="">Mora</th>
+                <th width="">Otros</th>
+                <th width="">Interés</th>
+                <th width="">Seguro</th>
+                <th width="">bonific</th>
+                <th width="">Recibo</th>
+                <th width="">Serie</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let mov of mov_diversos">
+              <tr style="font-size: 12px;font-stretch: condensed;color:#000;">
+                <td width="">{{mov.fecha_div}}</td>
+                <td width="">{{mov.clave_div}}</td>
+                <td width="">{{mov.descripcion}}</td>
+                <td width="">{{mov.poliza}}</td>
+                <td width="">{{mov.cargo}}</td>
+                <td width="">{{mov.abono}}</td>
+                <td width="">{{mov.moratorios}}</td>
+                <td width="">{{mov.otros}}</td>
+                <td width="">{{mov.interes}}</td>
+                <td width="">{{mov.seguro}}</td>
+                <td [ngSwitch]="mov.bonific">                  
+                  <div *ngSwitchCase="1" [ngClass]="bonific"    [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>
+                  <div *ngSwitchCase="0" [ngClass]="nobonific"  [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"> </div>
+                </td>
+                <td width="">{{mov.recibo}}</td>
+                <td width="">{{mov.serie}}</td>
+              </tr>
+            </tbody>
+          </table>
         
        </div>
-    </div>
-    
-    <form name="form" class="form-inline"  #f2="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !fechacorte.valid }">
-            <label for="fechacorte" class="col-md-4 control-label">Fecha de Corte</label>
-            <div class="col-md-6">
-                <input type="date" name="fechacorte" id="fechacorte" class="form-control"  [ngModel]="model.fecha_corte | date:'yyyy-MM-dd'" (ngModelChange)="model.fecha_corte = $event" #fechacorte="ngModel" required>
-                <div *ngIf="f2.submitted && !fechacorte.valid" class="help-block">Fecha de Corte es obligatorio</div>
+      </div>
+    </div>  
 
-            </div>
-        </div>
-
-        <div class="form-group" style="text-align:center">
-          <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
-        </div>
-    </form>
-    
-    <div class="panel panel-default">
-      <div class="panel panel-heading"><strong>Bonificaciones del Beneficiario Diverso.</strong></div>
-        <div class="panel-body">
-          <div *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></div>
-          <app-bonific-div  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Bonificaciones del Beneficiario Diverso.</div>
+        <div class="panel-body transparent">
+              <h3 *ngIf="miMensajeerrorMovs; else elseBlock"><span class="label label-danger">{{miMensajeBons}}</span></h3>
+              <!--<h3 *ngIf="miMensajeBons?.length > 30"><span class="label label-success">{{miMensajeBons}}</span></h3>
+              <h3 *ngIf="miMensajeBons?.length < 30"><span class="label label-danger">{{miMensajeBons}}</span></h3>  -->
+              <ng-template #elseBlock>
+              <!--<h3 *ngIf=miMensajeBonsError><span class="label label-warning" style="font-style: normal">{{miMensajeBonsError}}</span></h3>-->
+              
+              <h3 *ngIf=miMensajeBons><span class="label label-success" style="font-style: normal">{{miMensajeBons}}</span></h3>
+              </ng-template>
+ 
+          <!--<app-bonific-div  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>-->
+          <app-bonific-div [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)"  #bonificacion (onMessage2)="onMessage2($event)"></app-bonific-div>
         </div>
       </div>
 
