@@ -9,19 +9,20 @@
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
             <label for="criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
             <div class="col-md-2">
-                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" >
+                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" required>
                   <option value="undefined" selected>Selecciona un Criterio...</option>
                   <option *ngFor="let option of optionsSelect"  value="{{option.value}}">{{option.name}}</option>
                 </select>
 
-                <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Criterio es obligatorio</div>
+                <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Obligatorio</div>
             </div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valor_criterio.valid }">
             <label for="valor_criterio" class="col-sm-4 control-label">Valor Criterio</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" name="valor_criterio" [ngModel]="model.valorcriterio | uppercase"  (ngModelChange)="model.valorcriterio = $event"  #valor_criterio="ngModel" required />
-                <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Valor Criterio es obligatorio</div>
+                <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Obligatorio</div>
+
             </div>
         </div>
         <div class="form-group" style="text-align:center">
@@ -72,18 +73,18 @@
   	    </thead>
   	    <tbody *ngFor="let mov of mov_edoscta">
   		    <tr>
-  			   <td >{{mov.fecha_mov}}</td>
+  			   <td >{{mov.fecha_mov | date:"dd/MM/yyyy"}}</td>
            <td >{{mov.clave_mov}}</td>
            <td >{{mov.recibo}}</td>
            <td >{{mov.serie}}</td>
-  			   <td >{{mov.capital}}</td>
-           <td >{{mov.interes}}</td>
-           <td >{{mov.admon}}</td>
-           <td >{{mov.seguro}}</td>
-           <td >{{mov.o_seguro}}</td>
-           <td >{{mov.comisiones}}</td>
-           <td >{{mov.tit}}</td>
-           <td >{{mov.moratorios}}</td>
+  			   <td >{{mov.capital | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.interes | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.admon | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.seguro | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.o_seguro | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.comisiones | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.tit | currency:'USD':true:'.2'}}</td>
+           <td >{{mov.moratorios | currency:'USD':true:'.2'}}</td>
            <td [ngSwitch]="mov.bonific">
 
             <div *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="20+'px'"  [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>

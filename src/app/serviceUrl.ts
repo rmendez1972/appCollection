@@ -20,20 +20,38 @@ constructor() {}
 
   		getUrlmov_edoscta():String{
 
+<<<<<<< HEAD
 	  			return this.URL='http://localhost:8083/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
 		}
 		
 		getUrlmov_diversos():String{			
 			return this.URLdiversos='http://localhost:8083/cobranza/controladormov_diversos?operacion=listarJsonbyIdbenef&criterio=';
 		}  
+=======
+	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
+
+		}
+
+		getUrlmov_diversos():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladormov_diversos?operacion=listarJsonbyIdbenef&criterio=';
+		}
+
+>>>>>>> ad8b8da84b633672cbe72aa2f22970eb34898209
 
 	  	getUrlbonificacion():String{
 	  			return this.URLbonificacion='http://localhost:8083/cobranza/controladormovbonific?operacion=listarJsonbyCriterio&criterio=';
 		}
-		  
+
 		getUrlbonificacion_div():String{
+<<<<<<< HEAD
 			return this.URLbonificacion_div='http://localhost:8083/cobranza/controladormovbonific?operacion=listarJsonbyCriterioDiv&criterio=';
 		}  
+=======
+			return this.URLbonificacion_div='http://localhost:8080/cobranza/controladormovbonific?operacion=listarJsonbyCriterioDiv&criterio=';
+
+		}
+
+>>>>>>> ad8b8da84b633672cbe72aa2f22970eb34898209
 
 	  	getUrladjuntos():String{
 	  			return this.URLadjuntos='http://localhost:8083/Tramites/controladoradjunto?operacion=listarjson&id_seguimiento=';
@@ -62,6 +80,7 @@ constructor() {}
 		getUrlfilename():String{
 	  			return this.URLupload='http://localhost:8083/Tramites/controladoradjunto?operacion=grabarfromApp&id_seguimiento=';
 		}
+<<<<<<< HEAD
 		 
 		//URL de catalagos	
 		getUrlcpp():String{			
@@ -86,5 +105,31 @@ constructor() {}
 
 		getUrlbonificaciones():String{			
 			return this.URLdiversos='http://localhost:8083/cobranza/controladorbonificacion?operacion=listarJson';
+=======
+
+		//URL de catalagos
+		getUrlcpp():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorcpp?operacion=listarJson';
+		}
+
+		getUrlsalmin():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorsalmin?operacion=listarJson';
+		}
+
+		getUrlsalmindf():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorsalmindf?operacion=listarJson';
+		}
+
+		getUrlclavemov():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorclavemov?operacion=listarJson';
+		}
+
+		getUrlclavediv():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorclavediversos?operacion=listarJson';
+		}
+
+		getUrlbonificaciones():String{
+			return this.URLdiversos='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
+>>>>>>> ad8b8da84b633672cbe72aa2f22970eb34898209
 		}
 }

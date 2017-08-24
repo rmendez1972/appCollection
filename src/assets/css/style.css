@@ -542,6 +542,7 @@ csmall2 {
 	padding-top:1%;
 }
 
+
 /* calses para dejar tramsparente el panel-body bootsrtrap*/
 .transparent{
     background-color: rgba(0,0,0,0.03);
@@ -549,5 +550,17 @@ csmall2 {
 
 .panel{
     background-color: transparent;
-    /*border: 1px #222;*/
+
+    //border: 1px #222;
 }
+
+
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 7px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 7px solid #a94442; /* red */
+}
+

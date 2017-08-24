@@ -44,6 +44,7 @@ import { UploadModule } from './upload/upload.module';
 import { UploadComponent } from './upload/upload.component';
 
 
+
 //import { BuscarSolicitudComponent } from './buscar-solicitud/buscar-solicitud.component';
 
 
@@ -87,6 +88,7 @@ import { UploadComponent } from './upload/upload.component';
     AlertService,
     AuthenticationService,
     UserService,
+
 
     // providers used to create fake backend
     //fakeBackendProvider,
