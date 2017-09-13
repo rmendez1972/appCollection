@@ -149,7 +149,7 @@ export class Mov_edosctaListComponent implements OnInit {
         .switchMap((params: Params) =>
         {
 
-          this.selectedId= +params['id'];
+          //this.selectedId= +params['id'];
           return this.mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
         })
 

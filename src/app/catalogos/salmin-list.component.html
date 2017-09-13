@@ -12,8 +12,8 @@
       </thead>
       <tbody *ngFor="let msalmin of salmin">
         <tr>
-         <td>{{msalmin.fecha}}</td>
-         <td>{{msalmin.importe}}</td>
+         <td>{{msalmin.fecha | date:"dd/MM/yyyy"}}</td>
+         <td>{{msalmin.importe | currency:'USD':true:'.2'}}</td>
         </tr>
       </tbody>
       </table>
