@@ -7,7 +7,7 @@
 */ 
 
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
-import { DatePipe} from '@angular/common';
+
 
 import { Mov_diversos } from './mov_diversos';
 import { Benef_div } from './benef_div';

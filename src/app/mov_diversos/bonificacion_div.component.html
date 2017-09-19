@@ -21,11 +21,11 @@
   	</thead>
   	<tbody *ngFor="let bon of bonific_div">
   		<tr style="font-size: 12px;font-stretch: condensed;color:#000;">
-        <td width="">{{bon.imp_cap}}</td>
-  			<td width="">{{bon.imp_int}}</td>
-        <td width="">{{bon.imp_adm}}</td>
-        <td width="">{{bon.imp_seg}}</td>
-        <td width="">{{bon.imp_osg}}</td>
+        <td width=""style="text-align:right">{{bon.imp_cap | number:'1.2-2'}}</td>
+  			<td width=""style="text-align:right">{{bon.imp_int | number:'1.2-2'}}</td>
+        <td width=""style="text-align:right">{{bon.imp_adm | number:'1.2-2'}}</td>
+        <td width=""style="text-align:right">{{bon.imp_seg | number:'1.2-2'}}</td>
+        <td width=""style="text-align:right">{{bon.imp_osg | number:'1.2-2'}}</td>
         <td width="">{{bon.estatus}}</td>
         <td width="">{{bon.clavebonific}}</td>
         <td width="">{{bon.recibo}}</td>

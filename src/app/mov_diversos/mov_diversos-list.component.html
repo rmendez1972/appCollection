@@ -14,8 +14,8 @@
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
             <label for="criterio" class="col-md-4 control-label">Criterio:</label>
             <div class="col-md-2">
-                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" >
-                    <option value="undefined" selected>Selecciona un Criterio...</option>
+                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" required >
+                    <option value="undefined" selected>Selecciona un Criterio...</option>0
                     <option *ngFor="let option of optionsSelect"  value="{{option.value}}">{{option.name}}</option>
                   </select>
                 <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Criterio es obligatorio</div>
@@ -73,16 +73,17 @@
             </thead>
             <tbody *ngFor="let mov of mov_diversos">
               <tr style="font-size: 12px;font-stretch: condensed;color:#000;">
-                <td width="">{{mov.fecha_div}}</td>
+                <!--<td width="">{{mov.fecha_div | date:"dd/MM/yyyy"}} </td>-->
+                <td width="">{{mov.fecha_div}} </td>
                 <td width="">{{mov.clave_div}}</td>
                 <td width="">{{mov.descripcion}}</td>
                 <td width="">{{mov.poliza}}</td>
-                <td width="">{{mov.cargo}}</td>
-                <td width="">{{mov.abono}}</td>
-                <td width="">{{mov.moratorios}}</td>
-                <td width="">{{mov.otros}}</td>
-                <td width="">{{mov.interes}}</td>
-                <td width="">{{mov.seguro}}</td>
+                <td width=""style="text-align:right">{{mov.cargo | number:'1.2-2'}}</td>
+                <td width=""style="text-align:right">{{mov.abono | number:'1.2-2'}}</td>
+                <td width=""style="text-align:right">{{mov.moratorios | number:'1.2-2'}}</td>
+                <td width=""style="text-align:right">{{mov.otros | number:'1.2-2'}}</td>
+                <td width=""style="text-align:right">{{mov.interes | number:'1.2-2'}}</td>
+                <td width=""style="text-align:right">{{mov.seguro | number:'1.2-2'}}</td>
                 <td [ngSwitch]="mov.bonific">                  
                   <div *ngSwitchCase="1" [ngClass]="bonific"    [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>
                   <div *ngSwitchCase="0" [ngClass]="nobonific"  [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"> </div>
