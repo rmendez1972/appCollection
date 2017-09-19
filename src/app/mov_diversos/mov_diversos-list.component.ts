@@ -8,7 +8,6 @@
 
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
 
-
 import { Mov_diversos } from './mov_diversos';
 import { Benef_div } from './benef_div';
 import { Mov_diversosService} from './mov_diversos.service';

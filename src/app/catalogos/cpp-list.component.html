@@ -12,8 +12,8 @@
       </thead>
       <tbody *ngFor="let cpps of cpp">
         <tr>
-         <td>{{cpps.fecha}}</td>
-         <td>{{cpps.importe}}</td>
+         <td>{{cpps.fecha | date:"dd/MM/yyyy" }}</td>
+         <td>{{cpps.importe | currency:'USD':true:'.2'}}</td>
         </tr>
       </tbody>
       </table>
