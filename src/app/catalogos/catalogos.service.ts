@@ -5,6 +5,7 @@ import { Salmindf } from './salmindf';
 import { Clavemov } from './clavemov';
 import { Clavediv } from './clavediv';
 import { Bonificaciones } from './bonificaciones';
+import { Programas } from './programas';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 //import {Observable} from 'rxjs/Rx';
@@ -21,6 +22,7 @@ export class CatalogosService {
   private clavemovUrl: string;
   private clavedivUrl: string;
   private bonificacionesUrl: string;
+  private programasUrl: string;
 
   constructor (private http: Http,
       private url:ServiceUrl,
@@ -33,6 +35,7 @@ export class CatalogosService {
         this.clavemovUrl=String(this.url.getUrlclavemov());
         this.clavedivUrl=String(this.url.getUrlclavediv());
         this.bonificacionesUrl=String(this.url.getUrlbonificaciones());
+        this.programasUrl=String(this.url.getUrlprogramas());
 
       }
 
@@ -90,6 +93,15 @@ export class CatalogosService {
     
   }
 
+  //getprogramas
+  getProgramas(): Observable<Programas[]> {
+    
+        return this.http.get(this.programasUrl)
+                        .map(this.extractDataProgramas)
+                        .catch(this.handleError);
+    
+  }
+
 
   private extractDataCpp(res: Response) {
 
@@ -142,6 +154,15 @@ export class CatalogosService {
         console.log(body.bonificaciones);
     
         return body.bonificaciones|| { };
+    
+  }
+
+  private extractDataProgramas(res: Response) {
+    
+        let body = res.json();
+        console.log(body.programas);
+    
+        return body.programas|| { };
     
   }
 

@@ -1,0 +1,98 @@
+
+<h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
+  {{title}}
+</h3>
+<div class="panel panel-default">
+    <div class="panel-body transparent">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead  style="color: #7b7d80;font-size:10px">
+            <tr>
+              <th >Clave Prog.</th>
+              <th >Descripción</th>
+              <th >Sub.Inic.</th>
+              <th> Eng.Fon</th>
+              <th> Eng.Inv</th>
+              <th> Interés</th>
+              <th> Admon</th>
+              <th> Seguro</th>
+              <th> CostoM2</th>
+              <th> Por Sub</th>
+              <th> Por Admon</th>
+              <th> Por sv</th>
+              <th> Por Os</th>
+              <th> Sal Min</th>
+              <th> Pago mes</th>
+              <th> Por Eng</th>
+              <th> Anual</th>
+              <th> Plazo</th>
+              <th> Por Cap</th>
+              <th> Status</th>
+              <th> Mec.</th>
+              <th> Tipo Credito</th>
+              <th> Mensual</th>
+              <th> Sub bp</th>
+              <th> Apor fij</th>
+              <th> Por pm</th>
+              <th> Por pf</th>
+              <th> Calve ant</th>
+              <th> Colonia</th>
+              <th> Dias gracia</th>
+              <th> Mora</th>
+              <th> Por ga</th>
+              <th> Cuenta cont</th>
+              <th> Delegación</th>
+              <th> Módulo</th>
+              <th> Condicion fija</th>
+              <th> Usuario</th>
+            </tr>  
+          </thead>
+
+          <tbody *ngFor="let mprogramas of programas">
+            <tr style="text-align:left;font-size:10px" >
+            <td>{{mprogramas.clave}}</td>
+            <td>{{mprogramas.descripcion}}</td>
+            <td>{{mprogramas.sub_ini}}</td>
+            <td>{{mprogramas.eng_fon}}</td>
+            <td>{{mprogramas.eng_inv}}</td>
+            <td>{{mprogramas.interes}}</td>
+            <td>{{mprogramas.admon}}</td>
+            <td>{{mprogramas.seguro}}</td>
+            <td>{{mprogramas.costo_m2}}</td>
+            <td>{{mprogramas.por_sub}}</td>
+            <td>{{mprogramas.por_admon}}</td>
+            <td>{{mprogramas.por_sv}}</td>
+
+            <td>{{mprogramas.por_os}}</td>
+            <td>{{mprogramas.sal_min}}</td>
+            <td>{{mprogramas.pago_mes}}</td>
+            <td>{{mprogramas.por_eng}}</td>
+            <td>{{mprogramas.anual}}</td>
+            <td>{{mprogramas.plazo}}</td>
+            <td>{{mprogramas.por_cap}}</td>
+            <td>{{mprogramas.status}}</td>
+            <td>{{mprogramas.mecanica}}</td>
+            <td>{{mprogramas.tipocredito}}</td>
+
+            <td>{{mprogramas.mensual}}</td>
+            <td>{{mprogramas.sub_bp}}</td>
+            <td>{{mprogramas.apor_fij}}</td>
+            <td>{{mprogramas.por_pm}}</td>
+            <td>{{mprogramas.por_pf}}</td>
+            <td>{{mprogramas.clave_ant}}</td>
+            <td>{{mprogramas.colonia}}</td>
+            <td>{{mprogramas.dias_gracia}}</td>
+            <td>{{mprogramas.mora}}</td>
+            <td>{{mprogramas.por_ga}}</td>
+
+            <td>{{mprogramas.cuenta_cont}}</td>
+            <td>{{mprogramas.delegacion}}</td>
+            <td>{{mprogramas.modulo}}</td>
+            <td>{{mprogramas.condicion_fija}}</td>
+            <td>{{mprogramas.usuario}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>

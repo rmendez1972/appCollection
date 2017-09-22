@@ -15,6 +15,7 @@ import { SalmindfListComponent }    from './salmindf-list.component';
 import { ClavemovListComponent }    from './clavemov-list.component';
 import { ClavedivListComponent }    from './clavediv-list.component';
 import { BonificacionesListComponent }    from './bonificaciones-list.component';
+import { ProgramasListComponent }    from './programas-list.component';
 import { CatalogosListComponent }  from './catalogos-list.component';
 import { ServiceUrl } from '../serviceUrl';
 import { CatalogosService } from './catalogos.service';
@@ -35,7 +36,8 @@ import { CatalogosRoutingModule } from './catalogos-routing.module';
     SalmindfListComponent,
     ClavemovListComponent,
     ClavedivListComponent,
-    BonificacionesListComponent
+    BonificacionesListComponent,
+    ProgramasListComponent
   ],
   providers: [
     ServiceUrl,CatalogosService

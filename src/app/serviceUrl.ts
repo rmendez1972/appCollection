@@ -91,4 +91,8 @@ constructor() {}
 		getUrlbonificaciones():String{
 			return this.URLdiversos='http://localhost:8083/cobranza/controladorbonificacion?operacion=listarJson';
 		}
+
+		getUrlprogramas():String{
+			return this.URLdiversos='http://localhost:8083/cobranza/controladorprogramas?operacion=listarJson';
+		}
 }

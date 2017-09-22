@@ -8,24 +8,26 @@
 //Librerías y archivos que se requieren imporar.
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { CatalogosListComponent }    from './catalogos-list.component';
-import { CppListComponent }    from './cpp-list.component';
-import { SalminListComponent }    from './salmin-list.component';
+import { CatalogosListComponent }   from './catalogos-list.component';
+import { CppListComponent }         from './cpp-list.component';
+import { SalminListComponent }      from './salmin-list.component';
 import { SalmindfListComponent }    from './salmindf-list.component';
 import { ClavemovListComponent }    from './clavemov-list.component';
 import { ClavedivListComponent }    from './clavediv-list.component';
 import { BonificacionesListComponent }    from './bonificaciones-list.component';
+import { ProgramasListComponent }    from './programas-list.component';
 import { AuthGuard } from '../_guards/auth.guard';
 
 const catalogosRoutes: Routes = [
 
-  { path: 'catalogos',  component: CatalogosListComponent, canActivate: [AuthGuard] },
-  { path: 'cpp',  component: CppListComponent, canActivate: [AuthGuard] },
-  { path: 'salmin',  component: SalminListComponent, canActivate: [AuthGuard] },
-  { path: 'salmindf',  component: SalmindfListComponent, canActivate: [AuthGuard] },
-  { path: 'clavemov',  component: ClavemovListComponent, canActivate: [AuthGuard] },
-  { path: 'clavediv',  component: ClavedivListComponent, canActivate: [AuthGuard] },
-  { path: 'bonificaciones',  component: BonificacionesListComponent, canActivate: [AuthGuard] },
+  { path: 'catalogos',      component: CatalogosListComponent, canActivate: [AuthGuard] },
+  { path: 'cpp',            component: CppListComponent, canActivate: [AuthGuard] },
+  { path: 'salmin',         component: SalminListComponent, canActivate: [AuthGuard] },
+  { path: 'salmindf',       component: SalmindfListComponent, canActivate: [AuthGuard] },
+  { path: 'clavemov',       component: ClavemovListComponent, canActivate: [AuthGuard] },
+  { path: 'clavediv',       component: ClavedivListComponent, canActivate: [AuthGuard] },
+  { path: 'bonificaciones', component: BonificacionesListComponent, canActivate: [AuthGuard] },
+  { path: 'programas',      component: ProgramasListComponent, canActivate: [AuthGuard] },
   { path: 'catalogos/:id/:idSol', component: CatalogosListComponent, canActivate: [AuthGuard] }
 
 ];
