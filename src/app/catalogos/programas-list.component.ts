@@ -13,6 +13,10 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 
+/*
+Aplicando data tables
+*/
+
 @Component({
   selector: 'app-programas',
   templateUrl: './programas-list.component.html',

@@ -2,4 +2,11 @@
     background-color: #CFD8DC !important;
     color: black;
   }
+div.centerTable{
+        text-align: center;
+}
 
+div.centerTable table {
+       margin: 0 auto;
+       text-align: left;
+}
