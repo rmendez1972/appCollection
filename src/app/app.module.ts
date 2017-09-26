@@ -43,6 +43,12 @@ import { CambiaPasswordModule } from './cambia-password/cambia-password.module';
 import { UploadModule } from './upload/upload.module';
 import { UploadComponent } from './upload/upload.component';
 
+/*
+*Datatables
+*/
+
+
+import { DataTablesModule } from 'angular-datatables';
 
 
 //import { BuscarSolicitudComponent } from './buscar-solicitud/buscar-solicitud.component';
@@ -63,6 +69,7 @@ import { UploadComponent } from './upload/upload.component';
   ],
   imports: [
     BrowserModule,
+    DataTablesModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
@@ -88,6 +95,7 @@ import { UploadComponent } from './upload/upload.component';
     AlertService,
     AuthenticationService,
     UserService,
+
 
 
     // providers used to create fake backend
