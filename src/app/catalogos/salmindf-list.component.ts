@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-
+declare var $: any;
 @Component({
   selector: 'app-salmindf',
   templateUrl: './salmindf-list.component.html',
@@ -82,6 +82,7 @@ export class SalmindfListComponent implements OnInit {
   	ngOnInit() {
 
       this.getSalmindf();
+      this.paginadorSalMinDF();
 
     };
 
@@ -107,5 +108,10 @@ export class SalmindfListComponent implements OnInit {
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+    paginadorSalMinDF() {
+      $(document).ready(function() {
+        $('#salmindf').DataTable();
+      });
+    };
 
 }
