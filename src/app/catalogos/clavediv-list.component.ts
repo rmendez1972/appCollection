@@ -82,9 +82,9 @@ export class ClavedivListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.getClavediv();
       this.paginadorClaveDiv();
+      this.getClavediv();
+      
 
     };
 
