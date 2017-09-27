@@ -75,12 +75,12 @@ export class SalmindfListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-      
+    this.paginadorSalMinDF();
     }
 
 
   	ngOnInit() {
-      this.paginadorSalMinDF();
+      
       this.getSalmindf();
       
 

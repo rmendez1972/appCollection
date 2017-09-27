@@ -75,12 +75,12 @@ export class ClavemovListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-      
+    this.paginadorClaveMov();
     }
 
 
   	ngOnInit() {
-      this.paginadorClaveMov();
+      
       this.getClavemov();
       
 
