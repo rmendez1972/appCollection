@@ -5,7 +5,7 @@
   app-clavediv
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state,AfterViewInit, ElementRef } from '@angular/core';
 import { Clavediv } from './clavediv';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -44,7 +44,7 @@ declare var $: any;
   ]
 })
 
-export class ClavedivListComponent implements OnInit {
+export class ClavedivListComponent implements OnInit, AfterViewInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -60,6 +60,7 @@ export class ClavedivListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
   
   private clavediv: Clavediv[];
  
@@ -74,19 +75,23 @@ export class ClavedivListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode :ElementRef
     )
     {
-    this.paginadorClaveDiv();
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
       
       this.getClavediv();
-      
-
     };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      var el = $(this.rootNode.nativeElement).find('#clavediv')[0];
+      this.paginadorClaveDiv();
+    }
 
   	title = 'Catálogo de Clave de Movimientos Diversos';
 
