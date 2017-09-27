@@ -80,9 +80,9 @@ export class ClavemovListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.getClavemov();
       this.paginadorClaveMov();
+      this.getClavemov();
+      
 
     };
 

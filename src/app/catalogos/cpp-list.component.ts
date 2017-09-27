@@ -81,9 +81,9 @@ export class CppListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.getCpp();
       this.paginadorCpp();
+      this.getCpp();
+      
 
     };
 

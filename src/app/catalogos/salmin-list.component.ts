@@ -80,9 +80,9 @@ export class SalminListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.getSalmin();
       this.paginadorSalMin();
+      this.getSalmin();
+      
 
     };
 

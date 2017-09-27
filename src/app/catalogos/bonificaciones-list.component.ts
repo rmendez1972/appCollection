@@ -80,9 +80,9 @@ export class BonificacionesListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.getBonificaciones();
       this.paginadorBonificaciones();
+      this.getBonificaciones();
+      
 
     };
 
