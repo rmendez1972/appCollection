@@ -4,7 +4,7 @@
 <div class="panel panel-default panel-body transparent table-responsive">
         <table id="programas"  class="table table-striped" cellspacing="0" width="100%">
           <thead>
-            <tr>
+            <tr style="text-align:left;font-size:10px">
               <th >Clave Prog.</th>
               <th >Descripción</th>
               <th >Sub.Inic.</th>
@@ -46,7 +46,7 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let mprogramas of programas">
+            <tr style="text-align:left;font-size:10px" *ngFor="let mprogramas of programas">
             <td >{{mprogramas.clave}}</td>
             <td>{{mprogramas.descripcion}}</td>
             <td>{{mprogramas.sub_ini}}</td>
