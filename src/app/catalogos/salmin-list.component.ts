@@ -75,12 +75,12 @@ export class SalminListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-      
+    this.paginadorSalMin();
     }
 
 
   	ngOnInit() {
-      this.paginadorSalMin();
+      
       this.getSalmin();
       
 

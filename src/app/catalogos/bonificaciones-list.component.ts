@@ -75,12 +75,12 @@ export class BonificacionesListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-      
+    this.paginadorBonificaciones();
     }
 
 
   	ngOnInit() {
-      this.paginadorBonificaciones();
+      
       this.getBonificaciones();
       
 

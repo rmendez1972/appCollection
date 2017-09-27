@@ -76,12 +76,12 @@ export class CppListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-      
+    this.paginadorCpp();
     }
 
 
   	ngOnInit() {
-      this.paginadorCpp();
+      
       this.getCpp();
       
 

@@ -77,12 +77,12 @@ export class ClavedivListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-      
+    this.paginadorClaveDiv();
     }
 
 
   	ngOnInit() {
-      this.paginadorClaveDiv();
+      
       this.getClavediv();
       
 
