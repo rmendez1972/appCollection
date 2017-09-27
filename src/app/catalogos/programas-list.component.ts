@@ -16,7 +16,7 @@ import { AlertService} from '../_services/index';
 /*
 Aplicando data tables
 */
-
+declare var $: any;
 @Component({
   selector: 'app-programas',
   templateUrl: './programas-list.component.html',
@@ -86,6 +86,8 @@ export class ProgramasListComponent implements OnInit {
   	ngOnInit() {
 
       this.getProgramas();
+      this.paginador();
+
       
     };
 
@@ -110,6 +112,11 @@ export class ProgramasListComponent implements OnInit {
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
-    }
+    };
+    paginador(){
+      $(document).ready(function() {
+        $('#programas').DataTable();
+      });
+    };
 
 }
