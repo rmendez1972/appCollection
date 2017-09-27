@@ -5,13 +5,15 @@
 <div class="panel panel-primary">
     <div class="panel-body transparent">
       <div class="table-responsive">
-      <table class="table table-condensed table-hover table-bordered" style="width:50%; margin-left:auto; margin-right: auto;"> 
+      <table id="salmindf" class="table table-condensed table-hover table-bordered" style="width:50%; margin-left:auto; margin-right: auto;"> 
       <thead  style="color: #7b7d80;">
+        <tr>
         <th style="text-align:center">Fecha</th>
         <th style="text-align:center">Importe</th>
+        </tr>
       </thead>
-      <tbody *ngFor="let msalmindf of salmindf">
-        <tr>
+      <tbody >
+        <tr *ngFor="let msalmindf of salmindf">
          <td>{{msalmindf.fecha | date:"dd/MM/yyyy"}}</td>
          <td>{{msalmindf.importe | currency:'USD':true:'.2'}}</td>
         </tr>
