@@ -79,12 +79,12 @@ export class ProgramasListComponent implements OnInit {
       private alertService:AlertService
     )
     {
-  
+    this.getProgramas();
     }
 
 
   	ngOnInit() {
-      this.getProgramas();
+
       this.paginador();
       
       
