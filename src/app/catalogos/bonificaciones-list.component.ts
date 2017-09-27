@@ -12,14 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-<<<<<<< HEAD
-
-
-declare var $:any;
-
-=======
 declare var $: any;
->>>>>>> fb6aee8a0b0785e92783014a04a2ec2a101399ed
 @Component({
   selector: 'app-bonificaciones',
   templateUrl: './bonificaciones-list.component.html',
@@ -89,11 +82,7 @@ export class BonificacionesListComponent implements OnInit {
   	ngOnInit() {
 
       this.getBonificaciones();
-<<<<<<< HEAD
-      this.paginador();     
-=======
       this.paginadorBonificaciones();
->>>>>>> fb6aee8a0b0785e92783014a04a2ec2a101399ed
 
     };
 
@@ -120,19 +109,10 @@ export class BonificacionesListComponent implements OnInit {
       this.miMensaje = mensaje;
     }
 
-<<<<<<< HEAD
-    /*paginador(){
-      $(document).ready(function() {
-        $('#datatable').DataTable();
-      });
-    };*/
-
-=======
     paginadorBonificaciones(){
 
       $(document).ready(function() {
         $('#bonificaciones').DataTable();
       });
     }
->>>>>>> fb6aee8a0b0785e92783014a04a2ec2a101399ed
 }
