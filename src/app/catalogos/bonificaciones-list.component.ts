@@ -13,6 +13,9 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 
+
+declare var $:any;
+
 @Component({
   selector: 'app-bonificaciones',
   templateUrl: './bonificaciones-list.component.html',
@@ -82,6 +85,7 @@ export class BonificacionesListComponent implements OnInit {
   	ngOnInit() {
 
       this.getBonificaciones();
+      this.paginador();     
 
     };
 
@@ -107,5 +111,11 @@ export class BonificacionesListComponent implements OnInit {
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+
+    /*paginador(){
+      $(document).ready(function() {
+        $('#datatable').DataTable();
+      });
+    };*/
 
 }
