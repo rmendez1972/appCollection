@@ -1,12 +1,10 @@
 <h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
   {{title}}
 </h3>
-<div class="panel panel-default">
-    <div class="panel-body transparent">
-      <div class="table-responsive">
-        <table id="programas" class="table table-striped" cellspacing="0" width="100%">
-        <thead style="color: #7b7d80;font-size:10px">
-            <tr >
+<div class="panel panel-default panel-body transparent table-responsive">
+        <table id="programas"  class="table table-striped" cellspacing="0" width="100%">
+          <thead>
+            <tr>
               <th >Clave Prog.</th>
               <th >Descripción</th>
               <th >Sub.Inic.</th>
@@ -44,11 +42,12 @@
               <th> Módulo</th>
               <th> Condicion fija</th>
               <th> Usuario</th>
-            </tr>  
-        </thead>
-        <tbody *ngFor="let mprogramas of programas">
-            <tr style="text-align:left;font-size:10px" >
-            <td>{{mprogramas.clave}}</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let mprogramas of programas">
+            <td >{{mprogramas.clave}}</td>
             <td>{{mprogramas.descripcion}}</td>
             <td>{{mprogramas.sub_ini}}</td>
             <td>{{mprogramas.eng_fon}}</td>
@@ -89,9 +88,7 @@
             <td>{{mprogramas.condicion_fija}}</td>
             <td>{{mprogramas.usuario}}</td>
           </tr>
-        </tbody>
+          </tbody>
+          
     </table>
   </div>
-</div>
-</div>
-
