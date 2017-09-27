@@ -5,7 +5,7 @@
   app-cpp
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, AfterViewInit, ElementRef } from '@angular/core';
 import { Cpp } from './cpp';
 import { Benef_div } from './benef_div';
 import { CatalogosService} from './catalogos.service';
@@ -43,7 +43,7 @@ declare var $: any;
   ]
 })
 
-export class CppListComponent implements OnInit {
+export class CppListComponent implements OnInit, AfterViewInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -59,6 +59,7 @@ export class CppListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
   
   private cpp: Cpp[];
  
@@ -73,19 +74,22 @@ export class CppListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode:ElementRef
     )
     {
-    this.paginadorCpp();
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
-      
       this.getCpp();
-      
-
     };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      var el = $(this.rootNode.nativeElement).find('#cpp')[0];
+      this.paginadorCpp();
+    }
 
   	title = 'Catálogo de Cpp';
 
