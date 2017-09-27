@@ -84,9 +84,10 @@ export class ProgramasListComponent implements OnInit {
 
 
   	ngOnInit() {
-
       this.getProgramas();
       this.paginador();
+      
+      
 
       
     };

@@ -80,9 +80,9 @@ export class SalmindfListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.getSalmindf();
       this.paginadorSalMinDF();
+      this.getSalmindf();
+      
 
     };
 
