@@ -13,7 +13,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-
+declare var $: any;
 @Component({
   selector: 'app-cpp',
   templateUrl: './cpp-list.component.html',
@@ -83,6 +83,7 @@ export class CppListComponent implements OnInit {
   	ngOnInit() {
 
       this.getCpp();
+      this.paginadorCpp();
 
     };
 
@@ -108,5 +109,10 @@ export class CppListComponent implements OnInit {
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+    paginadorCpp() {
+      $(document).ready(function() {
+        $('#cpp').DataTable();
+      });
+    };
 
 }

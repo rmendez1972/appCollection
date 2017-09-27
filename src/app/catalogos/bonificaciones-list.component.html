@@ -3,21 +3,22 @@
   {{title}}
 </h3>
 <div class="panel panel-primary">
-    <div class="panel-body transparent">
-      <div class="table-responsive">
-      <table class="table table-condensed table-hover table-bordered" style="width:50%; margin-left:auto; margin-right: auto;"> 
-      <thead  style="color: #7b7d80;">
-        <th style="text-align:center">Clave de Bonificación</th>
-        <th style="text-align:center">Descripción</th>
-      </thead>
-      <tbody *ngFor="let mbonificaciones of bonificaciones">
-        <tr>
-         <td>{{mbonificaciones.clave_bonific}}</td>
-         <td>{{mbonificaciones.descripcion}}</td>
-        </tr>
-      </tbody>
+  <div class="panel-body transparent">
+    <div class="table-responsive">
+      <table id="bonificaciones" class="table table-condensed table-hover table-bordered" style="width:50%; margin-left:auto; margin-right: auto;"> 
+        <thead  style="color: #7b7d80;">
+          <tr>
+            <th style="text-align:center">Clave de Bonificación</th>
+            <th style="text-align:center">Descripción</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let mbonificaciones of bonificaciones">
+            <td>{{mbonificaciones.clave_bonific}}</td>
+            <td>{{mbonificaciones.descripcion}}</td>
+            </tr>
+        </tbody>
       </table>
-
-</div>
-</div>
+    </div>
+  </div>
 </div>

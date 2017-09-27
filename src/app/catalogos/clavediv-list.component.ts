@@ -13,6 +13,8 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 
+declare var $: any;
+
 @Component({
   selector: 'app-clavediv',
   templateUrl: './clavediv-list.component.html',
@@ -82,6 +84,7 @@ export class ClavedivListComponent implements OnInit {
   	ngOnInit() {
 
       this.getClavediv();
+      this.paginadorClaveDiv();
 
     };
 
@@ -108,4 +111,10 @@ export class ClavedivListComponent implements OnInit {
       this.miMensaje = mensaje;
     }
 
+    paginadorClaveDiv() {
+
+      $(document).ready(function() {
+        $('#clavediv').DataTable();
+      });
+    }
 }
