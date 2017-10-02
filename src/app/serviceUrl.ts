@@ -27,13 +27,13 @@ constructor() {}
 
   		getUrlmov_edoscta():String{
 
-	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyIdbenef&criterio=';
+	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyMovimientos&criterio=';
 
 		}
 
 		getUrlBeneficiario():String{
 
-				return this.URLbeneficiario='http://localhost:8080/cobranza/controladorbeneficiario?operacion=&criterio=';
+				return this.URLbeneficiario='http://localhost:8080/cobranza/controladorbeneficiario?operacion=listarJsonbyIdBeneficiario&criterio=';
 		}
 
 		getUrlmov_diversos():String{
