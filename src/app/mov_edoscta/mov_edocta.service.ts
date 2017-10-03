@@ -21,6 +21,7 @@ export class Mov_edoctaService {
 
   //private seguimientosUrl: string;
   private mov_edosctaUrl: string;
+  private beneficiarioUrl: string;
 
 
   constructor (private http: Http,
@@ -29,6 +30,7 @@ export class Mov_edoctaService {
       {
         //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
         this.mov_edosctaUrl=String(this.url.getUrlmov_edoscta());
+        this.beneficiarioUrl=String(this.url.getUrlBeneficiario());
 
       }
 
@@ -44,7 +46,7 @@ export class Mov_edoctaService {
   //getBenef
   getBenef(criterio:String,valorcriterio:String): Observable<Benef[]> {
 
-     return this.http.get(this.mov_edosctaUrl+criterio+"&valorcriterio="+valorcriterio)
+     return this.http.get(this.beneficiarioUrl+criterio+"&valorcriterio="+valorcriterio)
                     .map(this.extractDataBenef)
                     .catch(this.handleError);
 

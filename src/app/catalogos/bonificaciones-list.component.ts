@@ -5,7 +5,7 @@
   app-clavediv
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state,AfterViewInit, ElementRef } from '@angular/core';
 import { Bonificaciones } from './bonificaciones';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -42,7 +42,7 @@ declare var $: any;
   ]
 })
 
-export class BonificacionesListComponent implements OnInit {
+export class BonificacionesListComponent implements OnInit, AfterViewInit{
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -58,6 +58,8 @@ export class BonificacionesListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
+
   
   private bonificaciones: Bonificaciones[];
  
@@ -72,19 +74,26 @@ export class BonificacionesListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode : ElementRef
+
     )
     {
-      
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
-
+      
       this.getBonificaciones();
-      this.paginadorBonificaciones();
+      
 
     };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      var el = $(this.rootNode.nativeElement).find('#bonificaciones')[0];
+      this.paginadorBonificaciones();
+    }
 
   	title = 'Catálogo de Bonificaciones';
 

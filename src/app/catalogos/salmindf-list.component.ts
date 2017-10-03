@@ -5,7 +5,7 @@
   app-salmindf
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, AfterViewInit, ElementRef} from '@angular/core';
 import { Salmindf } from './salmindf';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -42,7 +42,7 @@ declare var $: any;
   ]
 })
 
-export class SalmindfListComponent implements OnInit {
+export class SalmindfListComponent implements OnInit, AfterViewInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -58,6 +58,7 @@ export class SalmindfListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
   
   private salmindf: Salmindf[];
  
@@ -72,19 +73,25 @@ export class SalmindfListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode:ElementRef
     )
     {
-      
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
-
+      
       this.getSalmindf();
-      this.paginadorSalMinDF();
+      
 
     };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      var el = $(this.rootNode.nativeElement).find('#salmindf')[0];
+      this.paginadorSalMinDF();
+    }
 
   	title = 'Catálogo de Salarios Minimos Distrito Federal';
 

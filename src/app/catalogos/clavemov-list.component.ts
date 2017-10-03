@@ -5,7 +5,7 @@
   app-clavemov
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state,AfterViewInit, ElementRef } from '@angular/core';
 import { Clavemov } from './clavemov';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -42,7 +42,7 @@ declare var $: any;
   ]
 })
 
-export class ClavemovListComponent implements OnInit {
+export class ClavemovListComponent implements OnInit,AfterViewInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -58,6 +58,7 @@ export class ClavemovListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
   
   private clavemov: Clavemov[];
  
@@ -72,19 +73,23 @@ export class ClavemovListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode:ElementRef
     )
     {
-      
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
-
+      
       this.getClavemov();
-      this.paginadorClaveMov();
-
     };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      var el = $(this.rootNode.nativeElement).find('#clavemov')[0];
+      this.paginadorClaveMov();
+    }
 
   	title = 'Catálogo de Claves de Movimientos';
 

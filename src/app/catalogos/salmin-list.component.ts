@@ -5,7 +5,7 @@
   app-salmin
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, AfterViewInit, ElementRef } from '@angular/core';
 import { Salmin } from './salmin';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -42,7 +42,7 @@ declare var $: any;
   ]
 })
 
-export class SalminListComponent implements OnInit {
+export class SalminListComponent implements OnInit, AfterViewInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -58,6 +58,7 @@ export class SalminListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
   
   private salmin: Salmin[];
  
@@ -72,19 +73,22 @@ export class SalminListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode:ElementRef
     )
     {
-      
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
-
       this.getSalmin();
-      this.paginadorSalMin();
-
     };
+    ngAfterViewInit() {
+      var el = $(this.rootNode.nativeElement).find('#salmin')[0];
+      this.paginadorSalMin();
+    }
+
 
   	title = 'Catálogo de Salarios Minimos';
 
