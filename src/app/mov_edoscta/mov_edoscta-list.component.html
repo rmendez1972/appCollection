@@ -7,7 +7,7 @@
   <br>
   <form name="form" class="form-inline"  #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
-            <label for="criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
+            <label for="_criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
             <div class="col-md-2">
                 <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" required>
                   <option value="undefined" selected>Selecciona un Criterio...</option>
