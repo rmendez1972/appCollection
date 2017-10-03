@@ -5,7 +5,7 @@
   
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, ElementRef } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, ElementRef,AfterViewInit} from '@angular/core';
 import { Programas } from './programas';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -47,7 +47,7 @@ declare var $: any;
   ]
 })
 
-export class ProgramasListComponent implements OnInit {
+export class ProgramasListComponent implements OnInit,AfterViewInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -63,6 +63,7 @@ export class ProgramasListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+  rootNode: any;
   
   private programas: Programas[];
  
@@ -77,21 +78,25 @@ export class ProgramasListComponent implements OnInit {
       private router: Router,
       private route:  ActivatedRoute,
       private catalogosservice: CatalogosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      rootNode:ElementRef
     )
     {
-    this.getProgramas();
+    this.rootNode = rootNode;
     }
 
 
   	ngOnInit() {
-
-      this.paginador();
-      
+      this.getProgramas();
       
 
       
     };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      var el = $(this.rootNode.nativeElement).find('#programas')[0];
+      this.paginador();
+    }
 
   	title = 'Catálogo de Programas';
 
