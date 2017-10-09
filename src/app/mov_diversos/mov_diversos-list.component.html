@@ -25,7 +25,6 @@
             <label for="valor_criterio" class="col-sm-4 control-label">Valor Criterio</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder={{_criterio.value}} name="valor_criterio" [ngModel]="model.valorcriterio | uppercase"  (ngModelChange)="model.valorcriterio = $event"  #valor_criterio="ngModel" required />
-                
                 <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Obligatorio</div>
             </div>
             
@@ -36,8 +35,11 @@
         </div>        
     </form>
     <br>
-  <div class="panel panel-primary">
+
+  <div class="panel panel-primary" *ngIf="benef_div">
+      <h3> <span class="label label-warning" style="font-style: normal" >{{miMensajeBenef}}</span></h3>
     <div class="panel-heading">Generales del Beneficiario</div>
+    <!--<h3 *ngIf="benef_div"><span class="label label-success">{{miMensajeMovs}}</span></h3>-->
     <div class="panel-body transparent" *ngFor="let ben of benef_div">
       <div><strong>Nombre: </strong>{{ben.nombre}}</div>
       <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
@@ -46,6 +48,11 @@
       <div><strong>ID: </strong>{{ben.id_bendiv}}</div>
     </div>
   </div>
+
+  <ng-template #noEncontado>
+    <h3> <span class="label label-warning" style="font-style: normal" >no encontrado</span></h3>
+    
+  </ng-template>
 
   <div class="panel panel-primary">
     <div class="panel-heading">Movimientos Aplicados del Beneficiario Diverso</div>
@@ -114,5 +121,5 @@
           
         </div>
       </div>
-
+      
   </div>

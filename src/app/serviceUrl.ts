@@ -15,6 +15,7 @@ public URLbonificacion:String;
 public URLdiversos:String; //ismael
 public URLbonificacion_div:String; //ismael
 public URLbeneficiario_div:String; //ismael
+
 public URLbeneficiario:String; //marlon
 public URLcpp:String;//marlon
 public URLsalmin:String;//marlon
@@ -28,17 +29,22 @@ constructor() {}
 
   		getUrlmov_edoscta():String{
 
-	  			return this.URL='http://localhost:8080/cobranza/controladormov_edocta?operacion=listarJsonbyMovimientos&criterio=';
+	  			return this.URL='http://localhost:8083/cobranza/controladormov_edocta?operacion=listarJsonbyMovimientos&criterio=';
 
 		}
 
 		getUrlBeneficiario():String{
 
-				return this.URLbeneficiario='http://localhost:8080/cobranza/controladorbeneficiario?operacion=listarJsonbyIdBeneficiario&criterio=';
+				return this.URLbeneficiario='http://localhost:8083/cobranza/controladorbeneficiario?operacion=listarJsonbyIdBeneficiario&criterio=';
 		}
 
 		getUrlmov_diversos():String{
-			return this.URLdiversos='http://localhost:8083/cobranza/controladormov_diversos?operacion=listarJsonbyIdbenef&criterio=';
+			return this.URLdiversos='http://localhost:8083/cobranza/controladormov_diversos?operacion=listarJsonbyMovimientos&criterio=';
+		}
+
+		getUrlBeneficiario_div():String{
+			
+			return this.URLbeneficiario_div='http://localhost:8083/cobranza/controladorbendiv?operacion=listarJsonbyIdBeneficiarioDiv&criterio=';
 		}
 
 
@@ -82,43 +88,23 @@ constructor() {}
 
 		//URL de catalagos
 		getUrlcpp():String{
-<<<<<<< HEAD
-			return this.URLdiversos='http://localhost:8083/cobranza/controladorcpp?operacion=listarJson';
+			return this.URLcpp='http://localhost:8083/cobranza/controladorcpp?operacion=listarJson';
 		}
 
 		getUrlsalmin():String{
-			return this.URLdiversos='http://localhost:8083/cobranza/controladorsalmin?operacion=listarJson';
+			return this.URLsalmin='http://localhost:8083/cobranza/controladorsalmin?operacion=listarJson';
 		}
 
 		getUrlsalmindf():String{
-			return this.URLdiversos='http://localhost:8083/cobranza/controladorsalmindf?operacion=listarJson';
+			return this.URLsalmindf='http://localhost:8083/cobranza/controladorsalmindf?operacion=listarJson';
 		}
 
 		getUrlclavemov():String{
-			return this.URLdiversos='http://localhost:8083/cobranza/controladorclavemov?operacion=listarJson';
+			return this.URLclavemov='http://localhost:8083/cobranza/controladorclavemov?operacion=listarJson';
 		}
 
 		getUrlclavediv():String{
-			return this.URLdiversos='http://localhost:8083/cobranza/controladorclavediversos?operacion=listarJson';
-=======
-			return this.URLcpp='http://localhost:8080/cobranza/controladorcpp?operacion=listarJson';
-		}
-
-		getUrlsalmin():String{
-			return this.URLsalmin='http://localhost:8080/cobranza/controladorsalmin?operacion=listarJson';
-		}
-
-		getUrlsalmindf():String{
-			return this.URLsalmindf='http://localhost:8080/cobranza/controladorsalmindf?operacion=listarJson';
-		}
-
-		getUrlclavemov():String{
-			return this.URLclavemov='http://localhost:8080/cobranza/controladorclavemov?operacion=listarJson';
-		}
-
-		getUrlclavediv():String{
-			return this.URLclavediv='http://localhost:8080/cobranza/controladorclavediversos?operacion=listarJson';
->>>>>>> 39bddb510c06837d53371ff57347c5097afaee71
+			return this.URLclavediv='http://localhost:8083/cobranza/controladorclavediversos?operacion=listarJson';
 		}
 
 		getUrlbonificaciones():String{

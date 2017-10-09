@@ -66,8 +66,11 @@ export class Mov_diversosListComponent implements OnInit {
   private k: Observable<Mov_diversos[]>;
   private l: Observable<Benef_div[]>;
 
+  private selectedId: number;
+
   private miMensajeBons:String;
   private miMensajeBonsError:String;//igh
+  private miMensajeBenef:string;//igh
 
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
@@ -79,6 +82,7 @@ export class Mov_diversosListComponent implements OnInit {
     {id:2, value: "nombre", name: "Nombre de Beneficiario"}
 
 ];
+private seleccionado:String="clave_b";
 
   constructor(
       private router: Router,
@@ -98,7 +102,6 @@ export class Mov_diversosListComponent implements OnInit {
   	title = 'Movimientos diversos';
  
     localizaBenefMov_diversos(){
-
       console.log('valor de model.criterio '+this.model.criterio);
       console.log('valor de model.valorcriterio '+this.model.valorcriterio);
       if ((this.model.criterio!=undefined) && (this.model.valorcriterio!=null )){
@@ -139,14 +142,22 @@ export class Mov_diversosListComponent implements OnInit {
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
+          this.selectedId= +params['id'];
              return this.mov_diversosservice.getBenef_div(criterio,valorcriterio)
         })
 
         this.l.subscribe(
 
-                       beneficiario => this.benef_div = beneficiario,
+                       beneficiario => {
+                         this.benef_div = beneficiario;
+                       
+                       if (this.benef_div.length>0){
+                         console.log("Encontrado!!!!");
+                        this.miMensajeBenef="Encontrado";
+                       }else {this.miMensajeBenef=null}
+                      },
                        error =>  this.errorMessage = <any>error);
-
+     
 
     };
 

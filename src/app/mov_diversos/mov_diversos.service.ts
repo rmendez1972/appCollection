@@ -14,8 +14,8 @@ import { AlertService} from '../_services/index';
 @Injectable()
 export class Mov_diversosService {
 
-  //private seguimientosUrl: string;
-  private mov_diversosUrl: string;
+ private mov_diversosUrl: string;
+ private beneficiarioDivUrl: string;
 
 
   constructor (private http: Http,
@@ -24,6 +24,7 @@ export class Mov_diversosService {
       {
         
         this.mov_diversosUrl=String(this.url.getUrlmov_diversos());
+        this.beneficiarioDivUrl=String(this.url.getUrlBeneficiario_div());
 
       }
 
@@ -39,7 +40,7 @@ export class Mov_diversosService {
   //getBenef_div
   getBenef_div(criterio:String,valorcriterio:String): Observable<Benef_div[]> {
 
-     return this.http.get(this.mov_diversosUrl+criterio+"&valorcriterio="+valorcriterio)
+     return this.http.get(this.beneficiarioDivUrl+criterio+"&valorcriterio="+valorcriterio)
                     .map(this.extractDataBenef_div)
                     .catch(this.handleError);
 
