@@ -67,6 +67,7 @@ export class BonificacionComponent implements OnInit {
   @Input() valorcriterio:String;
   @Input() criterio:String;
   @Output() onMessage = new EventEmitter<String>();
+  @Output() onerrorMessage = new EventEmitter<String>();
 
 
 
@@ -89,10 +90,15 @@ export class BonificacionComponent implements OnInit {
 
     };
 
+    errormessage(mensaje:String){
+      this.onerrorMessage.emit(mensaje);
+
+    };
+
 
     getBonificaciones() {
       console.log('fecha_corte '+this.fecha_corte)
-      if (this.fecha_corte!=undefined){
+      if (this.fecha_corte!=undefined && this.fecha_corte!=null && this.fecha_corte!=''){
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
@@ -107,9 +113,15 @@ export class BonificacionComponent implements OnInit {
                        bonificaciones =>{
                          this.bonific = bonificaciones;
                          this.message('Recuperacion exitosa de los movimientos de bonificación');
+                         this.errormessage(null);
                         },
                        error =>  this.errorMessage = <any>error);
 
+      }else{
+
+        this.errormessage('Error en la recuperacion de los movimientos de bonificación, favor de introducir fecha válida');
+        this.message(null);
+        this.bonific=null;
       }
     };
 
