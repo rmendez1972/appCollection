@@ -5,7 +5,7 @@ import { Mov_edosctaListComponent }    from './mov_edoscta-list.component';
 //import { SeguimientoDetailComponent }  from './seguimiento-detail.component';
 import { AuthGuard } from '../_guards/auth.guard';
 
-const seguimientosRoutes: Routes = [
+const mov_edosctaRoutes: Routes = [
 
   { path: 'mov_edoscta',  component: Mov_edosctaListComponent, canActivate: [AuthGuard] },
   { path: 'mov_edoscta/:id/:idSol', component: Mov_edosctaListComponent, canActivate: [AuthGuard] }
@@ -14,7 +14,7 @@ const seguimientosRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(seguimientosRoutes)
+    RouterModule.forChild(mov_edosctaRoutes)
   ],
   exports: [
     RouterModule

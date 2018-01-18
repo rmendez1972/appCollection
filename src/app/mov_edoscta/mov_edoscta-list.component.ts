@@ -81,9 +81,7 @@ export class Mov_edosctaListComponent implements OnInit {
   private e: Observable<Seguimiento[]>;
 
   private selectedId: number;
-  private idSolicitud: number;
-  public idsolicitud:number;
-  public idsolicitante:number;
+
 
   private miMensajeBons:String;
   private miMensajeMovs:String;
@@ -110,8 +108,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
     )
     {
-      this.idsolicitud= this.route.snapshot.params['id']; //recuperando en el constructor el parametro pasado de idsolicitud
-      this.idsolicitante= this.route.snapshot.params['idSol'];
+
     }
 
 
