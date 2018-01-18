@@ -7,7 +7,7 @@
   <br>
   <form name="form" class="form-inline"  #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
-            <label for="criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
+            <label for="_criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
             <div class="col-md-2">
                 <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" required>
                   <option value="undefined" selected>Selecciona un Criterio...</option>
@@ -119,6 +119,7 @@
   <div class="panel-heading">Bonificaciones del Beneficiario</div>
     <div class="panel-body transparent">
       <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
-      <app-bonific  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific>
+      <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
+      <app-bonific  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)"  (onerrorMessage)="onerrorMessage($event)" ></app-bonific>
     </div>
 </div>

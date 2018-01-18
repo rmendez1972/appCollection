@@ -63,17 +63,17 @@ export class Mov_edosctaListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
-  private solicitantes: Solicitante[];
+  //private solicitantes: Solicitante[];
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
-  private solicitudes: Solicitud[];
-  private tramites: Tramite[];
-  private seguimientos: Seguimiento[];
-  private solicitante: Solicitante;
-  private x: Observable<Solicitante[]>;
-  private y: Observable<Solicitud[]>;
-  private z: Observable<Tramite[]>;
-  private a: Observable<Seguimiento[]>;
+  //private solicitudes: Solicitud[];
+  //private tramites: Tramite[];
+  //private seguimientos: Seguimiento[];
+  //private solicitante: Solicitante;
+  //private x: Observable<Solicitante[]>;
+  //private y: Observable<Solicitud[]>;
+  //private z: Observable<Tramite[]>;
+  //private a: Observable<Seguimiento[]>;
 
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
@@ -81,11 +81,10 @@ export class Mov_edosctaListComponent implements OnInit {
   private e: Observable<Seguimiento[]>;
 
   private selectedId: number;
-  private idSolicitud: number;
-  public idsolicitud:number;
-  public idsolicitante:number;
+
 
   private miMensajeBons:String;
+  private miMensajeerrorBons:String;
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
   private fecha:String;
@@ -110,8 +109,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
     )
     {
-      this.idsolicitud= this.route.snapshot.params['id']; //recuperando en el constructor el parametro pasado de idsolicitud
-      this.idsolicitante= this.route.snapshot.params['idSol'];
+
     }
 
 
@@ -186,6 +184,14 @@ export class Mov_edosctaListComponent implements OnInit {
     onMessage(mensaje:String){
 
       this.miMensajeBons = mensaje;
+
+
+    }
+
+
+    onerrorMessage(mensaje:String){
+
+      this.miMensajeerrorBons = mensaje;
 
 
     }
