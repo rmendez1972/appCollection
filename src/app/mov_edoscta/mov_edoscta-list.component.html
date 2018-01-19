@@ -1,125 +1,156 @@
-
-<h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
-  {{title}}
+<h3 class="bg-primary encabezado">
+  <span class="icon-file-text2"> </span> {{title}}
 </h3>
 <br>
 <div class="datos">
   <br>
-  <form name="form" class="form-inline"  #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
-            <label for="_criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
-            <div class="col-md-2">
-                <select name="_criterio" id="_criterio"  class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" required>
+  <form name="form" class="form-inline" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
+      <label for="_criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
+      <div class="col-md-2">
+        <select name="_criterio" id="_criterio" class="form-control" #_criterio="ngModel" [(ngModel)]="model.criterio" required>
                   <option value="undefined" selected>Selecciona un Criterio...</option>
                   <option *ngFor="let option of optionsSelect"  value="{{option.value}}">{{option.name}}</option>
                 </select>
 
-                <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Obligatorio</div>
-            </div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valor_criterio.valid }">
-            <label for="valor_criterio" class="col-sm-4 control-label">Valor Criterio</label>
-            <div class="col-md-2">
-                <input type="text" class="form-control" name="valor_criterio" [ngModel]="model.valorcriterio | uppercase"  (ngModelChange)="model.valorcriterio = $event"  #valor_criterio="ngModel" required />
-                <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Obligatorio</div>
+        <div *ngIf="f.submitted && !_criterio.valid" class="help-block">Obligatorio</div>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !valor_criterio.valid }">
+      <label for="valor_criterio" class="col-sm-4 control-label">Valor Criterio</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" name="valor_criterio" [ngModel]="model.valorcriterio | uppercase" (ngModelChange)="model.valorcriterio = $event"
+          #valor_criterio="ngModel" required />
+        <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Obligatorio</div>
 
-            </div>
-        </div>
-        <div class="form-group" style="text-align:center">
-            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
+      </div>
+    </div>
+    <div class="form-group" style="text-align:center">
+      <input type="submit" value="Aceptar" class="btn btn-primary" (click)="localizaBenefMov()" />
 
-        </div>
+    </div>
   </form>
   <br>
-
-
+<!-- Datos generales del beneficiario y del crédito-->
   <div class="panel panel-primary">
-    <div class="panel-heading">Generales del Beneficiario</div>
-      <div class="panel-body transparent" *ngFor="let ben of benef" >
-        <div><strong>Nombre: </strong>{{ben.nombre}}</div>
-        <div><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</div>
-        <div><strong>Dirección: </strong>{{ben.domicilio}}</div>
-        <div><strong>Curp: </strong>{{ben.curp}}</div>
-        <div><strong>Numero Contrato: </strong>{{ben.numcontrato}}</div>
-        <div><strong>ID: </strong>{{ben.id_beneficiario}}</div>
-      </div>
+    <div class="panel-heading">Generales del beneficiario y del crédito.</div>
+    <div class="panel-body transparent">
+      <table class="" width="100%">
+        <tbody *ngFor="let ben of benef">
+
+          <tr>
+            <td width="60%"><strong>Nombre : </strong>{{ben.nombre}}</td>
+            <td width="40%"><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</td>
+          </tr>
+
+          <tr>
+            <td><strong>CURP: </strong>{{ben.curp}}</td>
+            <td><strong>Contrato: </strong>{{ben.numcontrato}} <strong> Fecha: </strong>{{ben.fecha_con| date:"dd/MM/yyyy"}}</td>
+          </tr>
+
+          <tr>
+            <td><strong>Clave Elec: </strong>{{ben.clave_elect}}</td>
+            <td><strong>Inicio de pagos: </strong>{{ben.fecha_ip| date:"dd/MM/yyyy"}}</td>    
+          </tr>
+
+          <tr>  
+            <td><strong>Dirección : </strong>{{ben.domicilio}}</td>
+            <td><strong>Poliza: </strong>{{ben.poliza}} <strong >Fecha: </strong>{{ben.fecha_pol| date:"dd/MM/yyyy"}}</td>           
+          </tr>
+
+          <tr>
+            <td><strong>Manzana : </strong>{{ben.mza}}<strong> Lote: </strong> {{ben.lte}}</td>
+            <td><strong>Clave Cat: </strong>{{ben.clave_cat}}</td>
+          </tr> 
+                        
+          <tr>
+            <td><strong>Conyuge  : </strong>{{ben.conyuge}}</td>
+            <td><strong>Área: </strong>{{ben.area}} m2 <strong> Plazo: {{ben.plazo}}</strong></td> 
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
+  <!-- Fin de datos generales del beneficiario y del crédito-->
 
 
   <div class="panel panel-primary">
     <div class="panel-heading">Movimientos Aplicados del Beneficiario</div>
-      <div class="panel-body transparent">
-        <div class="table-responsive">
+    <div class="panel-body transparent">
+      <div class="table-responsive">
         <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
         <h3 *ngIf=miMensajeerrorMovs><span class="label label-danger">{{miMensajeerrorMovs}}</span></h3>
         <table class="table table-condensed table-hover table-bordered">
-        <thead  style="color: #7b7d80;">
-  		    <th >Fecha Mov.</th>
-          <th >Clave de Mov.</th>
-          <th >Recibo</th>
-          <th >Serie</th>
-  		    <th >Capital</th>
-          <th >Interes</th>
-          <th >Gtos Admon</th>
-          <th >Seguro</th>
-          <th >Otros seguros</th>
-          <th >Comisiones</th>
-          <th >Titulación</th>
-          <th >Moratorios</th>
-          <th >Bonificación?</th>
+          <thead style="color: #7b7d80;">
+            <th>Fecha</th>
+            <th>Mov.</th>
+            <th>Recibo</th>
+            <th>Serie</th>
+            <th>Capital</th>
+            <th>Interés</th>
+            <th>Gto.Admon</th>
+            <th>Seguro</th>
+            <th>Otros seg.</th>
+            <th>Comisiones</th>
+            <th>Titulación</th>
+            <th>Moratorios</th>
+            <th>Bonif.</th>
 
-  	    </thead>
-  	    <tbody *ngFor="let mov of mov_edoscta">
-  		    <tr>
-  			   <td >{{mov.fecha_mov | date:"dd/MM/yyyy"}}</td>
-           <td >{{mov.clave_mov}}</td>
-           <td >{{mov.recibo}}</td>
-           <td >{{mov.serie}}</td>
-  			   <td >{{mov.capital | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.interes | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.admon | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.seguro | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.o_seguro | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.comisiones | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.tit | currency:'USD':true:'.2'}}</td>
-           <td >{{mov.moratorios | currency:'USD':true:'.2'}}</td>
-           <td [ngSwitch]="mov.bonific">
+          </thead>
+          <tbody *ngFor="let mov of mov_edoscta">
+            <tr style="font-size: 10px">
+              <td>{{mov.fecha_mov | date:"dd/MM/yyyy"}}</td>
+              <td>{{mov.clave_mov}}</td>
+              <td>{{mov.recibo}}</td>
+              <td>{{mov.serie}}</td>
+              <td style="text-align: right">{{mov.capital | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.interes | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.admon | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.seguro | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.o_seguro | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.comisiones | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.tit | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right">{{mov.moratorios | currency:'USD':true:'.2'}}</td>
+              <td style="text-align: right" [ngSwitch]="mov.bonific">
 
-            <div *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="20+'px'"  [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>
-            <div *ngSwitchCase="false" [ngClass]="nobonific"  [style.font-size]="20+'px'"  [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"> </div>
+                <div *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación">
+                </div>
+                <div *ngSwitchCase="false" [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación">
+                </div>
 
 
-            </td>
+              </td>
 
-  		    </tr>
-  	    </tbody>
+            </tr>
+          </tbody>
         </table>
-  <br>
-<form *ngIf="miMensajeMovs" name="form" class="form-inline"  #f2="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !fechacorte.valid }">
+        <br>
+        <form *ngIf="miMensajeMovs" name="form" class="form-inline" #f2="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !fechacorte.valid }">
             <label for="fechacorte" class="col-md-4 control-label">Fecha de Corte</label>
             <div class="col-md-6">
-                <input type="date" name="fechacorte" id="fechacorte" class="form-control"  [ngModel]="model.fecha_corte | date:'yyyy-MM-dd'" (ngModelChange)="model.fecha_corte = $event" #fechacorte="ngModel" required>
-                <div *ngIf="f2.submitted && !fechacorte.valid" class="help-block">Fecha de Corte es obligatorio</div>
+              <input type="date" name="fechacorte" id="fechacorte" class="form-control" [ngModel]="model.fecha_corte | date:'yyyy-MM-dd'"
+                (ngModelChange)="model.fecha_corte = $event" #fechacorte="ngModel" required>
+              <div *ngIf="f2.submitted && !fechacorte.valid" class="help-block">Fecha de Corte es obligatorio</div>
 
             </div>
-        </div>
+          </div>
 
-        <div class="form-group" style="text-align:center">
-          <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
-        </div>
-</form>
-</div>
-</div>
-</div>
+          <div class="form-group" style="text-align:center">
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">Bonificaciones del Beneficiario</div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Bonificaciones del Beneficiario</div>
     <div class="panel-body transparent">
       <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
       <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
-      <app-bonific  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)"  (onerrorMessage)="onerrorMessage($event)" ></app-bonific>
+      <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
+        (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
     </div>
-</div>
+  </div>
