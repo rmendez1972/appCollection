@@ -35,7 +35,6 @@ export class VencidosService {
   }
 
   private extractDataVencidos(res: Response) {
-    console.log("hola3")
     let body = res.json();
     console.log(body.vencidos);
 
