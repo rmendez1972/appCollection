@@ -2,15 +2,30 @@
 
   <table class="table table-condensed table-hover table-bordered">
     <thead  style="color: #7b7d80;">
-
       <th >Fecha</th>
       <th >Letra</th>
+      <th >Capital</th>
+      <th >Interes</th>
+      <th >Seguro</th>
+      <th >Admon</th>
+      <th >Otros Seg</th>
+      <th >Comisiones</th>
+      <th >Titulacion</th>
+      <th >Moratorios</th>
 
     </thead>
     <tbody>
         <tr style="font-size: 10px" *ngFor="let venc of vencidos">
         <td >{{venc.fecha}}</td>
         <td >{{venc.letra}}</td>
+        <td >{{venc.capital}}</td>
+        <td >{{venc.interes}}</td>
+        <td >{{venc.seguro}}</td>
+        <td >{{venc.admon}}</td>
+        <td >{{venc.oseg}}</td>
+        <td >{{venc.com}}</td>
+        <td >{{venc.tit}}</td>
+        <td >{{venc.mor}}</td>
       </tr>
     </tbody>
   </table>
