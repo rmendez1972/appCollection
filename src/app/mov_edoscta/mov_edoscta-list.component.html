@@ -114,11 +114,11 @@
               <td style="text-align: right">{{mov.moratorios | currency:'USD':true:'.2'}}</td>
               <td style="text-align: right" [ngSwitch]="mov.bonific">
 
+
                 <div *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación">
                 </div>
                 <div *ngSwitchCase="false" [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación">
                 </div>
-
 
               </td>
 
@@ -138,7 +138,7 @@
           </div>
 
           <div class="form-group" style="text-align:center">
-            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos()" />
           </div>
         </form>
       </div>
@@ -152,5 +152,16 @@
       <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
       <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
         (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">Vencidos del Beneficiario</div>
+    <div class="panel-body transparent">
+      <h3 *ngIf=miMensajeVencidos><span class="label label-success">{{miMensajeVencidos}}</span></h3>
+      <h3 *ngIf=miMensajeerrorVencidos><span class="label label-danger">{{miMensajeerrorVencidos}}</span></h3>
+      <app-vencidos [fecha_corte]=model.fecha_corte  [clave_b]=model.valorcriterio 
+      #vencidos
+        (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-vencidos>
     </div>
   </div>

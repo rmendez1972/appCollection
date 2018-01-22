@@ -16,8 +16,8 @@
       <th >Recibo</th>
       <th >Serie</th>
   	</thead>
-  	<tbody *ngFor="let bon of bonific">
-        <tr style="font-size: 10px">
+  	<tbody >
+        <tr style="font-size: 10px" *ngFor="let bon of bonific">
   			<td >{{bon.clavebonific}}</td>
         <td >{{bon.estatus}}</td>
         <td style="text-align:right;">{{bon.imp_cap | currency:'USD':true:'.2'}}</td>
