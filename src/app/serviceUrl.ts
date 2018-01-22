@@ -44,11 +44,7 @@ constructor() {}
 		}
 
 		getUrlBeneficiario_div():String{
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> 70c7bcf5a4e5dd0504f4727a0ebb72617c24ef44
 			return this.URLbeneficiario_div='http://localhost:8080/cobranza/controladorbendiv?operacion=listarJsonbyIdBeneficiarioDiv&criterio=';
 		}
 
@@ -113,21 +109,18 @@ constructor() {}
 		}
 
 		getUrlbonificaciones():String{
-<<<<<<< HEAD
-			return this.URLdiversos='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
-=======
+
 			return this.URLbonificacion='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
->>>>>>> 70c7bcf5a4e5dd0504f4727a0ebb72617c24ef44
+
 		}
 
 		getUrlprogramas():String{
 			return this.URLdiversos='http://localhost:8080/cobranza/controladorprogramas?operacion=listarJson';
-<<<<<<< HEAD
-=======
+
 		}
 
 		getUrlVencidos():String{
 			return this.URLvencidos='http://localhost:8080/cobranza/controladorvencidos?operacion=listar&clave_b=';
->>>>>>> 70c7bcf5a4e5dd0504f4727a0ebb72617c24ef44
+
 		}
 }
