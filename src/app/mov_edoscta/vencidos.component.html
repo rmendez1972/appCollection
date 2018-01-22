@@ -1,0 +1,16 @@
+<div class="table-responsive ">
+
+  <table class="table table-condensed table-hover table-bordered">
+    <thead  style="color: #7b7d80;">
+
+      <th >Fecha</th>
+      <th >Letra</th>
+
+    </thead>
+    <tbody>
+        <tr style="font-size: 10px" *ngFor="let venc of vencidos">
+        <td >{{venc.fecha}}</td>
+        <td >{{venc.letra}}</td>
+      </tr>
+    </tbody>
+  </table>

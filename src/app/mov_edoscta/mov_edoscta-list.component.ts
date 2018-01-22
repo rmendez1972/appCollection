@@ -115,7 +115,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
   	ngOnInit() {
 
-      this.model.fecha_corte=new Date();
+      this.model.fecha_corte=new Date('yyyy-MM-dd');
       this.model.valorcriterio=null;
 
     };
