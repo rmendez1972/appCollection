@@ -22,6 +22,7 @@ public URLsalmin:String;//marlon
 public URLsalmindf:String;//marlon
 public URLclavemov:String;//marlon
 public URLclavediv:String;//marlon
+public URLvencidos:String;
 
 
 constructor() {}
@@ -108,10 +109,14 @@ constructor() {}
 		}
 
 		getUrlbonificaciones():String{
-			return this.URLdiversos='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
+			return this.URLbonificacion='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
 		}
 
 		getUrlprogramas():String{
 			return this.URLdiversos='http://localhost:8080/cobranza/controladorprogramas?operacion=listarJson';
+		}
+
+		getUrlVencidos():String{
+			return this.URLvencidos='http://localhost:8080/cobranza/controladorvencidos?operacion=listar&clave_b=';
 		}
 }

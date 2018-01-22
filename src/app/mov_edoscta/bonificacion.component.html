@@ -2,35 +2,35 @@
 
   <table class="table table-condensed table-hover table-bordered">
   	<thead  style="color: #7b7d80;">
-  		<th width="20%">Clave Bonificación</th>
-      <th width="20%">Estatus</th>
-      <th width="20%">Imp Cap</th>
-      <th width="20%">Imp Adm</th>
-      <th width="20%">Imp Int</th>
-      <th width="20%">Imp Osg</th>
-      <th width="20%">Imp Seg</th>
-      <th width="20%">Imp Com</th>
-      <th width="20%">Imp Mor</th>
-      <th width="20%">Imp Tit</th>
-      <th width="20%">Autoriza</th>
-      <th width="20%">Recibo</th>
-      <th width="20%">Serie</th>
+  		<th >Clave</th>
+      <th >Estatus</th>
+      <th >Imp Cap</th>
+      <th >Imp Adm</th>
+      <th >Imp Int</th>
+      <th >Imp Osg</th>
+      <th >Imp Seg</th>
+      <th >Imp Com</th>
+      <th >Imp Mor</th>
+      <th >Imp Tit</th>
+      <th width="10%">Autoriza</th>
+      <th >Recibo</th>
+      <th >Serie</th>
   	</thead>
-  	<tbody *ngFor="let bon of bonific">
-  		<tr>
-  			<td width="20%">{{bon.clavebonific}}</td>
-        <td width="20%">{{bon.estatus}}</td>
-        <td width="20%">{{bon.imp_cap}}</td>
-        <td width="20%">{{bon.imp_adm}}</td>
-        <td width="20%">{{bon.imp_int}}</td>
-        <td width="20%">{{bon.imp_osg}}</td>
-        <td width="20%">{{bon.imp_seg}}</td>
-        <td width="20%">{{bon.imp_com}}</td>
-        <td width="20%">{{bon.imp_mor}}</td>
-        <td width="20%">{{bon.imp_tit}}</td>
-        <td width="20%">{{bon.nombreautoriza}}</td>
-        <td width="20%">{{bon.recibo}}</td>
-        <td width="20%">{{bon.serie}}</td>
+  	<tbody >
+        <tr style="font-size: 10px" *ngFor="let bon of bonific">
+  			<td >{{bon.clavebonific}}</td>
+        <td >{{bon.estatus}}</td>
+        <td style="text-align:right;">{{bon.imp_cap | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_adm | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_int | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_osg | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_seg | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_com | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_mor | currency:'USD':true:'.2'}}</td>
+        <td style="text-align:right;">{{bon.imp_tit | currency:'USD':true:'.2'}}</td>
+        <td >{{bon.nombreautoriza}}</td>
+        <td >{{bon.recibo}}</td>
+        <td >{{bon.serie}}</td>
   		</tr>
   	</tbody>
   </table>

@@ -14,8 +14,8 @@
         <th style="text-align:center">Cuenta Contabilidad</th>
         </tr>
       </thead>
-      <tbody *ngFor="let mclavediv of clavediv">
-        <tr >
+      <tbody >
+        <tr *ngFor="let mclavediv of clavediv" >
          <td>{{mclavediv.clave_div}}</td>
          <td>{{mclavediv.descripcion}}</td>
          <td>{{mclavediv.importe | currency:'USD':true:'.2'}}</td>

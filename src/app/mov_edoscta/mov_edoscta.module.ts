@@ -12,6 +12,9 @@ import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 import { centavos } from '../_pipes/centavos.pipe';
 
 
+import { VencidosComponent }  from './vencidos.component';
+import { VencidosService } from './vencidos.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,10 +24,11 @@ import { centavos } from '../_pipes/centavos.pipe';
   declarations: [
     Mov_edosctaListComponent,
     BonificacionComponent,
-    centavos
+    centavos,
+    VencidosComponent,
   ],
   providers: [
-    ServiceUrl,Mov_edoctaService,BonificService
+    ServiceUrl,Mov_edoctaService,BonificService,VencidosService
   ]
 })
 export class Mov_edosctaModule {}
