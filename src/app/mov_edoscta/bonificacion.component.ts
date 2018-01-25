@@ -112,7 +112,7 @@ export class BonificacionComponent implements OnInit {
 
                        bonificaciones =>{
                          this.bonific = bonificaciones;
-                         this.message('Recuperacion exitosa de los movimientos de bonificación');
+                         this.message('Recuperacion exitosa de los movimientos');
                          this.errormessage(null);
                         },
                        error =>  this.errorMessage = <any>error);

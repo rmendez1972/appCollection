@@ -110,7 +110,7 @@ export class VencidosComponent implements OnInit {
         this.k.subscribe(
           vencidos =>{
             this.vencidos = vencidos;
-            this.message('Recuperacion exitosa de los movimientos vencidos');
+            this.message('Recuperacion exitosa de los movimientos');
             this.errormessage(null);
           },
           error =>  this.errorMessage = <any>error);

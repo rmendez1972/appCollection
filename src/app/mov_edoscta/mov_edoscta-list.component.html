@@ -127,10 +127,12 @@
         </table>
         <br>
         <form *ngIf="miMensajeMovs" name="form" class="form-inline" #f2="ngForm" novalidate>
+
           <div class="form-group" [ngClass]="{ 'has-error': f2.submitted && !fechacorte.valid }">
             <label for="fechacorte" class="col-md-4 control-label">Fecha de Corte</label>
             <div class="col-md-6">
-              <input type="date" name="fechacorte" id="fechacorte" class="form-control" [ngModel]="model.fecha_corte | date:'yyyy-MM-dd'"
+
+              <input type="date" name="fechacorte" class="form-control"  id="fechacorte" [ngModel]="model.fecha_corte | date:'yyyy-MM-dd'"
                 (ngModelChange)="model.fecha_corte = $event" #fechacorte="ngModel" required>
               <div *ngIf="f2.submitted && !fechacorte.valid" class="help-block">Fecha de Corte es obligatorio</div>
 
@@ -160,8 +162,10 @@
     <div class="panel-body transparent">
       <h3 *ngIf=miMensajeVencidos><span class="label label-success">{{miMensajeVencidos}}</span></h3>
       <h3 *ngIf=miMensajeerrorVencidos><span class="label label-danger">{{miMensajeerrorVencidos}}</span></h3>
-      <app-vencidos [fecha_corte]=model.fecha_corte  [clave_b]=model.valorcriterio 
+      <app-vencidos [fecha_corte]=model.fecha_corte [clave_b]=model.valorcriterio 
       #vencidos
         (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-vencidos>
     </div>
   </div>
+
+

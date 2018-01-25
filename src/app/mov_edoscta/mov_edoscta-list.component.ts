@@ -90,6 +90,8 @@ export class Mov_edosctaListComponent implements OnInit {
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
+  private miMensajeVencidos:String;
+
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -114,8 +116,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
   	ngOnInit() {
-
-      this.model.fecha_corte=new Date('yyyy-MM-dd');
+      this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
 
     };
@@ -184,6 +185,7 @@ export class Mov_edosctaListComponent implements OnInit {
     onMessage(mensaje:String){
 
       this.miMensajeBons = mensaje;
+      this.miMensajeVencidos = mensaje;
 
 
     }
