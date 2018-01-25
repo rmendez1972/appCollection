@@ -85,6 +85,8 @@ export class Mov_edosctaListComponent implements OnInit {
 
   private miMensajeBons:String;
   private miMensajeerrorBons:String;
+  private miMensajeVencidos:String;
+  private miMensajeerrorVencidos:String;
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
   private fecha:String;
@@ -115,6 +117,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
   	ngOnInit() {
 
+      //this.model.fecha_corte=new Date('yyyy-MM-dd');
       this.model.fecha_corte=new Date('yyyy-MM-dd');
       this.model.valorcriterio=null;
 
@@ -192,6 +195,22 @@ export class Mov_edosctaListComponent implements OnInit {
     onerrorMessage(mensaje:String){
 
       this.miMensajeerrorBons = mensaje;
+
+
+    }
+
+
+    onMessagevencidos(mensaje:String){
+
+      this.miMensajeVencidos = mensaje;
+
+
+    }
+
+
+    onerrorMessagevencidos(mensaje:String){
+
+      this.miMensajeerrorVencidos = mensaje;
 
 
     }

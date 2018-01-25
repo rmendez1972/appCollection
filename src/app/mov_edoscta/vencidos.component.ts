@@ -65,8 +65,8 @@ export class VencidosComponent implements OnInit {
 
   @Input() fecha_corte:String;
   @Input() clave_b:String;
-  @Output() onMessage = new EventEmitter<String>();
-  @Output() onerrorMessage = new EventEmitter<String>();
+  @Output() onMessagevencidos = new EventEmitter<String>();
+  @Output() onerrorMessagevencidos = new EventEmitter<String>();
 
 
 
@@ -85,18 +85,18 @@ export class VencidosComponent implements OnInit {
     };
 
     message(mensaje:String){
-      this.onMessage.emit(mensaje);
+      this.onMessagevencidos.emit(mensaje);
 
     };
 
     errormessage(mensaje:String){
-      this.onerrorMessage.emit(mensaje);
+      this.onerrorMessagevencidos.emit(mensaje);
 
     };
 
 
     getVencidos() {
-      console.log('fecha_corte '+this.fecha_corte)
+      console.log('fecha_corte dentro del controlador '+this.fecha_corte)
       if (this.fecha_corte!=undefined && this.fecha_corte!=null && this.fecha_corte!=''){
         this.k=this.route.params
         // (+) converts string 'id' to a number
