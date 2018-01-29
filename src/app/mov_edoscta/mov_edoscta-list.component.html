@@ -148,15 +148,15 @@
   </div>
 
 
-
+  <p>Total Vencidos: {{totalvencidos}}</p>
   <div class="panel panel-primary">
-    <div class="panel-heading">Mensualidades/Letras Vencidos del Beneficiario</div>
+    <div class="panel-heading">Mensualidades/Letras Vencidas del Beneficiario</div>
     <div class="panel-body transparent">
       <h3 *ngIf=miMensajeVencidos><span class="label label-success">{{miMensajeVencidos}}</span></h3>
       <h3 *ngIf=miMensajeerrorVencidos><span class="label label-danger">{{miMensajeerrorVencidos}}</span></h3>
       <app-vencidos [fecha_corte]=model.fecha_corte  [clave_b]=model.valorcriterio
       #vencidos
-        (onMessagevencidos)="onMessagevencidos($event)" (onerrorMessagevencidos)="onerrorMessagevencidos($event)"></app-vencidos>
+        (onMessagevencidos)="onMessagevencidos($event)" (onerrorMessagevencidos)="onerrorMessagevencidos($event)"  (onTotalVencidos)="onTotalVencidos($event)"></app-vencidos>
     </div>
   </div>
 

@@ -59,6 +59,7 @@ export class VencidosComponent implements OnInit {
 
 
   private errorMessage: string;
+  private totalvencidos: number=0;
   private vencidos: Vencidos[];
 
   private k: Observable<Vencidos[]>;
@@ -67,6 +68,7 @@ export class VencidosComponent implements OnInit {
   @Input() clave_b:String;
   @Output() onMessagevencidos = new EventEmitter<String>();
   @Output() onerrorMessagevencidos = new EventEmitter<String>();
+  @Output() onTotalVencidos = new EventEmitter<Number>();
 
 
 
@@ -94,6 +96,10 @@ export class VencidosComponent implements OnInit {
 
     };
 
+    totalVencidos(totalvencidos:number){
+      this.onTotalVencidos.emit(totalvencidos);
+    }
+
 
     getVencidos() {
       console.log('fecha_corte dentro del controlador '+this.fecha_corte)
@@ -112,6 +118,8 @@ export class VencidosComponent implements OnInit {
             this.vencidos = vencidos;
             this.message('Recuperacion exitosa de los movimientos');
             this.errormessage(null);
+            this.totalvencidos=this.vencidos.length-1;
+            this.totalVencidos(this.totalvencidos);
           },
           error =>  this.errorMessage = <any>error);
 

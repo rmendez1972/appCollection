@@ -92,7 +92,8 @@ export class Mov_edosctaListComponent implements OnInit {
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
-  private miMensajeVencidos:String;
+  public totalvencidos: number=0;
+
 
 
   optionsSelect = [
@@ -214,6 +215,12 @@ export class Mov_edosctaListComponent implements OnInit {
 
       this.miMensajeerrorVencidos = mensaje;
 
+
+    }
+
+    onTotalVencidos(totalvencidos:number){
+
+      this.totalvencidos = totalvencidos;
 
     }
 
