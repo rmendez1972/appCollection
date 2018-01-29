@@ -44,7 +44,7 @@ constructor() {}
 		}
 
 		getUrlBeneficiario_div():String{
-			
+
 			return this.URLbeneficiario_div='http://localhost:8080/cobranza/controladorbendiv?operacion=listarJsonbyIdBeneficiarioDiv&criterio=';
 		}
 
@@ -109,14 +109,18 @@ constructor() {}
 		}
 
 		getUrlbonificaciones():String{
+
 			return this.URLbonificacion='http://localhost:8080/cobranza/controladorbonificacion?operacion=listarJson';
+
 		}
 
 		getUrlprogramas():String{
 			return this.URLdiversos='http://localhost:8080/cobranza/controladorprogramas?operacion=listarJson';
+
 		}
 
 		getUrlVencidos():String{
 			return this.URLvencidos='http://localhost:8080/cobranza/controladorvencidos?operacion=listar&clave_b=';
+
 		}
 }

@@ -85,12 +85,15 @@ export class Mov_edosctaListComponent implements OnInit {
 
   private miMensajeBons:String;
   private miMensajeerrorBons:String;
+  private miMensajeVencidos:String;
+  private miMensajeerrorVencidos:String;
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
-  private miMensajeVencidos:String;
+  public totalvencidos: number=0;
+
 
 
   optionsSelect = [
@@ -116,6 +119,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
   	ngOnInit() {
+
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
 
@@ -195,6 +199,28 @@ export class Mov_edosctaListComponent implements OnInit {
 
       this.miMensajeerrorBons = mensaje;
 
+
+    }
+
+
+    onMessagevencidos(mensaje:String){
+
+      this.miMensajeVencidos = mensaje;
+
+
+    }
+
+
+    onerrorMessagevencidos(mensaje:String){
+
+      this.miMensajeerrorVencidos = mensaje;
+
+
+    }
+
+    onTotalVencidos(totalvencidos:number){
+
+      this.totalvencidos = totalvencidos;
 
     }
 

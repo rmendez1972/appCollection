@@ -33,7 +33,7 @@
   <br>
 <!-- Datos generales del beneficiario y del crédito-->
   <div class="panel panel-primary">
-    <div class="panel-heading">Generales del beneficiario y del crédito.</div>
+    <div class="panel-heading">Generales del Beneficiario y del Crédito.</div>
     <div class="panel-body transparent">
       <table class="" width="100%">
         <tbody *ngFor="let ben of benef">
@@ -50,24 +50,24 @@
 
           <tr>
             <td><strong>Clave Elec: </strong>{{ben.clave_elect}}</td>
-            <td><strong>Inicio de pagos: </strong>{{ben.fecha_ip| date:"dd/MM/yyyy"}}</td>    
+            <td><strong>Inicio de pagos: </strong>{{ben.fecha_ip| date:"dd/MM/yyyy"}}</td>
           </tr>
 
-          <tr>  
+          <tr>
             <td><strong>Dirección : </strong>{{ben.domicilio}}</td>
-            <td><strong>Poliza: </strong>{{ben.poliza}} <strong >Fecha: </strong>{{ben.fecha_pol| date:"dd/MM/yyyy"}}</td>           
+            <td><strong>Poliza: </strong>{{ben.poliza}} <strong >Fecha: </strong>{{ben.fecha_pol| date:"dd/MM/yyyy"}}</td>
           </tr>
 
           <tr>
             <td><strong>Manzana : </strong>{{ben.mza}}<strong> Lote: </strong> {{ben.lte}}</td>
             <td><strong>Clave Cat: </strong>{{ben.clave_cat}}</td>
-          </tr> 
-                        
+          </tr>
+
           <tr>
             <td><strong>Conyuge  : </strong>{{ben.conyuge}}</td>
-            <td><strong>Área: </strong>{{ben.area}} m2 <strong> Plazo: {{ben.plazo}}</strong></td> 
+            <td><strong>Área: </strong>{{ben.area}} m2 <strong> Plazo: {{ben.plazo}}</strong></td>
           </tr>
-  
+
         </tbody>
       </table>
     </div>
@@ -76,7 +76,7 @@
 
 
   <div class="panel panel-primary">
-    <div class="panel-heading">Movimientos Aplicados del Beneficiario</div>
+    <div class="panel-heading">Movimientos Aplicados al Estado de Cuenta del Beneficiario</div>
     <div class="panel-body transparent">
       <div class="table-responsive">
         <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
@@ -95,7 +95,7 @@
             <th>Comisiones</th>
             <th>Titulación</th>
             <th>Moratorios</th>
-            <th>Bonif.</th>
+            <th>Bonific.</th>
 
           </thead>
           <tbody *ngFor="let mov of mov_edoscta">
@@ -147,24 +147,28 @@
     </div>
   </div>
 
+
+  <p>Total Vencidos: {{totalvencidos}}</p>
   <div class="panel panel-primary">
-    <div class="panel-heading">Bonificaciones del Beneficiario</div>
+    <div class="panel-heading">Mensualidades/Letras Vencidas del Beneficiario</div>
     <div class="panel-body transparent">
-      <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
-      <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
-      <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
-        (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
+      <h3 *ngIf=miMensajeVencidos><span class="label label-success">{{miMensajeVencidos}}</span></h3>
+      <h3 *ngIf=miMensajeerrorVencidos><span class="label label-danger">{{miMensajeerrorVencidos}}</span></h3>
+      <app-vencidos [fecha_corte]=model.fecha_corte  [clave_b]=model.valorcriterio
+      #vencidos
+        (onMessagevencidos)="onMessagevencidos($event)" (onerrorMessagevencidos)="onerrorMessagevencidos($event)"  (onTotalVencidos)="onTotalVencidos($event)"></app-vencidos>
     </div>
   </div>
 
   <div class="panel panel-primary">
-    <div class="panel-heading">Vencidos del Beneficiario</div>
+    <div class="panel-heading">Bonificaciones del Beneficiario</div>
     <div class="panel-body transparent">
-      <h3 *ngIf=miMensajeVencidos><span class="label label-success">{{miMensajeVencidos}}</span></h3>
-      <h3 *ngIf=miMensajeerrorVencidos><span class="label label-danger">{{miMensajeerrorVencidos}}</span></h3>
-      <app-vencidos [fecha_corte]=model.fecha_corte [clave_b]=model.valorcriterio 
-      #vencidos
-        (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-vencidos>
+
+      <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
+      <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
+      <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
+        (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
+
     </div>
   </div>
 
