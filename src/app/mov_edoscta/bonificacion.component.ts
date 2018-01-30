@@ -115,8 +115,13 @@ export class BonificacionComponent implements OnInit {
                          this.message('Recuperacion exitosa de los movimientos de bonificación');
                          this.errormessage(null);
                         },
-                       error =>  this.errorMessage = <any>error);
+                       error =>{
+                         this.errorMessage = <any>error;
+                         this.errormessage('No hay movimientos de bonificación para este Beneficiario');
+                         this.message(null);
+                       });
 
+                        //});
       }else{
 
         this.errormessage('Error en la recuperacion de los movimientos de bonificación, favor de introducir fecha válida');
