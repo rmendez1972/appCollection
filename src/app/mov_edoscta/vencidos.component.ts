@@ -102,7 +102,6 @@ export class VencidosComponent implements OnInit {
 
 
     getVencidos() {
-      console.log('fecha_corte dentro del controlador '+this.fecha_corte)
       if (this.fecha_corte!=undefined && this.fecha_corte!=null && this.fecha_corte!=''){
         this.k=this.route.params
         // (+) converts string 'id' to a number
