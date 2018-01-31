@@ -12,20 +12,22 @@
       <th >Comisiones</th>
       <th >Titulacion</th>
       <th >Moratorios</th>
+      <th> Total</th>
 
     </thead>
     <tbody>
         <tr style="font-size: 10px" *ngFor="let venc of vencidos">
         <td >{{venc.fecha}}</td>
-        <td >{{venc.letra}}</td>
-        <td >{{venc.capital}}</td>
-        <td >{{venc.interes}}</td>
-        <td >{{venc.seguro}}</td>
-        <td >{{venc.admon}}</td>
-        <td >{{venc.oseg}}</td>
-        <td >{{venc.com}}</td>
-        <td >{{venc.tit}}</td>
-        <td >{{venc.mor}}</td>
+        <td style="text-align: right" >{{venc.letra }}</td>
+        <td style="text-align: right" >{{venc.capital | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right" >{{venc.interes | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right" >{{venc.seguro | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right" >{{venc.admon | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right">{{venc.oseg | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right">{{venc.com | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right">{{venc.tit | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right">{{venc.mor | currency:'USD':true:'.2'}}</td>
+        <td style="text-align: right">{{venc.total | currency:'USD':true:'.2'}}</td>
       </tr>
     </tbody>
   </table>

@@ -34,13 +34,11 @@ export class Mov_edoctaService {
 
   private extractDataMov(res: Response) {
     let body = res.json();
-    console.log(body.mov_edoscta);
     return body.mov_edoscta || { };
   }
 
   private extractDataBenef(res: Response) {
     let body = res.json();
-    console.log(body.beneficiario);
     return body.beneficiario || { };
   }
 
@@ -57,7 +55,6 @@ export class Mov_edoctaService {
     else {
       errMsg = error.message ? error.message : error.toString();
     }
-    console.error(errMsg);
     return Observable.throw(errMsg);
   }
 }

@@ -26,7 +26,6 @@ export class VencidosService {
 
 	//getMov_edoscta
   getVencidos(clave_b:String, fecha_corte:String): Observable<Vencidos[]> {
-    console.log(this.vencidosUrl+clave_b+'&fecha_corte='+fecha_corte)
      return this.http.get(this.vencidosUrl+clave_b+'&fecha_corte='+fecha_corte)
                     .map(this.extractDataVencidos)
                     .catch(this.handleError);
@@ -37,7 +36,14 @@ export class VencidosService {
   private extractDataVencidos(res: Response) {
     let body = res.json();
     console.log(body.vencidos);
+    var suma=[];
+    for (var i = 0; i <body.vencidos.length; i++) {
+      body.vencidos[i]["total"]=parseFloat(body.vencidos[i].capital.toString())+parseFloat(body.vencidos[i].interes.toString())+
+      parseFloat(body.vencidos[i].seguro.toString())+parseFloat(body.vencidos[i].admon.toString())+parseFloat(body.vencidos[i].oseg.toString())+
+      parseFloat(body.vencidos[i].com.toString())+parseFloat(body.vencidos[i].tit.toString())+parseFloat(body.vencidos[i].mor.toString());
+     
 
+    }
     return body.vencidos || { };
 
   }
@@ -57,5 +63,4 @@ export class VencidosService {
     return Observable.throw(errMsg);
 
   }
-
 }

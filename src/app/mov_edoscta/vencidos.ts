@@ -9,9 +9,11 @@ export class Vencidos {
 	public com:number;
 	public tit:number;
 	public mor:number;
+	public total:number;
+
 
 	constructor(public m_fecha:String, public m_letra:String, public m_capital:number, public m_interes:number, public m_seguro:number,
-		public m_admon:number,public m_oseg:number, public m_com:number, public m_tit:number,public m_mor:number){
+		public m_admon:number,public m_oseg:number, public m_com:number, public m_tit:number,public m_mor:number, public m_total:number){
 
 		this.fecha = m_fecha;
 		this.letra = m_letra;
@@ -22,8 +24,7 @@ export class Vencidos {
 		this.oseg = m_oseg;
 		this.com = m_com;
 		this.tit = m_tit;
-		this.mor = m_mor;	
-
+		this.mor = m_mor;
+		this.total = m_total;
 	}
-
 }
