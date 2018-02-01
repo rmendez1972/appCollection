@@ -120,8 +120,8 @@ constructor() {}
 		}
 
 		getUrlVencidos():String{
-			//return this.URLvencidos='http://localhost:8083/cobranza/controladorvencidos?operacion=listar&clave_b=';
+			return this.URLvencidos='http://localhost:8083/cobranza/controladorvencidos?operacion=listar&clave_b=';
 			
-			return this.URLvencidos='http://localhost:8083/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&clave_b=';
+			//return this.URLvencidos='http://localhost:8083/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&clave_b=';
 		}
 }
