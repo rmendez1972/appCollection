@@ -17,6 +17,9 @@ export class Bonific {
 	public id_movdiversos:number;
 	public numcontrato:String;
 	public id_catprog:number;
+	public imp_com: number;
+	public imp_mor: number;
+	public imp_tit: number;
 
 	public nombrebenef:String;
 	public clavebonific:String;
@@ -29,7 +32,8 @@ export class Bonific {
 	constructor(public mid_bonificacion:number, public mid_movedoscta:number, public mid_benef:number, public mimp_cap:number, public mimp_int:number, 
 		public mimp_adm:number, public mimp_seg:number, public mimp_osg:number, public mid_catbonific:number, public mestatus:String, 
 		public mid_usuario:number, public mid_autoriza:number, public mclave_b:String, public mrecibo:number, public mserie:String, 
-		public mid_movdiversos:number, public mnumcontrato:String, public mid_catprog:number, public mnombrebenef:String, public mclavebonific:String,
+		public mid_movdiversos:number, public mnumcontrato:String, public mid_catprog:number, public mimp_com:number, public mimp_mor:number,
+		public mimp_tit: number, public mnombrebenef:String, public mclavebonific:String,
 		public musuario:String, public mmovdiversos:String, public mcatprograma:String, public mnombreautoriza:String, public mautoriza:String){
 
 		this.id_bonificacion=mid_bonificacion;
