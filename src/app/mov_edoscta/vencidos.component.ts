@@ -63,6 +63,8 @@ export class VencidosComponent implements OnInit {
   private vencidos: Vencidos[];
 
   private k: Observable<Vencidos[]>;
+  private totales_style:String = "info";
+  private renglon_style:String = "active";
 
   @Input() fecha_corte:String;
   @Input() clave_b:String;
@@ -100,6 +102,15 @@ export class VencidosComponent implements OnInit {
       this.onTotalVencidos.emit(totalvencidos);
     }
 
+    valida_ultimo(i:number){
+      if (i==this.totalvencidos) {
+        return true;
+      }else{
+
+        return false;
+
+      }
+    }
 
     getVencidos() {
       if (this.fecha_corte!=undefined && this.fecha_corte!=null && this.fecha_corte!=''){
@@ -131,6 +142,6 @@ export class VencidosComponent implements OnInit {
     };
 
 
-    
+
 
 }

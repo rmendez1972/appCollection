@@ -42,6 +42,7 @@ import { CambiaPasswordModule } from './cambia-password/cambia-password.module';
 
 import { UploadModule } from './upload/upload.module';
 import { UploadComponent } from './upload/upload.component';
+import { LOCALE_ID } from '@angular/core';
 
 /*
 *Datatables
@@ -102,6 +103,7 @@ import { DataTablesModule } from 'angular-datatables';
     //fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
+    {provide: LOCALE_ID, useValue: 'es-MX' },
   ],
 
   bootstrap: [AppComponent, MenuComponent]
