@@ -94,7 +94,9 @@ export class Mov_edosctaListComponent implements OnInit {
   private nobonific: String = "fa fa-times";
   public totalvencidos: number=0;
 
-
+  private totales_style:String = "info";
+  private renglon_style:String = "active";
+  private totalmov_edoscta:number=0;
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -160,6 +162,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
                        movimientos => {
                          this.mov_edoscta = movimientos;
+                         this.totalmov_edoscta=this.mov_edoscta.length-1;
                          this.miMensajeMovs = "Recuperación Exitosa de los Movimientos de Estado de Cuenta";
                         },
                        error =>  this.errorMessage = <any>error);
@@ -222,6 +225,16 @@ export class Mov_edosctaListComponent implements OnInit {
 
       this.totalvencidos = totalvencidos;
 
+    }
+
+    valida_ultimo(i:number){
+      if (i==this.totalmov_edoscta) {
+        return true;
+      }else{
+
+        return false;
+
+      }
     }
 
 

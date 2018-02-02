@@ -34,6 +34,50 @@ export class Mov_edoctaService {
 
   private extractDataMov(res: Response) {
     let body = res.json();
+    console.log(body.mov_edoscta);
+    let mfecha:string=null;
+    let mmov:string="Totales:";
+    let mrecibo:string=null;
+    let mserie:string=null;
+    let mbonific:string=null;
+    let totcapital:number=0;
+    let totinteres:number=0;
+    let totadmon:number=0;
+    let totseguro:number=0;
+    let totoseg:number=0;
+    let totcomision:number=0;
+    let tottitulacion:number=0;
+    let totmora:number=0;
+        
+    for (var i = 0; i <body.mov_edoscta.length; i++) {
+      totcapital=totcapital+parseFloat(body.mov_edoscta[i].capital.toString());
+      totinteres=totinteres+parseFloat(body.mov_edoscta[i].interes.toString());
+      totadmon=totadmon+parseFloat(body.mov_edoscta[i].admon.toString());
+      totseguro=totseguro+parseFloat(body.mov_edoscta[i].seguro.toString());
+      totcomision=totcomision+parseFloat(body.mov_edoscta[i].comisiones.toString());
+      totoseg=totoseg+parseFloat(body.mov_edoscta[i].o_seguro.toString());
+      tottitulacion=+tottitulacion+parseFloat(body.mov_edoscta[i].tit.toString());
+      totmora=totmora+parseFloat(body.mov_edoscta[i].moratorios.toString());
+    }
+
+    let totales_columna={
+      fecha_mov:mfecha,
+      clave_mov:mmov,
+      recibo:mrecibo,
+      serie:mserie,
+      capital:totcapital,
+      interes:totinteres,
+      admon:totadmon,
+      seguro:totseguro,
+      o_seguro:totoseg,
+      comisiones:totcomision,
+      tit:tottitulacion,
+      moratorios:totmora,
+      bonific:mbonific
+     }
+
+     body.mov_edoscta.push(totales_columna);
+
     return body.mov_edoscta || { };
   }
 
