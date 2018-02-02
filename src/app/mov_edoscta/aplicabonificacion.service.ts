@@ -15,7 +15,7 @@ import { AlertService} from '../_services/index';
 export class AplicaBonificService {
 
   //private seguimientosUrl: string;
-  private bonificacionUrl: string;
+  private aplicabonificacionUrl: string;
 
 
   constructor (private http: Http,
@@ -23,14 +23,19 @@ export class AplicaBonificService {
       private alertService: AlertService)
       {
         //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
-        this.bonificacionUrl=String(this.url.getUrlbonificacion());
+        this.aplicabonificacionUrl=String(this.url.getUrlAplicabonificacion());
 
       }
 
 	//getMov_edoscta
-  getBonificaciones(criterio:String, valorcriterio:String): Observable<Bonific[]> {
+  getBonificaciones(id_movedoscta:String, id_benef:String, imp_cap:String, imp_int:String, imp_adm:String, imp_seg:String, imp_osg:String,
+  imp_com:String, imp_mor:String, imp_tit:String, id_catbonific:String, estatus:String, id_usuario:String, clave_b:String, recibo:String,
+  serie:String, numcontrato:String, id_catprog:String, id_autoriza:String): Observable<Bonific[]> {
 
-     return this.http.get(this.bonificacionUrl+criterio+'&valorcriterio='+valorcriterio)
+     return this.http.get(this.aplicabonificacionUrl+id_movedoscta+'&id_benef='+id_benef+'&imp_cap='+imp_cap+'&imp_int='+imp_int+'&imp_adm='+imp_adm+
+     '&imp_seg='+imp_seg+'&imp_osg='+imp_osg+'&imp_com='+imp_com+'&imp_mor='+imp_mor+'&imp_tit='+imp_tit+'&id_catbonific='+id_catbonific+
+     '&estatus='+estatus+'&id_usuario='+id_usuario+'&clave_b='+clave_b+'&recibo='+recibo+'&serie='+serie+'&numcontrato='+numcontrato+'&id_catprog='+id_catprog+
+     '&id_autoriza='+id_autoriza)
                     .map(this.extractDataBon)
                     .catch(this.handleError);
 
