@@ -33,7 +33,7 @@ export class AuthenticationService {
                 //alert('user.user '+JSON.stringify(user.user).length);
                 if (JSON.stringify(user.user).length > 10) {
 
-
+                    console.log('escribiendo en localStorage');
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user.user));
                 }

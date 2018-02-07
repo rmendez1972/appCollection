@@ -26,5 +26,23 @@ export class MenuComponent implements OnInit {
 
   	ngOnInit() {
 
+
+    };
+    ngAfterViewInit() {
+      // viewChild is set after the view has been initialized
+      //var el = $(this.rootNode.nativeElement).find('#cpp')[0];
+       this.onsubMenus();
+    }
+
+    onsubMenus() {
+
+      $(document).ready(function(){
+        $('.dropdown-submenu a.test').on("click", function(e){
+          $(this).next('ul').toggle();
+          e.stopPropagation();
+          e.preventDefault();
+
+        });
+      });
     };
 }
