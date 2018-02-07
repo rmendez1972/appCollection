@@ -1,8 +1,29 @@
-<div *ngIf="currentUser">
+<div [hidden]="!currentUser">
 <div>
 <ul  class="nav navbar-nav">
 
 	<li class="active" ><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
+   <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobranza<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+
+        <li><a tabindex="-1" routerLink="/cajas" routerLinkActive="active">Apertura Caja</a></li>
+        <li role="separator" class="divider"></li>
+        <li class="dropdown-submenu">
+          <a class="test" tabindex="-1" href="#">Aplicación de Pagos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/aplica_mov_edoscta" routerLinkActive="active">Por Programas</a></li>
+            <li><a routerLink="/aplica_mov_diversos" routerLinkActive="active">Por Diversos</a></li>
+
+
+          </ul>
+        </li>
+
+
+
+
+      </ul>
+  </li>
   <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estados de Cuenta<b class="caret"></b></a>
       <ul class="dropdown-menu">

@@ -10,6 +10,7 @@ import { SeguimientoRoutingModule } from './seguimientos/seguimientos-routing.mo
 import { Mov_edosctaRoutingModule } from './mov_edoscta/mov_edoscta-routing.module';
 import { Mov_diversosRoutingModule } from './mov_diversos/mov_diversos-routing.module';//igh
 import { CatalogosRoutingModule } from './catalogos/catalogos-routing.module';//mgh
+import { CajaRoutingModule } from './apertura_caja/caja-routing.module';//mgh
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers/index';
@@ -30,6 +31,7 @@ import { SeguimientosModule } from './seguimientos/seguimientos.module';
 import { Mov_edosctaModule } from './mov_edoscta/mov_edoscta.module';
 import { Mov_diversosModule } from './mov_diversos/mov_diversos.module';//igh
 import { CatalogosModule } from './catalogos/catalogos.module';//mgh
+import { CajaModule } from './apertura_caja/caja.module';//mgh
 
 import { AdjuntosModule } from './adjuntos/adjuntos.module';
 
@@ -78,10 +80,12 @@ import { DataTablesModule } from 'angular-datatables';
     Mov_edosctaRoutingModule,
     Mov_diversosRoutingModule,//igh
     CatalogosRoutingModule,//mgh
+    CajaRoutingModule,//mgh
     SeguimientosModule,
     Mov_edosctaModule,
     Mov_diversosModule,//igh
     CatalogosModule,//mgh
+    CajaModule,//mgh
     AdjuntosModule,
     BotonBuscarModule,
     ContactoModule,

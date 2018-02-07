@@ -23,7 +23,11 @@ public URLsalmindf:String;//marlon
 public URLclavemov:String;//marlon
 public URLclavediv:String;//marlon
 public URLvencidos:String;
+<<<<<<< HEAD
 public URLaplicabonificacion:String;
+=======
+public URLcajas:String;
+>>>>>>> d4e008757714dd29190005570d9b689ab1bec958
 
 
 constructor() {}
@@ -126,7 +130,15 @@ constructor() {}
 			//return this.URLvencidos='http://localhost:8083/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&clave_b=';
 		}
 
+<<<<<<< HEAD
     getUrlAplicabonificacion():String{
         return this.URLaplicabonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=aplicaBonificacionesApi&id_movedoscta=';
     }
+=======
+		getUrlcajas():String{
+			return this.URLcajas='http://localhost:8080/cobranza/controladorcaja?operacion=grabarfromApp&fecha=';
+
+		}
+>>>>>>> d4e008757714dd29190005570d9b689ab1bec958
 }
+

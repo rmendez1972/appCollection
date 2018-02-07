@@ -20,3 +20,11 @@ import { MenuComponent }  from './menu.component';
   ]
 })
 export class MenuModule {}
+
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
