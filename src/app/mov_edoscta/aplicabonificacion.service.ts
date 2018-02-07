@@ -27,7 +27,7 @@ export class AplicaBonificService {
 
       }
 
-	//getMov_edoscta
+
   getBonificaciones(id_movedoscta:String, id_benef:String, imp_cap:String, imp_int:String, imp_adm:String, imp_seg:String, imp_osg:String,
   imp_com:String, imp_mor:String, imp_tit:String, id_catbonific:String, estatus:String, id_usuario:String, clave_b:String, recibo:String,
   serie:String, numcontrato:String, id_catprog:String, id_autoriza:String): Observable<Bonific[]> {
