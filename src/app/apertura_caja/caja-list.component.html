@@ -1,0 +1,31 @@
+
+<h3 class="bg-primary encabezado" ><span class="fa fa-money"> </span>
+  {{title}}
+</h3>
+<div class="panel panel-primary">
+    <div class="panel-body transparent">
+      <div class="table-responsive">
+      <table id="caja" class=" display table table-condensed table-hover table-bordered" style="width:50%; margin-left:auto; margin-right: auto;">
+      <thead  style="color: #7b7d80;">
+        <tr>
+          <th style="text-align:center">Fecha</th>
+          <th style="text-align:center">Folio Inicial</th>
+          <th style="text-align:center">Folio Final</th>
+          <th style="text-align:center">Póliza</th>
+          <th style="text-align:center">Monto Inicial</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cajas of caja">
+         <td>{{cajas.fecha | date:"yyyy/MM/dd" }}</td>
+         <td>{{cajas.folio_inicial}}</td>
+         <td>{{cajas.folio_final}}</td>
+         <td>{{cajas.poliza}}</td>
+         <td>{{cajas.monto_inicial | currency:'MXN':true:'.2'}}</td>
+        </tr>
+      </tbody>
+      </table>
+
+</div>
+</div>
+</div>
