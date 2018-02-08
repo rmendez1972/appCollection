@@ -5,9 +5,6 @@ import { Bonific } from './bonific';
 import { AplicaBonificService} from './aplicabonificacion.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-//import { AuthGuard } from '../_guards/index';
-
-//import { UploadComponent} from '../upload/upload.component';
 
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -64,11 +61,9 @@ export class AplicaBonificacionComponent implements OnInit {
 
   private k: Observable<Bonific[]>;
 
-  //@Input() fecha_corte:String;
-  //@Input() valorcriterio:String;
-  //@Input() criterio:String;
+
   @Output() onMessage = new EventEmitter<String>();
-  //@Output() onerrorMessage = new EventEmitter<String>();
+
 
   @Input() id_movedoscta:String;
 
@@ -94,7 +89,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
     };
 
-    /*getBonificaciones() {
+    postBonificaciones() {
 
         this.k=this.route.params
 
@@ -102,7 +97,7 @@ export class AplicaBonificacionComponent implements OnInit {
         {
 
 
-        return this.aplicabonificservice.getBonificaciones(this.id_movedoscta,this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
+        return this.aplicabonificservice.postBonificaciones(this.id_movedoscta,this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
         this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.estatus,this.id_usuario,this.clave_b,this.recibo,this.serie,
         this.numcontrato,this.id_catprog,this.id_autoriza)
         })
@@ -111,7 +106,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
                        bonificaciones =>{
                          this.bonific = bonificaciones;
-                         this.message('Recuperacion exitosa de los movimientos de bonificación');
+                         this.message('Se insertaron las bonificaciones');
 
                         },
                        error =>{
@@ -123,7 +118,7 @@ export class AplicaBonificacionComponent implements OnInit {
         this.message(null);
         this.bonific=null;
 
-    };*/
+    };
 
 
 }
