@@ -125,7 +125,7 @@ export class CajaComponent implements OnInit {
       this.model.folio_inicial=1;
       this.model.folio_final=1;
       this.model.poliza='I001';
-      this.model.monto_inicial=0.00;
+      this.model.monto_inicial=100.00;
 
     };
 
@@ -161,8 +161,9 @@ export class CajaComponent implements OnInit {
 
                        cajas => {
                          this.cajas = cajas;
-                         //this.totalmov_edoscta=this.mov_edoscta.length-1;
                          this.miMensajeApertura = "Apertura Exitosa de la Caja";
+                         setInterval(() => this.router.navigate(['cajas/listar']), 3000);
+
                         },
                        error =>  this.errorMessage = <any>error);
 

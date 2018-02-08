@@ -130,5 +130,9 @@ constructor() {}
 			return this.URLcajas='http://localhost:8080/cobranza/controladorcaja?operacion=grabarfromApp&fecha=';
 
 		}
+
+		getUrlcajaslist():String{
+			return this.URLcpp='http://localhost:8080/cobranza/controladorcaja?operacion=listarJson';
+		}
 }
 
