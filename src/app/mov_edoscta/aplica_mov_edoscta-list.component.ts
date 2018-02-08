@@ -1,12 +1,12 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
-import { Solicitante } from './solicitante';
+import { Solicitante } from './../mov_edoscta/solicitante';
 
-import { Mov_edocta } from './mov_edocta';
-import { Benef } from './benef';
-import { Solicitud } from './solicitud';
-import { Tramite } from './tramite';
-import { Seguimiento } from './seguimiento';
-import { Mov_edoctaService} from './mov_edocta.service';
+import { Mov_edocta } from './../mov_edoscta/mov_edocta';
+import { Benef } from './../mov_edoscta/benef';
+import { Solicitud } from './../mov_edoscta/solicitud';
+import { Tramite } from './../mov_edoscta/tramite';
+import { Seguimiento } from './../mov_edoscta/seguimiento';
+import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //import { AuthGuard } from '../_guards/index';
 
@@ -17,10 +17,11 @@ import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { centavos } from '../_pipes/centavos.pipe';
 
+
 @Component({
   selector: 'app-seguimiento-list',
-  templateUrl: './mov_edoscta-list.component.html',
-  styleUrls: ['./mov_edoscta-list.component.css'],
+  templateUrl: './aplica_mov_edoscta-list.component.html',
+  styleUrls: ['./aplica_mov_edoscta-list.component.css'],
   animations: [
     trigger('routeAnimation', [
       state('*',
@@ -45,7 +46,7 @@ import { centavos } from '../_pipes/centavos.pipe';
     ])
   ]
 })
-export class Mov_edosctaListComponent implements OnInit {
+export class Aplica_Mov_edosctaListComponent implements OnInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -107,10 +108,10 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
 
-  	constructor(
+    constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private mov_edoctaservice: Mov_edoctaService,
+      private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
       private alertService:AlertService
 
     )
@@ -119,7 +120,7 @@ export class Mov_edosctaListComponent implements OnInit {
     }
 
 
-  	ngOnInit() {
+    ngOnInit() {
 
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
@@ -129,7 +130,7 @@ export class Mov_edosctaListComponent implements OnInit {
 
 
 
-  	title = 'Estado de Cuenta por Programas';
+    title = 'Estado de Cuenta por Programas';
 
     localizaBenefMov(){
       console.log('valor de model.criterio '+this.model.criterio);
@@ -154,7 +155,7 @@ export class Mov_edosctaListComponent implements OnInit {
         {
 
           //this.selectedId= +params['id'];
-          return this.mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
+          return this.aplica_mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
         })
 
         this.k.subscribe(
@@ -176,7 +177,7 @@ export class Mov_edosctaListComponent implements OnInit {
         {
 
           this.selectedId= +params['id'];
-          return this.mov_edoctaservice.getBenef(criterio,valorcriterio)
+          return this.aplica_mov_edoctaservice.getBenef(criterio,valorcriterio)
         })
 
         this.l.subscribe(

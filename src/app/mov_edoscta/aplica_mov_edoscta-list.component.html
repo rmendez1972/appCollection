@@ -5,7 +5,6 @@
 <div class="datos">
   <br>
   <form name="form" class="form-inline" #f="ngForm" novalidate>
-
     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
       <label for="_criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
       <div class="col-md-2">
@@ -115,7 +114,7 @@
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.comisiones | currency:'MXN':true:'.2'}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.tit | currency:'MXN':true:'.2'}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN':true:'.2'}}</td>
-
+              
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" [ngSwitch]="mov.bonific">
                   <span *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación"></span>
                   <span *ngSwitchCase="false" [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"></span>
@@ -133,7 +132,7 @@
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.comisiones | currency:'MXN':true:'.2'}}</strong></td>
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.tit | currency:'MXN':true:'.2'}}</strong></td>
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
-
+               
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right" ><span>{{mov.bonific}}</span></td>
 
             </tr>
@@ -154,13 +153,11 @@
           </div>
 
           <div class="form-group" style="text-align:center">
-            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos()" />
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones()" />
           </div>
         </form>
       </div>
     </div>
   </div>
-
-
 
 
