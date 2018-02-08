@@ -131,6 +131,7 @@ constructor() {}
 		}
 
 
+<<<<<<< HEAD
     getUrlAplicabonificacion():String{
         return this.URLaplicabonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=aplicaBonificacionesApi&id_movedoscta=';
     }
@@ -140,5 +141,12 @@ constructor() {}
 
 	}
 
+=======
+		}
+
+		getUrlcajaslist():String{
+			return this.URLcpp='http://localhost:8080/cobranza/controladorcaja?operacion=listarJson';
+		}
+>>>>>>> 8cd3b0348580d87c6a02659a87961c347bb2a652
 }
 

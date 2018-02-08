@@ -13,16 +13,21 @@ import { User } from '../_models/index';
 @Injectable()
 export class CajaService {
   private cajasUrl: string;
-  private currentUser: string;
-  private newcurrentUser: string;
-  private fecha:string;
-  private folio_inicial:number;
-  private folio_final:number;
-  private poliza:string;
+  private cajasListUrl: string;
+  private currentUser: User;
+  private newcurrentUser: User;
+  public fecha:string;
+  public folio_inicial:number;
+  public folio_final:number;
+  public poliza:string;
+  public monto_inicial:number;
+  public id:string;
+  public username:string;
 
   constructor (private http: Http,private url:ServiceUrl,private alertService: AlertService){
 
     this.cajasUrl=String(this.url.getUrlcajas());
+    this.cajasListUrl=String(this.url.getUrlcajaslist());
 
   }
 
@@ -32,11 +37,39 @@ export class CajaService {
     this.folio_inicial=folio_inicial;
     this.folio_final=folio_final;
     this.poliza=poliza;
-    this.currentUser=localStorage.getItem('currentUser');
+
+    let param_apertura_caja={
+      fecha:this.fecha,
+      folio_inicial:this.folio_inicial,
+      folio_final:this.folio_final,
+      poliza:this.poliza,
+      monto_inicial:monto_inicial
+    };
+    localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
+    this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
     console.log('currentuser antes de modif. '+this.currentUser);
     return this.http.get(this.cajasUrl+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial)
     .map(this.extractDataCaja)
     .catch(this.handleError);
+  }
+
+
+  //getcaja
+  getCaja(): Observable<Caja[]> {
+
+     return this.http.get(this.cajasListUrl)
+                    .map(this.extractDataCajaList)
+                    .catch(this.handleError);
+
+  }
+
+  private extractDataCajaList(res: Response) {
+
+    let body = res.json();
+    console.log(body.caja);
+
+    return body.caja|| { };
+
   }
 
 
@@ -88,13 +121,33 @@ export class CajaService {
      console.log('valor de body.cajas '+body.cajas);
      if (body.cajas=true){
 
-       this.newcurrentUser=localStorage.getItem('currentUser');
-       console.log('newcurrentuser dentro de if '+this.newcurrentUser);
-       this.newcurrentUser['fecha']=this.fecha;
-       this.newcurrentUser['folio_inical']=this.folio_inicial;
-       this.newcurrentUser['folio_final']=this.folio_final;
-       this.newcurrentUser['poliza']=this.poliza;
-       console.log('newcurrentuser despues de modif. '+this.newcurrentUser);
+       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        for (var elemento in this.currentUser) {
+          this.id=this.currentUser[elemento].id;
+          this.username=this.currentUser[elemento].username;
+        }
+       console.log(typeof(this.currentUser));
+       console.log('valor de id '+this.id);
+       console.log('valor de username '+this.username);
+
+
+       console.log('currentuser dentro de if '+JSON.stringify(this.currentUser));
+
+
+       let paramAperturaCaja= JSON.parse(localStorage.getItem('paramAperturaCaja'));
+       console.log('paramAperturaCaja dentro de if '+paramAperturaCaja);
+
+       console.log('fecha dentro de if ' + new Date(paramAperturaCaja.fecha).toISOString().substring(0, 10));
+       for (var elemento in this.currentUser){
+         this.currentUser[elemento].fecha=new Date(paramAperturaCaja.fecha).toISOString().substring(0, 10);
+         this.currentUser[elemento].folio_inicial=paramAperturaCaja.folio_inicial;
+         this.currentUser[elemento].folio_final=paramAperturaCaja.folio_final;
+         this.currentUser[elemento].poliza=paramAperturaCaja.poliza;
+         this.currentUser[elemento].monto_inicial=paramAperturaCaja.monto_inicial;
+       }
+       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+       console.log('currentuser despues de modif. '+JSON.stringify(this.currentUser));
      }
 
     return body.cajas || { };

@@ -4,4 +4,9 @@
     password: string;
     firstName: string;
     lastName: string;
+    fecha:string;
+    folio_inicial:number;
+    folio_final:number;
+    poliza:string;
+    monto_inicial:number;
 }
