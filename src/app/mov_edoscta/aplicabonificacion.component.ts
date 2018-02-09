@@ -65,7 +65,20 @@ export class AplicaBonificacionComponent implements OnInit {
   @Output() onMessage = new EventEmitter<String>();
 
 
-  @Input() id_movedoscta:String;
+  @Input() id_benef:String;
+  @Input() imp_cap:String;
+  @Input() imp_int:String;
+  @Input() imp_adm:String;
+  @Input() imp_seg:String;
+  @Input() imp_osg:String;
+  @Input() id_catbonific:String;
+  @Input() id_autoriza:String;
+  @Input() imp_com:String;
+  @Input() imp_mor:String;
+  @Input() imp_tit:String;
+
+
+
 
 
 
@@ -89,7 +102,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
     };
 
-    postBonificaciones() {
+    /*postBonificaciones() {
 
         this.k=this.route.params
 
@@ -97,9 +110,8 @@ export class AplicaBonificacionComponent implements OnInit {
         {
 
 
-        return this.aplicabonificservice.postBonificaciones(this.id_movedoscta,this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
-        this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.estatus,this.id_usuario,this.clave_b,this.recibo,this.serie,
-        this.numcontrato,this.id_catprog,this.id_autoriza)
+        return this.aplicabonificservice.postBonificaciones(this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
+        this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.id_autoriza)
         })
 
         this.k.subscribe(
@@ -118,7 +130,7 @@ export class AplicaBonificacionComponent implements OnInit {
         this.message(null);
         this.bonific=null;
 
-    };
+    };*/
 
 
 }
