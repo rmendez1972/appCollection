@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { User } from '../_models/index';
+
 //import { centavos } from '../_pipes/centavos.pipe';
 
 
@@ -68,6 +70,7 @@ export class CajaComponent implements OnInit {
   private totalmov_edoscta:number=0;
   private cajas:Caja[];
   private respuesta:boolean;
+  private currentUser: User;
 
 
   	constructor(
@@ -88,6 +91,12 @@ export class CajaComponent implements OnInit {
       this.model.folio_final=1;
       this.model.poliza='I001';
       this.model.monto_inicial=100.00;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      for (var elemento in this.currentUser) {
+          this.model.id=this.currentUser[elemento].id;
+
+      }
 
     };
 
@@ -98,7 +107,7 @@ export class CajaComponent implements OnInit {
       if ((this.model.fecha!=undefined) && (this.model.folio_inicial!=null ) && (this.model.folio_inicial!='') && (this.model.folio_inicial!=0) && (this.model.folio_final!=null) && (this.model.folio_final!='') && (this.model.folio_final!=0) && (this.model.monto_inicial!=null) && (this.model.monto_inicial!='') && (this.model.monto_inicial!=0)){
         this.miMensajeApertura='Caja Aperturada Exitosamente..';
         this.miMensajeerrorApertura=null;
-        this.postApertura_caja(this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial);
+        this.postApertura_caja(this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial,this.model.id);
         //this.getBenef(this.model.criterio,this.model.valorcriterio);
 
       }else{
@@ -108,14 +117,14 @@ export class CajaComponent implements OnInit {
     }
 
 
-    postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number) {
+    postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number) {
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
           //this.selectedId= +params['id'];
-          return this.cajaservice.postApertura_caja(fecha,folio_inicial,folio_final,poliza,monto_inicial)
+          return this.cajaservice.postApertura_caja(fecha,folio_inicial,folio_final,poliza,monto_inicial,id)
         })
 
         this.k.subscribe(

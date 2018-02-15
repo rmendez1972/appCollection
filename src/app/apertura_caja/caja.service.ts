@@ -35,8 +35,8 @@ export class CajaService {
   }
 
   //postApertura_caja
-  postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number): Observable<boolean> {
-    this.id='1';
+  postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number): Observable<boolean> {
+    this.id=id.toString();
     this.fecha=fecha;
     this.folio_inicial=folio_inicial;
     this.folio_final=folio_final;
@@ -69,13 +69,14 @@ export class CajaService {
   }
 
   //postEdicion_caja
-  postEdicion_caja(id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number): Observable<Caja[]> {
+  postEdicion_caja(id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number): Observable<Caja[]> {
 
     this.id_caja=id_caja;
     this.fecha=fecha;
     this.folio_inicial=folio_inicial;
     this.folio_final=folio_final;
     this.poliza=poliza;
+    this.id=id.toString();
 
 
     let param_apertura_caja={
@@ -83,12 +84,13 @@ export class CajaService {
       folio_inicial:this.folio_inicial,
       folio_final:this.folio_final,
       poliza:this.poliza,
-      monto_inicial:monto_inicial
+      monto_inicial:monto_inicial,
+      id:id
     };
     localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
     this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
     console.log('currentuser antes de modif. '+this.currentUser);
-    return this.http.get(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial)
+    return this.http.get(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+id)
     .map(this.extractDataCajaEdit)
     .catch(this.handleError);
   }

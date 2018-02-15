@@ -95,7 +95,13 @@ export class CajaEditComponent implements OnInit {
       this.model.folio_final=  this.route.snapshot.params.folio_final;
       this.model.poliza= this.route.snapshot.params.poliza;
       this.model.monto_inicial= +this.route.snapshot.params.monto_inicial;
-      console.log('valores dentro de caja-edit.component '+this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      for (var elemento in this.currentUser) {
+          this.model.id=this.currentUser[elemento].id;
+
+      }
+      console.log('valores dentro de caja-edit.component '+this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.id);
     };
 
 
@@ -107,7 +113,7 @@ export class CajaEditComponent implements OnInit {
       if ((this.model.fecha!=undefined) && (this.model.folio_inicial!=null ) && (this.model.folio_inicial!='') && (this.model.folio_inicial!=0) && (this.model.folio_final!=null) && (this.model.folio_final!='')  && (this.model.monto_inicial!=null) && (this.model.monto_inicial!='') && (this.model.monto_inicial!=0)){
         console.log('dentro de if');
         this.miMensajeerrorEdit=null;
-        this.postEdicion_caja(this.model.id_caja,this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial);
+        this.postEdicion_caja(this.model.id_caja,this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial,this.model.id);
         //this.getBenef(this.model.criterio,this.model.valorcriterio);
 
       }else{
@@ -117,7 +123,7 @@ export class CajaEditComponent implements OnInit {
     }
 
 
-    postEdicion_caja(id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number) {
+    postEdicion_caja(id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number) {
         console.log('dentro de postEdicion_caja');
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -125,7 +131,7 @@ export class CajaEditComponent implements OnInit {
         {
 
           //this.selectedId= +params['id'];
-          return this.cajaservice.postEdicion_caja(id_caja,fecha,folio_inicial,folio_final,poliza,monto_inicial)
+          return this.cajaservice.postEdicion_caja(id_caja,fecha,folio_inicial,folio_final,poliza,monto_inicial,id)
         })
 
         this.k.subscribe(
