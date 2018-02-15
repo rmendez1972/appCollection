@@ -1,15 +1,7 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
-
-
 import { Caja } from './caja';
-//import { Benef } from './benef';
-
 import { CajaService} from './caja.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-//import { AuthGuard } from '../_guards/index';
-
-//import { UploadComponent} from '../upload/upload.component';
-
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
@@ -61,30 +53,9 @@ export class CajaComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
-  //private solicitantes: Solicitante[];
-  //private mov_edoscta: Mov_edocta[];
-  //private benef: Benef[];
-  //private solicitudes: Solicitud[];
-  //private tramites: Tramite[];
-  //private seguimientos: Seguimiento[];
-  //private solicitante: Solicitante;
-  //private x: Observable<Solicitante[]>;
-  //private y: Observable<Solicitud[]>;
-  //private z: Observable<Tramite[]>;
-  //private a: Observable<Seguimiento[]>;
 
-  private k: Observable<Caja[]>;
-  //private l: Observable<Benef[]>;
-
-  //private e: Observable<Seguimiento[]>;
-
+  private k: Observable<boolean>;
   private selectedId: number;
-
-
-  private miMensajeBons:String;
-  private miMensajeerrorBons:String;
-  private miMensajeVencidos:String;
-  private miMensajeerrorVencidos:String;
   private miMensajeApertura:String;
   private miMensajeerrorApertura:String;
   private fecha:String;
@@ -96,15 +67,7 @@ export class CajaComponent implements OnInit {
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
   private cajas:Caja[];
-
-  optionsSelect = [
-       {id:1, value: "clave_b", name: "Clave SEDETUS"},
-       {id:2, value: "nombre", name: "Nombre de Beneficiario"}
-
-  ];
-  private seleccionado:String="clave_b";
-
-
+  private respuesta:boolean;
 
 
   	constructor(
@@ -120,7 +83,6 @@ export class CajaComponent implements OnInit {
 
 
   	ngOnInit() {
-
       this.model.fecha= new Date().toJSON();
       this.model.folio_inicial=1;
       this.model.folio_final=1;
@@ -132,8 +94,7 @@ export class CajaComponent implements OnInit {
   	title = 'Apertura de Caja';
 
     aperturaCaja(){
-      console.log('valor de model.fecha '+this.model.fecha);
-      console.log('valor de model.folio_inical '+this.model.folio_inicial);
+
       if ((this.model.fecha!=undefined) && (this.model.folio_inicial!=null ) && (this.model.folio_inicial!='') && (this.model.folio_inicial!=0) && (this.model.folio_final!=null) && (this.model.folio_final!='') && (this.model.folio_final!=0) && (this.model.monto_inicial!=null) && (this.model.monto_inicial!='') && (this.model.monto_inicial!=0)){
         this.miMensajeApertura='Caja Aperturada Exitosamente..';
         this.miMensajeerrorApertura=null;
@@ -159,11 +120,25 @@ export class CajaComponent implements OnInit {
 
         this.k.subscribe(
 
-                       cajas => {
-                         this.cajas = cajas;
-                         this.miMensajeApertura = "Apertura Exitosa de la Caja";
-                         setInterval(() => this.router.navigate(['cajas/listar']), 3000);
+                       respuesta => {
+                         console.log('valor de respuesta dentro de controlador '+respuesta);
+                         let valor=new String(respuesta);
+                         console.log('tipo de valor  '+typeof(valor));
 
+
+                         if (valor!="false"){
+                           this.miMensajeApertura = "Apertura Exitosa de la Caja, ya puede aplicar movimientos";
+                           this.miMensajeerrorApertura=null;
+                           console.log('dentro del true');
+
+                         }else{
+                           console.log('dentro del false');
+                           this.miMensajeApertura = null;
+                           this.miMensajeerrorApertura="Ya fue abierta la caja el día de hoy, favor de editarla";
+                         }
+
+
+                         setTimeout(() => this.router.navigate(['cajas/listar']), 4000);
                         },
                        error =>  this.errorMessage = <any>error);
 

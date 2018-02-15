@@ -24,7 +24,8 @@ public URLclavemov:String;//marlon
 public URLclavediv:String;//marlon
 public URLvencidos:String;
 public URLcajas:String;
-
+public URLcajaslist:String;
+public URLcajasedit:String;
 
 constructor() {}
 
@@ -132,7 +133,11 @@ constructor() {}
 		}
 
 		getUrlcajaslist():String{
-			return this.URLcpp='http://localhost:8080/cobranza/controladorcaja?operacion=listarJson';
+			return this.URLcajaslist='http://localhost:8080/cobranza/controladorcaja?operacion=listarJson';
+		}
+
+		getUrlcajasedit():String{
+			return this.URLcajasedit='http://localhost:8080/cobranza/controladorcaja?operacion=editarGuardarfromApp&id_caja=';
 		}
 }
 
