@@ -131,7 +131,7 @@ export class CajaComponent implements OnInit {
 
                        respuesta => {
                          console.log('valor de respuesta dentro de controlador '+respuesta);
-                         let valor=new String(respuesta);
+                         let valor=new String(respuesta[0]);
                          console.log('tipo de valor  '+typeof(valor));
 
 
