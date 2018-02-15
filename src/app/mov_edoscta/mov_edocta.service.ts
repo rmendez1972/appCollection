@@ -83,7 +83,9 @@ export class Mov_edoctaService {
 
   private extractDataBenef(res: Response) {
     let body = res.json();
+    console.log(body.beneficiario);
     return body.beneficiario || { };
+   
   }
 
 
