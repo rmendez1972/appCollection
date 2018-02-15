@@ -37,7 +37,6 @@ export class Mov_edocta {
   public sumcomisiones: number;
   public sumtitulacion: number;
 
-
   constructor(public mid_movedoscta:number, public mid_benef: number,public mcapital:number, public minteres:number,
       public madmon: number, public mseguro: number , public mclave_mov: String, public mpoliza: String,
       public mfecha_mov: String, public mrecibo:number, public mo_seguro:number, public mmoratorios: number, public mstatus: String,

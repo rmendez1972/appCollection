@@ -5,15 +5,14 @@ import { Aplica_Mov_edosctaListComponent }    from './aplica_mov_edoscta-list.co
 //import { SeguimientoDetailComponent }  from './seguimiento-detail.component';
 import { AuthGuard } from '../_guards/auth.guard';
 
-const mov_edosctaRoutes: Routes = [
-
+const aplica_mov_edosctaRoutes: Routes = [
   { path: 'aplica_mov_edoscta',  component: Aplica_Mov_edosctaListComponent, canActivate: [AuthGuard] }
 
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(mov_edosctaRoutes)
+    RouterModule.forChild(aplica_mov_edosctaRoutes)
   ],
   exports: [
     RouterModule

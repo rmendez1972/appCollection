@@ -160,4 +160,27 @@
     </div>
   </div>
 
+  <p>Total Vencidos: {{totalvencidos}}</p>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Mensualidades/Letras Vencidas del Beneficiario</div>
+    <div class="panel-body transparent">
+      <h3 *ngIf=miMensajeVencidos><span class="label label-success">{{miMensajeVencidos}}</span></h3>
+      <h3 *ngIf=miMensajeerrorVencidos><span class="label label-danger">{{miMensajeerrorVencidos}}</span></h3>
+      <app-vencidos [fecha_corte]=model.fecha_corte  [clave_b]=model.valorcriterio
+      #vencidos
+        (onMessagevencidos)="onMessagevencidos($event)" (onerrorMessagevencidos)="onerrorMessagevencidos($event)"  (onTotalVencidos)="onTotalVencidos($event)"></app-vencidos>
+    </div>
+  </div>
 
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">Bonificaciones del Beneficiario</div>
+    <div class="panel-body transparent">
+
+      <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
+      <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
+      <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
+        (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
+
+    </div>
+  </div>

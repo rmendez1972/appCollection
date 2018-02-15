@@ -162,7 +162,7 @@ export class CajaComponent implements OnInit {
                        cajas => {
                          this.cajas = cajas;
                          this.miMensajeApertura = "Apertura Exitosa de la Caja";
-                         setInterval(() => this.router.navigate(['cajas/listar']), 3000);
+                         setTimeout(() => this.router.navigate(['cajas/listar']), 3000);
 
                         },
                        error =>  this.errorMessage = <any>error);

@@ -8,7 +8,6 @@ import { AuthGuard } from '../_guards/auth.guard';
 const mov_edosctaRoutes: Routes = [
 
   { path: 'mov_edoscta',  component: Mov_edosctaListComponent, canActivate: [AuthGuard] },
-  { path: 'mov_edoscta/:id/:idSol', component: Mov_edosctaListComponent, canActivate: [AuthGuard] }
 
 ];
 

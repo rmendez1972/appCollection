@@ -6,7 +6,7 @@ import { Benef } from './../mov_edoscta/benef';
 import { Solicitud } from './../mov_edoscta/solicitud';
 import { Tramite } from './../mov_edoscta/tramite';
 import { Seguimiento } from './../mov_edoscta/seguimiento';
-import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
+import { Mov_edoctaService} from './mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //import { AuthGuard } from '../_guards/index';
 
@@ -20,8 +20,8 @@ import { centavos } from '../_pipes/centavos.pipe';
 
 @Component({
   selector: 'app-seguimiento-list',
-  templateUrl: './aplica_mov_edoscta-list.component.html',
-  styleUrls: ['./aplica_mov_edoscta-list.component.css'],
+  templateUrl: './mov_edoscta-list.component.html',
+  styleUrls: ['./mov_edoscta-list.component.css'],
   animations: [
     trigger('routeAnimation', [
       state('*',
@@ -111,7 +111,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
+      private aplica_mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService
 
     )

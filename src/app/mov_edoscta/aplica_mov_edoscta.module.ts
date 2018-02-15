@@ -3,33 +3,25 @@ import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
 
 import { Aplica_Mov_edosctaListComponent }    from './aplica_mov_edoscta-list.component';
-import { BonificacionComponent }  from './../mov_edoscta/bonificacion.component';
 import { ServiceUrl } from '../serviceUrl';
 import { Aplica_Mov_edoctaService } from './aplica_mov_edocta.service';
-import { BonificService } from './../mov_edoscta/bonificacion.service';
 
-import { Aplica_Mov_edosctaRoutingModule } from './aplica_mov_edoscta-routing.module';
-import { centavos } from '../_pipes/centavos.pipe';
+import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 
-
-import { VencidosComponent }  from './../mov_edoscta/vencidos.component';
-import { VencidosService } from './vencidos.service';
+import { Import_variosComponent } from './import.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    Aplica_Mov_edosctaRoutingModule
+    Import_variosComponent,
   ],
   declarations: [
     Aplica_Mov_edosctaListComponent,
-    BonificacionComponent,
-    centavos,
-    VencidosComponent,
   ],
   providers: [
-    ServiceUrl,Aplica_Mov_edoctaService,
-    BonificService,VencidosService
+    ServiceUrl,
+    Aplica_Mov_edoctaService,
   ]
 })
-export class Aplica_Mov_edosctaModule {}
+export class Aplica_Mov_edosctaModule{}
