@@ -1,0 +1,67 @@
+<h3 class="bg-primary encabezado">
+  <span class="fa fa-money"> </span> {{title}}
+</h3>
+<br>
+<div class="datos">
+  <br>
+  <form name="form" class="form-horizontal" #f="ngForm" novalidate>
+    <div class="form-group">
+      <div class="col-md-7">
+        <h3 *ngIf=miMensajeEdit ><span class="label label-success">{{miMensajeEdit}}</span></h3>
+        <h3 *ngIf=miMensajeerrorEdit><span class="label label-danger">{{miMensajeerrorEdit}}</span></h3>
+      </div>
+
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_fecha.valid }">
+      <label for="_fecha" class="col-md-4 control-label">* Fecha Apertura Caja:</label>
+      <div class="col-md-3">
+         <input type="date" name="_fecha" class="form-control"  id="_fecha" [ngModel]="model.fecha | date:'yyyy-MM-dd'"
+                (ngModelChange)="model.fecha = $event" #_fecha="ngModel" required>
+
+          <div *ngIf="f.submitted && !_fecha.valid" class="help-block">Fecha Apertura Caja es Obligatorio</div>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !folio_inicial.valid }">
+      <label for="folio_inicial" class="col-sm-4 control-label">* Folio Inicial:</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="folio_inicial" name="folio_inicial" [ngModel]="model.folio_inicial" (ngModelChange)="model.folio_inicial = $event"
+          #folio_inicial="ngModel" required />
+        <div *ngIf="f.submitted && !folio_inicial.valid" class="help-block">Folio Inicial es Obligatorio</div>
+
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !folio_final.valid }">
+      <label for="folio_final" class="col-sm-4 control-label">* Folio Final:</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="folio_final" name="folio_final" [ngModel]="model.folio_final" (ngModelChange)="model.folio_final = $event"
+          #folio_final="ngModel" required />
+        <div *ngIf="f.submitted && !folio_final.valid" class="help-block">Folio Final es Obligatorio</div>
+
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !poliza.valid }">
+      <label for="poliza" class="col-sm-4 control-label">* Poliza(I/IR):</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="poliza" name="poliza" [ngModel]="model.poliza | uppercase" (ngModelChange)="model.poliza = $event"
+          #poliza="ngModel" required />
+        <div *ngIf="f.submitted && !poliza.valid" class="help-block">Poliza es Obligatorio</div>
+
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !monto_inicial.valid }">
+      <label for="monto_inicial" class="col-sm-4 control-label">* Monto Inicial:</label>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="monto_inicial" name="monto_inicial" [ngModel]="model.monto_inicial" (ngModelChange)="model.monto_inicial = $event"
+          #monto_inicial="ngModel" required />
+        <div *ngIf="f.submitted && !monto_inicial.valid" class="help-block">Monto Inicial es Obligatorio</div>
+
+      </div>
+    </div>
+
+    <div class="form-group" style="text-align:center">
+      <input type="submit" value="Aceptar" class="btn btn-primary"  (click)="onEditCaja()" />
+
+    </div>
+  </form>
+</div>
