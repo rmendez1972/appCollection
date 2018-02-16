@@ -1,4 +1,4 @@
-export class Mov_edocta {
+export class Aplica_Mov_edocta {
 	public id_movedoscta:number;
   public id_benef:number;
 	public capital:number;
@@ -36,6 +36,7 @@ export class Mov_edocta {
   public sumoseg: number;
   public sumcomisiones: number;
   public sumtitulacion: number;
+
 
   constructor(public mid_movedoscta:number, public mid_benef: number,public mcapital:number, public minteres:number,
       public madmon: number, public mseguro: number , public mclave_mov: String, public mpoliza: String,

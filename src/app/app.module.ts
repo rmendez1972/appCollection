@@ -57,6 +57,10 @@ import { DataTablesModule } from 'angular-datatables';
 //import { BuscarSolicitudComponent } from './buscar-solicitud/buscar-solicitud.component';
 
 
+import { Aplica_Mov_edosctaModule } from './mov_edoscta/aplica_mov_edoscta.module';
+import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edoscta-routing.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +95,9 @@ import { DataTablesModule } from 'angular-datatables';
     ContactoModule,
     CambiaPasswordModule,
     UploadModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Aplica_Mov_edosctaModule,
+    Aplica_Mov_edosctaRoutingModule,
 
 
   ],
