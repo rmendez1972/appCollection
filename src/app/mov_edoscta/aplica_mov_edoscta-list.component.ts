@@ -1,12 +1,12 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
-import { Solicitante } from './../mov_edoscta/solicitante';
+import { Solicitante } from './solicitante';
 
-import { Mov_edocta } from './../mov_edoscta/mov_edocta';
-import { Benef } from './../mov_edoscta/benef';
-import { Solicitud } from './../mov_edoscta/solicitud';
-import { Tramite } from './../mov_edoscta/tramite';
-import { Seguimiento } from './../mov_edoscta/seguimiento';
-import { Mov_edoctaService} from './mov_edocta.service';
+import { Aplica_Mov_edocta } from './aplica_mov_edocta';
+import { Benef } from './benef';
+import { Solicitud } from './solicitud';
+import { Tramite } from './tramite';
+import { Seguimiento } from './seguimiento';
+import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //import { AuthGuard } from '../_guards/index';
 
@@ -15,13 +15,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-import { centavos } from '../_pipes/centavos.pipe';
 
 
 @Component({
   selector: 'app-seguimiento-list',
-  templateUrl: './mov_edoscta-list.component.html',
-  styleUrls: ['./mov_edoscta-list.component.css'],
+  templateUrl: './aplica_mov_edoscta-list.component.html',
+  styleUrls: ['./aplica_mov_edoscta-list.component.css'],
   animations: [
     trigger('routeAnimation', [
       state('*',
@@ -64,7 +63,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private errorMessage: string;
   model:any={};
   //private solicitantes: Solicitante[];
-  private mov_edoscta: Mov_edocta[];
+  private aplica_mov_edoscta: Aplica_Mov_edocta[];
   private benef: Benef[];
   //private solicitudes: Solicitud[];
   //private tramites: Tramite[];
@@ -75,7 +74,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //private z: Observable<Tramite[]>;
   //private a: Observable<Seguimiento[]>;
 
-  private k: Observable<Mov_edocta[]>;
+  private k: Observable<Aplica_Mov_edocta[]>;
   private l: Observable<Benef[]>;
 
   private e: Observable<Seguimiento[]>;
@@ -111,7 +110,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private aplica_mov_edoctaservice: Mov_edoctaService,
+      private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
       private alertService:AlertService
 
     )
@@ -161,8 +160,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         this.k.subscribe(
 
                        movimientos => {
-                         this.mov_edoscta = movimientos;
-                         this.totalmov_edoscta=this.mov_edoscta.length-1;
+                         this.aplica_mov_edoscta = movimientos;
+                         this.totalmov_edoscta=this.aplica_mov_edoscta.length-1;
                          this.miMensajeMovs = "Recuperación Exitosa de los Movimientos de Estado de Cuenta";
                         },
                        error =>  this.errorMessage = <any>error);

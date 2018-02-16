@@ -8,13 +8,13 @@ import { Mov_edoctaService } from './mov_edocta.service';
 
 import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 
-import { Import_variosComponent } from './import.component';
+import { ImportComponent } from './import.component';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     Mov_edosctaRoutingModule,
-    Import_variosComponent,
+    ImportComponent,
 
   ],
   declarations: [

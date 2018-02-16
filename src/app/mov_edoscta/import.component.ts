@@ -5,14 +5,11 @@ import { FormsModule }    from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { MenuComponent } from '../menus/menu.component';
 
-
-
 import {VencidosComponent} from '../mov_edoscta/vencidos.component';
 
 import {BonificacionComponent} from '../mov_edoscta/bonificacion.component';
 
 import { centavos } from '../_pipes/centavos.pipe';
-
 import {VencidosService} from './vencidos.service'
 import {BonificService} from './bonificacion.service'
 
@@ -21,8 +18,6 @@ import {BonificService} from './bonificacion.service'
   imports: [
   CommonModule,
   FormsModule,
-  //BonificacionComponent,
-  //BonificService,
 
   ],
   declarations: [
@@ -42,5 +37,5 @@ import {BonificService} from './bonificacion.service'
 
 })
 
-export class Import_variosComponent {
+export class ImportComponent {
 }
