@@ -1,20 +1,13 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
-
-
 import { Caja } from './caja';
-//import { Benef } from './benef';
-
 import { CajaService} from './caja.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-//import { AuthGuard } from '../_guards/index';
-
-//import { UploadComponent} from '../upload/upload.component';
-
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-//import { centavos } from '../_pipes/centavos.pipe';
+import { User } from '../_models/index';
 
+//import { centavos } from '../_pipes/centavos.pipe';
 
 @Component({
   selector: 'app-caja',
@@ -61,30 +54,9 @@ export class CajaComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
-  //private solicitantes: Solicitante[];
-  //private mov_edoscta: Mov_edocta[];
-  //private benef: Benef[];
-  //private solicitudes: Solicitud[];
-  //private tramites: Tramite[];
-  //private seguimientos: Seguimiento[];
-  //private solicitante: Solicitante;
-  //private x: Observable<Solicitante[]>;
-  //private y: Observable<Solicitud[]>;
-  //private z: Observable<Tramite[]>;
-  //private a: Observable<Seguimiento[]>;
 
-  private k: Observable<Caja[]>;
-  //private l: Observable<Benef[]>;
-
-  //private e: Observable<Seguimiento[]>;
-
+  private k: Observable<boolean>;
   private selectedId: number;
-
-
-  private miMensajeBons:String;
-  private miMensajeerrorBons:String;
-  private miMensajeVencidos:String;
-  private miMensajeerrorVencidos:String;
   private miMensajeApertura:String;
   private miMensajeerrorApertura:String;
   private fecha:String;
@@ -96,18 +68,11 @@ export class CajaComponent implements OnInit {
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
   private cajas:Caja[];
-
-  optionsSelect = [
-       {id:1, value: "clave_b", name: "Clave SEDETUS"},
-       {id:2, value: "nombre", name: "Nombre de Beneficiario"}
-
-  ];
-  private seleccionado:String="clave_b";
+  private respuesta:boolean;
+  private currentUser: User;
 
 
-
-
-  	constructor(
+    constructor(
       private router: Router,
       private route: ActivatedRoute,
       private cajaservice: CajaService,
@@ -119,27 +84,30 @@ export class CajaComponent implements OnInit {
     }
 
 
-  	ngOnInit() {
-
+    ngOnInit() {
       this.model.fecha= new Date().toJSON();
       this.model.folio_inicial=1;
       this.model.folio_final=1;
       this.model.poliza='I001';
       this.model.monto_inicial=100.00;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      for (var elemento in this.currentUser) {
+          this.model.id=this.currentUser[elemento].id;
+
+      }
 
     };
 
-  	title = 'Apertura de Caja';
+    title = 'Apertura de Caja';
 
     aperturaCaja(){
-      console.log('valor de model.fecha '+this.model.fecha);
-      console.log('valor de model.folio_inical '+this.model.folio_inicial);
+
       if ((this.model.fecha!=undefined) && (this.model.folio_inicial!=null ) && (this.model.folio_inicial!='') && (this.model.folio_inicial!=0) && (this.model.folio_final!=null) && (this.model.folio_final!='') && (this.model.folio_final!=0) && (this.model.monto_inicial!=null) && (this.model.monto_inicial!='') && (this.model.monto_inicial!=0)){
         this.miMensajeApertura='Caja Aperturada Exitosamente..';
         this.miMensajeerrorApertura=null;
-        this.postApertura_caja(this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial);
+        this.postApertura_caja(this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial,this.model.id);
         //this.getBenef(this.model.criterio,this.model.valorcriterio);
-
       }else{
         this.miMensajeApertura=null;
         this.miMensajeerrorApertura = "Error en la apertura de la caja, por favor llena los campos correctamente..";
@@ -147,23 +115,37 @@ export class CajaComponent implements OnInit {
     }
 
 
-    postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number) {
+    postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number) {
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
           //this.selectedId= +params['id'];
-          return this.cajaservice.postApertura_caja(fecha,folio_inicial,folio_final,poliza,monto_inicial)
+          return this.cajaservice.postApertura_caja(fecha,folio_inicial,folio_final,poliza,monto_inicial,id)
         })
 
         this.k.subscribe(
 
-                       cajas => {
-                         this.cajas = cajas;
-                         this.miMensajeApertura = "Apertura Exitosa de la Caja";
-                         setTimeout(() => this.router.navigate(['cajas/listar']), 3000);
+                       respuesta => {
+                         console.log('valor de respuesta dentro de controlador '+respuesta);
+                         let valor=new String(respuesta[0]);
+                         console.log('tipo de valor  '+typeof(valor));
 
+
+                         if (valor!="false"){
+                           this.miMensajeApertura = "Apertura Exitosa de la Caja, ya puede aplicar movimientos";
+                           this.miMensajeerrorApertura=null;
+                           console.log('dentro del true');
+
+                         }else{
+                           console.log('dentro del false');
+                           this.miMensajeApertura = null;
+                           this.miMensajeerrorApertura="Ya fue abierta la caja el día de hoy, favor de editarla";
+                         }
+
+
+                         setTimeout(() => this.router.navigate(['cajas/listar']), 4000);
                         },
                        error =>  this.errorMessage = <any>error);
 

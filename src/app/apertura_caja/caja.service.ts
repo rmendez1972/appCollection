@@ -14,31 +14,36 @@ import { User } from '../_models/index';
 export class CajaService {
   private cajasUrl: string;
   private cajasListUrl: string;
+  private cajasEditUrl: string;
   private currentUser: User;
   private newcurrentUser: User;
-  public fecha:string;
-  public folio_inicial:number;
-  public folio_final:number;
-  public poliza:string;
-  public monto_inicial:number;
-  public id:string;
-  public username:string;
+  private id_caja: number;
+  private fecha:string;
+  private folio_inicial:number;
+  private folio_final:number;
+  private poliza:string;
+  private monto_inicial:number;
+  private id:string;
+  private username:string;
 
   constructor (private http: Http,private url:ServiceUrl,private alertService: AlertService){
 
     this.cajasUrl=String(this.url.getUrlcajas());
     this.cajasListUrl=String(this.url.getUrlcajaslist());
+    this.cajasEditUrl=String(this.url.getUrlcajasedit());
 
   }
 
   //postApertura_caja
-  postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number): Observable<Caja[]> {
+  postApertura_caja(fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number): Observable<boolean> {
+    this.id=id.toString();
     this.fecha=fecha;
     this.folio_inicial=folio_inicial;
     this.folio_final=folio_final;
     this.poliza=poliza;
 
     let param_apertura_caja={
+      id:this.id,
       fecha:this.fecha,
       folio_inicial:this.folio_inicial,
       folio_final:this.folio_final,
@@ -47,8 +52,8 @@ export class CajaService {
     };
     localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
     this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
-    console.log('currentuser antes de modif. '+this.currentUser);
-    return this.http.get(this.cajasUrl+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial)
+    console.log('currentuser antes de llamar rest api '+this.currentUser);
+    return this.http.get(this.cajasUrl+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+this.id)
     .map(this.extractDataCaja)
     .catch(this.handleError);
   }
@@ -63,6 +68,33 @@ export class CajaService {
 
   }
 
+  //postEdicion_caja
+  postEdicion_caja(id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number): Observable<Caja[]> {
+
+    this.id_caja=id_caja;
+    this.fecha=fecha;
+    this.folio_inicial=folio_inicial;
+    this.folio_final=folio_final;
+    this.poliza=poliza;
+    this.id=id.toString();
+
+
+    let param_apertura_caja={
+      fecha:this.fecha,
+      folio_inicial:this.folio_inicial,
+      folio_final:this.folio_final,
+      poliza:this.poliza,
+      monto_inicial:monto_inicial,
+      id:id
+    };
+    localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
+    this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
+    console.log('currentuser antes de modif. '+this.currentUser);
+    return this.http.get(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+id)
+    .map(this.extractDataCajaEdit)
+    .catch(this.handleError);
+  }
+
   private extractDataCajaList(res: Response) {
 
     let body = res.json();
@@ -72,54 +104,12 @@ export class CajaService {
 
   }
 
+  private extractDataCajaEdit(res: Response) {
 
-  private extractDataCaja(res: Response) {
     let body = res.json();
-    /*console.log(body.caja);
-    let mfecha:string=null;
-    let mmov:string="Totales:";
-    let mrecibo:string=null;
-    let mserie:string=null;
-    let mbonific:string=null;
-    let totcapital:number=0;
-    let totinteres:number=0;
-    let totadmon:number=0;
-    let totseguro:number=0;
-    let totoseg:number=0;
-    let totcomision:number=0;
-    let tottitulacion:number=0;
-    let totmora:number=0;
-
-    for (var i = 0; i <body.mov_edoscta.length; i++) {
-      totcapital=totcapital+parseFloat(body.mov_edoscta[i].capital.toString());
-      totinteres=totinteres+parseFloat(body.mov_edoscta[i].interes.toString());
-      totadmon=totadmon+parseFloat(body.mov_edoscta[i].admon.toString());
-      totseguro=totseguro+parseFloat(body.mov_edoscta[i].seguro.toString());
-      totcomision=totcomision+parseFloat(body.mov_edoscta[i].comisiones.toString());
-      totoseg=totoseg+parseFloat(body.mov_edoscta[i].o_seguro.toString());
-      tottitulacion=+tottitulacion+parseFloat(body.mov_edoscta[i].tit.toString());
-      totmora=totmora+parseFloat(body.mov_edoscta[i].moratorios.toString());
-    }
-
-    let totales_columna={
-      fecha_mov:mfecha,
-      clave_mov:mmov,
-      recibo:mrecibo,
-      serie:mserie,
-      capital:totcapital,
-      interes:totinteres,
-      admon:totadmon,
-      seguro:totseguro,
-      o_seguro:totoseg,
-      comisiones:totcomision,
-      tit:tottitulacion,
-      moratorios:totmora,
-      bonific:mbonific
-     }
-
-     body.mov_edoscta.push(totales_columna);*/
-     console.log('valor de body.cajas '+body.cajas);
-     if (body.cajas=true){
+    console.log(body.caja);
+    let valor=new String(body.cajas);
+    if (valor=="true"){
 
        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -145,10 +135,52 @@ export class CajaService {
          this.currentUser[elemento].folio_final=paramAperturaCaja.folio_final;
          this.currentUser[elemento].poliza=paramAperturaCaja.poliza;
          this.currentUser[elemento].monto_inicial=paramAperturaCaja.monto_inicial;
+
        }
        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+       localStorage.removeItem('paramAperturaCaja');
        console.log('currentuser despues de modif. '+JSON.stringify(this.currentUser));
      }
+
+    return body.caja|| { };
+
+  }
+
+
+
+  private extractDataCaja(res: Response) {
+    console.log('dentro de estractDataCaja');
+    let body = res.json();
+    console.log('valor de body dentro de extractDataCaja '+body.cajas);
+    console.log('valor de body.cajas pos. 0  '+body.cajas[0]);
+    console.log('valor de body.cajas pos. 1  '+body.cajas[1]);
+
+     let valor=new String(body.cajas[0]);
+     if (valor=="true"){
+       console.log('dentro del if de estractDataCaja');
+
+       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        for (var elemento in this.currentUser) {
+          this.id=this.currentUser[elemento].id;
+          this.username=this.currentUser[elemento].username;
+        }
+
+
+       let paramAperturaCaja= JSON.parse(localStorage.getItem('paramAperturaCaja'));
+
+       for (var elemento in this.currentUser){
+         this.currentUser[elemento].fecha=new Date(paramAperturaCaja.fecha).toISOString().substring(0, 10);
+         this.currentUser[elemento].folio_inicial=paramAperturaCaja.folio_inicial;
+         this.currentUser[elemento].folio_final=paramAperturaCaja.folio_final;
+         this.currentUser[elemento].poliza=paramAperturaCaja.poliza;
+         this.currentUser[elemento].monto_inicial=paramAperturaCaja.monto_inicial;
+         this.currentUser[elemento].id_caja=body.cajas[1];
+       }
+       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+
+     }
+     localStorage.removeItem('paramAperturaCaja');
 
     return body.cajas || { };
   }

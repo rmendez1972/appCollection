@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { User } from '../_models/index';
 declare var $: any;
 @Component({
   selector: 'app-cajaList',
@@ -55,13 +56,12 @@ export class CajaListComponent implements OnInit, AfterViewInit {
   rootNode: any;
 
   private caja: Caja[];
-
-
   private k: Observable<Caja[]>;
-
   //private e: Observable<Seguimiento[]>;
-
   private miMensaje:    String;
+   private miMensajeerror:    String;
+  private currentUser: User;
+  private id:number;
 
   constructor(
       private router: Router,
@@ -101,6 +101,30 @@ export class CajaListComponent implements OnInit, AfterViewInit {
                        caja => this.caja = caja,
                        error =>  this.errorMessage = <any>error);
     };
+
+    onEdit(caja: Caja) {
+      console.log('valores recuperados en controlador caja-list.component '+caja.id_caja,caja.fecha, caja.folio_inicial, caja.folio_final, caja.poliza, caja.monto_inicial, caja.id_usuario);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      for (var elemento in this.currentUser) {
+        this.id=this.currentUser[elemento].id;
+
+      }
+      if(caja.id_usuario==this.id){
+        this.miMensaje = 'Editando Caja...';
+        this.miMensajeerror = null;
+        setTimeout(() => this.router.navigate(['cajas/editar',{id_caja:caja.id_caja,fecha: caja.fecha,folio_inicial:caja.folio_inicial,folio_final:caja.folio_final,poliza:caja.poliza,monto_inicial:caja.monto_inicial}]), 3000);
+        //this.router.navigate(['cajas/editar',{id_caja:caja.id_caja,fecha: caja.fecha,folio_inicial:caja.folio_inicial,folio_final:caja.folio_final,poliza:caja.poliza,monto_inicial:caja.monto_inicial}]);
+      }else{
+        this.miMensaje = null;
+        this.miMensajeerror = 'Esta caja no le pertenece, únicamente puede editar las suyas';
+      }
+    }
+
+    onNew() {
+
+      this.router.navigate(['cajas']);
+    }
 
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);

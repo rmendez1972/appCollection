@@ -4,28 +4,42 @@
 </h3>
 <div class="panel panel-primary">
     <div class="panel-body transparent">
+      <div class="col-md-offset-10">
+        <input type="button" value="Nueva Caja" class="btn btn-primary"  (click)=onNew() />
+      </div>
+      <br>
       <div class="table-responsive">
-      <table id="caja" class=" display table table-condensed table-hover table-bordered" style="width:50%; margin-left:auto; margin-right: auto;">
-      <thead  style="color: #7b7d80;">
-        <tr>
-          <th style="text-align:center">Fecha</th>
-          <th style="text-align:center">Folio Inicial</th>
-          <th style="text-align:center">Folio Final</th>
-          <th style="text-align:center">Póliza</th>
-          <th style="text-align:center">Monto Inicial</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cajas of caja">
-         <td>{{cajas.fecha | date:"yyyy/MM/dd" }}</td>
-         <td>{{cajas.folio_inicial}}</td>
-         <td>{{cajas.folio_final}}</td>
-         <td>{{cajas.poliza}}</td>
-         <td>{{cajas.monto_inicial | currency:'MXN':true:'.2'}}</td>
-        </tr>
-      </tbody>
-      </table>
 
+      <div class="col-md-12">
+        <h3 *ngIf=miMensaje ><span class="label label-success">{{miMensaje}}</span></h3>
+        <h3 *ngIf=miMensajeerror><span class="label label-danger">{{miMensajeerror}}</span></h3>
+        <table id="caja" class=" display table table-condensed table-hover table-bordered" style="width:80%; margin-left:auto; margin-right: auto;">
+        <thead  style="color: #7b7d80;">
+          <tr>
+            <th width="15%" style="text-align:center">Fecha</th>
+            <th width="10%" style="text-align:center">Folio Inicial</th>
+            <th width="10%" style="text-align:center">Folio Final</th>
+            <th width="10%" style="text-align:center">Póliza</th>
+            <th width="20%" style="text-align:center">Monto Inicial</th>
+            <th width="15%" style="text-align:center">Usuario Cajero</th>
+            <th width="20%" style="text-align:center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cajas of caja">
+           <td width="15%">{{cajas.fecha | date:"yyyy/MM/dd" }}</td>
+           <td width="10%">{{cajas.folio_inicial}}</td>
+           <td width="10%">{{cajas.folio_final}}</td>
+           <td width="10%">{{cajas.poliza}}</td>
+           <td width="20%">{{cajas.monto_inicial | currency:'MXN':true:'.2'}}</td>
+           <td width="15%">{{cajas.usuario | uppercase}}</td>
+           <td width="20%">
+            <a><img src="../assets/img/editar.png" width="30x" height="30px" (click)="onEdit(cajas)" title="Editar Caja" ></a>
+           </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
 </div>
 </div>
 </div>

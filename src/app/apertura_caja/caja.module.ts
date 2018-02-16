@@ -4,6 +4,7 @@ import { FormsModule }    from '@angular/forms';
 
 import { CajaComponent }    from './caja.component';
 import { CajaListComponent }    from './caja-list.component';
+import { CajaEditComponent }    from './caja-edit.component';
 
 import { ServiceUrl } from '../serviceUrl';
 import { CajaService } from './caja.service';
@@ -23,7 +24,8 @@ import { centavos } from '../_pipes/centavos.pipe';
   ],
   declarations: [
     CajaComponent,
-    CajaListComponent
+    CajaListComponent,
+    CajaEditComponent
 
 
   ],
