@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
 import { Solicitante } from './solicitante';
 
-import { Aplica_Mov_edocta } from './aplica_mov_edocta';
+import { Mov_edocta } from './mov_edocta';
 import { Benef } from './benef';
 import { Solicitud } from './solicitud';
 import { Tramite } from './tramite';
@@ -63,7 +63,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private errorMessage: string;
   model:any={};
   //private solicitantes: Solicitante[];
-  private aplica_mov_edoscta: Aplica_Mov_edocta[];
+  private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
   //private solicitudes: Solicitud[];
   //private tramites: Tramite[];
@@ -74,7 +74,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //private z: Observable<Tramite[]>;
   //private a: Observable<Seguimiento[]>;
 
-  private k: Observable<Aplica_Mov_edocta[]>;
+  private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
 
   private e: Observable<Seguimiento[]>;
@@ -160,8 +160,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         this.k.subscribe(
 
                        movimientos => {
-                         this.aplica_mov_edoscta = movimientos;
-                         this.totalmov_edoscta=this.aplica_mov_edoscta.length-1;
+                         this.mov_edoscta = movimientos;
+                         this.totalmov_edoscta=this.mov_edoscta.length-1;
                          this.miMensajeMovs = "Recuperación Exitosa de los Movimientos de Estado de Cuenta";
                         },
                        error =>  this.errorMessage = <any>error);

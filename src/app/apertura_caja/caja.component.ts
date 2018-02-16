@@ -107,12 +107,7 @@ export class CajaComponent implements OnInit {
         this.miMensajeApertura='Caja Aperturada Exitosamente..';
         this.miMensajeerrorApertura=null;
         this.postApertura_caja(this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial,this.model.id);
-<<<<<<< HEAD
 
-
-=======
-        //this.getBenef(this.model.criterio,this.model.valorcriterio);
->>>>>>> 9d1751a84e85edc6be596599dba2257d6796defd
       }else{
         this.miMensajeApertura=null;
         this.miMensajeerrorApertura = "Error en la apertura de la caja, por favor llena los campos correctamente..";
