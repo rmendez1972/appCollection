@@ -60,27 +60,24 @@ export class AplicaBonificacionComponent implements OnInit {
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
-
+  private currentUser: User;
+  model:any={};
 
   @Output() onMessage = new EventEmitter<String>();
 
 
   @Input() id_benef:String;
-  @Input() imp_cap:String;
-  @Input() imp_int:String;
-  @Input() imp_adm:String;
-  @Input() imp_seg:String;
-  @Input() imp_osg:String;
+  @Input() imp_cap:Number;
+  @Input() imp_int:Number;
+  @Input() imp_adm:Number;
+  @Input() imp_seg:Number;
+  @Input() imp_osg:Number;
   @Input() id_catbonific:String;
   @Input() id_autoriza:String;
-  @Input() imp_com:String;
-  @Input() imp_mor:String;
-  @Input() imp_tit:String;
-
-
-
-
-
+  @Input() imp_com:Number;
+  @Input() imp_mor:Number;
+  @Input() imp_tit:Number;
+  @Input() id_catprog: String;
 
 
 
@@ -94,6 +91,32 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
   	ngOnInit() {
+      //this.model.propiedad
+      this.model.id_benef = this.id_benef;
+      this.model.imp_cap = this.imp_cap;
+      this.model.imp_int = this.imp_int;
+      this.model.imp_adm = this.imp_adm;
+      this.model.imp_seg = this.imp_seg;
+      this.model.imp_osg = this.imp_osg;
+      this.model.id_catbonific = this.id_catbonific;
+      this.model.estatus = 'A';
+      this.model.id_autoriza = this.id_autoriza;
+      this.model.imp_com = this.imp_com;
+      this.model.imp_mor = this.imp_mor;
+      this.model.imp_tit = this.imp_tit;
+      this.model.id_catprog = this.id_catprog;
+
+
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      for (var elemento in this.currentUser) {
+        this.model.id_movedocta=this.currentUser[elemento].id_movedocta;
+        this.model.id_usuario=this.currentUser[elemento].id;
+        this.model.recibo = this.currentUser[elemento].foliofinal;
+        this.model.serie = this.currentUser[elemento].serie;
+
+      }
+
 
     };
 

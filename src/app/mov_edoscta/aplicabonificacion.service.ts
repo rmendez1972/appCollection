@@ -27,11 +27,14 @@ export class AplicaBonificService {
 
       }
 
+      //verificar los importes cual es mayor a cero
+      //convertir los importes a string
+
 
   /*postBonificaciones(id_benef:String, imp_cap:String, imp_int:String, imp_adm:String, imp_seg:String, imp_osg:String,
   imp_com:String, imp_mor:String, imp_tit:String, id_catbonific:String, id_autoriza:String): Observable<Bonific[]> {
 
-     return this.http.get(this.aplicabonificacionUrl+id_movedoscta+'&id_benef='+id_benef+'&imp_cap='+imp_cap+'&imp_int='+imp_int+'&imp_adm='+imp_adm+
+     return this.http.get(this.aplicabonificacionUrl+id_movedoscta.toString()+'&id_benef='+id_benef+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int+'&imp_adm='+imp_adm+
      '&imp_seg='+imp_seg+'&imp_osg='+imp_osg+'&imp_com='+imp_com+'&imp_mor='+imp_mor+'&imp_tit='+imp_tit+'&id_catbonific='+id_catbonific+
      '&estatus='+estatus+'&id_usuario='+id_usuario+'&clave_b='+clave_b+'&recibo='+recibo+'&serie='+serie+'&numcontrato='+numcontrato+'&id_catprog='+id_catprog+
      '&id_autoriza='+id_autoriza)
