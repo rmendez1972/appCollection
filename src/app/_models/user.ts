@@ -9,4 +9,5 @@
     folio_final:number;
     poliza:string;
     monto_inicial:number;
+    serie:string;
 }

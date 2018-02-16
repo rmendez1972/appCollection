@@ -135,6 +135,7 @@ export class CajaService {
          this.currentUser[elemento].folio_final=paramAperturaCaja.folio_final;
          this.currentUser[elemento].poliza=paramAperturaCaja.poliza;
          this.currentUser[elemento].monto_inicial=paramAperturaCaja.monto_inicial;
+
        }
        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
        localStorage.removeItem('paramAperturaCaja');
@@ -150,9 +151,11 @@ export class CajaService {
   private extractDataCaja(res: Response) {
     console.log('dentro de estractDataCaja');
     let body = res.json();
-    console.log('valor de body '+body.cajas);
+    console.log('valor de body dentro de extractDataCaja '+body.cajas);
+    console.log('valor de body.cajas pos. 0  '+body.cajas[0]);
+    console.log('valor de body.cajas pos. 1  '+body.cajas[1]);
 
-     let valor=new String(body.cajas);
+     let valor=new String(body.cajas[0]);
      if (valor=="true"){
        console.log('dentro del if de estractDataCaja');
 
@@ -172,6 +175,7 @@ export class CajaService {
          this.currentUser[elemento].folio_final=paramAperturaCaja.folio_final;
          this.currentUser[elemento].poliza=paramAperturaCaja.poliza;
          this.currentUser[elemento].monto_inicial=paramAperturaCaja.monto_inicial;
+         this.currentUser[elemento].id_caja=body.cajas[1];
        }
        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 

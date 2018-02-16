@@ -26,6 +26,7 @@ export class AuthenticationService {
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
+                console.log('valor de user '+user.user);
 
                 //let connection: MockConnection;
                 //connection.mockError(new Error('Username or password is incorrect'));
