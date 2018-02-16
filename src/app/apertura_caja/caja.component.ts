@@ -108,7 +108,7 @@ export class CajaComponent implements OnInit {
         this.miMensajeApertura='Caja Aperturada Exitosamente..';
         this.miMensajeerrorApertura=null;
         this.postApertura_caja(this.model.fecha,this.model.folio_inicial,this.model.folio_final,this.model.poliza,this.model.monto_inicial,this.model.id);
-        //this.getBenef(this.model.criterio,this.model.valorcriterio);
+
 
       }else{
         this.miMensajeApertura=null;
@@ -130,10 +130,8 @@ export class CajaComponent implements OnInit {
         this.k.subscribe(
 
                        respuesta => {
-                         console.log('valor de respuesta dentro de controlador '+respuesta);
-                         let valor=new String(respuesta[0]);
-                         console.log('tipo de valor  '+typeof(valor));
 
+                         let valor=new String(respuesta[0]);
 
                          if (valor!="false"){
                            this.miMensajeApertura = "Apertura Exitosa de la Caja, ya puede aplicar movimientos";
