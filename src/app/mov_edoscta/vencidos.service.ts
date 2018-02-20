@@ -13,7 +13,9 @@ export class VencidosService {
 
 
   private vencidosUrl: string;
-
+  private vencidos: any = [];
+  private capital: number;
+  private interes: number;
 
   constructor (private http: Http,
       private url:ServiceUrl,
@@ -32,10 +34,10 @@ export class VencidosService {
 
 
   }
-
   private extractDataVencidos(res: Response) {
     let body = res.json();
     console.log(body.vencidos);
+    
 
     for (var i = 0; i <body.vencidos.length; i++) {
       body.vencidos[i]["total"]=parseFloat(body.vencidos[i].capital.toString())+parseFloat(body.vencidos[i].interes.toString())+
@@ -44,6 +46,9 @@ export class VencidosService {
 
 
     }
+
+
+    localStorage.setItem('vencidos',JSON.stringify(body.vencidos));
     return body.vencidos || { };
 
   }

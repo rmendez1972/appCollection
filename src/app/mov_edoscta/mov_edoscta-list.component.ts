@@ -15,8 +15,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-import { centavos } from '../_pipes/centavos.pipe';
+//import { centavos } from '../_pipes/centavos.pipe';
 
+import {ImportComponent} from './import.component'
 @Component({
   selector: 'app-seguimiento-list',
   templateUrl: './mov_edoscta-list.component.html',
