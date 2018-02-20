@@ -83,9 +83,10 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
+  
   public totalvencidos: number=0;
 
-  private totalAplicarLetras: number;
+  public totalAplicarLetras: number = 0;
 
   private totales_style:String = "info";
   private renglon_style:String = "active";
@@ -189,12 +190,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     onTotalVencidos(totalvencidos:number){
-
+      this.totalAplicarLetras = totalvencidos;
       this.totalvencidos = totalvencidos;
+      //console.log("on total vencidos :"+this.totalAplicarLetras);
 
     }
-    onMessageTotalAplicar(totalaplicar:number){
-
+    onTotalAplicarLetras(totalaplicar:number){
       this.totalAplicarLetras = totalaplicar;
 
     }
