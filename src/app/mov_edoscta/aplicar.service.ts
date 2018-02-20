@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 //import  {Vencidos} from './vencidos';
-//import {Aplicar} from './aplicar';
+import {Aplicar} from './aplicar';
 
 
 @Injectable()
@@ -23,18 +23,21 @@ export class AplicarService {
 
 	//getMov_edoscta
 
-  getLetras(totalvencidos:number){
-    console.log("Get");
+  getLetras(totalvencidos:number): Observable<Aplicar[]>{
+    //console.log("Get");
     this.totalvencidos = totalvencidos;
     return this.extractDataAplicar();
   }
 
   private extractDataAplicar() {
+    //console.log("Extract");
     this.vencidos = JSON.parse(localStorage.getItem('vencidos'));
     for (var i = 0; i < this.totalvencidos; i++) {
       this.aplicar[i]=this.vencidos[i];
     }
+    console.log("Extraer:")
     console.log(this.aplicar);
+    localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
     return this.aplicar || { };
   }
   private handleError (error: Response | any) {

@@ -162,7 +162,7 @@
           <div class="form-group" >
             <label for="letras" class="col-md-4 control-label">Numero de Letras Aplicar</label>
             <div class="col-md-6">
-              <input type="number" name="letras" class="form-control"  id="letras" value="{{totalvencidos}}"  required>
+              <input type="number" name="letras" class="form-control"  id="letras" [(ngModel)]="totalAplicarLetras"  required>
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
@@ -201,7 +201,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Letras a Aplicar del Beneficiario</div>
     <div class="panel-body transparent">
-      <app-aplicar [totalAplicarVencidos]=model.totalvencidos #aplicar (onTotalAplicarLetras)="onMessageTotalAplicar($event)">
+      <app-aplicar [totalAplicarVencidos]=totalAplicarLetras #aplicar (onTotalAplicarLetras)="onTotalAplicarLetras($event)">
 
       </app-aplicar>
     </div>

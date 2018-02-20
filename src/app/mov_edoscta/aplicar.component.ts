@@ -4,7 +4,6 @@ import { Aplicar } from './aplicar';
 
 import { AplicarService} from './aplicar.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
 //import { AuthGuard } from '../_guards/index';
 
 //import { UploadComponent} from '../upload/upload.component';
@@ -70,7 +69,7 @@ export class AplicarComponent implements OnInit {
 
   @Input() totalAplicarVencidos;
 
-  @Output() totalLetrasAplicar = new EventEmitter<number>();
+  @Output() totalLetrasAplicar = new EventEmitter<Number>();
 
   @Output() onMessageAplicar = new EventEmitter<String>();
   @Output() onerrorMessageAplicar = new EventEmitter<String>();
@@ -79,9 +78,11 @@ export class AplicarComponent implements OnInit {
       private aplicarService: AplicarService,
       private bonificService: BonificService,
       private alertService:AlertService,
+      private router: Router,
+      private route: ActivatedRoute,
     )
     {
-      this.vencidos= JSON.parse(localStorage.getItem('vencidos'));
+      //this.vencidos= JSON.parse(localStorage.getItem('vencidos'));
     }
 
 
@@ -97,20 +98,42 @@ export class AplicarComponent implements OnInit {
       this.onerrorMessageAplicar.emit(mensaje);
 
     };
-    getLetras() {
-      console.log("get letras" + this.totalAplicarVencidos);
-      if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
-        return this.aplicarService.getLetras(this.totalAplicarVencidos);
+
+    valida_ultimo(i:number){
+      if (i==this.totalAplicarVencidos) {
+        return true;
       }else{
 
+        return false;
+
+      }
+    }
+    getLetras() {
+      if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
+        this.k=this.route.params.switchMap(( params:Params)=>
+        {
+          return this.aplicarService.getLetras(this.totalAplicarVencidos);
+        })
+        this.k.subscribe(
+          aplicar =>{
+            //console.log("Aplicar en suscribir: ")
+            //console.log(this.aplicar);
+            this.aplicar = aplicar;
+            console.log("Suscribir");
+            console.log(this.aplicar);
+            this.message('Recuperacion exitosa de los movimientos');
+            this.errormessage(null);
+          },
+
+          error =>  this.errorMessage = <any>error);
+        
+      }else{
         this.errormessage('Error en la recuperacion de los movimientos a aplicar');
         this.message(null);
         this.aplicar=null;
       }
     };
 
-    onTotalAplicarLetras(totalAplicar:number){
-      this.totalLetrasAplicar.emit(totalAplicar);
-    }
+   
 
 }
