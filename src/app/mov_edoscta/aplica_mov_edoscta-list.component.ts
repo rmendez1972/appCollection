@@ -1,20 +1,23 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
 import { Solicitante } from './solicitante';
 
+<<<<<<< HEAD
+=======
+//import { Aplica_Mov_edocta } from './aplica_mov_edocta';
+>>>>>>> 18c4d90374065e0c70eaa82290dad2e72ae5e3b8
 import { Mov_edocta } from './mov_edocta';
 import { Benef } from './benef';
 import { Solicitud } from './solicitud';
 import { Tramite } from './tramite';
 import { Seguimiento } from './seguimiento';
-import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
+import { Mov_edoctaService} from './mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //import { AuthGuard } from '../_guards/index';
-
 //import { UploadComponent} from '../upload/upload.component';
-
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { Aplicar} from './aplicar';
 
 
 @Component({
@@ -43,7 +46,7 @@ import { AlertService} from '../_services/index';
         }))
       ])
     ])
-  ]
+  ],
 })
 export class Aplica_Mov_edosctaListComponent implements OnInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
@@ -62,6 +65,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+<<<<<<< HEAD
   //private solicitantes: Solicitante[];
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
@@ -74,6 +78,10 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //private z: Observable<Tramite[]>;
   //private a: Observable<Seguimiento[]>;
 
+=======
+  private mov_edoscta: Mov_edocta[];
+  private benef: Benef[];
+>>>>>>> 18c4d90374065e0c70eaa82290dad2e72ae5e3b8
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
 
@@ -93,6 +101,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private nobonific: String = "fa fa-times";
   public totalvencidos: number=0;
 
+  private totalAplicarLetras: number;
+
   private totales_style:String = "info";
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
@@ -103,22 +113,16 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   ];
   private seleccionado:String="clave_b";
-
-
-
-
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
+      private mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService
 
     )
     {
 
     }
-
-
     ngOnInit() {
 
       this.model.fecha_corte= new Date().toJSON();
@@ -126,11 +130,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     };
 
-
-
-
     title = 'Estado de Cuenta por Programas';
-
     localizaBenefMov(){
       console.log('valor de model.criterio '+this.model.criterio);
       console.log('valor de model.valorcriterio '+this.model.valorcriterio);
@@ -144,9 +144,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         this.miMensajeerrorMovs = "Error en recuperación de Movimientos de Estado de Cuenta, por favor llena los campos..";
       }
     }
-
-
-
     getMov_edoscta(criterio:String,valorcriterio:String) {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -154,7 +151,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         {
 
           //this.selectedId= +params['id'];
-          return this.aplica_mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
+          return this.mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
         })
 
         this.k.subscribe(
@@ -165,8 +162,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
                          this.miMensajeMovs = "Recuperación Exitosa de los Movimientos de Estado de Cuenta";
                         },
                        error =>  this.errorMessage = <any>error);
-
-
     };
 
     getBenef(criterio:String,valorcriterio:String) {
@@ -176,7 +171,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         {
 
           this.selectedId= +params['id'];
-          return this.aplica_mov_edoctaservice.getBenef(criterio,valorcriterio)
+          return this.mov_edoctaservice.getBenef(criterio,valorcriterio)
         })
 
         this.l.subscribe(
@@ -186,16 +181,11 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
 
     };
-
-
     onMessage(mensaje:String){
 
       this.miMensajeBons = mensaje;
       this.miMensajeVencidos = mensaje;
-
-
     }
-
 
     onerrorMessage(mensaje:String){
 
@@ -203,13 +193,9 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
 
     }
-
-
     onMessagevencidos(mensaje:String){
 
       this.miMensajeVencidos = mensaje;
-
-
     }
 
 
@@ -217,15 +203,17 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
       this.miMensajeerrorVencidos = mensaje;
 
-
     }
-
     onTotalVencidos(totalvencidos:number){
 
       this.totalvencidos = totalvencidos;
 
     }
+    onMessageTotalAplicar(totalaplicar:number){
 
+      this.totalAplicarLetras = totalaplicar;
+
+    }
     valida_ultimo(i:number){
       if (i==this.totalmov_edoscta) {
         return true;

@@ -10,6 +10,9 @@ import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 
 import { ImportComponent } from './import.component';
 
+
+import { AplicarComponent } from './aplicar.component';
+import { AplicarService } from './aplicar.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,10 +21,12 @@ import { ImportComponent } from './import.component';
   ],
   declarations: [
     Aplica_Mov_edosctaListComponent,
+    AplicarComponent,
   ],
   providers: [
     ServiceUrl,
     Aplica_Mov_edoctaService,
+    AplicarService,
   ]
 })
 export class Aplica_Mov_edosctaModule{}
