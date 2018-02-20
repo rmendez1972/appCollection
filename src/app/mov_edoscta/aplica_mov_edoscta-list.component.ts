@@ -1,10 +1,7 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
 import { Solicitante } from './solicitante';
 
-<<<<<<< HEAD
-=======
-//import { Aplica_Mov_edocta } from './aplica_mov_edocta';
->>>>>>> 18c4d90374065e0c70eaa82290dad2e72ae5e3b8
+
 import { Mov_edocta } from './mov_edocta';
 import { Benef } from './benef';
 import { Solicitud } from './solicitud';
@@ -65,23 +62,10 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
-<<<<<<< HEAD
-  //private solicitantes: Solicitante[];
-  private mov_edoscta: Mov_edocta[];
-  private benef: Benef[];
-  //private solicitudes: Solicitud[];
-  //private tramites: Tramite[];
-  //private seguimientos: Seguimiento[];
-  //private solicitante: Solicitante;
-  //private x: Observable<Solicitante[]>;
-  //private y: Observable<Solicitud[]>;
-  //private z: Observable<Tramite[]>;
-  //private a: Observable<Seguimiento[]>;
 
-=======
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
->>>>>>> 18c4d90374065e0c70eaa82290dad2e72ae5e3b8
+
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
 
