@@ -38,19 +38,14 @@ export class VencidosService {
     let body = res.json();
     console.log(body.vencidos);
     
-
     for (var i = 0; i <body.vencidos.length; i++) {
       body.vencidos[i]["total"]=parseFloat(body.vencidos[i].capital.toString())+parseFloat(body.vencidos[i].interes.toString())+
       parseFloat(body.vencidos[i].seguro.toString())+parseFloat(body.vencidos[i].admon.toString())+parseFloat(body.vencidos[i].oseg.toString())+
       parseFloat(body.vencidos[i].com.toString())+parseFloat(body.vencidos[i].tit.toString())+parseFloat(body.vencidos[i].mor.toString());
-
-
     }
-
 
     localStorage.setItem('vencidos',JSON.stringify(body.vencidos));
     return body.vencidos || { };
-
   }
 
   private handleError (error: Response | any) {

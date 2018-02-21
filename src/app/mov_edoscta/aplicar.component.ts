@@ -58,9 +58,13 @@ export class AplicarComponent implements OnInit {
 
 
   private errorMessage: string;
+<<<<<<< HEAD
   private aplicar: any=[];
+=======
+  private aplicar: any[];
+>>>>>>> 894223dc604472206acf67f3fcfded73f25a524b
 
-  private k: Observable<Aplicar[]>;
+  //private k: Observable<Aplicar[]>;
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
@@ -111,6 +115,7 @@ export class AplicarComponent implements OnInit {
     }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
+<<<<<<< HEAD
         //this.k=this.route.params.switchMap(( params:Params)=>
         //{
            this.aplicar=[];
@@ -153,6 +158,12 @@ export class AplicarComponent implements OnInit {
 
 
 
+=======
+        {
+          this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
+        }
+        
+>>>>>>> 894223dc604472206acf67f3fcfded73f25a524b
       }else{
         this.errormessage('Error en la recuperacion de los movimientos a aplicar');
         this.message(null);
