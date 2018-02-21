@@ -23,8 +23,9 @@ export class AplicarService {
 
 	//getMov_edoscta
 
-  getLetras(totalvencidos:number): Observable<Aplicar[]>{
+  getLetras(totalvencidos:number): Aplicar[]{
     //console.log("Get");
+    localStorage.removeItem('aplicar');
     this.totalvencidos = totalvencidos;
     return this.extractDataAplicar();
   }
@@ -36,7 +37,9 @@ export class AplicarService {
       this.aplicar[i]=this.vencidos[i];
     }
     console.log("Extraer:")
-    console.log(this.aplicar);
+    console.log('dentro de extracDataAplicar '+this.aplicar);
+    let tipo= typeof(this.aplicar);
+    console.log('tipo de dato dentro de extracDataAplicar ' +tipo) ;
     localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
     return this.aplicar || { };
   }

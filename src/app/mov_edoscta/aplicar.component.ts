@@ -58,7 +58,7 @@ export class AplicarComponent implements OnInit {
 
 
   private errorMessage: string;
-  private aplicar: Aplicar[];
+  private aplicar: any=[];
 
   private k: Observable<Aplicar[]>;
   private totales_style:String = "info";
@@ -100,6 +100,7 @@ export class AplicarComponent implements OnInit {
     };
 
     valida_ultimo(i:number){
+      console.log('iteracion de la vista '+i);
       if (i==this.totalAplicarVencidos) {
         return true;
       }else{
@@ -110,23 +111,48 @@ export class AplicarComponent implements OnInit {
     }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
-        this.k=this.route.params.switchMap(( params:Params)=>
-        {
-          return this.aplicarService.getLetras(this.totalAplicarVencidos);
-        })
-        this.k.subscribe(
-          aplicar =>{
+        //this.k=this.route.params.switchMap(( params:Params)=>
+        //{
+           this.aplicar=[];
+           console.log('letras a pagar por benef '+this.totalAplicarVencidos);
+           this.aplicar=this.aplicarService.getLetras(this.totalAplicarVencidos);
+        //})
+        //this.k.subscribe(
+        //  aplicar =>{
             //console.log("Aplicar en suscribir: ")
             //console.log(this.aplicar);
-            this.aplicar = aplicar;
+            //this.aplicar = aplicar;
             console.log("Suscribir");
-            console.log(this.aplicar);
-            this.message('Recuperacion exitosa de los movimientos');
-            this.errormessage(null);
-          },
+            let tipo= typeof(this.aplicar);
+            console.log('tipo de dato dentro de subscribe ' +tipo) ;
+            console.log('valor de aplicar dentro subscribe '+this.aplicar);
 
-          error =>  this.errorMessage = <any>error);
-        
+            //var array = [for (key of Object.keys(this.aplicar)) this.aplicar[key]];
+            //let tipo2= typeof(array);
+            //console.log('tipo de dato 2 dentro de subscribe ' +tipo2) ;
+            /*
+            let letrasaplicar = JSON.parse(localStorage.getItem('aplicar'));
+            console
+            for (var elemento in letrasaplicar) {
+              let modelo={
+                fecha: letrasaplicar[elemento].fecha,
+                letra: letrasaplicar[elemento].letra,
+                capital: letrasaplicar[elemento].capital,
+                interes: letrasaplicar[elemento].iteres,
+                seguro: letrasaplicar[elemento].seguro,
+                admon: letrasaplicar[elemento].admon,
+                oseg: letrasaplicar[elemento].oseg,
+                com: letrasaplicar[elemento].com,
+                tit: letrasaplicar[elemento].tit,
+                mor: letrasaplicar[elemento].mor,
+                total: letrasaplicar[elemento].total.toString()
+              }
+              console.log('modelo '+JSON.stringify(modelo));
+              this.aplicar.push(JSON.stringify(modelo));
+            }*/
+
+
+
       }else{
         this.errormessage('Error en la recuperacion de los movimientos a aplicar');
         this.message(null);
@@ -134,6 +160,6 @@ export class AplicarComponent implements OnInit {
       }
     };
 
-   
+
 
 }
