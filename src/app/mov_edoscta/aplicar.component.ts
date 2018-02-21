@@ -111,10 +111,7 @@ export class AplicarComponent implements OnInit {
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
         {
-          //console.log("Extrayendo datos desde el metodo get letras en el component:");
-          console.log(this.aplicarService.getLetras(this.totalAplicarVencidos));
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
-          console.log(this.aplicar);
         }
         
       }else{

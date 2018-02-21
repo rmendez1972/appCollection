@@ -29,7 +29,7 @@ export class AplicarService {
   }
 
   private extractDataAplicar() {
-
+    this.aplicar=[];
     let fecha:string=null;
     let letra:string= null;
     let capital = 0;
@@ -43,11 +43,11 @@ export class AplicarService {
     let tot=0;
 
     this.vencidos = JSON.parse(localStorage.getItem('vencidos'));
-    //localStorage.removeItem('aplicar');
     for (var i = 0; i < this.totalvencidos; i++) {
       this.aplicar[i]= this.vencidos[i];
     }
     let total = this.totalvencidos;
+    //let total = this.aplicar.lenght;
     for (var x = 0; x < total ; x++) {
       capital = capital+parseFloat(this.aplicar[x].capital);
       interes = interes+parseFloat(this.aplicar[x].interes);
@@ -75,9 +75,7 @@ export class AplicarService {
 
     };
     this.aplicar[x]= totales;
-    //this.aplicar["Totales"]= capital;
-
-    //localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
+    localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
     return this.aplicar || { };
   }
   private handleError (error: Response | any) {
