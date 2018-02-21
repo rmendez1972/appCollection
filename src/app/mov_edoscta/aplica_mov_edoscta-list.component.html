@@ -1,10 +1,11 @@
-<h3 class="bg-primary encabezado">
+  <h3 class="bg-primary encabezado">
   <span class="icon-file-text2"> </span> {{title}}
 </h3>
 <br>
 <div class="datos">
   <br>
   <form name="form" class="form-inline" #f="ngForm" novalidate>
+
     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !_criterio.valid }">
       <label for="_criterio" class="col-md-4 control-label">Criterio Búsqueda</label>
       <div class="col-md-2">
@@ -114,7 +115,7 @@
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.comisiones | currency:'MXN':true:'.2'}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.tit | currency:'MXN':true:'.2'}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN':true:'.2'}}</td>
-              
+
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" [ngSwitch]="mov.bonific">
                   <span *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación"></span>
                   <span *ngSwitchCase="false" [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"></span>
@@ -132,7 +133,7 @@
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.comisiones | currency:'MXN':true:'.2'}}</strong></td>
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.tit | currency:'MXN':true:'.2'}}</strong></td>
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
-               
+
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right" ><span>{{mov.bonific}}</span></td>
 
             </tr>
@@ -155,6 +156,19 @@
           <div class="form-group" style="text-align:center">
             <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos()" />
           </div>
+          
+        </form >
+        <form *ngIf=miMensajeVencidos  >
+          <div class="form-group" >
+            <label for="letras" class="col-md-4 control-label">Numero de Letras Aplicar</label>
+            <div class="col-md-6">
+              <input type="number" name="letras" class="form-control"  id="letras" [(ngModel)]="totalAplicarLetras"  required>
+            </div>
+          </div>
+          <div  class="form-group" style="text-align:center">
+            <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras()" />
+          </div>
+          
         </form>
       </div>
     </div>
@@ -182,5 +196,13 @@
       <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
         (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
 
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Letras a Aplicar del Beneficiario</div>
+    <div class="panel-body transparent">
+      <app-aplicar [totalAplicarVencidos]=totalAplicarLetras #aplicar (onTotalAplicarLetras)="onTotalAplicarLetras($event)">
+
+      </app-aplicar>
     </div>
   </div>

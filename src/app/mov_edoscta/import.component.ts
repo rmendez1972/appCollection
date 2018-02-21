@@ -10,8 +10,11 @@ import {VencidosComponent} from '../mov_edoscta/vencidos.component';
 import {BonificacionComponent} from '../mov_edoscta/bonificacion.component';
 
 import { centavos } from '../_pipes/centavos.pipe';
-import {VencidosService} from './vencidos.service'
-import {BonificService} from './bonificacion.service'
+import {VencidosService} from './vencidos.service';
+import {BonificService} from './bonificacion.service';
+
+import {Mov_edosctaListComponent} from './mov_edoscta-list.component';
+import {Mov_edoctaService} from './mov_edocta.service';
 
 
 @NgModule({
@@ -24,12 +27,15 @@ import {BonificService} from './bonificacion.service'
   BonificacionComponent,
   VencidosComponent,
   centavos,
+  Mov_edosctaListComponent,
   ],
   providers: [
   VencidosService,
   BonificService,
+  Mov_edoctaService,
   ], 
   exports:[
+  Mov_edosctaListComponent,
   BonificacionComponent,
   VencidosComponent,
   centavos,

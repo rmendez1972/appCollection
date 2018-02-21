@@ -57,7 +57,6 @@ export class VencidosComponent implements OnInit {
     return 'relative';
   }
 
-
   private errorMessage: string;
   private totalvencidos: number=0;
   private vencidos: Vencidos[];
@@ -71,9 +70,6 @@ export class VencidosComponent implements OnInit {
   @Output() onMessagevencidos = new EventEmitter<String>();
   @Output() onerrorMessagevencidos = new EventEmitter<String>();
   @Output() onTotalVencidos = new EventEmitter<Number>();
-
-
-
 
   	constructor(
       private router: Router,
@@ -118,7 +114,6 @@ export class VencidosComponent implements OnInit {
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
-
           //this.selectedId= +params['id'];
           return this.vencidosService.getVencidos(this.clave_b,this.fecha_corte)
         })

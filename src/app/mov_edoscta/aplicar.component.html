@@ -1,0 +1,49 @@
+<div class="table-responsive ">
+
+  <table class="table table-condensed table-hover table-bordered">
+    <thead  style="color: #7b7d80;">
+      <th >Fecha</th>
+      <th >Letra</th>
+      <th >Capital</th>
+      <th >Interes</th>
+      <th >Seguro</th>
+      <th >Admon</th>
+      <th >Otros Seg</th>
+      <th >Comisiones</th>
+      <th >Titulacion</th>
+      <th >Moratorios</th>
+      <th> Total</th>
+
+    </thead>
+    <tbody>
+        <tr style="font-size: 10px" *ngFor="let aplica of aplicar; let i = index"  [ngSwitch]="valida_ultimo(i)" >
+
+
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  > {{aplica.fecha}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  >{{aplica.letra }}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{aplica.capital | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{aplica.interes | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;" >{{aplica.seguro | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{aplica.admon | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;">{{aplica.oseg | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{aplica.com | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{aplica.tit | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;">{{aplica.mor | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;"><strong>{{aplica.total | currency:'MXN':true:'.2'}}</strong></td>
+
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" ><strong>{{aplica.fecha}}</strong> </td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" ><strong>{{aplica.letra }}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{aplica.capital | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{aplica.interes | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{aplica.seguro | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"  ><strong>{{aplica.admon | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{aplica.oseg | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{aplica.com | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{aplica.tit | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{aplica.mor | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{aplica.total | currency:'MXN':true:'.2'}}</strong></td>
+
+
+      </tr>
+    </tbody>
+  </table>
