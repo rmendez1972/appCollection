@@ -10,7 +10,8 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { User } from '../_models/index';
-
+import { Vencidos } from './vencidos';
+//marlon
 
 
 
@@ -61,23 +62,26 @@ export class AplicaBonificacionComponent implements OnInit {
 
   private k: Observable<Bonific[]>;
   private currentUser: User;
+  private vencidos: Vencidos;
   model:any={};
 
-  @Output() onMessage = new EventEmitter<String>();
+  //valores de salida del webcomponent
+  @Output() onMessageAplicaBonific = new EventEmitter<String>();
+  @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
 
-
-  @Input() id_benef:String;
+  //valores de entrada del webcomponent
+  @Input() id_benef:Number;
   @Input() imp_cap:Number;
   @Input() imp_int:Number;
   @Input() imp_adm:Number;
   @Input() imp_seg:Number;
   @Input() imp_osg:Number;
-  @Input() id_catbonific:String;
-  @Input() id_autoriza:String;
+  @Input() id_catbonific:Number;
+  @Input() id_autoriza:Number;
   @Input() imp_com:Number;
   @Input() imp_mor:Number;
   @Input() imp_tit:Number;
-  @Input() id_catprog: String;
+  @Input() id_catprog: Number;
 
 
 
@@ -91,7 +95,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
   	ngOnInit() {
-      //this.model.propiedad
+      //Propiedades de la clase inicializandolos con los valores de entrada
       this.model.id_benef = this.id_benef;
       this.model.imp_cap = this.imp_cap;
       this.model.imp_int = this.imp_int;
@@ -106,26 +110,38 @@ export class AplicaBonificacionComponent implements OnInit {
       this.model.imp_tit = this.imp_tit;
       this.model.id_catprog = this.id_catprog;
 
-
+      //se recuperan valores del localStorage de CurrentUser
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+      //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
       for (var elemento in this.currentUser) {
         this.model.id_movedocta=this.currentUser[elemento].id_movedocta;
         this.model.id_usuario=this.currentUser[elemento].id;
-        this.model.recibo = this.currentUser[elemento].foliofinal;
+        this.model.recibo = this.currentUser[elemento].folio_final;
         this.model.serie = this.currentUser[elemento].serie;
 
       }
 
+      //se recuperan valores del localStorage de vencidos
+      this.vencidos = JSON.parse(localStorage.getItem('vencidos'));
+      //iterar en el localstorage de vencidos para almacernar los valores hacia las propiedades
+      for (var x in this.vencidos) {
+        this.model.clave_b=this.vencidos[x].clave_b;
+      }
 
     };
 
-    message(mensaje:String){
-      this.onMessage.emit(mensaje);
-
+    //mensaje de salida de exito
+    messageAplicaBonific(mensaje:String){
+      this.onMessageAplicaBonific.emit(mensaje);
     };
 
-    /*postBonificaciones() {
+    //mensajde de salida de fracaso
+    errormessageAplicaBonific(mensaje:String){
+      this.onerrorMessageAplicaBonific.emit(mensaje);
+    };
+
+    //Metodo en donde se realizara la insercion de las bonificaciones
+    postBonificaciones() {
 
         this.k=this.route.params
 
@@ -133,27 +149,24 @@ export class AplicaBonificacionComponent implements OnInit {
         {
 
 
-        return this.aplicabonificservice.postBonificaciones(this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
-        this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.id_autoriza)
+        return this.aplicabonificservice.postBonificaciones(this.model.id_movedocta,this.model.id_benef,this.model.imp_cap,this.model.imp_int,this.model.imp_adm,this.model.imp_seg,
+          this.model.imp_osg,this.model.imp_com,this.model.imp_mor,this.model.imp_tit,this.model.id_catbonific,this.model.estatus,this.model.id_usuario,this.model.id_autoriza,
+          this.model.clave_b,this.model.recibo,this.model.serie,this.model.id_catprog)
         })
 
         this.k.subscribe(
 
                        bonificaciones =>{
                          this.bonific = bonificaciones;
-                         this.message('Se insertaron las bonificaciones');
-
+                         this.messageAplicaBonific('Se insertaron las bonificaciones');
+                         this.errormessageAplicaBonific(null);
                         },
                        error =>{
                          this.errorMessage = <any>error;
-
-                         this.message(null);
+                         this.errormessageAplicaBonific('Error en la inserción de datos');
+                         this.messageAplicaBonific(null);
                        });
-
-        this.message(null);
-        this.bonific=null;
-
-    };*/
+    };
 
 
 }

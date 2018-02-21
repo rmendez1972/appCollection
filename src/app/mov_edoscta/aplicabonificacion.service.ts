@@ -14,34 +14,59 @@ import { AlertService} from '../_services/index';
 @Injectable()
 export class AplicaBonificService {
 
-  //private seguimientosUrl: string;
+  //propiedades de la clase
   private aplicabonificacionUrl: string;
+  private id_movedocta:number;
+  private id_benef:number;
+  private imp_cap:number;
+  private imp_int:number;
+  private imp_adm:number;
+  private imp_seg:number;
+  private imp_osg:number;
+  private imp_com:number;
+  private imp_mor:number;
+  private imp_tit:number;
+  private id_catbonific:number;
+  private estatus:string;
+  private id_usuario:number;
+  private id_autoriza:number;
+  private clave_b:string;
+  private recibo:number;
+  private serie:string;
+  private numcontrato:string;
+  private id_catprog:number;
+
 
 
   constructor (private http: Http,
       private url:ServiceUrl,
       private alertService: AlertService)
       {
-        //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
+        
         this.aplicabonificacionUrl=String(this.url.getUrlAplicabonificacion());
 
       }
 
-      //verificar los importes cual es mayor a cero
-      //convertir los importes a string
+    
 
 
-  /*postBonificaciones(id_benef:String, imp_cap:String, imp_int:String, imp_adm:String, imp_seg:String, imp_osg:String,
-  imp_com:String, imp_mor:String, imp_tit:String, id_catbonific:String, id_autoriza:String): Observable<Bonific[]> {
-
-     return this.http.get(this.aplicabonificacionUrl+id_movedoscta.toString()+'&id_benef='+id_benef+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int+'&imp_adm='+imp_adm+
-     '&imp_seg='+imp_seg+'&imp_osg='+imp_osg+'&imp_com='+imp_com+'&imp_mor='+imp_mor+'&imp_tit='+imp_tit+'&id_catbonific='+id_catbonific+
-     '&estatus='+estatus+'&id_usuario='+id_usuario+'&clave_b='+clave_b+'&recibo='+recibo+'&serie='+serie+'&numcontrato='+numcontrato+'&id_catprog='+id_catprog+
-     '&id_autoriza='+id_autoriza)
+  postBonificaciones(id_movedocta:number, id_benef:number, imp_cap:number, imp_int:number, imp_adm:number, imp_seg:number, imp_osg:number,
+  imp_com:number, imp_mor:number, imp_tit:number, id_catbonific:number, estatus:string, id_usuario:number, id_autoriza:number, clave_b:string, recibo:number,
+  serie:string, id_catprog:number): Observable<Bonific[]> {
+  
+    //se obtiene el numero de contrato con la clave_b
+    this.numcontrato=clave_b.substr(7);
+    console.log("numero de contrato:" + this.numcontrato);
+    
+    //metodo callback para introducir los datos al backend
+     return this.http.get(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
+     '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
+     '&estatus='+estatus+'&id_usuario='+id_usuario.toString()+'&clave_b='+clave_b+'&recibo='+recibo.toString()+'&serie='+serie+'&numcontrato='+this.numcontrato+'&id_catprog='+id_catprog.toString()+
+     '&id_autoriza='+id_autoriza.toString())
                     .map(this.extractDataBon)
                     .catch(this.handleError);
 
-  }*/
+  }
 
 
 
@@ -50,7 +75,16 @@ export class AplicaBonificService {
 
     let body = res.json();
 
-    return body.bonificacion || { };
+    console.log(body.registroBonificacio);
+    let valor=new String(body.registroBonificacio);
+
+    if (valor=="true"){
+      console.log("Registro Exitosamente");
+    }else{
+      console.log("No se pudo hacer el registro");
+    }
+
+    return body.registroBonificacio || { };
 
   }
 
