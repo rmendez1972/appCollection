@@ -58,9 +58,9 @@ export class AplicarComponent implements OnInit {
 
 
   private errorMessage: string;
-  private aplicar: Aplicar[];
+  private aplicar: any[];
 
-  private k: Observable<Aplicar[]>;
+  //private k: Observable<Aplicar[]>;
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
@@ -110,22 +110,12 @@ export class AplicarComponent implements OnInit {
     }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
-        this.k=this.route.params.switchMap(( params:Params)=>
         {
-          return this.aplicarService.getLetras(this.totalAplicarVencidos);
-        })
-        this.k.subscribe(
-          aplicar =>{
-            //console.log("Aplicar en suscribir: ")
-            //console.log(this.aplicar);
-            this.aplicar = aplicar;
-            console.log("Suscribir");
-            console.log(this.aplicar);
-            this.message('Recuperacion exitosa de los movimientos');
-            this.errormessage(null);
-          },
-
-          error =>  this.errorMessage = <any>error);
+          //console.log("Extrayendo datos desde el metodo get letras en el component:");
+          console.log(this.aplicarService.getLetras(this.totalAplicarVencidos));
+          this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
+          console.log(this.aplicar);
+        }
         
       }else{
         this.errormessage('Error en la recuperacion de los movimientos a aplicar');

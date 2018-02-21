@@ -114,7 +114,6 @@ export class VencidosComponent implements OnInit {
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
-
           //this.selectedId= +params['id'];
           return this.vencidosService.getVencidos(this.clave_b,this.fecha_corte)
         })

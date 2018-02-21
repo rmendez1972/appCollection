@@ -13,7 +13,7 @@ import {Aplicar} from './aplicar';
 export class AplicarService {
   private totalvencidos: number;
   private vencidos: any = [];
-  private aplicar: any = [];
+  private aplicar:any =[];
   private fecha:string;
   constructor (private http: Http,
       private url:ServiceUrl,
@@ -23,21 +23,61 @@ export class AplicarService {
 
 	//getMov_edoscta
 
-  getLetras(totalvencidos:number): Observable<Aplicar[]>{
-    //console.log("Get");
+  getLetras(totalvencidos:number): Aplicar[]{
     this.totalvencidos = totalvencidos;
     return this.extractDataAplicar();
   }
 
   private extractDataAplicar() {
-    //console.log("Extract");
+
+    let fecha:string=null;
+    let letra:string= null;
+    let capital = 0;
+    let interes = 0;
+    let admon = 0;
+    let com = 0;
+    let mor = 0;
+    let seguro= 0;
+    let oseg= 0;
+    let tit = 0;
+    let tot=0;
+
     this.vencidos = JSON.parse(localStorage.getItem('vencidos'));
+    //localStorage.removeItem('aplicar');
     for (var i = 0; i < this.totalvencidos; i++) {
-      this.aplicar[i]=this.vencidos[i];
+      this.aplicar[i]= this.vencidos[i];
     }
-    console.log("Extraer:")
-    console.log(this.aplicar);
-    localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
+    let total = this.totalvencidos;
+    for (var x = 0; x < total ; x++) {
+      capital = capital+parseFloat(this.aplicar[x].capital);
+      interes = interes+parseFloat(this.aplicar[x].interes);
+      seguro = seguro+ parseFloat(this.aplicar[x].seguro)
+      admon = admon+ parseFloat(this.aplicar[x].admon)
+      oseg =oseg+ parseFloat(this.aplicar[x].oseg)
+      com =com + parseFloat(this.aplicar[x].com)
+      tit = tit+ parseFloat(this.aplicar[x].tit)
+      mor = mor + parseFloat(this.aplicar[x].mor);
+      tot = tot + parseFloat(this.aplicar[x].total);
+
+    }
+    let totales ={
+      fecha:'Totales',
+      letra:this.totalvencidos+1,
+      capital:capital,
+      intereses:interes,
+      seguro:seguro,
+      admon:admon,
+      oseg:oseg,
+      com:com,
+      tit:tit,
+      mor:mor,
+      total:tot,
+
+    };
+    this.aplicar[x]= totales;
+    //this.aplicar["Totales"]= capital;
+
+    //localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
     return this.aplicar || { };
   }
   private handleError (error: Response | any) {
