@@ -60,7 +60,7 @@ export class AplicarComponent implements OnInit {
   private errorMessage: string;
   private aplicar: any[];
 
-
+  private pagar: any[];
 
   private totales_style:String = "info";
   private renglon_style:String = "active";
@@ -100,7 +100,6 @@ export class AplicarComponent implements OnInit {
     };
 
     valida_ultimo(i:number){
-      console.log('iteracion de la vista '+i);
       if (i==this.totalAplicarVencidos) {
         return true;
       }else{
@@ -122,6 +121,12 @@ export class AplicarComponent implements OnInit {
         this.message(null);
         this.aplicar=null;
       }
+    };
+
+    getPagar() {
+      this.pagar = this.aplicarService.getPagar(this.totalAplicarVencidos);
+      this.message('Recuperación exitosa de las letras a aplicar');
+      
     };
 
 }
