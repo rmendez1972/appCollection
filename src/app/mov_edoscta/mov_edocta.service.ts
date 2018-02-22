@@ -77,13 +77,13 @@ export class Mov_edoctaService {
      }
 
      body.mov_edoscta.push(totales_columna);
-
+     //localStorage.setItem('UserMov',JSON.stringify(body.mov_edoscta));
     return body.mov_edoscta || { };
   }
 
   private extractDataBenef(res: Response) {
     let body = res.json();
-    console.log(body.beneficiario);
+    localStorage.setItem('beneficiario',JSON.stringify(body.beneficiario));
     return body.beneficiario || { };
    
   }

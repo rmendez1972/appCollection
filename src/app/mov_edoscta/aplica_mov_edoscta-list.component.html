@@ -171,6 +171,12 @@
           </div>
 
         </form>
+        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
+          <div  class="form-group" style="text-align:center">
+            <input type="submit" value="Pagar" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte)" />
+          </div>
+
+        </form>
       </div>
     </div>
   </div>
