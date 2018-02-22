@@ -24,6 +24,7 @@ export class AplicarService {
 	//getMov_edoscta
 
   getLetras(totalvencidos:number): Aplicar[]{
+
     this.totalvencidos = totalvencidos;
     return this.extractDataAplicar();
   }
@@ -60,11 +61,12 @@ export class AplicarService {
       tot = tot + parseFloat(this.aplicar[x].total);
 
     }
+
     let totales ={
-      fecha:'Totales',
-      letra:this.totalvencidos+1,
+      fecha:'Totales:',
+      letra:null,
       capital:capital,
-      intereses:interes,
+      interes:interes,
       seguro:seguro,
       admon:admon,
       oseg:oseg,
@@ -75,6 +77,7 @@ export class AplicarService {
 
     };
     this.aplicar[x]= totales;
+
     localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
     return this.aplicar || { };
   }

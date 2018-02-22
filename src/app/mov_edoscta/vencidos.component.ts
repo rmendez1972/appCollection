@@ -121,7 +121,7 @@ export class VencidosComponent implements OnInit {
         this.k.subscribe(
           vencidos =>{
             this.vencidos = vencidos;
-            this.message('Recuperacion exitosa de los movimientos');
+            this.message('Recuperacion exitosa de las letras vencidas');
             this.errormessage(null);
             this.totalvencidos=this.vencidos.length-1;
             this.totalVencidos(this.totalvencidos);
@@ -130,7 +130,7 @@ export class VencidosComponent implements OnInit {
 
       }else{
 
-        this.errormessage('Error en la recuperacion de los movimientos vencidos, favor de introducir fecha válida');
+        this.errormessage('Error en la recuperacion de las letras vencidas, favor de introducir fecha válida');
         this.message(null);
         this.vencidos=null;
       }

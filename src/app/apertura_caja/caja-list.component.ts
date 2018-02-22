@@ -103,7 +103,7 @@ export class CajaListComponent implements OnInit, AfterViewInit {
     };
 
     onEdit(caja: Caja) {
-      console.log('valores recuperados en controlador caja-list.component '+caja.id_caja,caja.fecha, caja.folio_inicial, caja.folio_final, caja.poliza, caja.monto_inicial, caja.id_usuario);
+
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
       for (var elemento in this.currentUser) {
@@ -113,7 +113,7 @@ export class CajaListComponent implements OnInit, AfterViewInit {
       if(caja.id_usuario==this.id){
         this.miMensaje = 'Editando Caja...';
         this.miMensajeerror = null;
-        setTimeout(() => this.router.navigate(['cajas/editar',{id_caja:caja.id_caja,fecha: caja.fecha,folio_inicial:caja.folio_inicial,folio_final:caja.folio_final,poliza:caja.poliza,monto_inicial:caja.monto_inicial}]), 3000);
+        setTimeout(() => this.router.navigate(['cajas/editar',{id_caja:caja.id_caja,fecha: caja.fecha,folio_inicial:caja.folio_inicial,folio_final:caja.folio_final,poliza:caja.poliza,monto_inicial:caja.monto_inicial}]), 4000);
         //this.router.navigate(['cajas/editar',{id_caja:caja.id_caja,fecha: caja.fecha,folio_inicial:caja.folio_inicial,folio_final:caja.folio_final,poliza:caja.poliza,monto_inicial:caja.monto_inicial}]);
       }else{
         this.miMensaje = null;
@@ -127,7 +127,7 @@ export class CajaListComponent implements OnInit, AfterViewInit {
     }
 
     onMessage(mensaje:String){
-      console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
+
       this.miMensaje = mensaje;
     }
     paginadorCaja() {
