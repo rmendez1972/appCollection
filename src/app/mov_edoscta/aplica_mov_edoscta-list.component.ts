@@ -16,9 +16,15 @@ import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { Aplicar} from './aplicar';
 
+//Importando modulos para Alerta de msj
+import {ConfirmService} from '../confirm/confirm.service';
+import {ConfirmComponent} from '../confirm/confirm.component';
+
+//var componentHandler:any;
+declare var componentHandler;
 
 @Component({
-  selector: 'app-seguimiento-list',
+  selector: 'app-seguimiento-list, notifier',
   templateUrl: './aplica_mov_edoscta-list.component.html',
   styleUrls: ['./aplica_mov_edoscta-list.component.css'],
   animations: [
@@ -45,6 +51,8 @@ import { Aplicar} from './aplicar';
     ])
   ],
 })
+
+
 export class Aplica_Mov_edosctaListComponent implements OnInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
@@ -58,6 +66,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     return 'relative';
   }
 
+  //title = "Bonificacion";
 
 
   private errorMessage: string;
@@ -90,6 +99,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
 
+  
+
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
        {id:2, value: "nombre", name: "Nombre de Beneficiario"}
@@ -100,17 +111,18 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute,
       private mov_edoctaservice: Mov_edoctaService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      private _confirmService:ConfirmService
 
     )
     {
 
     }
-    ngOnInit() {
-
+    ngOnInit(){
+      
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
-
+      //componentHandler.upgradeDom();
     };
 
     title = 'Estado de Cuenta por Programas';
@@ -206,6 +218,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
       }
     }
+
+    
 
 
 
