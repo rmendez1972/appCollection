@@ -75,16 +75,25 @@ export class AplicaBonificService {
 
     let body = res.json();
 
-    console.log(body.registroBonificacio);
-    let valor=new String(body.registroBonificacio);
+    console.log(body.registroBonificacion);
+    
+    /*for (var i = 0; i < body.registroBonificacion.length; i++) {
+      this.id_movedocta = body.registroBonificacion[i];
+      
+
+    }
+    
+    /*let valor=new String(body.registroBonificacio);
+
+
 
     if (valor=="true"){
       console.log("Registro Exitosamente");
     }else{
       console.log("No se pudo hacer el registro");
-    }
+    }*/
 
-    return body.registroBonificacio || { };
+    return body.registroBonificacion || { };
 
   }
 
