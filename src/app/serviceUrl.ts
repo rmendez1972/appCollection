@@ -143,7 +143,7 @@ constructor() {}
 		}
 
 		getUrlAplicarVencidos():String{
-			return this.UrlAplicarVencidos='http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&clave_b=';
+			return this.UrlAplicarVencidos='http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&id_benef=';
 		}
 }
 
