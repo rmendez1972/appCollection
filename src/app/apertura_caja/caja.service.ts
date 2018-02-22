@@ -80,6 +80,7 @@ export class CajaService {
 
 
     let param_apertura_caja={
+      id_caja:this.id_caja,
       fecha:this.fecha,
       folio_inicial:this.folio_inicial,
       folio_final:this.folio_final,
@@ -121,6 +122,7 @@ export class CajaService {
        let paramAperturaCaja= JSON.parse(localStorage.getItem('paramAperturaCaja'));
 
        for (var elemento in this.currentUser){
+         this.currentUser[elemento].id_caja=paramAperturaCaja.id_caja;
          this.currentUser[elemento].fecha=new Date(paramAperturaCaja.fecha).toISOString().substring(0, 10);
          this.currentUser[elemento].folio_inicial=paramAperturaCaja.folio_inicial;
          this.currentUser[elemento].folio_final=paramAperturaCaja.folio_final;
