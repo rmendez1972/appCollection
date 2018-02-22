@@ -80,10 +80,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeerrorVencidos:String;
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
+  private miMensajeAplicar:String;
+  private miMensajeerrorAplicar:String;
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
-  
+
   public totalvencidos: number=0;
 
   public totalAplicarLetras: number = 0;
@@ -189,6 +191,22 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       this.miMensajeerrorVencidos = mensaje;
 
     }
+
+    onMessageAplicar(mensaje:String){
+
+      this.miMensajeAplicar = mensaje;
+
+
+    }
+
+
+    onerrorMessageAplicar(mensaje:String){
+
+      this.miMensajeerrorAplicar = mensaje;
+
+
+    }
+
     onTotalVencidos(totalvencidos:number){
       this.totalAplicarLetras = totalvencidos;
       this.totalvencidos = totalvencidos;

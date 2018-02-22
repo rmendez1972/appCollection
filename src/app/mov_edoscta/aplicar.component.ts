@@ -58,13 +58,10 @@ export class AplicarComponent implements OnInit {
 
 
   private errorMessage: string;
-<<<<<<< HEAD
-  private aplicar: any=[];
-=======
   private aplicar: any[];
->>>>>>> 894223dc604472206acf67f3fcfded73f25a524b
 
-  //private k: Observable<Aplicar[]>;
+
+
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
@@ -74,7 +71,6 @@ export class AplicarComponent implements OnInit {
   @Input() totalAplicarVencidos;
 
   @Output() totalLetrasAplicar = new EventEmitter<Number>();
-
   @Output() onMessageAplicar = new EventEmitter<String>();
   @Output() onerrorMessageAplicar = new EventEmitter<String>();
 
@@ -86,7 +82,7 @@ export class AplicarComponent implements OnInit {
       private route: ActivatedRoute,
     )
     {
-      //this.vencidos= JSON.parse(localStorage.getItem('vencidos'));
+
     }
 
 
@@ -115,62 +111,17 @@ export class AplicarComponent implements OnInit {
     }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
-<<<<<<< HEAD
-        //this.k=this.route.params.switchMap(( params:Params)=>
-        //{
-           this.aplicar=[];
-           console.log('letras a pagar por benef '+this.totalAplicarVencidos);
-           this.aplicar=this.aplicarService.getLetras(this.totalAplicarVencidos);
-        //})
-        //this.k.subscribe(
-        //  aplicar =>{
-            //console.log("Aplicar en suscribir: ")
-            //console.log(this.aplicar);
-            //this.aplicar = aplicar;
-            console.log("Suscribir");
-            let tipo= typeof(this.aplicar);
-            console.log('tipo de dato dentro de subscribe ' +tipo) ;
-            console.log('valor de aplicar dentro subscribe '+this.aplicar);
 
-            //var array = [for (key of Object.keys(this.aplicar)) this.aplicar[key]];
-            //let tipo2= typeof(array);
-            //console.log('tipo de dato 2 dentro de subscribe ' +tipo2) ;
-            /*
-            let letrasaplicar = JSON.parse(localStorage.getItem('aplicar'));
-            console
-            for (var elemento in letrasaplicar) {
-              let modelo={
-                fecha: letrasaplicar[elemento].fecha,
-                letra: letrasaplicar[elemento].letra,
-                capital: letrasaplicar[elemento].capital,
-                interes: letrasaplicar[elemento].iteres,
-                seguro: letrasaplicar[elemento].seguro,
-                admon: letrasaplicar[elemento].admon,
-                oseg: letrasaplicar[elemento].oseg,
-                com: letrasaplicar[elemento].com,
-                tit: letrasaplicar[elemento].tit,
-                mor: letrasaplicar[elemento].mor,
-                total: letrasaplicar[elemento].total.toString()
-              }
-              console.log('modelo '+JSON.stringify(modelo));
-              this.aplicar.push(JSON.stringify(modelo));
-            }*/
-
-
-
-=======
-        {
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
-        }
-        
->>>>>>> 894223dc604472206acf67f3fcfded73f25a524b
+          this.message('Recuperación exitosa de las letras a aplicar');
+          this.errormessage(null);
+
+
       }else{
-        this.errormessage('Error en la recuperacion de los movimientos a aplicar');
+        this.errormessage('Error en la recuperacion de las letras a aplicar');
         this.message(null);
         this.aplicar=null;
       }
     };
-
-
 
 }

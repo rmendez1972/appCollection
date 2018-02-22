@@ -24,11 +24,7 @@ export class AplicarService {
 	//getMov_edoscta
 
   getLetras(totalvencidos:number): Aplicar[]{
-<<<<<<< HEAD
-    //console.log("Get");
-    localStorage.removeItem('aplicar');
-=======
->>>>>>> 894223dc604472206acf67f3fcfded73f25a524b
+
     this.totalvencidos = totalvencidos;
     return this.extractDataAplicar();
   }
@@ -65,17 +61,12 @@ export class AplicarService {
       tot = tot + parseFloat(this.aplicar[x].total);
 
     }
-<<<<<<< HEAD
-    console.log("Extraer:")
-    console.log('dentro de extracDataAplicar '+this.aplicar);
-    let tipo= typeof(this.aplicar);
-    console.log('tipo de dato dentro de extracDataAplicar ' +tipo) ;
-=======
+
     let totales ={
-      fecha:'Totales',
-      letra:this.totalvencidos+1,
+      fecha:'Totales:',
+      letra:null,
       capital:capital,
-      intereses:interes,
+      interes:interes,
       seguro:seguro,
       admon:admon,
       oseg:oseg,
@@ -86,7 +77,7 @@ export class AplicarService {
 
     };
     this.aplicar[x]= totales;
->>>>>>> 894223dc604472206acf67f3fcfded73f25a524b
+
     localStorage.setItem('aplicar',JSON.stringify(this.aplicar));
     return this.aplicar || { };
   }

@@ -156,19 +156,20 @@
           <div class="form-group" style="text-align:center">
             <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos()" />
           </div>
-          
+
         </form >
-        <form *ngIf=miMensajeVencidos  >
-          <div class="form-group" >
+        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f3.submitted && !letras.valid }" >
             <label for="letras" class="col-md-4 control-label">Numero de Letras Aplicar</label>
             <div class="col-md-6">
-              <input type="number" name="letras" class="form-control"  id="letras" [(ngModel)]="totalAplicarLetras"  required>
+              <input type="number" name="letras" class="form-control"  id="letras" [(ngModel)]="totalAplicarLetras" #letras="ngModel" min="1" max="{{totalvencidos}}" required>
+              <div *ngIf="f3.submitted && !letras.valid" class="help-block">Número de Letras Aplicar es obligatorio</div>
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
             <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras()" />
           </div>
-          
+
         </form>
       </div>
     </div>
@@ -186,7 +187,18 @@
     </div>
   </div>
 
-  
+  <div class="panel panel-primary">
+    <div class="panel-heading">Letras a Aplicar del Beneficiario</div>
+    <div class="panel-body transparent">
+      <h3 *ngIf=miMensajeAplicar><span class="label label-success">{{miMensajeAplicar}}</span></h3>
+      <h3 *ngIf=miMensajeerrorAplicar><span class="label label-danger">{{miMensajeerrorAplicar}}</span></h3>
+      <app-aplicar [totalAplicarVencidos]=totalAplicarLetras #aplicar (onTotalAplicarLetras)="onTotalAplicarLetras($event)"  (onMessageAplicar)="onMessageAplicar($event)" (onerrorMessageAplicar)="onerrorMessageAplicar($event)">
+
+      </app-aplicar>
+    </div>
+  </div>
+
+
   <div class="panel panel-primary">
     <div class="panel-heading">Bonificaciones del Beneficiario</div>
     <div class="panel-body transparent">
@@ -196,13 +208,5 @@
       <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
         (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
 
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Letras a Aplicar del Beneficiario</div>
-    <div class="panel-body transparent">
-      <app-aplicar [totalAplicarVencidos]=totalAplicarLetras #aplicar (onTotalAplicarLetras)="onTotalAplicarLetras($event)">
-
-      </app-aplicar>
     </div>
   </div>
