@@ -27,6 +27,8 @@ public URLcajas:String;
 public URLcajaslist:String;
 public URLcajasedit:String;
 
+public UrlAplicarVencidos:String;
+
 constructor() {}
 
 
@@ -138,6 +140,10 @@ constructor() {}
 
 		getUrlcajasedit():String{
 			return this.URLcajasedit='http://localhost:8080/cobranza/controladorcaja?operacion=editarGuardarfromApp&id_caja=';
+		}
+
+		getUrlAplicarVencidos():String{
+			return this.UrlAplicarVencidos='http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&clave_b=';
 		}
 }
 

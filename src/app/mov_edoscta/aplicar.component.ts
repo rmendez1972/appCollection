@@ -123,8 +123,8 @@ export class AplicarComponent implements OnInit {
       }
     };
 
-    getPagar() {
-      this.pagar = this.aplicarService.getPagar(this.totalAplicarVencidos);
+    getPagar(fecha:string) {
+      this.pagar = this.aplicarService.getPagar(fecha);
       this.message('Recuperación exitosa de las letras a aplicar');
       
     };
