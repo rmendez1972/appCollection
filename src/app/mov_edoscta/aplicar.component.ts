@@ -60,7 +60,8 @@ export class AplicarComponent implements OnInit {
   private errorMessage: string;
   private aplicar: any[];
 
-  //private k: Observable<Aplicar[]>;
+
+
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
@@ -70,7 +71,6 @@ export class AplicarComponent implements OnInit {
   @Input() totalAplicarVencidos;
 
   @Output() totalLetrasAplicar = new EventEmitter<Number>();
-
   @Output() onMessageAplicar = new EventEmitter<String>();
   @Output() onerrorMessageAplicar = new EventEmitter<String>();
 
@@ -82,7 +82,7 @@ export class AplicarComponent implements OnInit {
       private route: ActivatedRoute,
     )
     {
-      //this.vencidos= JSON.parse(localStorage.getItem('vencidos'));
+
     }
 
 
@@ -100,6 +100,7 @@ export class AplicarComponent implements OnInit {
     };
 
     valida_ultimo(i:number){
+      console.log('iteracion de la vista '+i);
       if (i==this.totalAplicarVencidos) {
         return true;
       }else{
@@ -110,17 +111,17 @@ export class AplicarComponent implements OnInit {
     }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
-        {
+
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
-        }
-        
+          this.message('Recuperación exitosa de las letras a aplicar');
+          this.errormessage(null);
+
+
       }else{
-        this.errormessage('Error en la recuperacion de los movimientos a aplicar');
+        this.errormessage('Error en la recuperacion de las letras a aplicar');
         this.message(null);
         this.aplicar=null;
       }
     };
-
-   
 
 }

@@ -52,7 +52,7 @@ export class CajaService {
     };
     localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
     this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
-    console.log('currentuser antes de llamar rest api '+this.currentUser);
+
     return this.http.get(this.cajasUrl+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+this.id)
     .map(this.extractDataCaja)
     .catch(this.handleError);
@@ -89,7 +89,7 @@ export class CajaService {
     };
     localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
     this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
-    console.log('currentuser antes de modif. '+this.currentUser);
+
     return this.http.get(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+id)
     .map(this.extractDataCajaEdit)
     .catch(this.handleError);
@@ -98,7 +98,7 @@ export class CajaService {
   private extractDataCajaList(res: Response) {
 
     let body = res.json();
-    console.log(body.caja);
+
 
     return body.caja|| { };
 
@@ -107,7 +107,7 @@ export class CajaService {
   private extractDataCajaEdit(res: Response) {
 
     let body = res.json();
-    console.log(body.caja);
+
     let valor=new String(body.cajas);
     if (valor=="true"){
 
@@ -117,18 +117,9 @@ export class CajaService {
           this.id=this.currentUser[elemento].id;
           this.username=this.currentUser[elemento].username;
         }
-       console.log(typeof(this.currentUser));
-       console.log('valor de id '+this.id);
-       console.log('valor de username '+this.username);
-
-
-       console.log('currentuser dentro de if '+JSON.stringify(this.currentUser));
-
 
        let paramAperturaCaja= JSON.parse(localStorage.getItem('paramAperturaCaja'));
-       console.log('paramAperturaCaja dentro de if '+paramAperturaCaja);
 
-       console.log('fecha dentro de if ' + new Date(paramAperturaCaja.fecha).toISOString().substring(0, 10));
        for (var elemento in this.currentUser){
          this.currentUser[elemento].fecha=new Date(paramAperturaCaja.fecha).toISOString().substring(0, 10);
          this.currentUser[elemento].folio_inicial=paramAperturaCaja.folio_inicial;
@@ -139,7 +130,7 @@ export class CajaService {
        }
        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
        localStorage.removeItem('paramAperturaCaja');
-       console.log('currentuser despues de modif. '+JSON.stringify(this.currentUser));
+
      }
 
     return body.caja|| { };
@@ -149,15 +140,11 @@ export class CajaService {
 
 
   private extractDataCaja(res: Response) {
-    console.log('dentro de estractDataCaja');
+
     let body = res.json();
-    console.log('valor de body dentro de extractDataCaja '+body.cajas);
-    console.log('valor de body.cajas pos. 0  '+body.cajas[0]);
-    console.log('valor de body.cajas pos. 1  '+body.cajas[1]);
 
      let valor=new String(body.cajas[0]);
      if (valor=="true"){
-       console.log('dentro del if de estractDataCaja');
 
        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 

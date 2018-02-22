@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
 import { Solicitante } from './solicitante';
 
-//import { Aplica_Mov_edocta } from './aplica_mov_edocta';
+
 import { Mov_edocta } from './mov_edocta';
 import { Benef } from './benef';
 import { Solicitud } from './solicitud';
@@ -71,8 +71,10 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
+
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
+
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
 
@@ -87,10 +89,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeerrorVencidos:String;
   private miMensajeMovs:String;
   private miMensajeerrorMovs:String;
+  private miMensajeAplicar:String;
+  private miMensajeerrorAplicar:String;
   private fecha:String;
   private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
-  
+
   public totalvencidos: number=0;
 
   public totalAplicarLetras: number = 0;
@@ -199,6 +203,22 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       this.miMensajeerrorVencidos = mensaje;
 
     }
+
+    onMessageAplicar(mensaje:String){
+
+      this.miMensajeAplicar = mensaje;
+
+
+    }
+
+
+    onerrorMessageAplicar(mensaje:String){
+
+      this.miMensajeerrorAplicar = mensaje;
+
+
+    }
+
     onTotalVencidos(totalvencidos:number){
       this.totalAplicarLetras = totalvencidos;
       this.totalvencidos = totalvencidos;
