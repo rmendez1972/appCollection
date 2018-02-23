@@ -115,7 +115,7 @@ export class VencidosComponent implements OnInit {
         .switchMap((params: Params) =>
         {
           //this.selectedId= +params['id'];
-          return this.vencidosService.getVencidos(this.clave_b,this.fecha_corte)
+          return this.vencidosService.getVencidos(this.clave_b,this.fecha_corte);
         })
 
         this.k.subscribe(
@@ -135,6 +135,8 @@ export class VencidosComponent implements OnInit {
         this.vencidos=null;
       }
     };
+
+    
 
 
 

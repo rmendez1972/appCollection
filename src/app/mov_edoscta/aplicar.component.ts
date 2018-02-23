@@ -5,9 +5,7 @@ import { Aplicar } from './aplicar';
 import { AplicarService} from './aplicar.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 //import { AuthGuard } from '../_guards/index';
-
 //import { UploadComponent} from '../upload/upload.component';
-
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
@@ -58,23 +56,25 @@ export class AplicarComponent implements OnInit {
 
 
   private errorMessage: string;
-  private aplicar: any[];
 
   private pagar: any[];
 
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
-  private vencidos:Vencidos;
+  private aplicar:Aplicar[];
+  private k: Observable<Aplicar[]>;
 
 
   @Input() totalAplicarVencidos;
 
+
+  @Input() fecha_corte:String;
   @Output() totalLetrasAplicar = new EventEmitter<Number>();
   @Output() onMessageAplicar = new EventEmitter<String>();
   @Output() onerrorMessageAplicar = new EventEmitter<String>();
 
-  	constructor(
+    constructor(
       private aplicarService: AplicarService,
       private bonificService: BonificService,
       private alertService:AlertService,
@@ -86,7 +86,7 @@ export class AplicarComponent implements OnInit {
     }
 
 
-  	ngOnInit() {
+    ngOnInit() {
     };
 
     message(mensaje:String){
@@ -124,9 +124,22 @@ export class AplicarComponent implements OnInit {
     };
 
     getPagar(fecha:string) {
-      this.pagar = this.aplicarService.getPagar(fecha);
-      this.message('Recuperación exitosa de las letras a aplicar');
-      
-    };
+      this.k=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          //this.selectedId= +params['id'];
+          return this.aplicarService.getPagar(fecha);
+        })
+
+        this.k.subscribe(
+          aplicar =>{
+            this.message('Pago de las letras vencidas realizadas con exito');
+            this.errormessage(null);
+          },
+          error =>  this.errorMessage = <any>error);
+      };
+
+
 
 }

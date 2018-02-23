@@ -28,6 +28,8 @@ export class VencidosService {
 
 	//getMov_edoscta
   getVencidos(clave_b:String, fecha_corte:String): Observable<Vencidos[]> {
+    
+    
      return this.http.get(this.vencidosUrl+clave_b+'&fecha_corte='+fecha_corte)
                     .map(this.extractDataVencidos)
                     .catch(this.handleError);

@@ -16,7 +16,6 @@ import {BonificService} from './bonificacion.service';
 import {Mov_edosctaListComponent} from './mov_edoscta-list.component';
 import {Mov_edoctaService} from './mov_edocta.service';
 
-
 @NgModule({
   imports: [
   CommonModule,
