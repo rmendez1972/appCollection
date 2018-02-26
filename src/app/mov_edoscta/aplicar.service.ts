@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
@@ -38,22 +37,13 @@ export class AplicarService {
 
   //getMov_edoscta
   getLetras(totalvencidos:number): Aplicar[]{
-
     this.totalvencidos = totalvencidos;
     return this.extractDataAplicar();
   }
 
 
   getPagar(fecha:string):Observable<Aplicar[]>{
-    /*
-
-    return this.http.get("http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&id_benef=51&capital=75&interes=0&admon=0&seguro=0&clave_mov=2&poliza=I001&fecha_corte=2018-02-23&recibo=1&o_seguro=0&moratorios=11.68&fecha_pol=2018-02-23&id_usuario=20&comisiones=0&serie=A&clave_b=PROD10-00003&tit=0&id_catprog=71&numcontrato=71&id_caja=47")
-                    .map(this.extractDataPagarVencidos)
-                    .catch(this.handleError);
-
-                    */
-                    
-    
+    //console.log("get pagar dentro de aplicar service");
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
     return this.dataPagar(this.fecha);
     
@@ -194,6 +184,9 @@ export class AplicarService {
 
     }
 
+    for (var z = 0; z < this.totalvencidos; ++z) {
+      this.pagar[z]= this.aplicar[x];
+    }
     let usuarioFinal ={
       serie:serie,
       id_caja:id_caja,
@@ -203,7 +196,7 @@ export class AplicarService {
       poliza:poliza,
 
     };
-
+    
     let aplicarFinal={
       capital:capital,
       interes:interes,
@@ -223,16 +216,51 @@ export class AplicarService {
       numcontrato:id_catprog,
     }
 
+    capital = this.aplicar[x].capital;
+      interes = this.aplicar[x].interes;
+      admon = this.aplicar[x].admon;
+      seguro = this.aplicar[x].seguro;
+      clave_mov = this.aplicar[x].letra;
+      comisiones = this.aplicar[x].com;
+      o_seguro = this.aplicar[x].oseg;
+      moratorios = this.aplicar[x].mor;
+      tit = this.aplicar[x].tit;
+
+    for (var s = 0; s < this.totalvencidos; ++s) {
+      return this.postPagarVencidos(beneficiarioFinal.id_benef,
+       this.pagar[s].capital,
+       this.pagar[s].interes,
+       this.pagar[s].admon,
+       this.pagar[s].seguro, 
+       this.pagar[s].letra, 
+       usuarioFinal.poliza,
+       fecha_corte,
+       usuarioFinal.recibo, 
+       aplicarFinal.o_seguro, 
+       this.pagar[s].mor,
+       usuarioFinal.fecha_pol,
+       usuarioFinal.id_usuario,
+       this.pagar[s].com,
+       usuarioFinal.serie, 
+       beneficiarioFinal.clave_b,
+       this.pagar[s].tit,
+       beneficiarioFinal.id_catprog, 
+       beneficiarioFinal.numcontrato, 
+       usuarioFinal.id_caja
+       );
+    }
+    }
+    /*
+    Return que solo inserta el primer registro
+    
     return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
       aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, aplicarFinal.o_seguro, aplicarFinal.moratorios,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,aplicarFinal.comisiones,usuarioFinal.serie, beneficiarioFinal.clave_b,
-      aplicarFinal.tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
-    
-  }
+      aplicarFinal.tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja);
+      }
 
-
-
+    */
 
 postPagarVencidos(
   id_benef:number,
@@ -257,7 +285,7 @@ postPagarVencidos(
   id_caja:number,
   ): Observable<Aplicar[]> {
     let param_pagar_vencidos={
-      id_benef:id_benef.toString(),
+      id_benef:id_benef.toString().trim(),
       capital:capital.toString().trim(),
       interes:interes.toString().trim(),
       admon:admon.toString().trim(),
@@ -277,8 +305,8 @@ postPagarVencidos(
       id_catprog:id_catprog.toString().trim(),
       numcontrato:numcontrato.toString().trim(),
       id_caja:id_caja.toString().trim(),
-    };
 
+    };
 
     console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital 
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+

@@ -13,7 +13,7 @@ export class VencidosService {
 
 
   private vencidosUrl: string;
-  private vencidos: any = [];
+  //private vencidos: any = [];
   private capital: number;
   private interes: number;
 
@@ -21,16 +21,12 @@ export class VencidosService {
       private url:ServiceUrl,
       private alertService: AlertService)
       {
-        //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
         this.vencidosUrl=String(this.url.getUrlVencidos());
 
       }
 
-	//getMov_edoscta
   getVencidos(clave_b:String, fecha_corte:String): Observable<Vencidos[]> {
-    
-    
-     return this.http.get(this.vencidosUrl+clave_b+'&fecha_corte='+fecha_corte)
+    return this.http.get(this.vencidosUrl+clave_b+'&fecha_corte='+fecha_corte)
                     .map(this.extractDataVencidos)
                     .catch(this.handleError);
 

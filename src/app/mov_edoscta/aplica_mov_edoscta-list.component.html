@@ -154,7 +154,7 @@
           </div>
 
           <div class="form-group" style="text-align:center">
-            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos()" />
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos();getTipoBonificaciones()" />
           </div>
 
         </form >
@@ -169,14 +169,30 @@
           <div  class="form-group" style="text-align:center">
             <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras()" />
           </div>
-
         </form>
+        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
+          <label for="letras" class="col-md-4 control-label">Tipo de Bonificaciones</label>            
+            <tbody >
+              <select>
+                <option *ngFor="let bon of bonificaciones" >{{bon.clave_bonific }}</option>
+              </select>
+            </tbody>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
+          <label for="letras" class="col-md-4 control-label">Total de moratorios</label> 
+          <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalMoratorios" #moratorios="ngModel" min="1" max="{{totalmoratorios}}" required>
+            
+          </div>
+        </form>
+        
         <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
           <div  class="form-group" style="text-align:center">
             <input type="submit" value="Pagar" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte)" />
           </div>
 
         </form>
+
       </div>
     </div>
   </div>
@@ -203,8 +219,6 @@
       </app-aplicar>
     </div>
   </div>
-
-
   <div class="panel panel-primary">
     <div class="panel-heading">Bonificaciones del Beneficiario</div>
     <div class="panel-body transparent">
@@ -216,3 +230,4 @@
 
     </div>
   </div>
+
