@@ -69,7 +69,9 @@ export class CajaService {
   }
 
   //postEdicion_caja
-  postEdicion_caja(id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number): Observable<Caja[]> {
+  postEdicion_caja(
+    id_caja:number,fecha:string,folio_inicial:number,folio_final:number,poliza:string,monto_inicial:number,id:number
+    ): Observable<Caja[]> {
 
     this.id_caja=id_caja;
     this.fecha=fecha;
@@ -91,6 +93,7 @@ export class CajaService {
     localStorage.setItem('paramAperturaCaja',JSON.stringify(param_apertura_caja));
     this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
 
+    console.log(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+id);
     return this.http.get(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+id)
     .map(this.extractDataCajaEdit)
     .catch(this.handleError);

@@ -4,19 +4,22 @@ import { Aplica_Mov_edocta } from './aplica_mov_edocta';
 import { Benef } from './../mov_edoscta/benef';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-//import {Observable} from 'rxjs/Rx';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
+import { TipoBonificacion } from './tipoBonificacion';
 
 @Injectable()
 export class Aplica_Mov_edoctaService {
-  //private seguimientosUrl: string;
+
   private aplica_mov_edosctaUrl: string;
   private beneficiarioUrl: string;
+  private tipoBonificacionUrl: string;
+
+
   constructor (private http: Http,private url:ServiceUrl,private alertService: AlertService){
-    //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
     this.aplica_mov_edosctaUrl=String(this.url.getUrlmov_edoscta());
     this.beneficiarioUrl=String(this.url.getUrlBeneficiario());
+    this.tipoBonificacionUrl=String(this.url.getUrlbonificaciones());
   }
 
   //getMov_edoscta
@@ -26,6 +29,12 @@ export class Aplica_Mov_edoctaService {
   //getBenef
   getBenef(criterio:String,valorcriterio:String): Observable<Benef[]> {
     return this.http.get(this.beneficiarioUrl+criterio+"&valorcriterio="+valorcriterio).map(this.extractDataBenef).catch(this.handleError);
+  }
+
+  getTipoBonificacion(): Observable<TipoBonificacion[]> { 
+     return this.http.get(this.tipoBonificacionUrl)
+                    .map(this.extractDataTipoBonificacion)
+                    .catch(this.handleError);
   }
 
   private extractDataMov(res: Response) {
@@ -82,10 +91,13 @@ export class Aplica_Mov_edoctaService {
     return body.beneficiario || { };
   }
 
-
-
+  private extractDataTipoBonificacion(res: Response) {
+    let body = res.json();
+    console.log(body.bonificaciones);
+    return body.bonificaciones|| { };
+  }
+  
   private handleError (error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
