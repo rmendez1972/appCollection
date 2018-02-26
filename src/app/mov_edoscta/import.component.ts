@@ -8,10 +8,13 @@ import { MenuComponent } from '../menus/menu.component';
 import {VencidosComponent} from '../mov_edoscta/vencidos.component';
 
 import {BonificacionComponent} from '../mov_edoscta/bonificacion.component';
+import { ConfirmComponent } from '../_directives/index';
 
 import { centavos } from '../_pipes/centavos.pipe';
 import {VencidosService} from './vencidos.service';
 import {BonificService} from './bonificacion.service';
+import {AplicarService} from './aplicar.service';
+import { ConfirmService } from '../_services/index';
 
 import {Mov_edosctaListComponent} from './mov_edoscta-list.component';
 import {Mov_edoctaService} from './mov_edocta.service';
@@ -28,17 +31,21 @@ import {Mov_edoctaService} from './mov_edocta.service';
   VencidosComponent,
   centavos,
   Mov_edosctaListComponent,
+  ConfirmComponent,
   ],
   providers: [
   VencidosService,
   BonificService,
   Mov_edoctaService,
-  ], 
+  ConfirmService,
+  AplicarService
+  ],
   exports:[
   Mov_edosctaListComponent,
   BonificacionComponent,
   VencidosComponent,
   centavos,
+  ConfirmComponent,
   ],
 
 })

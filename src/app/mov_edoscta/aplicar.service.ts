@@ -44,6 +44,7 @@ export class AplicarService {
 
 
   getPagar(fecha:string): Aplicar[]{
+
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
     return this.dataPagar(this.fecha);
   }
@@ -136,7 +137,7 @@ export class AplicarService {
     let moratorios=0;//aplicar
     let tit: number;//aplicar
     let fecha_corte: string=fecha;//controler
-    
+
 
     let clave_b:String;//Benef
     let id_benef=0;//bene
@@ -269,7 +270,7 @@ postPagarVencidos(
       id_caja:id_caja.toString().trim(),
     };
 
-    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital 
+    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
@@ -285,7 +286,7 @@ postPagarVencidos(
 //&o_seguro=0&moratorios=.45&estatus=A&fecha_pol=2018-02-20&id_usuario=5&id_bonific=1&comisiones=0.00&serie=A&clave_b=NUGD19-00001
 //&tit=25.99&id_catprog=10&numcontrato=12345&id_caja=1
 
-    return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital 
+    return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+

@@ -14,11 +14,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { ConfirmService} from '../_services/index';
 import { Aplicar} from './aplicar';
 
 //Importando modulos para Alerta de msj
-import {ConfirmService} from '../confirm/confirm.service';
-import {ConfirmComponent} from '../confirm/confirm.component';
+//import {ConfirmService} from '../confirm/confirm.service';
+//import {ConfirmComponent} from '../confirm/confirm.component';
 
 //var componentHandler:any;
 declare var componentHandler;
@@ -103,7 +104,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
 
-  
+
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -123,7 +124,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     ngOnInit(){
-      
+
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
       //componentHandler.upgradeDom();
@@ -239,7 +240,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       }
     }
 
-    
+
 
 
 

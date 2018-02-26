@@ -15,8 +15,8 @@ import { AplicarComponent } from './aplicar.component';
 import { AplicarService } from './aplicar.service';
 
 
-import {ConfirmComponent} from '../confirm/confirm.component';
-import {ConfirmService} from '../confirm/confirm.service';
+
+
 
 @NgModule({
   imports: [
@@ -27,13 +27,13 @@ import {ConfirmService} from '../confirm/confirm.service';
   declarations: [
     Aplica_Mov_edosctaListComponent,
     AplicarComponent,
-    ConfirmComponent,
+
   ],
   providers: [
     ServiceUrl,
     Aplica_Mov_edoctaService,
     AplicarService,
-    ConfirmService,
+
   ]
 })
 export class Aplica_Mov_edosctaModule{}
