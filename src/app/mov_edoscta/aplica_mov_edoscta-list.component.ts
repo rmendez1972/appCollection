@@ -101,7 +101,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //declaracion de variables
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
-  
+
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
 
@@ -245,7 +245,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     onTotalMoratorios(totalmoratorios:number){
-      console.log("Total moratorios desdecomponent padrde: "+totalmoratorios);
+      console.log("Total moratorios desdecomponent padre: "+totalmoratorios);
       this.totalmoratorios = totalmoratorios;
     }
     valida_ultimo(i:number){
@@ -257,9 +257,4 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
       }
     }
-
-
-
-
-
 }

@@ -26,7 +26,6 @@ import { Observable } from 'rxjs/Observable';
 
     confirm(message: string='',fecha:string,miservice:AplicarService,miroute:ActivatedRoute,miK:Observable<Aplicar[]>,siFn:(message,fecha,aplicarservice, routeservice,k)=>void,noFn:()=>void){
     	console.log('mensaje recibido dentro de confirm '+message);
-    	console.log('funcion si recibido dentro de confirm '+siFn);
     	this.fecha=fecha;
     	console.log('fecha dentro de confirm '+this.fecha);
     	//console.log('valor de fecha '+fecha);

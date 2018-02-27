@@ -181,7 +181,7 @@
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
           <label for="letras" class="col-md-4 control-label">Total de moratorios</label> 
-          <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalmoratorios" #moratorios="ngModel" min="1" max="{{totalmoratorios}}" required>
+          <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalmoratorios" #moratorios="ngModel" step="0.01" min="1" max="{{totalmoratorios}}" required>
             
           </div>
         </form>
@@ -196,6 +196,7 @@
       </div>
     </div>
   </div>
+  <confirm></confirm>
   <p>Total Vencidos: {{totalvencidos}}</p>
   <div class="panel panel-primary">
     <div class="panel-heading">Mensualidades/Letras Vencidas del Beneficiario</div>

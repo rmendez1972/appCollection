@@ -111,10 +111,11 @@ export class AplicarComponent implements OnInit {
     }
     extractMoratorios(){
       let mor = 0;
-      for (var x = 0; x < this.aplicar.length ; x++) {
+      for (var x = 0; x < this.aplicar.length-1 ; x++) {
         mor = mor + parseFloat((this.aplicar[x].mor).toString());
       }
-      this.totalmoratorios =mor;
+      console.log("valor mor: "+mor);
+      this.totalmoratorios =parseFloat(mor.toFixed(2));
       return this.totalmoratorios;
       
     }
