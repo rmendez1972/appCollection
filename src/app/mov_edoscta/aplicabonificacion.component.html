@@ -1,0 +1,38 @@
+<div class="table-responsive ">
+
+  <table class="table table-condensed table-hover table-bordered">
+  	<thead  style="color: #7b7d80;">
+  		<th >Clave</th>
+      <th >Estatus</th>
+      <th >Imp Cap</th>
+      <th >Imp Adm</th>
+      <th >Imp Int</th>
+      <th >Imp Osg</th>
+      <th >Imp Seg</th>
+      <th >Imp Com</th>
+      <th >Imp Mor</th>
+      <th >Imp Tit</th>
+      <th width="10%">Autoriza</th>
+      <th >Recibo</th>
+      <th >Serie</th>
+  	</thead>
+  	<tbody >
+        <tr style="font-size: 10px" >
+  			<td >{{model.id_catbonific}}</td>
+        <td >{{model.estatus}}</td>
+        <td style="text-align:right;">{{model.imp_cap | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_adm | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_int | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_osg | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_seg | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_com | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_mor | currency:'MXN':true:'.2'}}</td>
+        <td style="text-align:right;">{{model.imp_tit | currency:'MXN':true:'.2'}}</td>
+        <td >{{model.id_autoriza}}</td>
+        <td >{{model.recibo}}</td>
+        <td >{{model.serie}}</td>
+  		</tr>
+  	</tbody>
+  </table>
+
+</div>

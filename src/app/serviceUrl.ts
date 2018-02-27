@@ -23,6 +23,9 @@ public URLsalmindf:String;//marlon
 public URLclavemov:String;//marlon
 public URLclavediv:String;//marlon
 public URLvencidos:String;
+
+public URLaplicabonificacion:String;
+
 public URLcajas:String;
 public URLcajaslist:String;
 public URLcajasedit:String;
@@ -127,6 +130,11 @@ constructor() {}
 			return this.URLvencidos='http://localhost:8080/cobranza/controladorvencidos?operacion=listar&clave_b=';
 
 			//return this.URLvencidos='http://localhost:8083/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&clave_b=';
+		}
+
+
+		getUrlAplicabonificacion():String{
+			return this.URLaplicabonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=aplicaBonificacionesApi&id_movedoscta=';
 		}
 
 		getUrlcajas():String{
