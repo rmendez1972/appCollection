@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 //import {Observable} from 'rxjs/Rx';
+//
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 //import  {Vencidos} from './vencidos';
@@ -42,11 +43,12 @@ export class AplicarService {
   }
 
 
+
   getPagar(fecha:string):Observable<Aplicar[]>{
     //console.log("get pagar dentro de aplicar service");
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
     return this.dataPagar(this.fecha);
-    
+
   }
 
 
@@ -138,7 +140,7 @@ export class AplicarService {
     let moratorios=0;//aplicar
     let tit: number;//aplicar
     let fecha_corte: string=fecha;//controler
-    
+
 
     let clave_b:String;//Benef
     let id_benef=0;//bene
@@ -170,6 +172,7 @@ export class AplicarService {
       admon = this.aplicar[x].admon;
       seguro = this.aplicar[x].seguro;
       clave_mov = this.aplicar[x].letra;
+
       comisiones = this.aplicar[x].com;
       o_seguro = this.aplicar[x].oseg;
       moratorios = this.aplicar[x].mor;
@@ -184,9 +187,6 @@ export class AplicarService {
 
     }
 
-    for (var z = 0; z < this.totalvencidos; ++z) {
-      this.pagar[z]= this.aplicar[x];
-    }
     let usuarioFinal ={
       serie:serie,
       id_caja:id_caja,
@@ -196,7 +196,7 @@ export class AplicarService {
       poliza:poliza,
 
     };
-    
+
     let aplicarFinal={
       capital:capital,
       interes:interes,
@@ -216,51 +216,19 @@ export class AplicarService {
       numcontrato:id_catprog,
     }
 
-    capital = this.aplicar[x].capital;
-      interes = this.aplicar[x].interes;
-      admon = this.aplicar[x].admon;
-      seguro = this.aplicar[x].seguro;
-      clave_mov = this.aplicar[x].letra;
-      comisiones = this.aplicar[x].com;
-      o_seguro = this.aplicar[x].oseg;
-      moratorios = this.aplicar[x].mor;
-      tit = this.aplicar[x].tit;
 
-    for (var s = 0; s < this.totalvencidos; ++s) {
-      return this.postPagarVencidos(beneficiarioFinal.id_benef,
-       this.pagar[s].capital,
-       this.pagar[s].interes,
-       this.pagar[s].admon,
-       this.pagar[s].seguro, 
-       this.pagar[s].letra, 
-       usuarioFinal.poliza,
-       fecha_corte,
-       usuarioFinal.recibo, 
-       aplicarFinal.o_seguro, 
-       this.pagar[s].mor,
-       usuarioFinal.fecha_pol,
-       usuarioFinal.id_usuario,
-       this.pagar[s].com,
-       usuarioFinal.serie, 
-       beneficiarioFinal.clave_b,
-       this.pagar[s].tit,
-       beneficiarioFinal.id_catprog, 
-       beneficiarioFinal.numcontrato, 
-       usuarioFinal.id_caja
-       );
-    }
-    }
-    /*
-    Return que solo inserta el primer registro
-    
+    //Return que solo inserta el primer registro
+
+
     return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
       aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, aplicarFinal.o_seguro, aplicarFinal.moratorios,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,aplicarFinal.comisiones,usuarioFinal.serie, beneficiarioFinal.clave_b,
       aplicarFinal.tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja);
-      }
 
-    */
+
+
+  }
 
 postPagarVencidos(
   id_benef:number,
@@ -284,6 +252,7 @@ postPagarVencidos(
   numcontrato:number,
   id_caja:number,
   ): Observable<Aplicar[]> {
+  //console.log('valor de clave_mov'+clave_mov);
     let param_pagar_vencidos={
       id_benef:id_benef.toString().trim(),
       capital:capital.toString().trim(),
@@ -308,7 +277,7 @@ postPagarVencidos(
 
     };
 
-    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital 
+    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
@@ -318,7 +287,9 @@ postPagarVencidos(
       "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
       "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja);
 
-    return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital 
+
+    return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
+
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+

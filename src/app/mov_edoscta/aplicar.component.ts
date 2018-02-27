@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { ConfirmService} from '../_services/index';
 import {Vencidos} from './vencidos'
 import {BonificService} from './bonificacion.service';
 
@@ -63,6 +64,8 @@ export class AplicarComponent implements OnInit {
   private aplicar:Aplicar[];
   private k: Observable<Aplicar[]>;
 
+  private totalmoratorios: number=0;
+
 
   @Input() totalAplicarVencidos;
 
@@ -71,11 +74,13 @@ export class AplicarComponent implements OnInit {
   @Output() totalLetrasAplicar = new EventEmitter<Number>();
   @Output() onMessageAplicar = new EventEmitter<String>();
   @Output() onerrorMessageAplicar = new EventEmitter<String>();
+  @Output() onTotalMoratorios = new EventEmitter<Number>();
 
     constructor(
       private aplicarService: AplicarService,
       private bonificService: BonificService,
       private alertService:AlertService,
+      private confirmService:ConfirmService,
       private router: Router,
       private route: ActivatedRoute,
     )
@@ -92,6 +97,12 @@ export class AplicarComponent implements OnInit {
     errormessage(mensaje:String){
       this.onerrorMessageAplicar.emit(mensaje);
     };
+
+    totalMoratorios(totalmoratorios:number){
+      this.onTotalMoratorios.emit(totalmoratorios);
+    }
+
+
     valida_ultimo(i:number){
       if (i==this.totalAplicarVencidos) {
         return true;
@@ -104,6 +115,8 @@ export class AplicarComponent implements OnInit {
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
           this.message('Recuperación exitosa de las letras a aplicar');
           this.errormessage(null);
+          this.totalmoratorios=this.totalAplicarVencidos;
+          this.totalMoratorios(this.totalmoratorios);
       }else{
         this.errormessage('Error en la recuperacion de las letras a aplicar');
         this.message(null);
@@ -112,21 +125,37 @@ export class AplicarComponent implements OnInit {
     };
 
     getPagar(fecha:string) {
-      let pagar;
-      this.k=this.route.params
-        .switchMap((params: Params) =>
-        {
-          return this.aplicarService.getPagar(fecha);
-        })
 
-        this.k.subscribe(
-          aplicar =>{
-            this.message('Pago de las letras vencidas realizadas con exito');
-            this.errormessage(null);
-          },
-          error =>  this.errorMessage = <any>error);
-          
-      };
-      
+
+       this.confirmService.confirm("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.route,this.k,function(message,fecha,aplicarservice,route,k){
+              //ACTION: Do this If user says YES
+              console.log ('DENTRO DE CALLBACK DE  SI');
+              //this.pagar = aplicarservice.getPagar(fecha);
+              console.log('valor de mmessage '+message);
+              console.log('valor de fecha '+fecha);
+              console.log('type of aplicarservice '+typeof(aplicarservice));
+              k=route.params
+              .switchMap((params: Params) =>
+              {
+                return aplicarservice.getPagar(fecha);
+              })
+
+              k.subscribe(
+                aplicar =>{
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                }
+                //error => let error=error
+                  //this.errorMessage = <any>error
+                );
+
+            },function(){
+              //ACTION: Do this if user says NO
+              console.log ('DENTRO DE CALLBACK DE  no');
+      })
+
+    };
+
+
 
 }
