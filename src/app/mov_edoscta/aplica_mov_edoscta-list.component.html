@@ -231,3 +231,16 @@
     </div>
   </div>
 
+  <div class="panel panel-primary">
+    <div class="panel-heading">Bonificaciones a Aplicar</div>
+    <div class="panel-body transparent">
+
+      <h3 *ngIf=miMensajeAplicaBons><span class="label label-success">{{miMensajeAplicaBons}}</span></h3>
+      <h3 *ngIf=miMensajeerrorAplicaBons><span class="label label-danger">{{miMensajeerrorAplicaBons}}</span></h3>
+      <app-aplicabonific [id_benef]=model.id_benef [imp_cap]=model.imp_cap [imp_int]=model.imp_int [imp_adm]=model.imp_adm 
+      [imp_seg]=model.imp_seg [imp_osg]=model.imp_osg [id_catbonific]=model.id_catbonific [id_autoriza]=model.id_autoriza
+      [imp_com]=model.imp_com [imp_mor]=model.imp_mor [imp_tit]=model.imp_tit [id_catprog]=model.id_catprog  #aplicabonificacion
+        (onMessageAplicaBonific)="onMessageAplicaBonific($event)" (onerrorMessageAplicaBonific)="onerrorMessageAplicaBonific($event)"></app-aplicabonific>
+
+    </div>
+  </div>
