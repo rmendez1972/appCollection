@@ -76,8 +76,7 @@ export class AplicaBonificService {
     let body = res.json();
 
     console.log(body.registroBonificacion);
-    
-    /*for (var i = 0; i < body.registroBonificacion.length; i++) {
+        /*for (var i = 0; i < body.registroBonificacion.length; i++) {
       this.id_movedocta = body.registroBonificacion[i];
       
 
