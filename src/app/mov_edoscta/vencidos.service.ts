@@ -3,17 +3,13 @@ import { Injectable } from '@angular/core';
 import { Vencidos } from './vencidos';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-//import {Observable} from 'rxjs/Rx';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
-
 
 @Injectable()
 export class VencidosService {
 
-
   private vencidosUrl: string;
-  //private vencidos: any = [];
   private capital: number;
   private interes: number;
 
@@ -22,15 +18,12 @@ export class VencidosService {
       private alertService: AlertService)
       {
         this.vencidosUrl=String(this.url.getUrlVencidos());
-
       }
 
   getVencidos(clave_b:String, fecha_corte:String): Observable<Vencidos[]> {
     return this.http.get(this.vencidosUrl+clave_b+'&fecha_corte='+fecha_corte)
                     .map(this.extractDataVencidos)
                     .catch(this.handleError);
-
-
   }
   private extractDataVencidos(res: Response) {
     let body = res.json();
@@ -47,7 +40,6 @@ export class VencidosService {
   }
 
   private handleError (error: Response | any) {
-
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {

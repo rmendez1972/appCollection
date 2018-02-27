@@ -88,7 +88,6 @@ export class AplicarComponent implements OnInit {
 
     }
 
-
     ngOnInit() {
     };
     message(mensaje:String){
@@ -110,12 +109,21 @@ export class AplicarComponent implements OnInit {
         return false;
       }
     }
+    extractMoratorios(){
+      let mor:number = 0;
+      mor = this.aplicar[this.aplicar.length-1].mor;
+      this.totalmoratorios =parseFloat(mor.toFixed(2));
+      return this.totalmoratorios;
+    }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
           this.message('Recuperación exitosa de las letras a aplicar');
           this.errormessage(null);
-          this.totalmoratorios=this.totalAplicarVencidos;
+
+
+
+          this.totalmoratorios=this.extractMoratorios();
           this.totalMoratorios(this.totalmoratorios);
       }else{
         this.errormessage('Error en la recuperacion de las letras a aplicar');
@@ -129,11 +137,7 @@ export class AplicarComponent implements OnInit {
 
        this.confirmService.confirm("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.route,this.k,function(message,fecha,aplicarservice,route,k){
               //ACTION: Do this If user says YES
-              console.log ('DENTRO DE CALLBACK DE  SI');
               //this.pagar = aplicarservice.getPagar(fecha);
-              console.log('valor de mmessage '+message);
-              console.log('valor de fecha '+fecha);
-              console.log('type of aplicarservice '+typeof(aplicarservice));
               k=route.params
               .switchMap((params: Params) =>
               {
@@ -151,7 +155,6 @@ export class AplicarComponent implements OnInit {
 
             },function(){
               //ACTION: Do this if user says NO
-              console.log ('DENTRO DE CALLBACK DE  no');
       })
 
     };
