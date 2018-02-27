@@ -101,14 +101,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //declaracion de variables
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
-<<<<<<< HEAD
-    
-=======
-
-
-
-
->>>>>>> 3e2a393f1dbe10db4611a4168d00032eb66360cc
+  
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
 

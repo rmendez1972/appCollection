@@ -2,11 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-<<<<<<< HEAD
-=======
-//import {Observable} from 'rxjs/Rx';
-//
->>>>>>> 3e2a393f1dbe10db4611a4168d00032eb66360cc
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 import {Aplicar} from './aplicar';
@@ -273,9 +268,6 @@ postPagarVencidos(
       id_caja:id_caja.toString().trim(),
 
     };
-<<<<<<< HEAD
-    return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital 
-=======
 
     console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
@@ -290,7 +282,6 @@ postPagarVencidos(
 
     return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
 
->>>>>>> 3e2a393f1dbe10db4611a4168d00032eb66360cc
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
