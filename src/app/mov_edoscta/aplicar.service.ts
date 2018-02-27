@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 //import {Observable} from 'rxjs/Rx';
+//
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 //import  {Vencidos} from './vencidos';
@@ -185,17 +186,7 @@ export class AplicarService {
       numcontrato = this.beneficiario[y].numcontrato;
 
     }
-    /*
-<<<<<<< HEAD
-    console.log('valor de totalvencidos '+this.totalvencidos);
-=======
->>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
-    for (var z = 0; z < this.totalvencidos; ++z) {
 
-      this.pagar[z]= this.aplicar[x];
-      console.log('valor de letra '+this.pagar[z].letra);
-    }
-    */
     let usuarioFinal ={
       serie:serie,
       id_caja:id_caja,
@@ -225,52 +216,18 @@ export class AplicarService {
       numcontrato:id_catprog,
     }
 
-    /*for (var s = 0; s < this.totalvencidos; ++s) {
 
-<<<<<<< HEAD
-=======
-    /*for (var s = 0; s < this.totalvencidos; ++s) {
->>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
-      return this.postPagarVencidos(beneficiarioFinal.id_benef,
-       this.pagar[s].capital,
-       this.pagar[s].interes,
-       this.pagar[s].admon,
-       this.pagar[s].seguro,
-       this.pagar[s].letra,
-       usuarioFinal.poliza,
-       fecha_corte,
-       usuarioFinal.recibo,
-       aplicarFinal.o_seguro,
-       this.pagar[s].mor,
-       usuarioFinal.fecha_pol,
-       usuarioFinal.id_usuario,
-       this.pagar[s].com,
-       usuarioFinal.serie,
-       beneficiarioFinal.clave_b,
-       this.pagar[s].tit,
-       beneficiarioFinal.id_catprog,
-       beneficiarioFinal.numcontrato,
-       usuarioFinal.id_caja
-       );
-<<<<<<< HEAD
-    */
     //Return que solo inserta el primer registro
 
-=======
-       */
->>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
+
     return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
       aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, aplicarFinal.o_seguro, aplicarFinal.moratorios,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,aplicarFinal.comisiones,usuarioFinal.serie, beneficiarioFinal.clave_b,
       aplicarFinal.tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja);
-<<<<<<< HEAD
-      }
 
-    }
-=======
-      
->>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
+
+
   }
 
 postPagarVencidos(

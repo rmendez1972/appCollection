@@ -12,13 +12,7 @@ import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
 import { Aplicar} from './aplicar';
 
-<<<<<<< HEAD
-//Importando modulos para Alerta de msj
-//import {ConfirmService} from '../confirm/confirm.service';
-//import {ConfirmComponent} from '../confirm/confirm.component';
 
-=======
->>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
 import { Aplica_Mov_edocta } from './aplica_mov_edocta';
 import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
 
@@ -108,16 +102,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private totales_style:String = "info";
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
-<<<<<<< HEAD
-
-
-=======
   //declaracion de variables
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
-    
-  
->>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
+
+
+
 
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
@@ -253,7 +243,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     //mensaje de fracaso en la aplicacion de bonificaciones
     onerrorMessageAplicaBonific(mensaje:String){
-      
+
       this.miMensajeerrorAplicaBons = mensaje;
     }
 
