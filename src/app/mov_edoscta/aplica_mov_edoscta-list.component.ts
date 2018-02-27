@@ -245,7 +245,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     onTotalMoratorios(totalmoratorios:number){
-      console.log("Total moratorios desdecomponent padre: "+totalmoratorios);
       this.totalmoratorios = totalmoratorios;
     }
     valida_ultimo(i:number){

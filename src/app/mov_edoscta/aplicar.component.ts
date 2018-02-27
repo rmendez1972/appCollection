@@ -110,14 +110,10 @@ export class AplicarComponent implements OnInit {
       }
     }
     extractMoratorios(){
-      let mor = 0;
-      for (var x = 0; x < this.aplicar.length-1 ; x++) {
-        mor = mor + parseFloat((this.aplicar[x].mor).toString());
-      }
-      console.log("valor mor: "+mor);
+      let mor:number = 0;
+      mor = this.aplicar[this.aplicar.length-1].mor;
       this.totalmoratorios =parseFloat(mor.toFixed(2));
       return this.totalmoratorios;
-      
     }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
@@ -141,11 +137,7 @@ export class AplicarComponent implements OnInit {
 
        this.confirmService.confirm("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.route,this.k,function(message,fecha,aplicarservice,route,k){
               //ACTION: Do this If user says YES
-              console.log ('DENTRO DE CALLBACK DE  SI');
               //this.pagar = aplicarservice.getPagar(fecha);
-              console.log('valor de mmessage '+message);
-              console.log('valor de fecha '+fecha);
-              console.log('type of aplicarservice '+typeof(aplicarservice));
               k=route.params
               .switchMap((params: Params) =>
               {
@@ -163,7 +155,6 @@ export class AplicarComponent implements OnInit {
 
             },function(){
               //ACTION: Do this if user says NO
-              console.log ('DENTRO DE CALLBACK DE  no');
       })
 
     };
