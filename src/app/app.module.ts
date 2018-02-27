@@ -18,8 +18,9 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http'
 
 import { AlertComponent } from './_directives/index';
+//import { ConfirmComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, ConfirmService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -65,6 +66,7 @@ import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edosct
   declarations: [
     AppComponent,
     AlertComponent,
+    //ConfirmComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
@@ -104,6 +106,7 @@ import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edosct
   providers: [
     AuthGuard,
     AlertService,
+    ConfirmService,
     AuthenticationService,
     UserService,
 

@@ -8,7 +8,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { ConfirmService} from '../_services/index';
 import { Aplicar} from './aplicar';
+
 
 import { Aplica_Mov_edocta } from './aplica_mov_edocta';
 import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
@@ -99,7 +101,14 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //declaracion de variables
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
+<<<<<<< HEAD
     
+=======
+
+
+
+
+>>>>>>> 3e2a393f1dbe10db4611a4168d00032eb66360cc
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
 
@@ -120,7 +129,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     ngOnInit(){
-      
+
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
     };
@@ -229,7 +238,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     //mensaje de fracaso en la aplicacion de bonificaciones
     onerrorMessageAplicaBonific(mensaje:String){
-      
+
       this.miMensajeerrorAplicaBons = mensaje;
     }
 
@@ -256,7 +265,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       }
     }
 
-    
+
 
 
 

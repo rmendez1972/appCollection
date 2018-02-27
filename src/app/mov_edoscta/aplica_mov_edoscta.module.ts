@@ -16,8 +16,10 @@ import {ConfirmService} from '../confirm/confirm.service';
 import { AplicarComponent } from './aplicar.component';
 import { AplicarService } from './aplicar.service';
 
+
 import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 import {AplicaBonificService} from './aplicabonificacion.service';
+
 
 @NgModule({
   imports: [
@@ -28,15 +30,19 @@ import {AplicaBonificService} from './aplicabonificacion.service';
   declarations: [
     Aplica_Mov_edosctaListComponent,
     AplicarComponent,
+
     ConfirmComponent,
     AplicaBonificacionComponent,
+
   ],
   providers: [
     ServiceUrl,
     Aplica_Mov_edoctaService,
     AplicarService,
+
     ConfirmService,
     AplicaBonificService,
+
   ]
 })
 export class Aplica_Mov_edosctaModule{}

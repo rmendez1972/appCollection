@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+import { ConfirmService} from '../_services/index';
 import {Vencidos} from './vencidos'
 import {BonificService} from './bonificacion.service';
 
@@ -79,6 +80,7 @@ export class AplicarComponent implements OnInit {
       private aplicarService: AplicarService,
       private bonificService: BonificService,
       private alertService:AlertService,
+      private confirmService:ConfirmService,
       private router: Router,
       private route: ActivatedRoute,
     )
@@ -134,21 +136,37 @@ export class AplicarComponent implements OnInit {
     };
 
     getPagar(fecha:string) {
-      let pagar;
-      this.k=this.route.params
-        .switchMap((params: Params) =>
-        {
-          return this.aplicarService.getPagar(fecha);
-        })
 
-        this.k.subscribe(
-          aplicar =>{
-            this.message('Pago de las letras vencidas realizadas con exito');
-            this.errormessage(null);
-          },
-          error =>  this.errorMessage = <any>error);
-          
-      };
-      
+
+       this.confirmService.confirm("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.route,this.k,function(message,fecha,aplicarservice,route,k){
+              //ACTION: Do this If user says YES
+              console.log ('DENTRO DE CALLBACK DE  SI');
+              //this.pagar = aplicarservice.getPagar(fecha);
+              console.log('valor de mmessage '+message);
+              console.log('valor de fecha '+fecha);
+              console.log('type of aplicarservice '+typeof(aplicarservice));
+              k=route.params
+              .switchMap((params: Params) =>
+              {
+                return aplicarservice.getPagar(fecha);
+              })
+
+              k.subscribe(
+                aplicar =>{
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                }
+                //error => let error=error
+                  //this.errorMessage = <any>error
+                );
+
+            },function(){
+              //ACTION: Do this if user says NO
+              console.log ('DENTRO DE CALLBACK DE  no');
+      })
+
+    };
+
+
 
 }

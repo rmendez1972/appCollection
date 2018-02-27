@@ -29,7 +29,7 @@ export class Aplica_Mov_edoctaService {
     return this.http.get(this.beneficiarioUrl+criterio+"&valorcriterio="+valorcriterio).map(this.extractDataBenef).catch(this.handleError);
   }
 
-  getTipoBonificacion(): Observable<TipoBonificacion[]> { 
+  getTipoBonificacion(): Observable<TipoBonificacion[]> {
      return this.http.get(this.tipoBonificacionUrl)
                     .map(this.extractDataTipoBonificacion)
                     .catch(this.handleError);
@@ -51,7 +51,7 @@ export class Aplica_Mov_edoctaService {
     let totcomision:number=0;
     let tottitulacion:number=0;
     let totmora:number=0;
-        
+
     for (var i = 0; i <body.mov_edoscta.length; i++) {
       totcapital=totcapital+parseFloat(body.mov_edoscta[i].capital.toString());
       totinteres=totinteres+parseFloat(body.mov_edoscta[i].interes.toString());
@@ -94,7 +94,7 @@ export class Aplica_Mov_edoctaService {
     //console.log(body.bonificaciones);
     return body.bonificaciones|| { };
   }
-  
+
   private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
