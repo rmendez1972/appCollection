@@ -89,7 +89,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
       for (var y in this.aplicar) {
-        this.model.id_benef = this.aplicar[y].id_benef;
+        this.model.id_benef = this.aplicar[y].id_beneficiario;
         this.model.imp_cap = this.aplicar[y].imp_cap;
         this.model.imp_int = this.aplicar[y].imp_int;
         this.model.imp_adm = this.aplicar[y].imp_adm;
