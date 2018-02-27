@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
 import { Solicitante } from './solicitante';
 
 
@@ -19,6 +19,11 @@ import { Aplicar} from './aplicar';
 //Importando modulos para Alerta de msj
 import {ConfirmService} from '../confirm/confirm.service';
 import {ConfirmComponent} from '../confirm/confirm.component';
+
+import { Aplica_Mov_edocta } from './aplica_mov_edocta';
+import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
+
+import { TipoBonificacion} from './tipoBonificacion';
 
 //var componentHandler:any;
 declare var componentHandler;
@@ -68,15 +73,16 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   //title = "Bonificacion";
 
-
   private errorMessage: string;
   model:any={};
 
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
+  private bonificaciones: TipoBonificacion[];
 
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
+  private j: Observable<TipoBonificacion[]>;
 
   private e: Observable<Seguimiento[]>;
 
@@ -98,12 +104,17 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   public totalvencidos: number=0;
 
   public totalAplicarLetras: number = 0;
+  public totalMoratorios: number = 0;
 
   private totales_style:String = "info";
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
 
   
+
+  @Output() onMessageTipoBonificacion = new EventEmitter<String>();
+  @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
+  @Output() onTotalMoratorios = new EventEmitter<Number>();
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -116,7 +127,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       private route: ActivatedRoute,
       private mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService,
-      private _confirmService:ConfirmService
+      private _confirmService:ConfirmService,
+      private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
 
     )
     {
@@ -154,7 +166,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         })
 
         this.k.subscribe(
-
                        movimientos => {
                          this.mov_edoscta = movimientos;
                          this.totalmov_edoscta=this.mov_edoscta.length-1;
@@ -178,6 +189,19 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
                        beneficiario => this.benef = beneficiario,
                        error =>  this.errorMessage = <any>error);
 
+
+    };
+    getTipoBonificaciones() {
+        this.j=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          return this.aplica_mov_edoctaservice.getTipoBonificacion()
+        })
+
+        this.j.subscribe(
+                       bonificaciones => this.bonificaciones= bonificaciones,
+                       error =>  this.errorMessage = <any>error);
 
     };
     onMessage(mensaje:String){
@@ -223,7 +247,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       this.totalAplicarLetras = totalvencidos;
       this.totalvencidos = totalvencidos;
       //console.log("on total vencidos :"+this.totalAplicarLetras);
-
     }
     onTotalAplicarLetras(totalaplicar:number){
       this.totalAplicarLetras = totalaplicar;
