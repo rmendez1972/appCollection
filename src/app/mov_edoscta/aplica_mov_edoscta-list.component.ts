@@ -114,7 +114,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
-  @Output() onTotalMoratorios = new EventEmitter<Number>();
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -251,6 +250,10 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     onTotalAplicarLetras(totalaplicar:number){
       this.totalAplicarLetras = totalaplicar;
 
+    }
+    onTotalMoratorios(totalmoratorios:number){
+      this.totalMoratorios = totalmoratorios;
+      console.log("Total moratorios :");
     }
     valida_ultimo(i:number){
       if (i==this.totalmov_edoscta) {
