@@ -116,23 +116,27 @@ export class AplicarComponent implements OnInit {
     getPagar(fecha:string) {
 
 
-       this.confirmService.confirm("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,function(message,fecha,aplicarservice){
+       this.confirmService.confirm("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.route,this.k,function(message,fecha,aplicarservice,route,k){
               //ACTION: Do this If user says YES
               console.log ('DENTRO DE CALLBACK DE  SI');
               //this.pagar = aplicarservice.getPagar(fecha);
-
-              this.k=this.route.params
+              console.log('valor de mmessage '+message);
+              console.log('valor de fecha '+fecha);
+              console.log('type of aplicarservice '+typeof(aplicarservice));
+              k=route.params
               .switchMap((params: Params) =>
               {
                 return aplicarservice.getPagar(fecha);
               })
 
-              this.k.subscribe(
+              k.subscribe(
                 aplicar =>{
-                  this.message('Pago de las letras vencidas realizadas con exito');
-                  this.errormessage(null);
-                },
-                error =>  this.errorMessage = <any>error);
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                }
+                //error => let error=error
+                  //this.errorMessage = <any>error
+                );
 
             },function(){
               //ACTION: Do this if user says NO
