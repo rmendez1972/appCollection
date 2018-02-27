@@ -147,11 +147,9 @@ export class AplicaBonificacionComponent implements OnInit {
 
         .switchMap((params: Params) =>
         {
-
-
         return this.aplicabonificservice.postBonificaciones(this.model.id_movedocta,this.model.id_benef,this.model.imp_cap,this.model.imp_int,this.model.imp_adm,this.model.imp_seg,
           this.model.imp_osg,this.model.imp_com,this.model.imp_mor,this.model.imp_tit,this.model.id_catbonific,this.model.estatus,this.model.id_usuario,this.model.id_autoriza,
-          this.model.clave_b,this.model.recibo,this.model.serie,this.model.id_catprog)
+          this.model.clave_b,this.model.recibo,this.model.serie,this.model.id_catprog);
         })
 
         this.k.subscribe(

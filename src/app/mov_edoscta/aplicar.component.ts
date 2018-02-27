@@ -86,7 +86,6 @@ export class AplicarComponent implements OnInit {
 
     }
 
-
     ngOnInit() {
     };
     message(mensaje:String){
@@ -108,12 +107,24 @@ export class AplicarComponent implements OnInit {
         return false;
       }
     }
+    extractMoratorios(){
+      let mor = 0;
+      for (var x = 0; x < this.aplicar.length ; x++) {
+        mor = mor + parseFloat((this.aplicar[x].mor).toString());
+      }
+      this.totalmoratorios =mor;
+      return this.totalmoratorios;
+      
+    }
     getLetras() {
       if (this.totalAplicarVencidos!=undefined && this.totalAplicarVencidos!=null){
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
           this.message('Recuperación exitosa de las letras a aplicar');
           this.errormessage(null);
-          this.totalmoratorios=this.totalAplicarVencidos;
+
+
+
+          this.totalmoratorios=this.extractMoratorios();
           this.totalMoratorios(this.totalmoratorios);
       }else{
         this.errormessage('Error en la recuperacion de las letras a aplicar');

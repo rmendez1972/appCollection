@@ -1,5 +1,4 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
-import { Solicitante } from './solicitante';
 
 
 import { Mov_edocta } from './mov_edocta';
@@ -49,7 +48,6 @@ import {AplicaBonificService} from './aplicabonificacion.service';
   ],
 })
 
-
 export class Aplica_Mov_edosctaListComponent implements OnInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
@@ -62,9 +60,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   @HostBinding('style.position') get position() {
     return 'relative';
   }
-
   //title = "Bonificacion";
-
   private errorMessage: string;
   model:any={};
 
@@ -95,7 +91,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   public totalvencidos: number=0;
 
   public totalAplicarLetras: number = 0;
-  public totalMoratorios: number = 0;
+  public totalmoratorios: number = 0;
 
   private totales_style:String = "info";
   private renglon_style:String = "active";
@@ -104,8 +100,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
     
-  
-
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
 
@@ -121,7 +115,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       private mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService,
       private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
-
     )
     {
 
@@ -151,7 +144,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
-
           //this.selectedId= +params['id'];
           return this.mov_edoctaservice.getMov_edoscta(criterio,valorcriterio)
         })
@@ -179,8 +171,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
                        beneficiario => this.benef = beneficiario,
                        error =>  this.errorMessage = <any>error);
-
-
     };
     getTipoBonificaciones() {
         this.j=this.route.params
@@ -230,7 +220,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       this.miMensajeerrorAplicar = mensaje;
 
     }
-
     //metodos de aplicabonific
     //mensaje de exito en la aplicacion de bonificaciones
     onMessageAplicaBonific(mensaje:String){
@@ -244,7 +233,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       this.miMensajeerrorAplicaBons = mensaje;
     }
 
-
     onTotalVencidos(totalvencidos:number){
       this.totalAplicarLetras = totalvencidos;
       this.totalvencidos = totalvencidos;
@@ -255,8 +243,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     onTotalMoratorios(totalmoratorios:number){
-      this.totalMoratorios = totalmoratorios;
-      console.log("Total moratorios :");
+      console.log("Total moratorios desdecomponent padrde: "+totalmoratorios);
+      this.totalmoratorios = totalmoratorios;
     }
     valida_ultimo(i:number){
       if (i==this.totalmov_edoscta) {

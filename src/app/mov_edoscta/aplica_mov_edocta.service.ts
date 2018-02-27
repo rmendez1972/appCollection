@@ -91,7 +91,7 @@ export class Aplica_Mov_edoctaService {
 
   private extractDataTipoBonificacion(res: Response) {
     let body = res.json();
-    console.log(body.bonificaciones);
+    //console.log(body.bonificaciones);
     return body.bonificaciones|| { };
   }
   
