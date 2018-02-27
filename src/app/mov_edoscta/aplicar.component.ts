@@ -64,6 +64,8 @@ export class AplicarComponent implements OnInit {
   private aplicar:Aplicar[];
   private k: Observable<Aplicar[]>;
 
+  private totalmoratorios: number=0;
+
 
   @Input() totalAplicarVencidos;
 
@@ -72,6 +74,7 @@ export class AplicarComponent implements OnInit {
   @Output() totalLetrasAplicar = new EventEmitter<Number>();
   @Output() onMessageAplicar = new EventEmitter<String>();
   @Output() onerrorMessageAplicar = new EventEmitter<String>();
+  @Output() onTotalMoratorios = new EventEmitter<Number>();
 
     constructor(
       private aplicarService: AplicarService,
@@ -94,6 +97,12 @@ export class AplicarComponent implements OnInit {
     errormessage(mensaje:String){
       this.onerrorMessageAplicar.emit(mensaje);
     };
+
+    totalMoratorios(totalmoratorios:number){
+      this.onTotalMoratorios.emit(totalmoratorios);
+    }
+
+
     valida_ultimo(i:number){
       if (i==this.totalAplicarVencidos) {
         return true;
@@ -106,6 +115,8 @@ export class AplicarComponent implements OnInit {
           this.aplicar = this.aplicarService.getLetras(this.totalAplicarVencidos);
           this.message('Recuperación exitosa de las letras a aplicar');
           this.errormessage(null);
+          this.totalmoratorios=this.totalAplicarVencidos;
+          this.totalMoratorios(this.totalmoratorios);
       }else{
         this.errormessage('Error en la recuperacion de las letras a aplicar');
         this.message(null);

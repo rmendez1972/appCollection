@@ -186,7 +186,10 @@ export class AplicarService {
 
     }
     /*
+<<<<<<< HEAD
     console.log('valor de totalvencidos '+this.totalvencidos);
+=======
+>>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
     for (var z = 0; z < this.totalvencidos; ++z) {
 
       this.pagar[z]= this.aplicar[x];
@@ -224,6 +227,10 @@ export class AplicarService {
 
     /*for (var s = 0; s < this.totalvencidos; ++s) {
 
+<<<<<<< HEAD
+=======
+    /*for (var s = 0; s < this.totalvencidos; ++s) {
+>>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
       return this.postPagarVencidos(beneficiarioFinal.id_benef,
        this.pagar[s].capital,
        this.pagar[s].interes,
@@ -245,17 +252,25 @@ export class AplicarService {
        beneficiarioFinal.numcontrato,
        usuarioFinal.id_caja
        );
+<<<<<<< HEAD
     */
     //Return que solo inserta el primer registro
 
+=======
+       */
+>>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
     return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
       aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, aplicarFinal.o_seguro, aplicarFinal.moratorios,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,aplicarFinal.comisiones,usuarioFinal.serie, beneficiarioFinal.clave_b,
       aplicarFinal.tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja);
+<<<<<<< HEAD
       }
 
     }
+=======
+      
+>>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
   }
 
 postPagarVencidos(

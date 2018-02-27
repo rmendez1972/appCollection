@@ -85,6 +85,7 @@ export class Mov_edoctaService {
     let body = res.json();
     localStorage.setItem('beneficiario',JSON.stringify(body.beneficiario));
     return body.beneficiario || { };
+   
   }
 
 

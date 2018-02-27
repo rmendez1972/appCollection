@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Aplica_Mov_edocta } from './aplica_mov_edocta';
 import { Benef } from './../mov_edoscta/benef';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
@@ -14,7 +13,6 @@ export class Aplica_Mov_edoctaService {
   private aplica_mov_edosctaUrl: string;
   private beneficiarioUrl: string;
   private tipoBonificacionUrl: string;
-
 
   constructor (private http: Http,private url:ServiceUrl,private alertService: AlertService){
     this.aplica_mov_edosctaUrl=String(this.url.getUrlmov_edoscta());

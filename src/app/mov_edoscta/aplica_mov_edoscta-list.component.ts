@@ -4,30 +4,29 @@ import { Solicitante } from './solicitante';
 
 import { Mov_edocta } from './mov_edocta';
 import { Benef } from './benef';
-import { Solicitud } from './solicitud';
-import { Tramite } from './tramite';
-import { Seguimiento } from './seguimiento';
 import { Mov_edoctaService} from './mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-//import { AuthGuard } from '../_guards/index';
-//import { UploadComponent} from '../upload/upload.component';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
 import { Aplicar} from './aplicar';
 
+<<<<<<< HEAD
 //Importando modulos para Alerta de msj
 //import {ConfirmService} from '../confirm/confirm.service';
 //import {ConfirmComponent} from '../confirm/confirm.component';
 
+=======
+>>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
 import { Aplica_Mov_edocta } from './aplica_mov_edocta';
 import { Aplica_Mov_edoctaService} from './aplica_mov_edocta.service';
 
 import { TipoBonificacion} from './tipoBonificacion';
 
-//var componentHandler:any;
-declare var componentHandler;
+import {AplicaBonificacionComponent} from './aplicabonificacion.component';
+import {AplicaBonificService} from './aplicabonificacion.service';
+
 
 @Component({
   selector: 'app-seguimiento-list, notifier',
@@ -85,7 +84,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private l: Observable<Benef[]>;
   private j: Observable<TipoBonificacion[]>;
 
-  private e: Observable<Seguimiento[]>;
 
   private selectedId: number;
 
@@ -110,12 +108,19 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private totales_style:String = "info";
   private renglon_style:String = "active";
   private totalmov_edoscta:number=0;
+<<<<<<< HEAD
 
 
+=======
+  //declaracion de variables
+  private miMensajeAplicaBons:String;
+  private miMensajeerrorAplicaBons:String;
+    
+  
+>>>>>>> b9c2ad78666c4e1c533ace772ac900f44efc7a95
 
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
-  @Output() onTotalMoratorios = new EventEmitter<Number>();
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -128,7 +133,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       private route: ActivatedRoute,
       private mov_edoctaservice: Mov_edoctaService,
       private alertService:AlertService,
-      private _confirmService:ConfirmService,
       private aplica_mov_edoctaservice: Aplica_Mov_edoctaService,
 
     )
@@ -139,7 +143,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
-      //componentHandler.upgradeDom();
     };
 
     title = 'Estado de Cuenta por Programas';
@@ -233,16 +236,27 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
       this.miMensajeAplicar = mensaje;
 
-
     }
-
 
     onerrorMessageAplicar(mensaje:String){
 
       this.miMensajeerrorAplicar = mensaje;
 
-
     }
+
+    //metodos de aplicabonific
+    //mensaje de exito en la aplicacion de bonificaciones
+    onMessageAplicaBonific(mensaje:String){
+
+      this.miMensajeAplicaBons = mensaje;
+    }
+
+    //mensaje de fracaso en la aplicacion de bonificaciones
+    onerrorMessageAplicaBonific(mensaje:String){
+      
+      this.miMensajeerrorAplicaBons = mensaje;
+    }
+
 
     onTotalVencidos(totalvencidos:number){
       this.totalAplicarLetras = totalvencidos;
@@ -252,6 +266,10 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     onTotalAplicarLetras(totalaplicar:number){
       this.totalAplicarLetras = totalaplicar;
 
+    }
+    onTotalMoratorios(totalmoratorios:number){
+      this.totalMoratorios = totalmoratorios;
+      console.log("Total moratorios :");
     }
     valida_ultimo(i:number){
       if (i==this.totalmov_edoscta) {
