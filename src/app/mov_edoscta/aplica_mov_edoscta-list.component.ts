@@ -20,6 +20,7 @@ import { TipoBonificacion} from './tipoBonificacion';
 import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 import {AplicaBonificService} from './aplicabonificacion.service';
 
+import { Autoriza } from './autoriza';
 
 @Component({
   selector: 'app-seguimiento-list, notifier',
@@ -69,10 +70,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
   private bonificaciones: TipoBonificacion[];
+  private autoriza: Autoriza[];
 
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
   private j: Observable<TipoBonificacion[]>;
+  private m: Observable<Autoriza[]>;
 
 
   private selectedId: number;
@@ -187,6 +190,17 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
                        bonificaciones => this.bonificaciones= bonificaciones,
                        error =>  this.errorMessage = <any>error);
 
+    };
+    getAutoriza(){
+      console.log("get autoriza desde component:");
+      this.m=this.route.params
+      .switchMap((params:Params) =>
+      {
+        return this.aplica_mov_edoctaservice.getAutoriza()
+      })
+      this.m.subscribe(
+        autoriza => this.autoriza = autoriza,
+        error => this.errorMessage = <any>error);
     };
     onMessage(mensaje:String){
 

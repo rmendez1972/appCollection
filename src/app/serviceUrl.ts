@@ -32,6 +32,8 @@ public URLcajasedit:String;
 
 public UrlAplicarVencidos:String;
 
+public UrlAutoriza: String;
+
 constructor() {}
 
 
@@ -153,5 +155,10 @@ constructor() {}
 		getUrlAplicarVencidos():String{
 			return this.UrlAplicarVencidos='http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaApi&id_benef=';
 		}
+
+		getUrlAutoriza():String{
+			return this.UrlAutoriza = 'http://localhost:8080/cobranza/controladorautoriza?operacion=listarJson';
+		}
+
 }
 

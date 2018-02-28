@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 import { TipoBonificacion } from './tipoBonificacion';
+import { Autoriza } from './autoriza';
 
 @Injectable()
 export class Aplica_Mov_edoctaService {
@@ -13,11 +14,13 @@ export class Aplica_Mov_edoctaService {
   private aplica_mov_edosctaUrl: string;
   private beneficiarioUrl: string;
   private tipoBonificacionUrl: string;
+  private autorizaUrl: string;
 
   constructor (private http: Http,private url:ServiceUrl,private alertService: AlertService){
     this.aplica_mov_edosctaUrl=String(this.url.getUrlmov_edoscta());
     this.beneficiarioUrl=String(this.url.getUrlBeneficiario());
     this.tipoBonificacionUrl=String(this.url.getUrlbonificaciones());
+    this.autorizaUrl = String(this.url.getUrlAutoriza());
   }
 
   //getMov_edoscta
@@ -29,10 +32,17 @@ export class Aplica_Mov_edoctaService {
     return this.http.get(this.beneficiarioUrl+criterio+"&valorcriterio="+valorcriterio).map(this.extractDataBenef).catch(this.handleError);
   }
 
+  //get tipo de bonificaciones
   getTipoBonificacion(): Observable<TipoBonificacion[]> {
      return this.http.get(this.tipoBonificacionUrl)
                     .map(this.extractDataTipoBonificacion)
                     .catch(this.handleError);
+  }
+
+  //get quien autoriza las bonificaciones
+  getAutoriza(): Observable <Autoriza[]>{
+    return this.http.get(this.autorizaUrl).map(this.extractDataAutoriza).catch(this.handleError);
+
   }
 
   private extractDataMov(res: Response) {
@@ -93,6 +103,11 @@ export class Aplica_Mov_edoctaService {
     let body = res.json();
     //console.log(body.bonificaciones);
     return body.bonificaciones|| { };
+  }
+  private extractDataAutoriza(res: Response){
+    let body = res.json();
+    console.log(body.autoriza);
+    return body.autoriza || {};
   }
 
   private handleError (error: Response | any) {
