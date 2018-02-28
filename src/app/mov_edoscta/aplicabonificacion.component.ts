@@ -141,7 +141,9 @@ export class AplicaBonificacionComponent implements OnInit {
     };
 
     //Metodo en donde se realizara la insercion de las bonificaciones
-    postBonificaciones() {
+    postBonificaciones(tipobonificaciones:number, moratorios:number) {
+      console.log("Tipo de bonificaciones: "+ tipobonificaciones);
+      console.log("Moratorios :" +moratorios);
 
         this.k=this.route.params
 
