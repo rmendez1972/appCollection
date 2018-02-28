@@ -87,7 +87,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeAplicar:String;
   private miMensajeerrorAplicar:String;
   private fecha:String;
-  private bonific:String = "fa fa-check";
+  private bonific:String = "";
   private nobonific: String = "fa fa-times";
 
   public totalvencidos: number=0;
@@ -104,6 +104,8 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
+
+
 
   optionsSelect = [
        {id:1, value: "clave_b", name: "Clave SEDETUS"},
@@ -181,7 +183,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
         {
           return this.aplica_mov_edoctaservice.getTipoBonificacion()
         })
-
         this.j.subscribe(
                        bonificaciones => this.bonificaciones= bonificaciones,
                        error =>  this.errorMessage = <any>error);

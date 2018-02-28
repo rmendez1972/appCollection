@@ -75,7 +75,6 @@
   </div>
   <!-- Fin de datos generales del beneficiario y del crédito-->
 
-
   <div class="panel panel-primary">
     <div class="panel-heading">Movimientos Aplicados al Estado de Cuenta del Beneficiario</div>
     <div class="panel-body transparent">
@@ -97,9 +96,7 @@
             <th>Titulación</th>
             <th>Moratorios</th>
             <th>Bonific.</th>
-
           </thead>
-
 
           <tbody >
             <tr style="font-size: 10px" *ngFor="let mov of mov_edoscta; let i = index"  [ngSwitch]="valida_ultimo(i)">
@@ -154,7 +151,7 @@
           </div>
 
           <div class="form-group" style="text-align:center">
-            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos();getTipoBonificaciones()" />
+            <input type="submit" value="Aceptar" class="btn btn-primary" (click)="bonificacion.getBonificaciones();vencidos.getVencidos()" />
           </div>
 
         </form >
@@ -167,28 +164,28 @@
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
-            <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras()" />
+            <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones()" />
           </div>
         </form>
         <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
-          <label for="letras" class="col-md-4 control-label">Tipo de Bonificaciones</label>            
+          <label for="tipoBonific" class="col-md-4 control-label">Tipo de Bonificaciones</label>            
             <tbody >
-              <select>
-                <option *ngFor="let bon of bonificaciones" >{{bon.clave_bonific }}</option>
+              <select name="tipobonificacion" id="tipobonificacion" class="form-control" #tipobonificacion="ngModel" [(ngModel)]="model.tipobonificacion">
+                <option value="undefined" selected >Selecciona un tipo de bonificacion</option>
+                <option *ngFor="let bon of bonificaciones " value="{{bon.id_bonific}}" >{{bon.clave_bonific}}</option>
               </select>
             </tbody>
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
-          <label for="letras" class="col-md-4 control-label">Total de moratorios</label> 
+          <label for="moratorios" class="col-md-4 control-label">Total de moratorios</label> 
           <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalmoratorios" #moratorios="ngModel" step="0.01" min="1" max="{{totalmoratorios}}" required>
-            
           </div>
         </form>
         
         <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
           <div  class="form-group" style="text-align:center">
-            <input type="submit" value="Pagar" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones()" />
+            <input type="submit" value="Pagar" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios)" />
           </div>
 
         </form>

@@ -15,6 +15,8 @@ import { Observable } from 'rxjs/Observable';
 	private mik: Observable<Aplicar[]>;
 	private fecha:string;
 
+    private totalmoratorios:number;
+
 
     constructor(){
 
@@ -57,5 +59,13 @@ import { Observable } from 'rxjs/Observable';
 
     getMessage(): Observable<any> {
     	return this.subject.asObservable();
+    }
+    confirmBonificacion(message: string='', totalmoratorios:number, extractmoratorios, siBon:(message,totalmoratorios,extractmoratorios) =>void,noBon:()=>void){
+        this.totalmoratorios = totalmoratorios;
+        this.setConfirmationBonificacion(message,this.totalmoratorios,extractmoratorios,siBon,noBon);
+    }
+    setConfirmationBonificacion(message:string,totalmoratorios:number,extractmoratorios,siBon:(message,totalmoratorios,extractmoratorios)=>void,noBon:()=>void){
+        let t = this;
+        let moratorios =totalmoratorios;
     }
 }
