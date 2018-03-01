@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { User } from '../_models/index';
 import { Vencidos } from './vencidos';
+import { ConfirmService} from '../_services/index';
 //marlon
 
 
@@ -61,13 +62,17 @@ export class AplicaBonificacionComponent implements OnInit {
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
-  private currentUser: User;
+  public currentUser: User;
   private vencidos: Vencidos;
+  private muestraBonificacion:boolean;
+  private objeto:any;
+
   model:any={};
 
   //valores de salida del webcomponent
   @Output() onMessageAplicaBonific = new EventEmitter<String>();
   @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
+  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
 
   //valores de entrada del webcomponent
   @Input() id_benef:Number;
@@ -89,13 +94,16 @@ export class AplicaBonificacionComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute,
       private aplicabonificservice: AplicaBonificService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      private confirmService:ConfirmService,
+
     )
     {}
 
 
   	ngOnInit() {
       //Propiedades de la clase inicializandolos con los valores de entrada
+      //this.muestraBonificacion=true;
       this.model.id_benef = this.id_benef;
       this.model.imp_cap = this.imp_cap;
       this.model.imp_int = this.imp_int;
@@ -166,6 +174,29 @@ export class AplicaBonificacionComponent implements OnInit {
                          this.errormessageAplicaBonific('Error en la inserción de datos');
                          this.messageAplicaBonific(null);
                        });
+    };
+
+    public hola(){
+      console.log('hola');
+    }
+
+    confirmarBonificacion() {
+
+
+      console.log('dentro de confirmarBonificacion ');
+       this.confirmService.confirmBonificacion("Tiene Bonificaciones?",this.aplicabonificservice,this.onMessageAplicaBonificSi,function(bonificservice,eventemmitter){
+              //ACTION: Do this If user says YES
+              //this.pagar = aplicarservice.getPagar(fecha);
+              console.log('tipo de bonificservice '+typeof(bonificservice));
+              console.log('apunto de emitir ');
+              eventemmitter.emit('SI');
+              //bonificservice.siBonificacion();
+            },function(eventemmitter){
+              //ACTION: Do this if user says NO
+              console.log('dentro del NO');
+              eventemmitter.emit(null);
+      })
+
     };
 
 

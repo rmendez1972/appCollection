@@ -101,6 +101,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //declaracion de variables
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
+  private miMensajeAplicaBonsSi:String;
 
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
@@ -124,6 +125,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     ngOnInit(){
+      console.log('valor de miMensajeAplicaBonsSi '+this.miMensajeAplicaBonsSi);
 
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
@@ -234,6 +236,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     onerrorMessageAplicaBonific(mensaje:String){
 
       this.miMensajeerrorAplicaBons = mensaje;
+    }
+
+    onMessageAplicaBonificSi(mensaje:String){
+      console.log('dentro de onMessaggeAplicaBonificSi del componente padre');
+
+      this.miMensajeAplicaBonsSi = mensaje;
     }
 
     onTotalVencidos(totalvencidos:number){
