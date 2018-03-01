@@ -176,10 +176,6 @@ export class AplicaBonificacionComponent implements OnInit {
                        });
     };
 
-    public hola(){
-      console.log('hola');
-    }
-
     confirmarBonificacion() {
 
 
