@@ -164,11 +164,9 @@
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
-<<<<<<< HEAD
-            <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();aplicabonificacion.confirmarBonificacion();" />
-=======
+
             <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();getAutoriza()" />
->>>>>>> d015b8520b527f58baf574e516b251689150bbaa
+
           </div>
         </form>
 
@@ -190,9 +188,9 @@
           </div>
 
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
-          <label for="autoriza" class="col-md-4 control-label">¿Quien autoriza?</label>            
+          <label for="autoriza" class="col-md-4 control-label">¿Quien autoriza?</label>
             <tbody >
-              <select name="autoriza" id="autoriza" class="form-control" 
+              <select name="autoriza" id="autoriza" class="form-control"
               #qautoriza="ngModel" [(ngModel)]="model.qautoriza">
                 <option value="undefined" selected >Selecciona quien autoriza</option>
                 <option *ngFor="let aut of autoriza " value="{{aut.id_autoriza}}" >{{aut.nombre}}</option>
@@ -200,21 +198,14 @@
             </tbody>
           </div>
         </form>
-<<<<<<< HEAD
-=======
-        
-        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
-          <div  class="form-group" style="text-align:center">
-            <input type="submit" value="Pagar" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios,model.qautoriza)" />
-          </div>
->>>>>>> d015b8520b527f58baf574e516b251689150bbaa
 
-        <form  class="form-inline" #f3="ngForm" novalidate>
+
+        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
           <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
             <input type="submit" value="Pagar s/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte)" />
           </div>
           <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
-            <input type="submit" value="Pagar c/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios)" />
+            <input type="submit" value="Pagar c/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios,model.qautoriza)" />
           </div>
         </form>
 
