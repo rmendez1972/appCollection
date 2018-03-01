@@ -12,6 +12,7 @@ import { AlertService} from '../_services/index';
 import { User } from '../_models/index';
 import { Vencidos } from './vencidos';
 import { Aplicar } from  './aplicar';
+import { Benef } from './benef';
 //marlon
 
 
@@ -64,7 +65,7 @@ export class AplicaBonificacionComponent implements OnInit {
   private k: Observable<Bonific[]>;
   private aplicar: Aplicar;
   private currentUser: User;
-  private vencidos: Vencidos;
+  private beneficiario: Benef;
   model:any={};
 
   //valores de salida del webcomponent
@@ -95,23 +96,24 @@ export class AplicaBonificacionComponent implements OnInit {
         this.model.imp_adm = this.aplicar[y].admon;
         this.model.imp_seg = this.aplicar[y].seguro;
         this.model.imp_osg = this.aplicar[y].oseg;
-        this.model.id_catbonific = this.aplicar[y].id_catbonific;
-        this.model.id_autoriza = this.aplicar[y].id_autoriza;
-        this.model.imp_com = this.aplicar[y].imp_com;
-        this.model.imp_mor = this.aplicar[y].imp_mor;
-        this.model.imp_tit = this.aplicar[y].imp_tit;
-        this.model.id_catprog = this.aplicar[y].id_catprog;
+        //this.model.id_catbonific = this.aplicar[y].id_catbonific;
+        this.model.imp_com = this.aplicar[y].com;
+        this.model.imp_tit = this.aplicar[y].tit;
+       
 
       }
       
       //el valor de estatus se declara como un valor fijo
       this.model.estatus = 'A';
+
+      this.model.id_autoriza = '1';
+ 
       
       //se recuperan valores del localStorage de CurrentUser
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
       for (var elemento in this.currentUser) {
-        this.model.id_movedocta=this.currentUser[elemento].id_movedocta;
+        this.model.id_movedocta=this.currentUser[elemento].id_movedocta;//
         this.model.id_usuario=this.currentUser[elemento].id;
         this.model.recibo = this.currentUser[elemento].folio_final;
         this.model.serie = this.currentUser[elemento].serie;
@@ -119,10 +121,11 @@ export class AplicaBonificacionComponent implements OnInit {
       }
 
       //se recuperan valores del localStorage de vencidos
-      this.vencidos = JSON.parse(localStorage.getItem('vencidos'));
+      this.beneficiario = JSON.parse(localStorage.getItem('beneficiario'));
       //iterar en el localstorage de vencidos para almacernar los valores hacia las propiedades
-      for (var x in this.vencidos) {
-        this.model.clave_b=this.vencidos[x].clave_b;
+      for (var x in this.beneficiario) {
+        this.model.clave_b=this.beneficiario[x].clave_b;
+        this.model.id_catprog = this.beneficiario[x].id_catprog;
       }
     
     //fin Oinit
@@ -143,12 +146,14 @@ export class AplicaBonificacionComponent implements OnInit {
       console.log("Tipo de bonificaciones: "+ tipobonificaciones);
       console.log("Moratorios :" +moratorios);
 
+      this.model.imp_mor = moratorios;
+
         this.k=this.route.params
 
         .switchMap((params: Params) =>
         {
         return this.aplicabonificservice.postBonificaciones(this.model.id_movedocta,this.model.id_benef,this.model.imp_cap,this.model.imp_int,this.model.imp_adm,this.model.imp_seg,
-          this.model.imp_osg,this.model.imp_com,this.model.imp_mor,this.model.imp_tit,this.model.id_catbonific,this.model.estatus,this.model.id_usuario,this.model.id_autoriza,
+          this.model.imp_osg,this.model.imp_com,this.model.imp_mor,this.model.imp_tit,tipobonificaciones,this.model.estatus,this.model.id_usuario,this.model.id_autoriza,
           this.model.clave_b,this.model.recibo,this.model.serie,this.model.id_catprog);
         })
 
