@@ -164,7 +164,13 @@
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
+<<<<<<< HEAD
             <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();getAutoriza()" />
+=======
+
+            <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();getAutoriza()" />
+
+>>>>>>> 21df5dcd94411e82db2573e3c0dffb73d223c5f8
           </div>
         </form>
 
@@ -186,9 +192,9 @@
           </div>
 
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
-          <label for="autoriza" class="col-md-4 control-label">¿Quien autoriza?</label>            
+          <label for="autoriza" class="col-md-4 control-label">¿Quien autoriza?</label>
             <tbody >
-              <select name="autoriza" id="autoriza" class="form-control" 
+              <select name="autoriza" id="autoriza" class="form-control"
               #qautoriza="ngModel" [(ngModel)]="model.qautoriza">
                 <option value="undefined" selected >Selecciona quien autoriza</option>
                 <option *ngFor="let aut of autoriza " value="{{aut.id_autoriza}}" >{{aut.nombre}}</option>
@@ -196,7 +202,13 @@
             </tbody>
           </div>
         </form>
+<<<<<<< HEAD
         <form  class="form-inline" #f3="ngForm" novalidate>
+=======
+
+
+        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
+>>>>>>> 21df5dcd94411e82db2573e3c0dffb73d223c5f8
           <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
             <input type="submit" value="Pagar s/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte)" />
           </div>
