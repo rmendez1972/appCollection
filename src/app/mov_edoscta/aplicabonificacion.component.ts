@@ -13,6 +13,7 @@ import { User } from '../_models/index';
 import { Vencidos } from './vencidos';
 import { Aplicar } from  './aplicar';
 import { Benef } from './benef';
+import { ConfirmService} from '../_services/index';
 //marlon
 
 
@@ -66,18 +67,25 @@ export class AplicaBonificacionComponent implements OnInit {
   private aplicar: Aplicar;
   private currentUser: User;
   private beneficiario: Benef;
+  private vencidos: Vencidos;
+  private muestraBonificacion:boolean;
+  private objeto:any;
+
   model:any={};
 
   //valores de salida del webcomponent
   @Output() onMessageAplicaBonific = new EventEmitter<String>();
   @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
+  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
 
 
   	constructor(
       private router: Router,
       private route: ActivatedRoute,
       private aplicabonificservice: AplicaBonificService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      private confirmService:ConfirmService,
+
     )
     {}
 
@@ -96,7 +104,6 @@ export class AplicaBonificacionComponent implements OnInit {
         this.model.imp_adm = this.aplicar[y].admon;
         this.model.imp_seg = this.aplicar[y].seguro;
         this.model.imp_osg = this.aplicar[y].oseg;
-        //this.model.id_catbonific = this.aplicar[y].id_catbonific;
         this.model.imp_com = this.aplicar[y].com;
         this.model.imp_tit = this.aplicar[y].tit;
        
@@ -105,8 +112,6 @@ export class AplicaBonificacionComponent implements OnInit {
       
       //el valor de estatus se declara como un valor fijo
       this.model.estatus = 'A';
-
-      this.model.id_autoriza = '1';
  
       
       //se recuperan valores del localStorage de CurrentUser
@@ -142,11 +147,15 @@ export class AplicaBonificacionComponent implements OnInit {
     };
 
     //Metodo en donde se realizara la insercion de las bonificaciones
-    postBonificaciones(tipobonificaciones:number, moratorios:number) {
+    postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
+      //id_catbonific
       console.log("Tipo de bonificaciones: "+ tipobonificaciones);
       console.log("Moratorios :" +moratorios);
+      //id_autoriza
+      console.log("Quien autoriza :" +autoriza);
 
       this.model.imp_mor = moratorios;
+      this.model.id_autoriza = autoriza;
 
         this.k=this.route.params
 
@@ -169,6 +178,29 @@ export class AplicaBonificacionComponent implements OnInit {
                          this.errormessageAplicaBonific('Error en la inserción de datos');
                          this.messageAplicaBonific(null);
                        });
+    };
+
+    public hola(){
+      console.log('hola');
+    }
+
+    confirmarBonificacion() {
+
+
+      console.log('dentro de confirmarBonificacion ');
+       this.confirmService.confirmBonificacion("Tiene Bonificaciones?",this.aplicabonificservice,this.onMessageAplicaBonificSi,function(bonificservice,eventemmitter){
+              //ACTION: Do this If user says YES
+              //this.pagar = aplicarservice.getPagar(fecha);
+              console.log('tipo de bonificservice '+typeof(bonificservice));
+              console.log('apunto de emitir ');
+              eventemmitter.emit('SI');
+              //bonificservice.siBonificacion();
+            },function(eventemmitter){
+              //ACTION: Do this if user says NO
+              console.log('dentro del NO');
+              eventemmitter.emit(null);
+      })
+
     };
 
 

@@ -20,6 +20,7 @@ import { TipoBonificacion} from './tipoBonificacion';
 import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 import {AplicaBonificService} from './aplicabonificacion.service';
 
+import { Autoriza } from './autoriza';
 
 @Component({
   selector: 'app-seguimiento-list, notifier',
@@ -69,10 +70,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private mov_edoscta: Mov_edocta[];
   private benef: Benef[];
   private bonificaciones: TipoBonificacion[];
+  private autoriza: Autoriza[];
 
   private k: Observable<Mov_edocta[]>;
   private l: Observable<Benef[]>;
   private j: Observable<TipoBonificacion[]>;
+  private m: Observable<Autoriza[]>;
 
 
   private selectedId: number;
@@ -101,6 +104,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   //declaracion de variables
   private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
+  private miMensajeAplicaBonsSi:String;
 
   @Output() onMessageTipoBonificacion = new EventEmitter<String>();
   @Output() onerrorMessageTipoBonificacion = new EventEmitter<String>();
@@ -124,6 +128,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     }
     ngOnInit(){
+      console.log('valor de miMensajeAplicaBonsSi '+this.miMensajeAplicaBonsSi);
 
       this.model.fecha_corte= new Date().toJSON();
       this.model.valorcriterio=null;
@@ -188,6 +193,17 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
                        error =>  this.errorMessage = <any>error);
 
     };
+    getAutoriza(){
+      console.log("get autoriza desde component:");
+      this.m=this.route.params
+      .switchMap((params:Params) =>
+      {
+        return this.aplica_mov_edoctaservice.getAutoriza()
+      })
+      this.m.subscribe(
+        autoriza => this.autoriza = autoriza,
+        error => this.errorMessage = <any>error);
+    };
     onMessage(mensaje:String){
 
       this.miMensajeBons = mensaje;
@@ -234,6 +250,12 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     onerrorMessageAplicaBonific(mensaje:String){
 
       this.miMensajeerrorAplicaBons = mensaje;
+    }
+
+    onMessageAplicaBonificSi(mensaje:String){
+      console.log('dentro de onMessaggeAplicaBonificSi del componente padre');
+
+      this.miMensajeAplicaBonsSi = mensaje;
     }
 
     onTotalVencidos(totalvencidos:number){
