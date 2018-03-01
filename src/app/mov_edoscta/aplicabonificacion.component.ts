@@ -14,7 +14,6 @@ import { Vencidos } from './vencidos';
 //marlon
 
 
-
 @Component({
   selector: 'app-aplicabonific',
   templateUrl: './aplicabonificacion.component.html',
@@ -85,7 +84,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
 
-  	constructor(
+    constructor(
       private router: Router,
       private route: ActivatedRoute,
       private aplicabonificservice: AplicaBonificService,
@@ -94,7 +93,7 @@ export class AplicaBonificacionComponent implements OnInit {
     {}
 
 
-  	ngOnInit() {
+    ngOnInit() {
       //Propiedades de la clase inicializandolos con los valores de entrada
       this.model.id_benef = this.id_benef;
       this.model.imp_cap = this.imp_cap;

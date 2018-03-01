@@ -133,7 +133,6 @@ export class AplicarService {
     let tit: number;//aplicar
     let fecha_corte: string=fecha;//controler
 
-
     let clave_b:String;//Benef
     let id_benef=0;//bene
     let id_catprog: number;//Benef
@@ -210,7 +209,6 @@ export class AplicarService {
 
 
     //Return que solo inserta el primer registro
-
 
     return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
       aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
