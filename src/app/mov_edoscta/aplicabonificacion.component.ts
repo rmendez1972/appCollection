@@ -105,14 +105,14 @@ export class AplicaBonificacionComponent implements OnInit {
         this.model.imp_osg = this.aplicar[y].oseg;
         this.model.imp_com = this.aplicar[y].com;
         this.model.imp_tit = this.aplicar[y].tit;
-       
+
 
       }
-      
+
       //el valor de estatus se declara como un valor fijo
       this.model.estatus = 'A';
- 
-      
+
+
       //se recuperan valores del localStorage de CurrentUser
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
@@ -131,7 +131,7 @@ export class AplicaBonificacionComponent implements OnInit {
         this.model.clave_b=this.beneficiario[x].clave_b;
         this.model.id_catprog = this.beneficiario[x].id_catprog;
       }
-    
+
     //fin Oinit
     };
 
