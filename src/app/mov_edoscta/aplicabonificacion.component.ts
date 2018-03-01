@@ -91,6 +91,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
   	ngOnInit() {
 
+
       //se recuperan valores del localStorage de Aplicar
       this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
 
