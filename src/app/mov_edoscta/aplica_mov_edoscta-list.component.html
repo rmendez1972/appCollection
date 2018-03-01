@@ -164,12 +164,19 @@
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
+<<<<<<< HEAD
+            <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();aplicabonificacion.confirmarBonificacion();" />
+=======
             <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();getAutoriza()" />
+>>>>>>> d015b8520b527f58baf574e516b251689150bbaa
           </div>
         </form>
-        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
+
+        <confirm></confirm>
+
+        <form [hidden]="!miMensajeAplicaBonsSi" class="form-inline" #f3="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
-          <label for="tipoBonific" class="col-md-4 control-label">Tipo de Bonificaciones</label>            
+          <label for="tipoBonific" class="col-md-4 control-label">Tipo de Bonificaciones</label>
             <tbody >
               <select name="tipobonificacion" id="tipobonificacion" class="form-control" #tipobonificacion="ngModel" [(ngModel)]="model.tipobonificacion">
                 <option value="undefined" selected >Selecciona un tipo de bonificacion</option>
@@ -178,7 +185,7 @@
             </tbody>
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
-          <label for="moratorios" class="col-md-4 control-label">Total de moratorios</label> 
+          <label for="moratorios" class="col-md-4 control-label">Total de moratorios</label>
           <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalmoratorios" #moratorios="ngModel" step="0.01" min="1" max="{{totalmoratorios}}" required>
           </div>
 
@@ -193,18 +200,28 @@
             </tbody>
           </div>
         </form>
+<<<<<<< HEAD
+=======
         
         <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
           <div  class="form-group" style="text-align:center">
             <input type="submit" value="Pagar" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios,model.qautoriza)" />
           </div>
+>>>>>>> d015b8520b527f58baf574e516b251689150bbaa
 
+        <form  class="form-inline" #f3="ngForm" novalidate>
+          <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
+            <input type="submit" value="Pagar s/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte)" />
+          </div>
+          <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
+            <input type="submit" value="Pagar c/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte);aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios)" />
+          </div>
         </form>
 
       </div>
     </div>
   </div>
-  <confirm></confirm>
+
   <p>Total Vencidos: {{totalvencidos}}</p>
   <div class="panel panel-primary">
     <div class="panel-heading">Mensualidades/Letras Vencidas del Beneficiario</div>
@@ -233,22 +250,22 @@
 
       <h3 *ngIf=miMensajeBons><span class="label label-success">{{miMensajeBons}}</span></h3>
       <h3 *ngIf=miMensajeerrorBons><span class="label label-danger">{{miMensajeerrorBons}}</span></h3>
-      <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion 
+      <app-bonific [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion
         (onMessage)="onMessage($event)" (onerrorMessage)="onerrorMessage($event)"></app-bonific>
 
     </div>
   </div>
 
-  <div class="panel panel-primary">
+  <div [hidden]="!miMensajeAplicaBonsSi" class="panel panel-primary">
     <div class="panel-heading">Bonificaciones a Aplicar</div>
     <div class="panel-body transparent">
 
       <h3 *ngIf=miMensajeAplicaBons><span class="label label-success">{{miMensajeAplicaBons}}</span></h3>
       <h3 *ngIf=miMensajeerrorAplicaBons><span class="label label-danger">{{miMensajeerrorAplicaBons}}</span></h3>
-      <app-aplicabonific [id_benef]=model.id_benef [imp_cap]=model.imp_cap [imp_int]=model.imp_int [imp_adm]=model.imp_adm 
+      <app-aplicabonific [id_benef]=model.id_benef [imp_cap]=model.imp_cap [imp_int]=model.imp_int [imp_adm]=model.imp_adm
       [imp_seg]=model.imp_seg [imp_osg]=model.imp_osg [id_catbonific]=model.id_catbonific [id_autoriza]=model.id_autoriza
       [imp_com]=model.imp_com [imp_mor]=model.imp_mor [imp_tit]=model.imp_tit [id_catprog]=model.id_catprog  #aplicabonificacion
-        (onMessageAplicaBonific)="onMessageAplicaBonific($event)" (onerrorMessageAplicaBonific)="onerrorMessageAplicaBonific($event)"></app-aplicabonific>
+        (onMessageAplicaBonific)="onMessageAplicaBonific($event)" (onerrorMessageAplicaBonific)="onerrorMessageAplicaBonific($event)"  (onMessageAplicaBonificSi)="onMessageAplicaBonificSi($event)" ></app-aplicabonific>
 
     </div>
   </div>
