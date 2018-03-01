@@ -1,4 +1,4 @@
-import { Injectable,Output,EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Bonific } from './bonific';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 //import {Observable} from 'rxjs/Rx';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
-import { AplicaBonificacionComponent} from '../mov_edoscta/aplicabonificacion.component';
 
 
 
@@ -37,34 +36,29 @@ export class AplicaBonificService {
   private numcontrato:string;
   private id_catprog:number;
 
-  //@Output() onMessageAplicaBonificSi = new EventEmitter<String>();
-
-
-
 
 
   constructor (private http: Http,
       private url:ServiceUrl,
-      private alertService: AlertService,
-      )
+      private alertService: AlertService)
       {
-
+        
         this.aplicabonificacionUrl=String(this.url.getUrlAplicabonificacion());
 
       }
 
-  postBonificaciones(id_movedocta:number, id_benef:number, imp_cap:number, imp_int:number, imp_adm:number,
+  postBonificaciones(id_movedocta:number, id_benef:number, imp_cap:number, imp_int:number, imp_adm:number, 
     imp_seg:number, imp_osg:number,
-  imp_com:number, imp_mor:number, imp_tit:number,
-  id_catbonific:number, estatus:string, id_usuario:number,
+  imp_com:number, imp_mor:number, imp_tit:number, 
+  id_catbonific:number, estatus:string, id_usuario:number, 
   id_autoriza:number, clave_b:string, recibo:number,
   serie:string, id_catprog:number): Observable<Bonific[]> {
-
+    
     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
     console.log("numero de contrato:" + this.numcontrato);
 
-
+    
     //metodo callback para introducir los datos al backend
     console.log(this.aplicabonificacionUrl);
     console.log(id_movedocta);
@@ -102,12 +96,14 @@ export class AplicaBonificService {
     let body = res.json();
 
     console.log(body.registroBonificacion);
+
+    
         /*for (var i = 0; i < body.registroBonificacion.length; i++) {
       this.id_movedocta = body.registroBonificacion[i];
-
+      
 
     }
-
+    
     /*let valor=new String(body.registroBonificacio);
 
 
@@ -138,11 +134,5 @@ export class AplicaBonificService {
     return Observable.throw(errMsg);
 
   }
-  siBonificacion() {
-      console.log('dentro de siBonificacion , apunto de emitir');
-      //this.onMessageAplicaBonificSi.emit('SI');
-
-    }
-
 
 }
