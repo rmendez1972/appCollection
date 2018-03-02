@@ -183,6 +183,7 @@ export class AplicarComponent implements OnInit {
               k.subscribe(
                 aplicar =>{
                   //aqui llamo al service que envia datos de bonific al backend
+                  console.log('apunto de llamar a postBonificaciones');
                   aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
                 }
                 //error => let error=error

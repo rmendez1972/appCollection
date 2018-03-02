@@ -42,23 +42,26 @@ export class AplicaBonificService {
       private url:ServiceUrl,
       private alertService: AlertService)
       {
-        
+
         this.aplicabonificacionUrl=String(this.url.getUrlAplicabonificacion());
 
       }
 
-  postBonificaciones(id_movedocta:number, id_benef:number, imp_cap:number, imp_int:number, imp_adm:number, 
+  postBonificaciones(id_movedocta:number, id_benef:number, imp_cap:number, imp_int:number, imp_adm:number,
     imp_seg:number, imp_osg:number,
-  imp_com:number, imp_mor:number, imp_tit:number, 
-  id_catbonific:number, estatus:string, id_usuario:number, 
+  imp_com:number, imp_mor:number, imp_tit:number,
+  id_catbonific:number, estatus:string, id_usuario:number,
   id_autoriza:number, clave_b:string, recibo:number,
   serie:string, id_catprog:number): Observable<Bonific[]> {
-    
+
+    console.log('clave_b '+clave_b);
+    console.log('DENTRO DE postBonificaciones DE aplicabonificacion.service');
     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
+
     console.log("numero de contrato:" + this.numcontrato);
 
-    
+
     //metodo callback para introducir los datos al backend
     console.log(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
      '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
@@ -113,7 +116,7 @@ export class AplicaBonificService {
       recibo:recibo,
       id_bonificacion:id_bonificacion,
       actividad:actividad,
-      
+
 
 
     };

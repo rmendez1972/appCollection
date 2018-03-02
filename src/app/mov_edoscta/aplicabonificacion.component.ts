@@ -92,7 +92,26 @@ export class AplicaBonificacionComponent implements OnInit {
   	ngOnInit() {
 
 
-      //se recuperan valores del localStorage de Aplicar
+
+      //console.log('clave_b dentro del component, dentro del ngoninit '+this.beneficiario[0].clave_b);
+
+    //fin Oinit
+    };
+
+    //mensaje de salida de exito
+    messageAplicaBonific(mensaje:String){
+      this.onMessageAplicaBonific.emit(mensaje);
+    };
+
+    //mensajde de salida de fracaso
+    errormessageAplicaBonific(mensaje:String){
+      this.onerrorMessageAplicaBonific.emit(mensaje);
+    };
+
+    //Metodo en donde se realizara la insercion de las bonificaciones
+    postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
+
+       //se recuperan valores del localStorage de Aplicar
       this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
 
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
@@ -126,30 +145,18 @@ export class AplicaBonificacionComponent implements OnInit {
 
       //se recuperan valores del localStorage de vencidos
       this.beneficiario = JSON.parse(localStorage.getItem('beneficiario'));
+      console.log('valor de this.beneficiario '+this.beneficiario);
       //iterar en el localstorage de vencidos para almacernar los valores hacia las propiedades
       for (var x in this.beneficiario) {
         this.model.clave_b=this.beneficiario[x].clave_b;
         this.model.id_catprog = this.beneficiario[x].id_catprog;
       }
 
-    //fin Oinit
-    };
 
-    //mensaje de salida de exito
-    messageAplicaBonific(mensaje:String){
-      this.onMessageAplicaBonific.emit(mensaje);
-    };
 
-    //mensajde de salida de fracaso
-    errormessageAplicaBonific(mensaje:String){
-      this.onerrorMessageAplicaBonific.emit(mensaje);
-    };
-
-    //Metodo en donde se realizara la insercion de las bonificaciones
-    postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
       this.model.imp_mor = moratorios;
       this.model.id_autoriza = autoriza;
-
+        console.log('dentro de postBonificaciones de aplicabonificacioncomponent');
         this.k=this.route.params
 
         .switchMap((params: Params) =>
