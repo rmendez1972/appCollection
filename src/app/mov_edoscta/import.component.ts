@@ -18,6 +18,7 @@ import { ConfirmService } from '../_services/index';
 
 import {Mov_edosctaListComponent} from './mov_edoscta-list.component';
 import {Mov_edoctaService} from './mov_edocta.service';
+import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import {Mov_edoctaService} from './mov_edocta.service';
   BonificService,
   Mov_edoctaService,
   ConfirmService,
-  AplicarService
+  AplicarService,
+  AplicaBonificacionComponent
   ],
   exports:[
   Mov_edosctaListComponent,

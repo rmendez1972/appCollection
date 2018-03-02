@@ -6,13 +6,15 @@ import { Subject } from 'rxjs/Subject';
 import { AplicarService} from '../mov_edoscta/aplicar.service';
 import { Aplicar } from '../mov_edoscta/aplicar';
 import { Observable } from 'rxjs/Observable';
+import { AplicaBonificacionComponent} from '../mov_edoscta/aplicabonificacion.component';
 import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 
 @Injectable() export class ConfirmService {
 	private subject = new Subject<any>();
 	private miservice:AplicarService;
 	private miroute: ActivatedRoute;
-	private bonificservice:AplicaBonificService;
+	private bonificacioncomponent:AplicaBonificacionComponent;
+	private aplicabonificservice:AplicaBonificService;
 	private mik: Observable<Aplicar[]>;
 	private fecha:string;
     private totalmoratorios:number;
@@ -49,6 +51,39 @@ import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 
                             //let aplicarservice=function() { return 'hola' };
                             siFn(mimessage ,mifecha, miservice, miroute, mk);
+                        },
+                        noFn:function(){
+                            that.subject.next();
+                            noFn();
+                        }
+    	});
+
+	}
+
+
+	confirmconBonific(message: string='',fecha:string,miservice:AplicarService,bonificacioncomponent:AplicaBonificacionComponent,miroute:ActivatedRoute,miK:Observable<Aplicar[]>,tipobonificacion:number,totalmoratorios:number,qautoriza:number,siFn:(message,fecha,aplicarservice,bonificacioncomponent, routeservice,k,tipobonificacion,totalmoratorios,qautoriza)=>void,noFn:()=>void){
+
+    	this.fecha=fecha;
+        this.setConfirmationconBonific(message,this.fecha,miservice,bonificacioncomponent,miroute,this.mik,tipobonificacion,totalmoratorios,qautoriza,siFn,noFn);
+    }
+
+
+	setConfirmationconBonific(message: string, fecha:string, miservice: AplicarService, bonificacioncomponent:AplicaBonificacionComponent, miroute: ActivatedRoute,miK:Observable<Aplicar[]>,tipobonificacion:number,totalmoratiorios:number,qautoriza:number, siFn:(message,fecha,aplicarservice,bonificacioncomponent,routeservice,k,tipobonificacion,totalmoratorios,qautoriza)=>void,noFn:()=>void) {
+    	let that = this;
+    	let mifecha=fecha;
+    	let mimessage=message;
+    	let mk: Observable<Aplicar[]>;
+    	console.log('valor de mifecha dentro de setConfirmationconBonific '+ mifecha);
+    	console.log('valor de bonificacioncomponent dentro de setConfirmationconBonific '+ bonificacioncomponent);
+
+    	this.subject.next({ type: "confirm",
+                        text: message,
+                        siFn:
+                        function(message,fecha,aplicarservice){
+                            that.subject.next(); //this will close the modal
+
+                            //let aplicarservice=function() { return 'hola' };
+                            siFn(mimessage ,mifecha, miservice, bonificacioncomponent, miroute, mk, tipobonificacion, totalmoratiorios, qautoriza);
                         },
                         noFn:function(){
                             that.subject.next();
