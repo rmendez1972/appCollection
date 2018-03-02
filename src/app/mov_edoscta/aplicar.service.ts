@@ -283,13 +283,26 @@ postPagarVencidos(
   private extractDataPagarVencidos(res: Response) {
 
     let body = res.json();
-
-
-    return body.caja|| { };
+    console.log(body.resultado);
+    let inserto:boolean;
+    let recibo = 0;
+    for (var i = 0; i < 1; ++i) {
+      inserto = body.resultado[0];
+      recibo= body.resultado[1];
+    }
+    let pagados ={
+      inserto:inserto,
+      recibo:recibo,
+    }
+    let current = JSON.parse(localStorage.getItem('currentUser'));
+    current.push(pagados);
+    localStorage.setItem('currentUser',JSON.stringify(current));
+    return body.resultado|| { };
 
   }
   private extractDataPagar (res: Response) {
     let body = res.json();
+    console.log(body.caja);
     return body.caja || { };
 
   }
