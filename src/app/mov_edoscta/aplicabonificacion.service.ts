@@ -95,7 +95,7 @@ export class AplicaBonificService {
 
     let body = res.json();
 
-    console.log(body.registroBonificacion);
+    console.log("dentro de extract data "+body.registroBonificacion);
 
     
         /*for (var i = 0; i < body.registroBonificacion.length; i++) {
