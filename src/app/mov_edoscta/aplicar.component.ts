@@ -163,6 +163,7 @@ export class AplicarComponent implements OnInit {
 
 
 
+
     getPagarConBonific(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number) {
 
       console.log('DENTRO DE getPagarConBonific');
@@ -197,3 +198,4 @@ export class AplicarComponent implements OnInit {
 
 
 }
+

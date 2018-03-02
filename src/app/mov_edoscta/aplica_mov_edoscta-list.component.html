@@ -164,11 +164,7 @@
             </div>
           </div>
           <div  class="form-group" style="text-align:center">
-
-
             <input type="submit" value="Calcular" class="btn btn-primary" (click)="aplicar.getLetras();getTipoBonificaciones();getAutoriza();aplicabonificacion.confirmarBonificacion()" />
-
-
           </div>
         </form>
 
@@ -200,17 +196,17 @@
             </tbody>
           </div>
         </form>
-
-
-        <form *ngIf=miMensajeVencidos class="form-inline" #f3="ngForm" novalidate>
+        <form  class="form-inline" #f3="ngForm" novalidate>
           <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
+
             <input type="submit" value="Pagar s/b" class="btn btn-primary" (click)="aplicar.getPagar(model.fecha_corte)" />
           </div>
           <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
             <input type="submit" value="Pagar c/b" class="btn btn-primary" (click)="aplicar.getPagarConBonific(model.fecha_corte,model.tipobonificacion,totalmoratorios,model.qautoriza)" />
+
           </div>
         </form>
-                <!-- ;aplicabonificacion.postBonificaciones(model.tipobonificacion,totalmoratorios,model.qautoriza) -->
+
       </div>
     </div>
   </div>
