@@ -96,12 +96,13 @@ export class Aplica_Mov_edoctaService {
 
   private extractDataBenef(res: Response) {
     let body = res.json();
+    console.log(body.beneficiario);
     return body.beneficiario || { };
   }
 
   private extractDataTipoBonificacion(res: Response) {
     let body = res.json();
-    //console.log(body.bonificaciones);
+    console.log(body.bonificaciones);
     return body.bonificaciones|| { };
   }
   private extractDataAutoriza(res: Response){

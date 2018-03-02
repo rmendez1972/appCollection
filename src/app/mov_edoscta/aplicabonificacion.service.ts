@@ -60,7 +60,10 @@ export class AplicaBonificService {
 
     
     //metodo callback para introducir los datos al backend
-    console.log(this.aplicabonificacionUrl);
+    console.log(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
+     '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
+     '&estatus='+estatus+'&id_usuario='+id_usuario.toString()+'&clave_b='+clave_b+'&recibo='+recibo.toString()+'&serie='+serie+'&numcontrato='+this.numcontrato+'&id_catprog='+id_catprog.toString()+
+     '&id_autoriza='+id_autoriza.toString());
     console.log(id_movedocta);
     console.log(id_benef);
     console.log(imp_cap);
@@ -92,28 +95,29 @@ export class AplicaBonificService {
 
 
   private extractDataBon(res: Response) {
-
-    let body = res.json();
-
-    console.log("dentro de extract data "+body.registroBonificacion);
-
-    
-        /*for (var i = 0; i < body.registroBonificacion.length; i++) {
-      this.id_movedocta = body.registroBonificacion[i];
-      
+    let body= res.json();
+    let id_mov_edoscta= 0;
+    let id_bonificacion = 0;
+    let actividad: boolean;
+    let recibo= 0;
+    for (var i = 0; i < body.registroBonificacion.length; ++i) {
+      id_mov_edoscta =  body.registroBonificacion[0];
+      recibo =body.registroBonificacion[1];
+      id_bonificacion = body.registroBonificacion[2];
+      actividad = body.registroBonificacion[3];
 
     }
-    
-    /*let valor=new String(body.registroBonificacio);
+
+    let bonificacion ={
+      id_mov_edoscta:id_mov_edoscta,
+      recibo:recibo,
+      id_bonificacion:id_bonificacion,
+      actividad:actividad,
+      
 
 
-
-    if (valor=="true"){
-      console.log("Registro Exitosamente");
-    }else{
-      console.log("No se pudo hacer el registro");
-    }*/
-
+    };
+    localStorage.setItem('bon',JSON.stringify(bonificacion));
     return body.registroBonificacion || { };
 
   }

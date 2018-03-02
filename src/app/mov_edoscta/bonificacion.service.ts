@@ -23,6 +23,7 @@ export class BonificService {
   }
   private extractDataBon(res: Response) {
     let body = res.json();
+    console.log(body.bonificacion);
     return body.bonificacion || { };
   }
   private handleError (error: Response | any) {

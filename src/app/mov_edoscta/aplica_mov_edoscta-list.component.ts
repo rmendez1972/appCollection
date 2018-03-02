@@ -194,7 +194,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     };
     getAutoriza(){
-      console.log("get autoriza desde component:");
       this.m=this.route.params
       .switchMap((params:Params) =>
       {
@@ -253,8 +252,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     }
 
     onMessageAplicaBonificSi(mensaje:String){
-      console.log('dentro de onMessaggeAplicaBonificSi del componente padre');
-
       this.miMensajeAplicaBonsSi = mensaje;
     }
 

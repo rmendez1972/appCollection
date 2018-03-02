@@ -36,6 +36,7 @@ export class VencidosService {
     }
 
     localStorage.setItem('vencidos',JSON.stringify(body.vencidos));
+    console.log(body.vencidos);
     return body.vencidos || { };
   }
 
