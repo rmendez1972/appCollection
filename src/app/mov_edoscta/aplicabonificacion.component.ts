@@ -97,7 +97,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
       for (var y in this.aplicar) {
-        this.model.id_benef = 0;
+        this.model.id_benef = 51;
         this.model.imp_cap = this.aplicar[y].capital;
         this.model.imp_int = this.aplicar[y].interes;
         this.model.imp_adm = this.aplicar[y].admon;
@@ -117,7 +117,7 @@ export class AplicaBonificacionComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
       for (var elemento in this.currentUser) {
-        this.model.id_movedocta=0;//
+        this.model.id_movedocta=138;//
         this.model.id_usuario=this.currentUser[elemento].id;
         this.model.recibo = this.currentUser[elemento].folio_final;
         this.model.serie = this.currentUser[elemento].serie;

@@ -296,7 +296,7 @@ postPagarVencidos(
     }
     let current = JSON.parse(localStorage.getItem('currentUser'));
     current.push(pagados);
-    localStorage.setItem('currentUser',JSON.stringify(current));
+    //localStorage.setItem('currentUser',JSON.stringify(current));
     return body.resultado|| { };
 
   }
