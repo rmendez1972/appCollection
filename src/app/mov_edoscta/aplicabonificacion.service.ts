@@ -55,7 +55,7 @@ export class AplicaBonificService {
   serie:string, id_catprog:number): Observable<Bonific[]> {
 
     console.log("numero de contrato:" + this.numcontrato);
-    console.log(id_movedocta);
+    console.log("id_movedocta:"+id_movedocta);
     console.log(id_benef);
     console.log(imp_cap);
     console.log(imp_int);

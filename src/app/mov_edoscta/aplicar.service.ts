@@ -286,7 +286,7 @@ postPagarVencidos(
     console.log(body.resultado);
     let inserto:boolean;
     let recibo = 0;
-    let id_mov_edoscta = 0;
+    let id_mov_edoscta = 138;
     for (var i = 0; i < 1; ++i) {
       inserto = body.resultado[0];
       recibo= body.resultado[1];
