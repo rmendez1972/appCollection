@@ -286,6 +286,7 @@ postPagarVencidos(
     console.log(body.resultado);
     let inserto:boolean;
     let recibo = 0;
+    let id_mov_edoscta = 0;
     for (var i = 0; i < 1; ++i) {
       inserto = body.resultado[0];
       recibo= body.resultado[1];
@@ -293,9 +294,15 @@ postPagarVencidos(
     let pagados ={
       inserto:inserto,
       recibo:recibo,
+      id_mov_edoscta:id_mov_edoscta,
     }
     let current = JSON.parse(localStorage.getItem('currentUser'));
-    current.push(pagados);
+    for (var x = 0; x < 1; ++x) {
+      current[x].inserto= pagados.inserto;
+      current[x].recibo= pagados.recibo;
+      current[x].id_mov_edoscta = pagados.id_mov_edoscta;
+    }
+    
     localStorage.setItem('currentUser',JSON.stringify(current));
     return body.resultado|| { };
 
