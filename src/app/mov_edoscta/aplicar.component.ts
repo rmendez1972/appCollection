@@ -10,6 +10,7 @@ import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
 import {Vencidos} from './vencidos'
 import {BonificService} from './bonificacion.service';
+import { AplicaBonificacionComponent} from './aplicabonificacion.component';
 
 
 @Component({
@@ -79,6 +80,7 @@ export class AplicarComponent implements OnInit {
     constructor(
       private aplicarService: AplicarService,
       private bonificService: BonificService,
+      private aplicabonificacioncomponent: AplicaBonificacionComponent,
       private alertService:AlertService,
       private confirmService:ConfirmService,
       private router: Router,
@@ -148,6 +150,39 @@ export class AplicarComponent implements OnInit {
                 aplicar =>{
                   //this.message('Pago de las letras vencidas realizadas con exito');
                   //this.errormessage(null);
+                }
+                //error => let error=error
+                  //this.errorMessage = <any>error
+                );
+
+            },function(){
+              //ACTION: Do this if user says NO
+      })
+
+    };
+
+
+
+    getPagarConBonific(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number) {
+
+      console.log('DENTRO DE getPagarConBonific');
+      console.log('valor de tipobonificacion '+tipobonificacion);
+      console.log('totalmoratiorios '+totalmoratorios);
+      console.log('quienautoriza '+qautoriza);
+       this.confirmService.confirmconBonific("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.k,tipobonificacion,totalmoratorios,qautoriza,function(message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,tipobonificacion,totalmoratorios,qautoriza){
+              //ACTION: Do this If user says YES
+              console.log('dentro de call back')
+              k=route.params
+              .switchMap((params: Params) =>
+              {
+
+                return aplicarservice.getPagar(fecha);
+              })
+
+              k.subscribe(
+                aplicar =>{
+                  //aqui llamo al service que envia datos de bonific al backend
+                  aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
                 }
                 //error => let error=error
                   //this.errorMessage = <any>error

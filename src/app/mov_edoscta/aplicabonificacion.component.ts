@@ -169,6 +169,7 @@ export class AplicaBonificacionComponent implements OnInit {
         this.k.subscribe(
 
                        bonificaciones =>{
+                         console.log('se inserto la bonificacion');
                          this.bonific = bonificaciones;
                          this.messageAplicaBonific('Se insertaron las bonificaciones');
                          this.errormessageAplicaBonific(null);
