@@ -54,38 +54,13 @@ export class AplicaBonificService {
   id_autoriza:number, clave_b:string, recibo:number,
   serie:string, id_catprog:number): Observable<Bonific[]> {
 
-    console.log('clave_b '+clave_b);
-    console.log('DENTRO DE postBonificaciones DE aplicabonificacion.service');
-    //se obtiene el numero de contrato con la clave_b
+     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
 
-    console.log("numero de contrato:" + this.numcontrato);
-
+    
 
     //metodo callback para introducir los datos al backend
-    console.log(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
-     '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
-     '&estatus='+estatus+'&id_usuario='+id_usuario.toString()+'&clave_b='+clave_b+'&recibo='+recibo.toString()+'&serie='+serie+'&numcontrato='+this.numcontrato+'&id_catprog='+id_catprog.toString()+
-     '&id_autoriza='+id_autoriza.toString());
-    console.log(id_movedocta);
-    console.log(id_benef);
-    console.log(imp_cap);
-    console.log(imp_int);
-    console.log(imp_adm);
-    console.log(imp_seg);
-    console.log(imp_osg);
-    console.log(imp_com);
-    console.log(imp_mor)
-    console.log(imp_tit);
-    console.log(id_catbonific);
-    console.log(estatus.toString().trim());
-    console.log(id_usuario);
-    console.log(clave_b.toString().trim());
-    console.log(recibo);
-    console.log(serie.toString().trim());
-    console.log(this.numcontrato);
-    console.log(id_catprog);
-    console.log(id_autoriza);
+    
 
      return this.http.get(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
      '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
