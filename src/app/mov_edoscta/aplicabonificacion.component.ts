@@ -136,7 +136,7 @@ export class AplicaBonificacionComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
       for (var elemento in this.currentUser) {
-        this.model.id_movedocta=0;//
+        this.model.id_movedocta=this.currentUser[elemento].id_mov_edoscta;//
         this.model.id_usuario=this.currentUser[elemento].id;
         this.model.recibo = this.currentUser[elemento].folio_final;
         this.model.serie = this.currentUser[elemento].serie;
