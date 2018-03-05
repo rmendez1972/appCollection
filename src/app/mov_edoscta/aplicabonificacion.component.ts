@@ -70,12 +70,25 @@ export class AplicaBonificacionComponent implements OnInit {
   private muestraBonificacion:boolean;
   private objeto:any;
 
-  model:any={};
+  private imp_cap=Number;
+  private imp_int=Number;
+  private imp_adm=Number;
+  private imp_seg=Number;
+  private imp_osg=Number;
+  private imp_com=Number;
+  private imp_tit=Number;
+  
+
+  private model:any={};
+  extraer:any={};
+  extraerInit:any={};
+  extraerPost:any={};
 
   //valores de salida del webcomponent
   @Output() onMessageAplicaBonific = new EventEmitter<String>();
   @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+ 
 
 
     constructor(
@@ -90,10 +103,22 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
   	ngOnInit() {
+      
+      this.extraerInit = this.extraerLocalStorage();
+
+      
+
+      this.model.imp_int = this.extraerInit.imp_int;
+      this.model.imp_adm = this.extraerInit.imp_adm;
+      this.model.imp_seg = this.extraerInit.imp_seg;
+      this.model.imp_osg = this.extraerInit.imp_osg;
+      this.model.imp_com = this.extraerInit.imp_com;
+      this.model.imp_tit = this.extraerInit.imp_tit;
+      this.model.serie = this.extraerInit.serie;
+      
+      
 
 
-
-      //console.log('clave_b dentro del component, dentro del ngoninit '+this.beneficiario[0].clave_b);
 
     //fin Oinit
     };
@@ -111,51 +136,12 @@ export class AplicaBonificacionComponent implements OnInit {
     //Metodo en donde se realizara la insercion de las bonificaciones
     postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
 
-       //se recuperan valores del localStorage de Aplicar
-      this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
 
-      //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
-      for (var y in this.aplicar) {
-        this.model.imp_cap = this.aplicar[y].capital;
-        this.model.imp_int = this.aplicar[y].interes;
-        this.model.imp_adm = this.aplicar[y].admon;
-        this.model.imp_seg = this.aplicar[y].seguro;
-        this.model.imp_osg = this.aplicar[y].oseg;
-        this.model.imp_com = this.aplicar[y].com;
-        this.model.imp_tit = this.aplicar[y].tit;
+      this.extraerPost =this.extraerLocalStorage();
 
+      this.imp_cap=this.extraerPost.imp_cap;
 
-      }
-
-      //el valor de estatus se declara como un valor fijo
-      this.model.estatus = 'A';
-
-
-      //se recuperan valores del localStorage de CurrentUser
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
-      for (var elemento in this.currentUser) {
-        this.model.id_movedocta=this.currentUser[elemento].id_mov_edoscta;//
-        this.model.id_usuario=this.currentUser[elemento].id;
-        this.model.recibo = this.currentUser[elemento].folio_final;
-        this.model.serie = this.currentUser[elemento].serie;
-
-      }
-
-      //se recuperan valores del localStorage de vencidos
-      this.beneficiario = JSON.parse(localStorage.getItem('beneficiario'));
-      console.log('valor de this.beneficiario '+this.beneficiario);
-      //iterar en el localstorage de vencidos para almacernar los valores hacia las propiedades
-      for (var x in this.beneficiario) {
-        this.model.id_benef = this.beneficiario[x].id_beneficiario;
-        this.model.clave_b=this.beneficiario[x].clave_b;
-        this.model.id_catprog = this.beneficiario[x].id_catprog;
-      }
-
-
-
-      this.model.imp_mor = moratorios;
-      this.model.id_autoriza = autoriza;
+      
         console.log('dentro de postBonificaciones de aplicabonificacioncomponent');
         this.k=this.route.params
 
@@ -193,6 +179,53 @@ export class AplicaBonificacionComponent implements OnInit {
       })
 
     };
+
+    extraerLocalStorage(){
+      //se recuperan valores del localStorage de Aplicar
+      this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
+
+      //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
+      for (var y in this.aplicar) {
+        this.extraer.imp_cap = this.aplicar[y].capital;
+        this.extraer.imp_int = this.aplicar[y].interes;
+        this.extraer.imp_adm = this.aplicar[y].admon;
+        this.extraer.imp_seg = this.aplicar[y].seguro;
+        this.extraer.imp_osg = this.aplicar[y].oseg;
+        this.extraer.imp_com = this.aplicar[y].com;
+        this.extraer.imp_tit = this.aplicar[y].tit;
+
+
+      }
+
+      //el valor de estatus se declara como un valor fijo
+      this.extraer.estatus = 'A';
+
+
+      //se recuperan valores del localStorage de CurrentUser
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      //iterar en el localstorage de currentuser para almacernar los valores hacia las propiedades
+      for (var elemento in this.currentUser) {
+        this.extraer.id_movedocta=this.currentUser[elemento].id_mov_edoscta;//
+        this.extraer.id_usuario=this.currentUser[elemento].id;
+        this.extraer.recibo = this.currentUser[elemento].folio_final;
+        this.extraer.serie = this.currentUser[elemento].serie;
+
+      }
+
+      //se recuperan valores del localStorage de vencidos
+      this.beneficiario = JSON.parse(localStorage.getItem('beneficiario'));
+      console.log('valor de this.beneficiario '+this.beneficiario);
+      //iterar en el localstorage de vencidos para almacernar los valores hacia las propiedades
+      for (var x in this.beneficiario) {
+        this.extraer.id_benef = this.beneficiario[x].id_beneficiario;
+        this.extraer.clave_b=this.beneficiario[x].clave_b;
+        this.extraer.id_catprog = this.beneficiario[x].id_catprog;
+      }
+
+      //console.log("VALOR EXTRAER capital"+this.extraer.imp_cap);
+      return this.extraer;
+
+    }
 
 
 }
