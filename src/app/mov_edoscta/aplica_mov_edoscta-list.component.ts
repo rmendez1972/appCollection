@@ -241,6 +241,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     //metodos de aplicabonific
     //mensaje de exito en la aplicacion de bonificaciones
     onMessageAplicaBonific(mensaje:String){
+      console.log('DENTRO DE OnMessageAplicaBonific del padre');
 
       this.miMensajeAplicaBons = mensaje;
     }
@@ -252,6 +253,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     }
 
     onMessageAplicaBonificSi(mensaje:String){
+
       this.miMensajeAplicaBonsSi = mensaje;
     }
 

@@ -58,7 +58,8 @@ export class AplicaBonificacionComponent implements OnInit {
     return 'relative';
   }
 
-
+  private miMensajeAplicaBons: string='Aqui debe ir e mensaje';
+  private miMensajeerrorAplicaBons: string;
   private errorMessage: string;
   private bonific: Bonific[];
 
@@ -76,6 +77,7 @@ export class AplicaBonificacionComponent implements OnInit {
   @Output() onMessageAplicaBonific = new EventEmitter<String>();
   @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+
 
 
     constructor(
@@ -99,13 +101,16 @@ export class AplicaBonificacionComponent implements OnInit {
     };
 
     //mensaje de salida de exito
-    messageAplicaBonific(mensaje:String){
-      this.onMessageAplicaBonific.emit(mensaje);
+    messageAplicaBonific(mensaje:string){
+      console.log('mensaje apunto de emitir desde aplicabonificacion '+mensaje);
+      //this.onMessageAplicaBonific.emit(mensaje);
+      this.miMensajeAplicaBons=mensaje;
     };
 
     //mensajde de salida de fracaso
-    errormessageAplicaBonific(mensaje:String){
-      this.onerrorMessageAplicaBonific.emit(mensaje);
+    errormessageAplicaBonific(mensaje:string){
+      //this.onerrorMessageAplicaBonific.emit(mensaje);
+      this.miMensajeerrorAplicaBons=mensaje;
     };
 
     //Metodo en donde se realizara la insercion de las bonificaciones
@@ -169,9 +174,9 @@ export class AplicaBonificacionComponent implements OnInit {
         this.k.subscribe(
 
                        bonificaciones =>{
-                         console.log('se inserto la bonificacion');
+                         console.log('se inserto la bonificacion exitosamente');
                          this.bonific = bonificaciones;
-                         this.messageAplicaBonific('Se insertaron las bonificaciones');
+                         this.messageAplicaBonific('Se insertó la bonificación exitosamente');
                          this.errormessageAplicaBonific(null);
                         },
                        error =>{
