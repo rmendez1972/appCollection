@@ -60,7 +60,6 @@ export class AplicaBonificService {
     
 
     //metodo callback para introducir los datos al backend
-    
 
      return this.http.get(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
      '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
@@ -74,6 +73,7 @@ export class AplicaBonificService {
 
   private extractDataBon(res: Response) {
     let body= res.json();
+    console.log("json de regreso" +body.registroBonificacion);
     let id_mov_edoscta= 0;
     let id_bonificacion = 0;
     let actividad: boolean;
@@ -95,7 +95,13 @@ export class AplicaBonificService {
 
 
     };
+
+    //console.log("json de regreso" +body.registroBonificacion);
     localStorage.setItem('bon',JSON.stringify(bonificacion));
+
+    this.postMovedocta();
+    
+
     return body.registroBonificacion || { };
 
   }
@@ -114,6 +120,11 @@ export class AplicaBonificService {
       errMsg = error.message ? error.message : error.toString();
     }
     return Observable.throw(errMsg);
+
+  }
+
+  postMovedocta(){
+    return console.log("dentro de postMovedocta");
 
   }
 
