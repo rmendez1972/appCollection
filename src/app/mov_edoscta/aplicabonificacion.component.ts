@@ -3,6 +3,7 @@ import { Component, OnInit, HostBinding, trigger, transition, animate, style, st
 import { Bonific } from './bonific';
 
 import { AplicaBonificService} from './aplicabonificacion.service';
+import { Mov_edoctaService } from './mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -63,6 +64,7 @@ export class AplicaBonificacionComponent implements OnInit {
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
+  private n: Observable<Bonific[]>;
   private aplicar: Aplicar;
   private currentUser: User;
   private beneficiario: Benef;
@@ -108,6 +110,7 @@ export class AplicaBonificacionComponent implements OnInit {
       private aplicabonificservice: AplicaBonificService,
       private alertService:AlertService,
       private confirmService:ConfirmService,
+      private mov_edoctaservice:Mov_edoctaService
 
     )
     {}
@@ -200,12 +203,37 @@ export class AplicaBonificacionComponent implements OnInit {
         })
 
         this.k.subscribe(
-
                        bonificaciones =>{
                          console.log('se inserto la bonificacion');
                          this.bonific = bonificaciones;
                          this.messageAplicaBonific('Se insertaron las bonificaciones');
                          this.errormessageAplicaBonific(null);
+                         let idmovedocta;
+                         let idbonificacion;
+                         for (let i = 0; i < 1; i++) {
+                          idmovedocta = bonificaciones[0];
+                          idbonificacion = bonificaciones[2];
+                         }
+                         
+                          this.n=this.route.params
+
+                          .switchMap((params: Params) =>
+                          {
+                          return this.mov_edoctaservice.postUpdateMovedocta(idmovedocta,idbonificacion);
+                          })
+
+                          this.n.subscribe(
+                            movedocta =>{
+                              console.log('se actualizo el movedocta');
+
+                            },
+                            error =>{
+                              this.errorMessage = <any>error;
+                              //this.errormessageAplicaBonific('Error en la inserción de datos');
+                              //this.messageAplicaBonific(null);
+                            });
+
+
                         },
                        error =>{
                          this.errorMessage = <any>error;
