@@ -3,6 +3,7 @@ import { Component, OnInit, HostBinding, trigger, transition, animate, style, st
 import { Bonific } from './bonific';
 
 import { AplicaBonificService} from './aplicabonificacion.service';
+import { Mov_edoctaService } from './mov_edocta.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -66,7 +67,11 @@ export class AplicaBonificacionComponent implements OnInit {
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
+<<<<<<< HEAD
   private l: Observable<boolean[]>;
+=======
+  private n: Observable<Bonific[]>;
+>>>>>>> 365dbb83336bd81652830f8faede8b5586aa4f53
   private aplicar: Aplicar;
   private currentUser: User;
   private beneficiario: Benef;
@@ -114,6 +119,7 @@ export class AplicaBonificacionComponent implements OnInit {
       private alertService:AlertService,
       private confirmService:ConfirmService,
       private cajaservice: CajaService,
+      private mov_edoctaservice:Mov_edoctaService
 
     )
     {}
@@ -131,10 +137,9 @@ export class AplicaBonificacionComponent implements OnInit {
       this.model.imp_osg = this.extraerInit.imp_osg;
       this.model.imp_com = this.extraerInit.imp_com;
       this.model.imp_tit = this.extraerInit.imp_tit;
+      this.model.imp_mor = this.extraerInit.imp_mor;
       this.model.serie = this.extraerInit.serie;
-
-
-
+      this.model.estatus = this.extraerInit.estatus;
 
 
     //fin Oinit
@@ -207,12 +212,12 @@ export class AplicaBonificacionComponent implements OnInit {
         })
 
         this.k.subscribe(
-
                        bonificaciones =>{
                          console.log('se inserto la bonificacion exitosamente');
                          this.bonific = bonificaciones;
                          this.messageAplicaBonific('Se insertó la bonificación exitosamente');
                          this.errormessageAplicaBonific(null);
+
                          console.log('el valor de id_bonificacion es '+bonificaciones[2]);
 
 
@@ -234,6 +239,32 @@ export class AplicaBonificacionComponent implements OnInit {
                                this.errorMessage = <any>error;
 
                              });
+
+                         let idmovedocta;
+                         let idbonificacion;
+                         for (let i = 0; i < 1; i++) {
+                          idmovedocta = bonificaciones[0];
+                          idbonificacion = bonificaciones[2];
+                         }
+
+                          this.n=this.route.params
+
+                          .switchMap((params: Params) =>
+                          {
+                          return this.mov_edoctaservice.postUpdateMovedocta(idmovedocta,idbonificacion);
+                          })
+
+                          this.n.subscribe(
+                            movedocta =>{
+                              console.log('se actualizo el movedocta');
+
+                            },
+                            error =>{
+                              this.errorMessage = <any>error;
+                              //this.errormessageAplicaBonific('Error en la inserción de datos');
+                              //this.messageAplicaBonific(null);
+                            });
+
 
 
                         },
@@ -259,20 +290,21 @@ export class AplicaBonificacionComponent implements OnInit {
 
     extraerLocalStorage(){
       //se recuperan valores del localStorage de Aplicar
-      this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
+      //this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
 
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
-      for (var y in this.aplicar) {
-        this.extraer.imp_cap = this.aplicar[y].capital;
-        this.extraer.imp_int = this.aplicar[y].interes;
-        this.extraer.imp_adm = this.aplicar[y].admon;
-        this.extraer.imp_seg = this.aplicar[y].seguro;
-        this.extraer.imp_osg = this.aplicar[y].oseg;
-        this.extraer.imp_com = this.aplicar[y].com;
-        this.extraer.imp_tit = this.aplicar[y].tit;
+      //for (var y in this.aplicar) {
+        this.extraer.imp_cap = 0;
+        this.extraer.imp_int = 0;
+        this.extraer.imp_adm = 0;
+        this.extraer.imp_seg = 0;
+        this.extraer.imp_osg = 0;
+        this.extraer.imp_com = 0;
+        this.extraer.imp_tit = 0;
+        this.extraer.imp_mor = 0;
 
 
-      }
+      //}
 
       //el valor de estatus se declara como un valor fijo
       this.extraer.estatus = 'A';

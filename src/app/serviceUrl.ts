@@ -35,6 +35,8 @@ public UrlAplicarVencidos:String;
 
 public UrlAutoriza: String;
 
+public URLupdateMovedocta:String;
+
 constructor() {}
 
 
@@ -164,6 +166,11 @@ constructor() {}
 		getUrlAutoriza():String{
 			return this.UrlAutoriza = 'http://localhost:8080/cobranza/controladorautoriza?operacion=listarJson';
 		}
+
+		getUrlUpdateMovedocta():String{
+			return this.URLupdateMovedocta = 'http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaBonific&id_movedoscta=';
+		}
+
 
 }
 

@@ -16,11 +16,13 @@ import { AlertService} from '../_services/index';
 export class Mov_edoctaService {
   //private seguimientosUrl: string;
   private mov_edosctaUrl: string;
+  private updateMovedoctaUrl: string;
   private beneficiarioUrl: string;
   constructor (private http: Http,private url:ServiceUrl,private alertService: AlertService){
     //this.seguimientosUrl=String(this.url.getUrlmov_edoscta());
     this.mov_edosctaUrl=String(this.url.getUrlmov_edoscta());
     this.beneficiarioUrl=String(this.url.getUrlBeneficiario());
+    this.updateMovedoctaUrl=String(this.url.getUrlUpdateMovedocta());
   }
 
   //getMov_edoscta
@@ -89,6 +91,24 @@ export class Mov_edoctaService {
    
   }
 
+  postUpdateMovedocta(id_movedocta:number, id_bonificacion:number){
+    
+    console.log("valor id_movedocta: "+id_movedocta);
+    console.log("valor id_bonificacion: "+id_bonificacion);
+
+    console.log(this.updateMovedoctaUrl+id_movedocta+"&id_bonificacion="+id_bonificacion);
+
+    return this.http.get(this.updateMovedoctaUrl+id_movedocta+"&id_bonificacion="+id_bonificacion).map(this.extractDataUpdateMov).catch(this.handleError);
+
+
+  }
+
+  private extractDataUpdateMov(res: Response) {
+    let body = res.json();
+    console.log("regreso del json del update movedocta :"+body.aplicaMovedoctaBonific);
+    return body.aplicaMovedoctaBonific || { };
+   
+  }
 
 
   private handleError (error: Response | any) {
@@ -104,4 +124,6 @@ export class Mov_edoctaService {
     }
     return Observable.throw(errMsg);
   }
+
+
 }

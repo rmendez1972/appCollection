@@ -54,12 +54,11 @@ export class AplicaBonificService {
   id_autoriza:number, clave_b:string, recibo:number,
   serie:string, id_catprog:number): Observable<Bonific[]> {
 
-    console.log('clave_b '+clave_b);
-    console.log('DENTRO DE postBonificaciones DE aplicabonificacion.service');
     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
 
     console.log("numero de contrato:" + this.numcontrato);
+
 
 
     //metodo callback para introducir los datos al backend
@@ -139,8 +138,6 @@ export class AplicaBonificService {
     //console.log("json de regreso" +body.registroBonificacion);
     localStorage.setItem('bon',JSON.stringify(bonificacion));
 
-   // this.postMovedocta();
-
 
     return body.registroBonificacion || { };
 
@@ -160,11 +157,6 @@ export class AplicaBonificService {
       errMsg = error.message ? error.message : error.toString();
     }
     return Observable.throw(errMsg);
-
-  }
-
-  postMovedocta(){
-    return console.log("dentro de postMovedocta");
 
   }
 
