@@ -183,10 +183,11 @@ export class AplicarService {
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
-      this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja).toPromise();
+      this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
+      .subscribe();// .toPromise();
       
     }
-    return this.postPagarVencidos;
+    return this.dataPagar;
   }
 
 postPagarVencidos(
@@ -278,7 +279,7 @@ postPagarVencidos(
       current[x].recibo= pagados.recibo;
       current[x].id_mov_edoscta = pagados.id_mov_edoscta;
     }
-
+    
     localStorage.setItem('currentUser',JSON.stringify(current));
     return body.resultado|| { };
 
