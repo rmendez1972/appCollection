@@ -14,6 +14,8 @@ import { Vencidos } from './vencidos';
 import { Aplicar } from  './aplicar';
 import { Benef } from './benef';
 import { ConfirmService} from '../_services/index';
+import { CajaService} from '../apertura_caja/caja.service';
+
 //marlon
 
 
@@ -58,12 +60,13 @@ export class AplicaBonificacionComponent implements OnInit {
     return 'relative';
   }
 
-  private miMensajeAplicaBons: string='Aqui debe ir e mensaje';
+  private miMensajeAplicaBons: string='Aqui debe ir el mensaje';
   private miMensajeerrorAplicaBons: string;
   private errorMessage: string;
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
+  private l: Observable<boolean[]>;
   private aplicar: Aplicar;
   private currentUser: User;
   private beneficiario: Benef;
@@ -89,7 +92,7 @@ export class AplicaBonificacionComponent implements OnInit {
   private clave_b;
   private recibo;
   private serie;
-  
+
 
   private model:any={};
   extraer:any={};
@@ -100,7 +103,7 @@ export class AplicaBonificacionComponent implements OnInit {
   @Output() onMessageAplicaBonific = new EventEmitter<String>();
   @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
- 
+
 
 
 
@@ -110,16 +113,17 @@ export class AplicaBonificacionComponent implements OnInit {
       private aplicabonificservice: AplicaBonificService,
       private alertService:AlertService,
       private confirmService:ConfirmService,
+      private cajaservice: CajaService,
 
     )
     {}
 
 
   	ngOnInit() {
-      
+
       this.extraerInit = this.extraerLocalStorage();
 
-      
+
 
       this.model.imp_int = this.extraerInit.imp_int;
       this.model.imp_adm = this.extraerInit.imp_adm;
@@ -128,8 +132,8 @@ export class AplicaBonificacionComponent implements OnInit {
       this.model.imp_com = this.extraerInit.imp_com;
       this.model.imp_tit = this.extraerInit.imp_tit;
       this.model.serie = this.extraerInit.serie;
-      
-      
+
+
 
 
 
@@ -173,7 +177,7 @@ export class AplicaBonificacionComponent implements OnInit {
       this.serie=this.extraerPost.serie;
       this.id_catprog=this.extraerPost.id_catprog;
 
-  
+
       console.log("valor de id_movedocta: "+this.id_movedocta);
       console.log("valor de beneficiario: "+this.id_benef);
       console.log("valor de moratorios: "+this.imp_cap);
@@ -209,6 +213,29 @@ export class AplicaBonificacionComponent implements OnInit {
                          this.bonific = bonificaciones;
                          this.messageAplicaBonific('Se insertó la bonificación exitosamente');
                          this.errormessageAplicaBonific(null);
+                         console.log('el valor de id_bonificacion es '+bonificaciones[2]);
+
+
+                             this.l=this.route.params
+
+                            .switchMap((params: Params) =>
+                            {
+                            return this.cajaservice.postUpdate_caja();
+                            })
+
+                            this.l.subscribe(
+
+                             cajas =>{
+                               console.log('se actualizo el folio final de la caja exitosamente');
+
+
+                              },
+                             error =>{
+                               this.errorMessage = <any>error;
+
+                             });
+
+
                         },
                        error =>{
                          this.errorMessage = <any>error;
