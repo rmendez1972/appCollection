@@ -176,7 +176,6 @@ export class AplicarComponent implements OnInit {
               j=route.params
               .switchMap((params: Params) =>
               {
-                console.log("hola :");
                 return aplicarservice.getPagar(fecha);
               })
               j.subscribe(
