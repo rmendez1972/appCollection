@@ -262,21 +262,15 @@ postPagarVencidos(
   private extractDataPagarVencidos(res: Response) {
 
     let body = res.json();
-    let recibo = body.resultado[1];
     let id_mov_edoscta;
     for (var i = 0; i < 1; ++i) {
       id_mov_edoscta = body.resultado[0];
-      recibo= body.resultado[1];
     }
     let pagados ={
-
-      recibo:recibo,
       id_mov_edoscta:id_mov_edoscta,
     }
     let current = JSON.parse(localStorage.getItem('currentUser'));
     for (var x = 0; x < 1; ++x) {
-
-      current[x].recibo= pagados.recibo;
       current[x].id_mov_edoscta = pagados.id_mov_edoscta;
     }
     
