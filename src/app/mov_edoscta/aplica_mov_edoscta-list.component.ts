@@ -136,8 +136,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     title = 'Estado de Cuenta por Programas';
     localizaBenefMov(){
-      console.log('valor de model.criterio '+this.model.criterio);
-      console.log('valor de model.valorcriterio '+this.model.valorcriterio);
       if ((this.model.criterio!=undefined) && (this.model.valorcriterio!=null )){
         this.miMensajeerrorMovs=null;
         this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);

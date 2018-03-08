@@ -19,7 +19,6 @@ import { CajaService} from '../apertura_caja/caja.service';
 
 //marlon
 
-
 @Component({
   selector: 'app-aplicabonific',
   templateUrl: './aplicabonificacion.component.html',
@@ -125,7 +124,9 @@ export class AplicaBonificacionComponent implements OnInit {
     {}
 
 
+
   	ngOnInit() {
+
 
       this.extraerInit = this.extraerLocalStorage();
 
@@ -291,7 +292,6 @@ export class AplicaBonificacionComponent implements OnInit {
     extraerLocalStorage(){
       //se recuperan valores del localStorage de Aplicar
       //this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
-
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
       //for (var y in this.aplicar) {
         this.extraer.imp_cap = 0;
@@ -305,7 +305,6 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
       //}
-
       //el valor de estatus se declara como un valor fijo
       this.extraer.estatus = 'A';
 
