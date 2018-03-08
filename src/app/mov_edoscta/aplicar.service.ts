@@ -116,11 +116,8 @@ export class AplicarService {
   }
 
   private dataPagar(fecha:string){
-    this.pagar=[];
     this.currentUser=[];
     this.beneficiario=[];
-    this.aplicarPagar=[];
-    this.usuario=[];
 
     let capital=0;//aplicar
     let interes=0;//aplicar
@@ -156,20 +153,7 @@ export class AplicarService {
       id_usuario = this.currentUser[i].id;
       poliza = this.currentUser[i].poliza;
     }
-    /*
-    for (var x = 0; x < 1; ++x) {
-      capital = this.aplicar[x].capital;
-      interes = this.aplicar[x].interes;
-      admon = this.aplicar[x].admon;
-      seguro = this.aplicar[x].seguro;
-      clave_mov = this.aplicar[x].letra;
 
-      comisiones = this.aplicar[x].com;
-      o_seguro = this.aplicar[x].oseg;
-      moratorios = this.aplicar[x].mor;
-      tit = this.aplicar[x].tit;
-    }
-    */
     for (var y = 0; y < 1; ++y) {
       clave_b = this.beneficiario[y].clave_b;
       id_benef = this.beneficiario[y].id_beneficiario;
@@ -187,20 +171,6 @@ export class AplicarService {
       poliza:poliza,
 
     };
-    /*
-    let aplicarFinal={
-      capital:capital,
-      interes:interes,
-      admon:admon,
-      seguro:seguro,
-      clave_mov:clave_mov,
-      comisiones:comisiones,
-      o_seguro: o_seguro,
-      moratorios: moratorios,
-      tit:tit,
-    };
-    */
-
     let beneficiarioFinal ={
       clave_b:clave_b,
       id_benef:id_benef,
@@ -209,7 +179,6 @@ export class AplicarService {
     }
 
     for (var c = 0; c < (this.aplicar.length-1); ++c) {
-      // code...
       this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
@@ -241,7 +210,7 @@ postPagarVencidos(
   id_catprog:number,
   numcontrato:number,
   id_caja:number,
-  ){
+  ):Observable<Aplicar[]>{
   //console.log('valor de clave_mov'+clave_mov);
     let param_pagar_vencidos={
       id_benef:id_benef.toString().trim(),
@@ -266,9 +235,16 @@ postPagarVencidos(
       id_caja:id_caja.toString().trim(),
 
     };
- 
+    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
+      +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
+      "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
+      "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
+      "&o_seguro="+param_pagar_vencidos.o_seguro+"&moratorios="+param_pagar_vencidos.moratorios+
+      "&fecha_pol="+param_pagar_vencidos.fecha_pol+"&id_usuario="+param_pagar_vencidos.id_usuario+
+      "&comisiones="+param_pagar_vencidos.comisiones+"&serie="+param_pagar_vencidos.serie+
+      "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
+      "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja);
     return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
-
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
