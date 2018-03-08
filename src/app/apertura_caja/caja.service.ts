@@ -120,6 +120,25 @@ export class CajaService {
 
     let body = res.json();
     console.log('valor de respuesta de api rest, para update de folio final  '+body.respuesta);
+    if (body.respuesta=true){
+      console.log('valor de body.respuesta es true ');
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let folio_final:number;
+      for (var elemento in this.currentUser) {
+        folio_final=this.currentUser[elemento].folio_final;
+
+      }
+
+      console.log('VALOR DE FOLIO_FINAL RECUPERADO DE LOCALSTORAGE '+folio_final);
+      folio_final=++folio_final;
+      console.log('VALOR DE FOLIO_FINAL RECUPERADO DE LOCALSTORAGE incrementado en uno '+folio_final);
+      for (var elemento in this.currentUser){
+         this.currentUser[elemento].folio_final=folio_final.toString();
+
+       }
+       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+
+    }
 
     return body.caja|| { };
 

@@ -67,11 +67,11 @@ export class AplicaBonificacionComponent implements OnInit {
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
-<<<<<<< HEAD
+
   private l: Observable<boolean[]>;
-=======
+
   private n: Observable<Bonific[]>;
->>>>>>> 365dbb83336bd81652830f8faede8b5586aa4f53
+
   private aplicar: Aplicar;
   private currentUser: User;
   private beneficiario: Benef;

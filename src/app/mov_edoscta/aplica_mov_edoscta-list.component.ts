@@ -90,7 +90,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeAplicar:String;
   private miMensajeerrorAplicar:String;
   private fecha:String;
-  private bonific:String = "";
+  private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
 
   public totalvencidos: number=0;

@@ -113,9 +113,14 @@
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.tit | currency:'MXN':true:'.2'}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN':true:'.2'}}</td>
 
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" [ngSwitch]="mov.bonific">
-                  <span *ngSwitchCase="true" [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación"></span>
-                  <span *ngSwitchCase="false" [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"></span>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" >
+                  <div *ngIf="mov.bonific;then conbonific else sinbonific"></div>
+
+                  <ng-template #conbonific><span  [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación"></span></ng-template>
+                  <ng-template #sinbonific> <span  [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"></span></ng-template>
+
+                  <!-- <span *ngIf="mov.bonific" [ngClass]="bonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento con Bonificación"></span>
+                  <span *ngIf="mov.bonific" [ngClass]="nobonific" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"></span> -->
               </td>
 
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.fecha_mov | date:"dd/MM/yyyy"}}</strong></td>
@@ -244,7 +249,7 @@
 
     </div>
   </div>
- 
+
   <div [hidden]="!miMensajeAplicaBonsSi" class="panel panel-primary">
     <div class="panel-heading">Bonificaciones a Aplicar</div>
     <div class="panel-body transparent">
