@@ -57,10 +57,6 @@ export class AplicaBonificService {
      //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
 
-    
-
-    //metodo callback para introducir los datos al backend
-
      return this.http.get(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
      '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
      '&estatus='+estatus+'&id_usuario='+id_usuario.toString()+'&clave_b='+clave_b+'&recibo='+recibo.toString()+'&serie='+serie+'&numcontrato='+this.numcontrato+'&id_catprog='+id_catprog.toString()+
@@ -98,8 +94,6 @@ export class AplicaBonificService {
 
     //console.log("json de regreso" +body.registroBonificacion);
     localStorage.setItem('bon',JSON.stringify(bonificacion));
-
-    this.postMovedocta();
     
 
     return body.registroBonificacion || { };
@@ -120,11 +114,6 @@ export class AplicaBonificService {
       errMsg = error.message ? error.message : error.toString();
     }
     return Observable.throw(errMsg);
-
-  }
-
-  postMovedocta(){
-    return console.log("dentro de postMovedocta");
 
   }
 

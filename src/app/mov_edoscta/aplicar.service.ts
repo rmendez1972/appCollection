@@ -212,13 +212,14 @@ export class AplicarService {
     for (var c = 0; c < (this.aplicar.length-1); ++c) {
       // code...
       console.log("Ciclo :" +c);
-      return this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
+      this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
       this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja);
       //return 1;
     }
+    return this.aplicar;
 /*
     return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
       aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
@@ -286,6 +287,7 @@ postPagarVencidos(
       "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
       "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja);
       */
+     
     return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
 
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
@@ -297,6 +299,7 @@ postPagarVencidos(
       "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
       "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja).map(this.extractDataPagarVencidos)
     .catch(this.handleError);
+    
   }
 
 
