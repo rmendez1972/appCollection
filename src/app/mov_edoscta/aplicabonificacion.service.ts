@@ -54,8 +54,11 @@ export class AplicaBonificService {
   id_autoriza:number, clave_b:string, recibo:number,
   serie:string, id_catprog:number): Observable<Bonific[]> {
 
-     //se obtiene el numero de contrato con la clave_b
+    //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
+
+    console.log("numero de contrato:" + this.numcontrato);
+
 
      return this.http.get(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
      '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+

@@ -143,6 +143,7 @@ export class AplicarComponent implements OnInit {
               k=route.params
               .switchMap((params: Params) =>
               {
+
                 return aplicarservice.getPagar(fecha);
               })
 
@@ -170,7 +171,6 @@ export class AplicarComponent implements OnInit {
               k=route.params
               .switchMap((params: Params) =>
               {
-
                 return aplicarservice.getPagar(fecha);
               })
 

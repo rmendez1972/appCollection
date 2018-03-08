@@ -17,7 +17,6 @@ import { Benef } from './benef';
 import { ConfirmService} from '../_services/index';
 //marlon
 
-
 @Component({
   selector: 'app-aplicabonific',
   templateUrl: './aplicabonificacion.component.html',
@@ -116,7 +115,7 @@ export class AplicaBonificacionComponent implements OnInit {
     {}
 
 
-  	ngOnInit() {
+    ngOnInit() {
       
       this.extraerInit = this.extraerLocalStorage();
 
@@ -172,6 +171,26 @@ export class AplicaBonificacionComponent implements OnInit {
       this.recibo=this.extraerPost.recibo;
       this.serie=this.extraerPost.serie;
       this.id_catprog=this.extraerPost.id_catprog;
+
+  
+      console.log("valor de id_movedocta: "+this.id_movedocta);
+      console.log("valor de beneficiario: "+this.id_benef);
+      console.log("valor de moratorios: "+this.imp_cap);
+      console.log("valor de imp_int: "+this.imp_int);
+      console.log("valor de imp_adm: "+this.imp_adm);
+      console.log("valor de imp_seg: "+this.imp_seg);
+      console.log("valor de imp_osg: "+this.imp_osg);
+      console.log("valor de imp_com: "+this.imp_com);
+      console.log("valor de imp_mor: "+this.imp_mor);
+      console.log("valor de imp_tit: "+this.imp_tit);
+      console.log("valor de id_catbonific: "+this.id_catbonific);
+      console.log("valor de estatus: "+this.estatus);
+      console.log("valor de id_usuario: "+this.id_usuario);
+      console.log("valor de id_autoriza: "+this.id_autoriza);
+      console.log("valor de clave_b: "+this.clave_b);
+      console.log("valor de recibo: "+this.recibo);
+      console.log("valor de serie: "+this.serie);
+      console.log("valor de id_catprog: "+this.id_catprog);
 
         this.k=this.route.params
 
@@ -238,7 +257,6 @@ export class AplicaBonificacionComponent implements OnInit {
     extraerLocalStorage(){
       //se recuperan valores del localStorage de Aplicar
       //this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
-
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
       //for (var y in this.aplicar) {
         this.extraer.imp_cap = 0;
@@ -252,7 +270,6 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
       //}
-
       //el valor de estatus se declara como un valor fijo
       this.extraer.estatus = 'A';
 
