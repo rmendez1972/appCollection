@@ -181,7 +181,6 @@ export class AplicarComponent implements OnInit {
               })
               j.subscribe(
                 aplicar =>{
-                  console.log("hola suscribe");
                   //aqui llamo al service que envia datos de bonific al backend
                   aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
                 }
