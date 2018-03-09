@@ -161,7 +161,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
     //Metodo en donde se realizara la insercion de las bonificaciones
     postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
-
+      console.log('dentro de postBonificaciones de aplicabonificacion.component');
       this.extraerPost =this.extraerLocalStorage();
 
       //asignando valores a las propiedades
@@ -183,7 +183,7 @@ export class AplicaBonificacionComponent implements OnInit {
       this.serie=this.extraerPost.serie;
       this.id_catprog=this.extraerPost.id_catprog;
 
-
+      /*
       console.log("valor de id_movedocta: "+this.id_movedocta);
       console.log("valor de beneficiario: "+this.id_benef);
       console.log("valor de moratorios: "+this.imp_cap);
@@ -201,7 +201,7 @@ export class AplicaBonificacionComponent implements OnInit {
       console.log("valor de clave_b: "+this.clave_b);
       console.log("valor de recibo: "+this.recibo);
       console.log("valor de serie: "+this.serie);
-      console.log("valor de id_catprog: "+this.id_catprog);
+      console.log("valor de id_catprog: "+this.id_catprog);*/
 
         this.k=this.route.params
 

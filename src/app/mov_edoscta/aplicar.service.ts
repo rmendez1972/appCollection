@@ -178,15 +178,17 @@ export class AplicarService {
       numcontrato:numcontrato,
     }
 
+
+
     for (var c = 0; c < (this.aplicar.length-1); ++c) {
       this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
       this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja).toPromise();
-      
+
     }
-    return this.postPagarVencidos;
+    return this.dataPagar;
   }
 
 postPagarVencidos(
@@ -254,7 +256,7 @@ postPagarVencidos(
       "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
       "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja).map(this.extractDataPagarVencidos)
     .catch(this.handleError);
-    
+
   }
 
 

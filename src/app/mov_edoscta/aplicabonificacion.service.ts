@@ -57,7 +57,7 @@ export class AplicaBonificService {
     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
 
-    console.log("numero de contrato:" + this.numcontrato);
+    console.log("numero de contrato dentro de aplicabonificacion.service:" + this.numcontrato);
 
 
 
@@ -66,6 +66,7 @@ export class AplicaBonificService {
      '&imp_seg='+imp_seg.toString()+'&imp_osg='+imp_osg.toString()+'&imp_com='+imp_com.toString()+'&imp_mor='+imp_mor.toString()+'&imp_tit='+imp_tit.toString()+'&id_catbonific='+id_catbonific.toString()+
      '&estatus='+estatus+'&id_usuario='+id_usuario.toString()+'&clave_b='+clave_b+'&recibo='+recibo.toString()+'&serie='+serie+'&numcontrato='+this.numcontrato+'&id_catprog='+id_catprog.toString()+
      '&id_autoriza='+id_autoriza.toString());
+    /*
     console.log(id_movedocta);
     console.log(id_benef);
     console.log(imp_cap);
@@ -84,7 +85,7 @@ export class AplicaBonificService {
     console.log(serie.toString().trim());
     //console.log(this.numcontrato);
     console.log(id_catprog);
-    console.log(id_autoriza);
+    console.log(id_autoriza);*/
 
     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
@@ -97,7 +98,7 @@ export class AplicaBonificService {
      '&estatus='+estatus+'&id_usuario='+id_usuario.toString()+'&clave_b='+clave_b+'&recibo='+recibo.toString()+'&serie='+serie+'&numcontrato='+this.numcontrato+'&id_catprog='+id_catprog.toString()+
      '&id_autoriza='+id_autoriza.toString());*/
 
-    console.log("despues del seteo"+this.numcontrato);
+    console.log("despues del seteo "+this.numcontrato);
 
 
      return this.http.get(this.aplicabonificacionUrl+id_movedocta.toString()+'&id_benef='+id_benef.toString()+'&imp_cap='+imp_cap.toString()+'&imp_int='+imp_int.toString()+'&imp_adm='+imp_adm.toString()+
@@ -112,7 +113,7 @@ export class AplicaBonificService {
 
   private extractDataBon(res: Response) {
     let body= res.json();
-    console.log("json de regreso" +body.registroBonificacion);
+    console.log("JSON DE REGRESO despues de pedir la BONIFICACION" +body.registroBonificacion);
     let id_mov_edoscta= 0;
     let id_bonificacion = 0;
     let actividad: boolean;
