@@ -29,6 +29,7 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.logout = function () {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+
     };
     return AuthenticationService;
 }());

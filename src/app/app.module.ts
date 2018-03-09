@@ -109,9 +109,6 @@ import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edosct
     ConfirmService,
     AuthenticationService,
     UserService,
-
-
-
     // providers used to create fake backend
     //fakeBackendProvider,
     MockBackend,
