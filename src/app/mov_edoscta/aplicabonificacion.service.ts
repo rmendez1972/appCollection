@@ -35,7 +35,7 @@ export class AplicaBonificService {
   private serie:string;
   private numcontrato:string;
   private id_catprog:number;
-
+  private currentUser:any[];
 
 
   constructor (private http: Http,
@@ -56,9 +56,14 @@ export class AplicaBonificService {
 
     //se obtiene el numero de contrato con la clave_b
     this.numcontrato=clave_b.substr(7);
+    this.currentUser =JSON.parse(localStorage.getItem('currentUser'));
+    for (var i = 0; i < 1 ; i++) {
 
-    console.log("numero de contrato dentro de aplicabonificacion.service:" + this.numcontrato);
+      id_movedocta = this.currentUser[i].id_mov_edoscta;
+    }
 
+    console.log("numero de contrato dentro de aplicabonificacion.service: " + this.numcontrato);
+    console.log("id_movedocta dentro de aplicabonificacion.service "+id_movedocta);
 
 
     //metodo callback para introducir los datos al backend

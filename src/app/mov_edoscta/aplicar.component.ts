@@ -176,9 +176,11 @@ export class AplicarComponent implements OnInit {
 
               k.subscribe(
                 aplicar =>{
-
-
-                 aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
+                  if (aplicar.resultado){
+                    console.log('LLEGO DATA AL EVENTO SUBSCRIBE '+aplicar.resultado);
+                    aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+                  }
                 }
                 //error => let error=error
                   //this.errorMessage = <any>error

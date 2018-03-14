@@ -161,7 +161,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
     //Metodo en donde se realizara la insercion de las bonificaciones
     postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
-      console.log('dentro de postBonificaciones de aplicabonificacion.component');
+      console.log('DENTRO DE POSTBONIFICACIONES DENTRO DE  aplicabonificacion.component DESPUES DE APLICAR EL PAGO');
       this.extraerPost =this.extraerLocalStorage();
 
       //asignando valores a las propiedades
@@ -206,7 +206,10 @@ export class AplicaBonificacionComponent implements OnInit {
         this.k=this.route.params
 
         .switchMap((params: Params) =>
+
         {
+
+        console.log('VALOR DE this.id_movedocta antes de llamar al BACK-END '+this.id_movedocta);
         return this.aplicabonificservice.postBonificaciones(this.id_movedocta,this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
           this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.estatus,this.id_usuario,this.id_autoriza,
           this.clave_b,this.recibo,this.serie,this.id_catprog);
@@ -214,7 +217,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
         this.k.subscribe(
                        bonificaciones =>{
-                         console.log('se inserto la bonificacion exitosamente');
+                         console.log('SE INSERTO LA BONIFICACION EXITOSAMENTE...');
                          this.bonific = bonificaciones;
                          this.messageAplicaBonific('Se insertó la bonificación exitosamente');
                          this.errormessageAplicaBonific(null);
@@ -319,6 +322,8 @@ export class AplicaBonificacionComponent implements OnInit {
         this.extraer.serie = this.currentUser[elemento].serie;
 
       }
+
+       console.log('VALOR DE ID_MOV_EDOSCTA RECUPERADO DE LOCAL STORAGE EN APLICABONIFICACION.COMPONENT '+this.extraer.id_movedocta);
 
       //se recuperan valores del localStorage de vencidos
       this.beneficiario = JSON.parse(localStorage.getItem('beneficiario'));
