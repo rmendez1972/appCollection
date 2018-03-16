@@ -64,6 +64,7 @@ export class AplicarComponent implements OnInit {
 
   private aplicar:Aplicar[];
   private k: Observable<Aplicar[]>;
+  private j: Observable<Aplicar[]>;
 
   private totalmoratorios: number=0;
 
@@ -143,7 +144,6 @@ export class AplicarComponent implements OnInit {
               k=route.params
               .switchMap((params: Params) =>
               {
-
                 return aplicarservice.getPagar(fecha);
               })
 
@@ -166,21 +166,27 @@ export class AplicarComponent implements OnInit {
 
 
     getPagarConBonific(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number) {
-       this.confirmService.confirmconBonific("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.k,tipobonificacion,totalmoratorios,qautoriza,function(message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,tipobonificacion,totalmoratorios,qautoriza){
+       this.confirmService.confirmconBonific(
+         "Seguro de aplicar estas mensualidades?",
+         fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.j,
+         tipobonificacion,totalmoratorios,qautoriza,function(
+           message,fecha,aplicarservice,aplicabonificacioncomponent,route,j,
+           tipobonificacion,totalmoratorios,qautoriza){
               //ACTION: Do this If user says YES
-              k=route.params
+              j=route.params
               .switchMap((params: Params) =>
               {
                 return aplicarservice.getPagar(fecha);
               })
-
-              k.subscribe(
+              j.subscribe(
                 aplicar =>{
+
                   console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
                   if (aplicar.resultado){
                     console.log('LLEGO DATA AL EVENTO SUBSCRIBE '+aplicar.resultado);
                     aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
                   }
+
                 }
                 //error => let error=error
                   //this.errorMessage = <any>error

@@ -185,7 +185,10 @@ export class AplicarService {
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
-      this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja).toPromise();
+
+      this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
+      .subscribe();// .toPromise();
+
 
     }
     return this.dataPagar;
@@ -263,19 +266,20 @@ postPagarVencidos(
   private extractDataPagarVencidos(res: Response) {
 
     let body = res.json();
-    let recibo = body.resultado[1];
     let id_mov_edoscta;
+    let recibo;
     for (var i = 0; i < 1; ++i) {
       id_mov_edoscta = body.resultado[0];
+
       recibo= body.resultado[1].toString();
+
     }
 
-    console.log('id_mov_edoscta RECIENTEMENTE INSERTADO ES '+id_mov_edoscta);
+    console.log('id_mov_edoscta RECIENTEMENTE INSERTADO EN EL BACK-END ES '+id_mov_edoscta);
 
     let pagados ={
-
-      recibo:recibo,
       id_mov_edoscta:id_mov_edoscta,
+      recibo:recibo
     }
     let current = JSON.parse(localStorage.getItem('currentUser'));
     for (var x = 0; x < 1; ++x) {
