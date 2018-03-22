@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 import {Aplicar} from './aplicar';
+import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 
 
 @Injectable()
@@ -24,7 +25,8 @@ export class AplicarService {
 
   constructor (private http: Http,
       private url:ServiceUrl,
-      private alertService: AlertService
+      private alertService: AlertService,
+      private aplicabonificacioncomponent: AplicaBonificacionComponent
       ){
 
     this.UrlAplicarVencidos = String(this.url.getUrlAplicarVencidos())
@@ -39,10 +41,11 @@ export class AplicarService {
 
 
 
-  getPagar(fecha:string){
+  getPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
     //console.log("get pagar dentro de aplicar service");
+    console.log('dentro de getPagar de aplicar.service');
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
-    return this.dataPagar(this.fecha);
+    return this.dataPagar(this.fecha,tipobonificacion,totalmoratorios,qautoriza);
 
   }
 
@@ -115,7 +118,7 @@ export class AplicarService {
 
   }
 
-  private dataPagar(fecha:string){
+  private dataPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
     this.currentUser=[];
     this.beneficiario=[];
 
@@ -181,16 +184,32 @@ export class AplicarService {
 
 
     for (var c = 0; c < (this.aplicar.length-1); ++c) {
+      //grabo en localstorage el numero de iteracion en la q voy
+
       this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
 
       this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
-      .subscribe();// .toPromise();
+      .subscribe(
+        aplicar =>{
+                  console.log('VALOR DE APLICAR DENTRO DE aplicarservice '+aplicar);
+                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
+                  //if (aplicar.resultado){
+
+                  this.aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+
+                  //}
+
+        }
+
+      );
 
 
     }
+
+
     return this.dataPagar;
   }
 
