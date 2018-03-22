@@ -29,6 +29,7 @@ public URLaplicabonificacion:String;
 public URLcajas:String;
 public URLcajaslist:String;
 public URLcajasedit:String;
+public URLcajasupdate:String;
 
 public UrlAplicarVencidos:String;
 
@@ -152,6 +153,10 @@ constructor() {}
 
 		getUrlcajasedit():String{
 			return this.URLcajasedit='http://localhost:8080/cobranza/controladorcaja?operacion=editarGuardarfromApp&id_caja=';
+		}
+
+		getUrlcajasupdate():String{
+			return this.URLcajasupdate='http://localhost:8080/cobranza/controladorcaja?operacion=updateFolio_finalfromApp&id_caja=';
 		}
 
 		getUrlAplicarVencidos():String{

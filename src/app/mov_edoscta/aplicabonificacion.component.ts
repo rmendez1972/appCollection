@@ -15,8 +15,9 @@ import { Vencidos } from './vencidos';
 import { Aplicar } from  './aplicar';
 import { Benef } from './benef';
 import { ConfirmService} from '../_services/index';
-//marlon
+import { CajaService} from '../apertura_caja/caja.service';
 
+//marlon
 
 @Component({
   selector: 'app-aplicabonific',
@@ -59,12 +60,17 @@ export class AplicaBonificacionComponent implements OnInit {
     return 'relative';
   }
 
-
+  private miMensajeAplicaBons: string='Aqui debe ir el mensaje';
+  private miMensajeerrorAplicaBons: string;
   private errorMessage: string;
   private bonific: Bonific[];
 
   private k: Observable<Bonific[]>;
+
+  private l: Observable<boolean[]>;
+
   private n: Observable<Bonific[]>;
+
   private aplicar: Aplicar;
   private currentUser: User;
   private beneficiario: Benef;
@@ -90,7 +96,7 @@ export class AplicaBonificacionComponent implements OnInit {
   private clave_b;
   private recibo;
   private serie;
-  
+
 
   private model:any={};
   extraer:any={};
@@ -101,7 +107,8 @@ export class AplicaBonificacionComponent implements OnInit {
   @Output() onMessageAplicaBonific = new EventEmitter<String>();
   @Output() onerrorMessageAplicaBonific = new EventEmitter<String>();
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
- 
+
+
 
 
     constructor(
@@ -110,17 +117,20 @@ export class AplicaBonificacionComponent implements OnInit {
       private aplicabonificservice: AplicaBonificService,
       private alertService:AlertService,
       private confirmService:ConfirmService,
+      private cajaservice: CajaService,
       private mov_edoctaservice:Mov_edoctaService
 
     )
     {}
 
 
+
   	ngOnInit() {
-      
+
+
       this.extraerInit = this.extraerLocalStorage();
 
-      
+
 
       this.model.imp_int = this.extraerInit.imp_int;
       this.model.imp_adm = this.extraerInit.imp_adm;
@@ -131,27 +141,27 @@ export class AplicaBonificacionComponent implements OnInit {
       this.model.imp_mor = this.extraerInit.imp_mor;
       this.model.serie = this.extraerInit.serie;
       this.model.estatus = this.extraerInit.estatus;
-      
-      
-
 
 
     //fin Oinit
     };
 
     //mensaje de salida de exito
-    messageAplicaBonific(mensaje:String){
-      this.onMessageAplicaBonific.emit(mensaje);
+    messageAplicaBonific(mensaje:string){
+      console.log('mensaje apunto de emitir desde aplicabonificacion '+mensaje);
+      //this.onMessageAplicaBonific.emit(mensaje);
+      this.miMensajeAplicaBons=mensaje;
     };
 
     //mensajde de salida de fracaso
-    errormessageAplicaBonific(mensaje:String){
-      this.onerrorMessageAplicaBonific.emit(mensaje);
+    errormessageAplicaBonific(mensaje:string){
+      //this.onerrorMessageAplicaBonific.emit(mensaje);
+      this.miMensajeerrorAplicaBons=mensaje;
     };
 
     //Metodo en donde se realizara la insercion de las bonificaciones
     postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
-
+      console.log('DENTRO DE POSTBONIFICACIONES DENTRO DE  aplicabonificacion.component DESPUES DE APLICAR EL PAGO');
       this.extraerPost =this.extraerLocalStorage();
 
       //asignando valores a las propiedades
@@ -173,7 +183,7 @@ export class AplicaBonificacionComponent implements OnInit {
       this.serie=this.extraerPost.serie;
       this.id_catprog=this.extraerPost.id_catprog;
 
-  
+      /*
       console.log("valor de id_movedocta: "+this.id_movedocta);
       console.log("valor de beneficiario: "+this.id_benef);
       console.log("valor de moratorios: "+this.imp_cap);
@@ -191,12 +201,15 @@ export class AplicaBonificacionComponent implements OnInit {
       console.log("valor de clave_b: "+this.clave_b);
       console.log("valor de recibo: "+this.recibo);
       console.log("valor de serie: "+this.serie);
-      console.log("valor de id_catprog: "+this.id_catprog);
+      console.log("valor de id_catprog: "+this.id_catprog);*/
 
         this.k=this.route.params
 
         .switchMap((params: Params) =>
+
         {
+
+        console.log('VALOR DE this.id_movedocta antes de llamar al BACK-END '+this.id_movedocta);
         return this.aplicabonificservice.postBonificaciones(this.id_movedocta,this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
           this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.estatus,this.id_usuario,this.id_autoriza,
           this.clave_b,this.recibo,this.serie,this.id_catprog);
@@ -204,17 +217,40 @@ export class AplicaBonificacionComponent implements OnInit {
 
         this.k.subscribe(
                        bonificaciones =>{
-                         console.log('se inserto la bonificacion');
+                         console.log('SE INSERTO LA BONIFICACION EXITOSAMENTE...');
                          this.bonific = bonificaciones;
-                         this.messageAplicaBonific('Se insertaron las bonificaciones');
+                         this.messageAplicaBonific('Se insertó la bonificación exitosamente');
                          this.errormessageAplicaBonific(null);
+
+                         console.log('el valor de id_bonificacion es '+bonificaciones[2]);
+
+
+                             this.l=this.route.params
+
+                            .switchMap((params: Params) =>
+                            {
+                            return this.cajaservice.postUpdate_caja();
+                            })
+
+                            this.l.subscribe(
+
+                             cajas =>{
+                               console.log('se actualizo el folio final de la caja exitosamente');
+
+
+                              },
+                             error =>{
+                               this.errorMessage = <any>error;
+
+                             });
+
                          let idmovedocta;
                          let idbonificacion;
                          for (let i = 0; i < 1; i++) {
                           idmovedocta = bonificaciones[0];
                           idbonificacion = bonificaciones[2];
                          }
-                         
+
                           this.n=this.route.params
 
                           .switchMap((params: Params) =>
@@ -232,6 +268,7 @@ export class AplicaBonificacionComponent implements OnInit {
                               //this.errormessageAplicaBonific('Error en la inserción de datos');
                               //this.messageAplicaBonific(null);
                             });
+
 
 
                         },
@@ -258,7 +295,6 @@ export class AplicaBonificacionComponent implements OnInit {
     extraerLocalStorage(){
       //se recuperan valores del localStorage de Aplicar
       //this.aplicar = JSON.parse(localStorage.getItem('aplicar'));
-
       //iterar en el localstorage de aplicar para almacenar los valores hacia las propiedades
       //for (var y in this.aplicar) {
         this.extraer.imp_cap = 0;
@@ -272,7 +308,6 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
       //}
-
       //el valor de estatus se declara como un valor fijo
       this.extraer.estatus = 'A';
 
@@ -287,6 +322,8 @@ export class AplicaBonificacionComponent implements OnInit {
         this.extraer.serie = this.currentUser[elemento].serie;
 
       }
+
+       console.log('VALOR DE ID_MOV_EDOSCTA RECUPERADO DE LOCAL STORAGE EN APLICABONIFICACION.COMPONENT '+this.extraer.id_movedocta);
 
       //se recuperan valores del localStorage de vencidos
       this.beneficiario = JSON.parse(localStorage.getItem('beneficiario'));

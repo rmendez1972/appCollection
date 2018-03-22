@@ -64,6 +64,7 @@ export class AplicarComponent implements OnInit {
 
   private aplicar:Aplicar[];
   private k: Observable<Aplicar[]>;
+  private j: Observable<Aplicar[]>;
 
   private totalmoratorios: number=0;
 
@@ -165,30 +166,36 @@ export class AplicarComponent implements OnInit {
 
 
     getPagarConBonific(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number) {
-
-      console.log('DENTRO DE getPagarConBonific');
-      console.log('valor de tipobonificacion '+tipobonificacion);
-      console.log('totalmoratiorios '+totalmoratorios);
-      console.log('quienautoriza '+qautoriza);
-       this.confirmService.confirmconBonific("Seguro de aplicar estas mensualidades?",fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.k,tipobonificacion,totalmoratorios,qautoriza,function(message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,tipobonificacion,totalmoratorios,qautoriza){
+       this.confirmService.confirmconBonific(
+         "Seguro de aplicar estas mensualidades?",
+         fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.k,
+         tipobonificacion,totalmoratorios,qautoriza,function(
+           message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,
+           tipobonificacion,totalmoratorios,qautoriza){
+              console.log('dentro del SI');
+              console.log('apunto de llamar a aplicarservice.getPagar');
+              aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
               //ACTION: Do this If user says YES
-              console.log('dentro de call back')
-              k=route.params
+              /*k=route.params
               .switchMap((params: Params) =>
               {
+                console.log('apunto de llamar a aplicarservice.getPagar');
+                return aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
+              })*/
 
-                return aplicarservice.getPagar(fecha);
-              })
-
-              k.subscribe(
+              /*k.subscribe(
                 aplicar =>{
-                  //aqui llamo al service que envia datos de bonific al backend
-                  console.log('apunto de llamar a postBonificaciones, valor de total moratorios: '+totalmoratorios);
-                  aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+                  console.log('VALOR DE APLICAR DENTRO DE CONFORMCONBONIFICACION '+aplicar);
+                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
+                  if (aplicar.resultado){
+                    console.log('LLEGO DATA AL EVENTO SUBSCRIBE '+aplicar.resultado);
+                    aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+                  }
+
                 }
                 //error => let error=error
                   //this.errorMessage = <any>error
-                );
+                );*/
 
             },function(){
               //ACTION: Do this if user says NO

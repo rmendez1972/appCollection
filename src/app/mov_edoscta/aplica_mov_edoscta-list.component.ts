@@ -90,7 +90,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeAplicar:String;
   private miMensajeerrorAplicar:String;
   private fecha:String;
-  private bonific:String = "";
+  private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
 
   public totalvencidos: number=0;
@@ -136,8 +136,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
 
     title = 'Estado de Cuenta por Programas';
     localizaBenefMov(){
-      console.log('valor de model.criterio '+this.model.criterio);
-      console.log('valor de model.valorcriterio '+this.model.valorcriterio);
       if ((this.model.criterio!=undefined) && (this.model.valorcriterio!=null )){
         this.miMensajeerrorMovs=null;
         this.getMov_edoscta(this.model.criterio,this.model.valorcriterio);
@@ -241,6 +239,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     //metodos de aplicabonific
     //mensaje de exito en la aplicacion de bonificaciones
     onMessageAplicaBonific(mensaje:String){
+      console.log('DENTRO DE OnMessageAplicaBonific del padre');
 
       this.miMensajeAplicaBons = mensaje;
     }
@@ -252,6 +251,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     }
 
     onMessageAplicaBonificSi(mensaje:String){
+
       this.miMensajeAplicaBonsSi = mensaje;
     }
 
