@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 import {Aplicar} from './aplicar';
+import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 
 
 @Injectable()
@@ -22,7 +23,8 @@ export class AplicarService {
 
   constructor (private http: Http,
       private url:ServiceUrl,
-      private alertService: AlertService
+      private alertService: AlertService,
+      private aplicabonificacioncomponent: AplicaBonificacionComponent
       ){
 
     this.UrlAplicarVencidos = String(this.url.getUrlAplicarVencidos())
@@ -37,10 +39,11 @@ export class AplicarService {
 
 
 
-  getPagar(fecha:string){
+  getPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
     //console.log("get pagar dentro de aplicar service");
+    console.log('dentro de getPagar de aplicar.service');
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
-    return this.dataPagar(this.fecha);
+    return this.dataPagar(this.fecha,tipobonificacion,totalmoratorios,qautoriza);
 
   }
 
@@ -113,7 +116,7 @@ export class AplicarService {
 
   }
 
-  private dataPagar(fecha:string){
+  private dataPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
     this.currentUser=[];
     this.beneficiario=[];
 
@@ -176,15 +179,35 @@ export class AplicarService {
       numcontrato:numcontrato,
     }
 
+
+
     for (var c = 0; c < (this.aplicar.length-1); ++c) {
+      //grabo en localstorage el numero de iteracion en la q voy
+
       this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
       this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
       fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
       usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
+
       this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
-      .subscribe();// .toPromise();
-      
+      .subscribe(
+        aplicar =>{
+                  console.log('VALOR DE APLICAR DENTRO DE aplicarservice '+aplicar);
+                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
+                  //if (aplicar.resultado){
+
+                  this.aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+
+                  //}
+
+        }
+
+      );
+
+
     }
+
+
     return this.dataPagar;
   }
 
@@ -253,7 +276,7 @@ postPagarVencidos(
       "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
       "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja).map(this.extractDataPagarVencidos)
     .catch(this.handleError);
-    
+
   }
 
 
@@ -261,17 +284,27 @@ postPagarVencidos(
 
     let body = res.json();
     let id_mov_edoscta;
+    let recibo;
     for (var i = 0; i < 1; ++i) {
       id_mov_edoscta = body.resultado[0];
+
+      recibo= body.resultado[1].toString();
+
     }
+
+    console.log('id_mov_edoscta RECIENTEMENTE INSERTADO EN EL BACK-END ES '+id_mov_edoscta);
+
     let pagados ={
       id_mov_edoscta:id_mov_edoscta,
+      recibo:recibo
     }
     let current = JSON.parse(localStorage.getItem('currentUser'));
     for (var x = 0; x < 1; ++x) {
+
+      current[x].folio_final= pagados.recibo;
       current[x].id_mov_edoscta = pagados.id_mov_edoscta;
     }
-    
+
     localStorage.setItem('currentUser',JSON.stringify(current));
     return body.resultado|| { };
 

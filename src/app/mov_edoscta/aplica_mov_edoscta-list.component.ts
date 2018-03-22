@@ -90,7 +90,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
   private miMensajeAplicar:String;
   private miMensajeerrorAplicar:String;
   private fecha:String;
-  private bonific:String = "";
+  private bonific:String = "fa fa-check";
   private nobonific: String = "fa fa-times";
 
   public totalvencidos: number=0;
@@ -239,6 +239,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     //metodos de aplicabonific
     //mensaje de exito en la aplicacion de bonificaciones
     onMessageAplicaBonific(mensaje:String){
+      console.log('DENTRO DE OnMessageAplicaBonific del padre');
 
       this.miMensajeAplicaBons = mensaje;
     }
@@ -250,6 +251,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     }
 
     onMessageAplicaBonificSi(mensaje:String){
+
       this.miMensajeAplicaBonsSi = mensaje;
     }
 

@@ -168,25 +168,13 @@ export class AplicarComponent implements OnInit {
     getPagarConBonific(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number) {
        this.confirmService.confirmconBonific(
          "Seguro de aplicar estas mensualidades?",
-         fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.j,
+         fecha,this.aplicarService,this.aplicabonificacioncomponent,this.route,this.k,
          tipobonificacion,totalmoratorios,qautoriza,function(
-           message,fecha,aplicarservice,aplicabonificacioncomponent,route,j,
+           message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,
            tipobonificacion,totalmoratorios,qautoriza){
-              //ACTION: Do this If user says YES
-              j=route.params
-              .switchMap((params: Params) =>
-              {
-                return aplicarservice.getPagar(fecha);
-              })
-              j.subscribe(
-                aplicar =>{
-                  //aqui llamo al service que envia datos de bonific al backend
-                  console.log("Hola:");
-                  aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
-                }
-                //error => let error=error
-                  //this.errorMessage = <any>error
-                );
+              console.log('dentro del SI');
+              console.log('apunto de llamar a aplicarservice.getPagar');
+              aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
 
             },function(){
               //ACTION: Do this if user says NO
