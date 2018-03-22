@@ -204,7 +204,7 @@ export class AplicarService {
       clave_b:clave_b,
       id_benef:id_benef,
       id_catprog:id_catprog,
-      numcontrato:id_catprog,
+      numcontrato:numcontrato,
     }
 
 
