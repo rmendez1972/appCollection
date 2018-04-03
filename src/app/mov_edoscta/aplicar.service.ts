@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 import {Aplicar} from './aplicar';
+import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 
 
 @Injectable()
@@ -24,7 +25,8 @@ export class AplicarService {
 
   constructor (private http: Http,
       private url:ServiceUrl,
-      private alertService: AlertService
+      private alertService: AlertService,
+      private aplicabonificacioncomponent: AplicaBonificacionComponent
       ){
 
     this.UrlAplicarVencidos = String(this.url.getUrlAplicarVencidos())
@@ -39,10 +41,11 @@ export class AplicarService {
 
 
 
-  getPagar(fecha:string):Observable<Aplicar[]>{
+  getPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
     //console.log("get pagar dentro de aplicar service");
+    console.log('dentro de getPagar de aplicar.service');
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
-    return this.dataPagar(this.fecha);
+    return this.dataPagar(this.fecha,tipobonificacion,totalmoratorios,qautoriza);
 
   }
 
@@ -115,12 +118,9 @@ export class AplicarService {
 
   }
 
-  private dataPagar(fecha:string): Observable<Aplicar[]> {
-    this.pagar=[];
+  private dataPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
     this.currentUser=[];
     this.beneficiario=[];
-    this.aplicarPagar=[];
-    this.usuario=[];
 
     let capital=0;//aplicar
     let interes=0;//aplicar
@@ -157,19 +157,6 @@ export class AplicarService {
       poliza = this.currentUser[i].poliza;
     }
 
-    for (var x = 0; x < 1; ++x) {
-      capital = this.aplicar[x].capital;
-      interes = this.aplicar[x].interes;
-      admon = this.aplicar[x].admon;
-      seguro = this.aplicar[x].seguro;
-      clave_mov = this.aplicar[x].letra;
-
-      comisiones = this.aplicar[x].com;
-      o_seguro = this.aplicar[x].oseg;
-      moratorios = this.aplicar[x].mor;
-      tit = this.aplicar[x].tit;
-    }
-
     for (var y = 0; y < 1; ++y) {
       clave_b = this.beneficiario[y].clave_b;
       id_benef = this.beneficiario[y].id_beneficiario;
@@ -187,37 +174,43 @@ export class AplicarService {
       poliza:poliza,
 
     };
-
-    let aplicarFinal={
-      capital:capital,
-      interes:interes,
-      admon:admon,
-      seguro:seguro,
-      clave_mov:clave_mov,
-      comisiones:comisiones,
-      o_seguro: o_seguro,
-      moratorios: moratorios,
-      tit:tit,
-    };
-
     let beneficiarioFinal ={
       clave_b:clave_b,
       id_benef:id_benef,
       id_catprog:id_catprog,
-      numcontrato:id_catprog,
+      numcontrato:numcontrato,
     }
 
 
-    //Return que solo inserta el primer registro
 
-    return this.postPagarVencidos(beneficiarioFinal.id_benef, aplicarFinal.capital,aplicarFinal.interes,
-      aplicarFinal.admon,aplicarFinal.seguro, aplicarFinal.clave_mov, usuarioFinal.poliza,
-      fecha_corte,usuarioFinal.recibo, aplicarFinal.o_seguro, aplicarFinal.moratorios,usuarioFinal.fecha_pol,
-      usuarioFinal.id_usuario,aplicarFinal.comisiones,usuarioFinal.serie, beneficiarioFinal.clave_b,
-      aplicarFinal.tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja);
+    for (var c = 0; c < (this.aplicar.length-1); ++c) {
+      //grabo en localstorage el numero de iteracion en la q voy
+
+      this.postPagarVencidos(beneficiarioFinal.id_benef, this.aplicar[c].capital,this.aplicar[c].interes,
+      this.aplicar[c].admon,this.aplicar[c].seguro, this.aplicar[c].letra, usuarioFinal.poliza,
+      fecha_corte,usuarioFinal.recibo, this.aplicar[c].oseg, this.aplicar[c].mor,usuarioFinal.fecha_pol,
+      usuarioFinal.id_usuario,this.aplicar[c].com,usuarioFinal.serie, beneficiarioFinal.clave_b,
+
+      this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
+      .subscribe(
+        aplicar =>{
+                  console.log('VALOR DE APLICAR DENTRO DE aplicarservice '+aplicar);
+                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
+                  //if (aplicar.resultado){
+
+                  this.aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
+
+                  //}
+
+        }
+
+      );
 
 
+    }
 
+
+    return this.dataPagar;
   }
 
 postPagarVencidos(
@@ -241,7 +234,7 @@ postPagarVencidos(
   id_catprog:number,
   numcontrato:number,
   id_caja:number,
-  ): Observable<Aplicar[]> {
+  ):Observable<Aplicar[]>{
   //console.log('valor de clave_mov'+clave_mov);
     let param_pagar_vencidos={
       id_benef:id_benef.toString().trim(),
@@ -266,8 +259,16 @@ postPagarVencidos(
       id_caja:id_caja.toString().trim(),
 
     };
+    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
+      +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
+      "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
+      "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
+      "&o_seguro="+param_pagar_vencidos.o_seguro+"&moratorios="+param_pagar_vencidos.moratorios+
+      "&fecha_pol="+param_pagar_vencidos.fecha_pol+"&id_usuario="+param_pagar_vencidos.id_usuario+
+      "&comisiones="+param_pagar_vencidos.comisiones+"&serie="+param_pagar_vencidos.serie+
+      "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
+      "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja);
     return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
-
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
       "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
@@ -277,29 +278,32 @@ postPagarVencidos(
       "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
       "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja).map(this.extractDataPagarVencidos)
     .catch(this.handleError);
+
   }
 
 
   private extractDataPagarVencidos(res: Response) {
 
     let body = res.json();
-    console.log(body.resultado);
-
-    let recibo = body.resultado[1];
     let id_mov_edoscta;
+    let recibo;
     for (var i = 0; i < 1; ++i) {
       id_mov_edoscta = body.resultado[0];
-      recibo= body.resultado[1];
-    }
-    let pagados ={
 
-      recibo:recibo,
+      recibo= body.resultado[1].toString();
+
+    }
+
+    console.log('id_mov_edoscta RECIENTEMENTE INSERTADO EN EL BACK-END ES '+id_mov_edoscta);
+
+    let pagados ={
       id_mov_edoscta:id_mov_edoscta,
+      recibo:recibo
     }
     let current = JSON.parse(localStorage.getItem('currentUser'));
     for (var x = 0; x < 1; ++x) {
 
-      current[x].recibo= pagados.recibo;
+      current[x].folio_final= pagados.recibo;
       current[x].id_mov_edoscta = pagados.id_mov_edoscta;
     }
 

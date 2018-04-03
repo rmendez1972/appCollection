@@ -15,6 +15,7 @@ export class CajaService {
   private cajasUrl: string;
   private cajasListUrl: string;
   private cajasEditUrl: string;
+  private cajasUpdateUrl: string;
   private currentUser: User;
   private newcurrentUser: User;
   private id_caja: number;
@@ -31,6 +32,7 @@ export class CajaService {
     this.cajasUrl=String(this.url.getUrlcajas());
     this.cajasListUrl=String(this.url.getUrlcajaslist());
     this.cajasEditUrl=String(this.url.getUrlcajasedit());
+    this.cajasUpdateUrl=String(this.url.getUrlcajasupdate());
 
   }
 
@@ -97,6 +99,49 @@ export class CajaService {
     return this.http.get(this.cajasEditUrl+id_caja+"&fecha="+fecha+"&folio_inicial="+folio_inicial+"&folio_final="+folio_final+"&poliza="+poliza+"&monto_inicial="+monto_inicial+"&id="+id)
     .map(this.extractDataCajaEdit)
     .catch(this.handleError);
+  }
+
+
+  //postUpdate_caja
+  postUpdate_caja(): Observable<boolean[]> {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let id_caja:number;
+    for (var elemento in this.currentUser) {
+      id_caja=this.currentUser[elemento].id_caja;
+
+    }
+
+    return this.http.get(this.cajasUpdateUrl+id_caja)
+    .map(this.extractDataCajaUpdate)
+    .catch(this.handleError);
+  }
+
+  private extractDataCajaUpdate(res: Response) {
+
+    let body = res.json();
+    console.log('valor de respuesta de api rest, para update de folio final  '+body.respuesta);
+    if (body.respuesta=true){
+      console.log('valor de body.respuesta es true ');
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let folio_final:number;
+      for (var elemento in this.currentUser) {
+        folio_final=this.currentUser[elemento].folio_final;
+
+      }
+
+      console.log('VALOR DE FOLIO_FINAL RECUPERADO DE LOCALSTORAGE '+folio_final);
+      folio_final=++folio_final;
+      console.log('VALOR DE FOLIO_FINAL RECUPERADO DE LOCALSTORAGE incrementado en uno '+folio_final);
+      for (var elemento in this.currentUser){
+         this.currentUser[elemento].folio_final=folio_final.toString();
+
+       }
+       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+
+    }
+
+    return body.caja|| { };
+
   }
 
   private extractDataCajaList(res: Response) {

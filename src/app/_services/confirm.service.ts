@@ -73,8 +73,8 @@ import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
     	let mifecha=fecha;
     	let mimessage=message;
     	let mk: Observable<Aplicar[]>;
-    	console.log('valor de mifecha dentro de setConfirmationconBonific '+ mifecha);
-    	console.log('valor de bonificacioncomponent dentro de setConfirmationconBonific '+ bonificacioncomponent);
+    	//console.log('valor de mifecha dentro de setConfirmationconBonific '+ mifecha);
+    	//console.log('valor de bonificacioncomponent dentro de setConfirmationconBonific '+ bonificacioncomponent);
 
     	this.subject.next({ type: "confirm",
                         text: message,
@@ -104,7 +104,7 @@ import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
     setConfirmationBonificacion(message:string,bonificservice:AplicaBonificService,onMessageAplicaBonificSi:EventEmitter<String>,siFn:(component,eventemmitter)=>void,noFn:(eventemmitter)=>void){
         let that = this;
 
-        console.log('tipo de bonificservice dentro de confirmservice '+typeof(bonificservice));
+        //console.log('tipo de bonificservice dentro de confirmservice '+typeof(bonificservice));
     	this.subject.next({ type: "confirm",
                        	text: message,
                         siFn:
