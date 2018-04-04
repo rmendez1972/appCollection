@@ -60,6 +60,8 @@ import { DataTablesModule } from 'angular-datatables';
 
 import { Aplica_Mov_edosctaModule } from './mov_edoscta/aplica_mov_edoscta.module';
 import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edoscta-routing.module';
+import { Aplica_Mov_diversosModule } from './mov_diversos/aplica_mov_diversos.module';
+import { Aplica_Mov_diversosRoutingModule } from './mov_diversos/aplica_mov_diversos-routing.module';
 
 
 @NgModule({
@@ -100,6 +102,8 @@ import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edosct
     BrowserAnimationsModule,
     Aplica_Mov_edosctaModule,
     Aplica_Mov_edosctaRoutingModule,
+    Aplica_Mov_diversosModule,
+    Aplica_Mov_diversosRoutingModule,
 
 
   ],
@@ -109,9 +113,6 @@ import { Aplica_Mov_edosctaRoutingModule } from './mov_edoscta/aplica_mov_edosct
     ConfirmService,
     AuthenticationService,
     UserService,
-
-
-
     // providers used to create fake backend
     //fakeBackendProvider,
     MockBackend,
