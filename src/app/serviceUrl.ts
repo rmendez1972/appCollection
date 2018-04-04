@@ -156,7 +156,7 @@ constructor() {}
 		}
 
 		getUrlcajasupdate():String{
-			return this.URLcajasupdate='http://localhost:8080/cobranza/controladorcaja?operacion=updateFolio_finalfromApp&id_caja=';
+			return this.URLcajasupdate='http://localhost:8083/cobranza/controladorcaja?operacion=updateFolio_finalfromApp&id_caja=';
 		}
 
 		getUrlAplicarVencidos():String{
@@ -168,7 +168,7 @@ constructor() {}
 		}
 
 		getUrlUpdateMovedocta():String{
-			return this.URLupdateMovedocta = 'http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaBonific&id_movedoscta=';
+			return this.URLupdateMovedocta = 'http://localhost:8083/cobranza/controladormov_edocta?operacion=aplicaMovedoctaBonific&id_movedoscta=';
 		}
 
 
