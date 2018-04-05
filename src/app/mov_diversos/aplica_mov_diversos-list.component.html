@@ -23,7 +23,7 @@
             
         </div>
         <div class="form-group" style="text-align:center">
-          <input type="submit" value="Buscar" class="btn btn-primary" />
+          <input type="submit" value="Buscar" class="btn btn-primary" (click)="localizaBenefMov_diversos();" />
           <input type="reset" value="Borrar" class="btn btn-info">
         </div>        
     </form>
@@ -31,38 +31,38 @@
 
   <div class="panel panel-primary">
     <div class="panel-heading">Generales del Beneficiario </div>
-    <div class="panel-body transparent">
+    <div class="panel-body transparent"  *ngFor="let ben of benef_div">
       <table class="" width="100%">
         <tbody >
 
           <tr>
-            <td width="60%"><strong>Nombre : </strong></td>
-            <td width="40%"><strong>Clave SEDETUS: </strong></td>
+            <td width="60%"><strong>Nombre : </strong>{{ben.nombre}}</td>
+            <td width="40%"><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</td>
           </tr>
 
           <tr>
-            <td><strong>CURP: </strong></td>
-            <td><strong>Contrato: </strong> <strong> Fecha: </strong></td>
+            <td><strong>CURP: </strong>{{ben.curp}}</td>
+            <td><strong>Contrato: </strong>{{ben.numcontrato}} <strong> Fecha: </strong>{{ben.nombre}}</td>
           </tr>
 
           <tr>
-            <td><strong>Clave Elec: </strong></td>
-            <td><strong>Inicio de pagos: </strong></td>
+            <td><strong>Clave Elec: </strong>{{ben.clave_elect}}</td>
+            <td><strong>Inicio de pagos: </strong>{{ben.fecha_con}}</td>
           </tr>
 
           <tr>
             <td><strong>Dirección : </strong></td>
-            <td><strong>Poliza: </strong><strong >Fecha: </strong></td>
+            <td><strong>Poliza: </strong><strong >Fecha: </strong>{{ben.fecha}}</td>
           </tr>
 
           <tr>
-            <td><strong>Manzana : </strong><strong> Lote: </strong> </td>
+            <td><strong>Manzana : </strong>{{ben.mza}}<strong> Lote: </strong>{{ben.lte}}</td>
             <td><strong>Clave Cat: </strong></td>
           </tr>
 
           <tr>
-            <td><strong>Conyuge  : </strong></td>
-            <td><strong>Área: </strong> m2 <strong> Plazo: </strong></td>
+            <td><strong>Conyuge  : </strong>{{ben.conyuge}}</td>
+            <td><strong>Área: </strong> m2 <strong> Plazo: </strong>{{ben.plazo}}</td>
           </tr>
 
         </tbody>
@@ -88,8 +88,22 @@
             <th>Aprobado</th>
           </thead>
 
-          <tbody >
-            
+          <tbody *ngFor="let mov of mov_diversos">
+            <td>{{mov.fecha_div}}</td>
+            <td>{{mov.clave_div}}</td>
+            <td>{{mov.descripcion}}</td>
+            <td>{{mov.recibo}}</td>
+            <td>{{mov.serie}}</td>
+            <td>{{mov.cargo}}</td>
+            <td>{{mov.abono}}</td>
+            <td>{{mov.moratorios}}</td>
+            <td>
+                <div *ngIf="mov.aplicado;then conaplicado else sinaplicado"></div>
+
+                <ng-template #conaplicado><span  [ngClass]="aplicado" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento aplicado"></span></ng-template>
+                <ng-template #sinaplicado> <span  [ngClass]="noaplicado" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento no aplicado"></span></ng-template>
+
+            </td>
           </tbody>
         </table>
         
