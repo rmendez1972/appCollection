@@ -31,6 +31,8 @@
 
   <div class="panel panel-primary">
     <div class="panel-heading">Generales del Beneficiario </div>
+    <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
+        <h3 *ngIf=miMensajeerrorMovs><span class="label label-danger">{{miMensajeerrorMovs}}</span></h3>
     <div class="panel-body transparent"  *ngFor="let ben of benef_div">
       <table class="" width="100%">
         <tbody >
@@ -67,6 +69,13 @@
 
         </tbody>
       </table>
+      <div [hidden]="!miMensajeerrorMovs" >
+          <form  class="form-inline" #f3="ngForm" novalidate>
+          <div class="form-group" style="text-align:center">
+            <input type="submit" value="Nuevo Usuario" class="btn btn-primary" />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -110,19 +119,21 @@
        </div>
       </div>
 
-      <div class="form-group" >
-        <label for="" class="col-md-4 control-label">¿Clave Diversos? </label>
-        <input type="" name="clv_diverso">
-      </div>
-      <div class="form-group" >
-        <label for="" class="col-md-4 control-label">¿Cuenta Corriente? o ¿Programa? </label>
-        <input type="" name="clv_cuenta">
-      </div>
-      <div class="form-group" >
-        <label for="" class="col-md-4 control-label">¿Descripcion del cobro? </label>
-        <input type="" name="clv_descripcion">
-      </div>
-      <div class="form-group" >
+      <div [hidden]="!miMensajeMovs" >
+        <div class="form-group" >
+          <label for="" class="col-md-4 control-label">¿Clave Diversos? </label>
+          <input type="" name="clv_diverso">
+        </div>
+        <div class="form-group" >
+          <label for="" class="col-md-4 control-label">¿Cuenta Corriente? o ¿Programa? </label>
+          <input type="" name="clv_cuenta">
+        </div>
+        <div class="form-group" >
+          <label for="" class="col-md-4 control-label">¿Descripcion del cobro? </label>
+          <input type="" name="clv_descripcion">
+        </div>
+
+        <div class="form-group" >
         <label for="" class="col-md-4 control-label">Importe del Pago </label>
         <input type="" name="clv_importe">
       </div>
@@ -135,13 +146,14 @@
         <input type="" name="clv_otros">
       </div>
 
-      <form class="form-inline" #f3="ngForm" novalidate>
+      </div>
 
-          <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
-          <label for="importebonificacion" class="col-md-4 control-label">Importe a Bonificar</label>
-          <input type="number" name="importebonificacion" class="form-control"  id="importebonificacion" step="0.01" min="1" max="" required>
-          </div>
+      <!-- Pendiente de habilitar
+        <confirm></confirm>
+      -->
+      
 
+        <form [hidden]="!miMensajeAplicaBonsSi" class="form-inline" #f3="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
           <label for="tipoBonific" class="col-md-4 control-label">Tipo de Bonificaciones</label>
             <tbody >
@@ -150,6 +162,10 @@
                 <option *ngFor="let bon of bonificaciones " value="{{bon.id_bonific}}" >{{bon.descripcion}}</option>
               </select>
             </tbody>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
+          <label for="moratorios" class="col-md-4 control-label">Total de moratorios</label>
+          <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalmoratorios" #moratorios="ngModel" step="0.01" min="1" max="{{totalmoratorios}}" required>
           </div>
 
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
@@ -163,17 +179,17 @@
             </tbody>
           </div>
         </form>
+        <form  class="form-inline" #f3="ngForm" novalidate>
+          <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
 
-      <form  class="form-inline" #f3="ngForm" novalidate>
-          <div class="form-group" style="text-align:center">
-
-            <input type="submit" value="Pagar s/b" class="btn btn-primary" />
+            <input type="submit" value="Pagar s/b" class="btn btn-primary"  />
           </div>
-          <div class="form-group" style="text-align:center">
+          <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
             <input type="submit" value="Pagar c/b" class="btn btn-primary" />
 
           </div>
         </form>
+      
     </div>  
 
     <div class="panel panel-primary">

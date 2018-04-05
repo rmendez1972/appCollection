@@ -36,6 +36,8 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Generales del Beneficiario y del Crédito.</div>
     <div class="panel-body transparent">
+      <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
+        <h3 *ngIf=miMensajeerrorMovs><span class="label label-danger">{{miMensajeerrorMovs}}</span></h3>
       <table class="" width="100%">
         <tbody *ngFor="let ben of benef">
 
@@ -253,7 +255,6 @@
   <div [hidden]="!miMensajeAplicaBonsSi" class="panel panel-primary">
     <div class="panel-heading">Bonificaciones a Aplicar</div>
     <div class="panel-body transparent">
-
 
       <app-aplicabonific #aplicabonificacion
         (onMessageAplicaBonific)="onMessageAplicaBonific($event)" (onerrorMessageAplicaBonific)="onerrorMessageAplicaBonific($event)"  (onMessageAplicaBonificSi)="onMessageAplicaBonificSi($event)" ></app-aplicabonific>
