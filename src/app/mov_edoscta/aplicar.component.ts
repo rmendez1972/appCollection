@@ -175,27 +175,6 @@ export class AplicarComponent implements OnInit {
               console.log('dentro del SI');
               console.log('apunto de llamar a aplicarservice.getPagar');
               aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
-              //ACTION: Do this If user says YES
-              /*k=route.params
-              .switchMap((params: Params) =>
-              {
-                console.log('apunto de llamar a aplicarservice.getPagar');
-                return aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
-              })*/
-
-              /*k.subscribe(
-                aplicar =>{
-                  console.log('VALOR DE APLICAR DENTRO DE CONFORMCONBONIFICACION '+aplicar);
-                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
-                  if (aplicar.resultado){
-                    console.log('LLEGO DATA AL EVENTO SUBSCRIBE '+aplicar.resultado);
-                    aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
-                  }
-
-                }
-                //error => let error=error
-                  //this.errorMessage = <any>error
-                );*/
 
             },function(){
               //ACTION: Do this if user says NO

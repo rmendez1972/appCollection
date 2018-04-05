@@ -15,6 +15,7 @@ import { ServiceUrl } from '../serviceUrl';
 import { Mov_diversosService } from './mov_diversos.service';
 import { BonificDivService } from './bonificacion_div.service';
 import { Mov_diversosRoutingModule } from './mov_diversos-routing.module';
+import { ImportComponent } from './import.component';
 
 
 @NgModule({
@@ -22,11 +23,11 @@ import { Mov_diversosRoutingModule } from './mov_diversos-routing.module';
     CommonModule,
     FormsModule,
     Mov_diversosRoutingModule,
+    ImportComponent,
     
   ],
   declarations: [
     Mov_diversosListComponent,
-    BonificacionDivComponent
   ],
   providers: [
     ServiceUrl,Mov_diversosService,BonificDivService
