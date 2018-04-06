@@ -32,7 +32,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Generales del Beneficiario </div>
     <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
-        <h3 *ngIf=miMensajeerrorMovs><span class="label label-danger">{{miMensajeerrorMovs}}</span></h3>
+        <h3 *ngIf=errorMessage><span class="label label-danger">{{errorMessage}}</span></h3>
     <div class="panel-body transparent"  *ngFor="let ben of benef_div">
       <table class="" width="100%">
         <tbody >
