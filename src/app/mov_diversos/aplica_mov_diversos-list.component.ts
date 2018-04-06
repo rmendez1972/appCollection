@@ -123,8 +123,11 @@ private seleccionado:String="clave_b";
           this.mov_diversos = movimientos;  
           
           this.miMensajeMovs = "Recuperación Exitosa de los Movimientos diversos";
+          this.errorMessage = null;
          },
-        error =>  this.errorMessage = <any>error);
+        error =>  {this.errorMessage = "no se pudo localizar los movimientos diversos"; 
+                   this.miMensajeMovs = null;  
+                  this.mov_diversos = null;});
 
         //movimientos => this.mov_diversos = movimientos,
         //error =>  this.errorMessage = <any>error);
