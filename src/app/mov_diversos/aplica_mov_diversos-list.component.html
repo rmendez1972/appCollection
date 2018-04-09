@@ -20,18 +20,18 @@
                 <input type="text" class="form-control" placeholder={{_criterio.value}} name="valor_criterio" [ngModel]="model.valorcriterio | uppercase"  (ngModelChange)="model.valorcriterio = $event"  #valor_criterio="ngModel" required />
                 <div *ngIf="f.submitted && !valor_criterio.valid" class="help-block">Obligatorio</div>
             </div>
-            
+
         </div>
         <div class="form-group" style="text-align:center">
           <input type="submit" value="Buscar" class="btn btn-primary" (click)="localizaBenefMov_diversos();getClaveDiversos();getProgramas()" />
           <input type="reset" value="Borrar" class="btn btn-info">
-        </div>        
+        </div>
     </form>
     <br>
 
   <div class="panel panel-primary">
     <div class="panel-heading">Generales del Beneficiario </div>
-    <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
+    <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeBenef}}</span></h3>
         <h3 *ngIf=errorMessage><span class="label label-danger">{{errorMessage}}</span></h3>
     <div class="panel-body transparent"  *ngFor="let ben of benef_div">
       <table class="" width="100%">
@@ -115,7 +115,7 @@
             </td>
           </tbody>
         </table>
-        
+
        </div>
       </div>
 
@@ -203,18 +203,18 @@
 
           </div>
         </form>
-      
-    </div>  
+
+    </div>
 
     <div class="panel panel-primary">
       <div class="panel-heading" > Bonificaciones del Beneficiario</div>
       <div class="panel-body transparent">
         <div class="table-responsive">
-        
+
        </div>
       </div>
-      
+
     </div>
-  
-      
+
+
   </div>

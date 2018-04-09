@@ -92,7 +92,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
 
   optionsSelect = [
-    {id:1, value: "clave_lector", name: "Clave de Elector(INE)"},
+    {id:1, value: "clave_elector", name: "Clave de Elector(INE)"},
     {id:2, value: "clave_curp", name: "CURP"},
     {id:3, value: "clave_b", name: "Clave SEDETUS"},
     {id:4, value: "nombre", name: "Nombre de Beneficiario"}
@@ -109,7 +109,7 @@ private seleccionado:String="clave_b";
       private aplicabonificservice: AplicaBonificService,
     )
     {
-      
+
     }
 
   	ngOnInit() {
@@ -118,7 +118,7 @@ private seleccionado:String="clave_b";
     };
 
   	title = 'Movimientos diversos';
- 
+
     localizaBenefMov_diversos(){
       console.log('valor de model.criterio '+this.model.criterio);
       console.log('valor de model.valorcriterio '+this.model.valorcriterio);
@@ -126,12 +126,12 @@ private seleccionado:String="clave_b";
         this.miMensajeerrorMovs=null;
         this.getMov_diversos(this.model.criterio,this.model.valorcriterio);
         this.getBenef_div(this.model.criterio,this.model.valorcriterio);
-        
+
       }else{
         this.miMensajeMovs=null;
         this.miMensajeerrorMovs = "Error en recuperación de Movimientos diversos, por favor llena los campos..";
       }
-      
+
     }
 
     getMov_diversos(criterio:String,valorcriterio:String) {
@@ -143,15 +143,15 @@ private seleccionado:String="clave_b";
       })
 
       this.k.subscribe(
-        
+
         movimientos => {
-          this.mov_diversos = movimientos;  
-          
+          this.mov_diversos = movimientos;
+
           this.miMensajeMovs = "Recuperación Exitosa de los Movimientos diversos";
           this.errorMessage = null;
          },
-        error =>  {this.errorMessage = "no se pudo localizar los movimientos diversos"; 
-                   this.miMensajeMovs = null;  
+        error =>  {this.errorMessage = "no se pudo localizar los movimientos diversos";
+                   this.miMensajeMovs = null;
                   this.mov_diversos = null;});
 
         //movimientos => this.mov_diversos = movimientos,
@@ -171,7 +171,7 @@ private seleccionado:String="clave_b";
 
                      beneficiario => {
                        this.benef_div = beneficiario;
-                     
+
                      if (this.benef_div.length>0){
                        console.log("Encontrado!!!!");
                       this.miMensajeBenef="Encontrado";
