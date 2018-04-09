@@ -107,7 +107,7 @@ private seleccionado:String="clave_b";
       this.model.valorcriterio=null;
     };
 
-  	title = 'Movimientos diversos';
+  	title = 'Cobranza: movimientos diversos';
  
     localizaBenefMov_diversos(){
       console.log('valor de model.criterio '+this.model.criterio);
