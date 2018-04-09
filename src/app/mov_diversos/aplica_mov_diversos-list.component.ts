@@ -240,5 +240,31 @@ private seleccionado:String="clave_b";
       })
 
     };
+    getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
+
+      console.log("Metodo pagar");
+      console.log(diversos);
+      console.log(corriente);
+      console.log(descripcion);
+      console.log(importe);
+      console.log(intereses);
+      console.log(otros);
+    };
+    getPagarBonificacion(diversos:string, 
+      corriente:string,descripcion:string,importe:string,
+      intereses:string,otros:string, 
+      bonificacion:string, moratorios:string, autoriza:string){
+
+      console.log("Metodo pagar con Bonificacion");
+      console.log(diversos);
+      console.log(corriente);
+      console.log(descripcion);
+      console.log(importe);
+      console.log(intereses);
+      console.log(otros);
+      console.log(bonificacion);
+      console.log(moratorios);
+      console.log(autoriza);
+    };
 
 }
