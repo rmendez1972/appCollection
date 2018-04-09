@@ -20,8 +20,6 @@ export class AplicarService {
 
   private pagar: any[];
   private currentUser:any[];
-  private aplicarPagar:any[];
-  private usuario:any[]
   private beneficiario:any[];
 
   private UrlAplicarVencidos: String;

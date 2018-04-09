@@ -176,7 +176,9 @@ export class AplicarComponent implements OnInit {
            message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,
            tipobonificacion,totalmoratorios,qautoriza){
 
+
               aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
+
 
 
             },function(){

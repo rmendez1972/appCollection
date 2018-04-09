@@ -54,6 +54,10 @@ export class AuthenticationService {
     logout() {
 
         // remove user from local storage to log user out
+        localStorage.removeItem("aplicar");
+        localStorage.removeItem("beneficiario");
+        localStorage.removeItem("bon");
+        localStorage.removeItem("vencidos");
         localStorage.removeItem('currentUser');
     }
 }
