@@ -10,6 +10,7 @@ import { Aplica_Mov_diversosService } from './aplica_mov_diversos.service';
 import { Aplica_Mov_diversosRoutingModule } from './aplica_mov_diversos-routing.module';
 
 import { ImportComponent } from './import.component';
+import {ConfirmService} from '../confirm/confirm.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { ImportComponent } from './import.component';
     Aplica_Mov_diversosListComponent,
   ],
   providers: [
-    ServiceUrl,Aplica_Mov_diversosService
+    ServiceUrl,Aplica_Mov_diversosService,ConfirmService,
   ]
 })
 export class Aplica_Mov_diversosModule {}
