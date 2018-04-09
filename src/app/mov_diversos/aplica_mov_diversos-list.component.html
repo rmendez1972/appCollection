@@ -141,29 +141,32 @@
         </div>
         <div class="form-group" >
           <label for="" class="col-md-4 control-label">¿Descripcion del cobro? </label>
-          <input type="textarea" name="clv_descripcion">
+          <div class="form-group" >
+          <textarea  cols="50" name="clv_descripcion">Descripcion del cobro a realizar. </textarea>
+          </div>
         </div>
 
         <div class="form-group" >
         <label for="" class="col-md-4 control-label">Importe del Pago </label>
-        <input type="" name="clv_importe">
+        <input type="number" name="clv_importe" step="0.01" min="1" required>
       </div>
       <div class="form-group" >
         <label for="" class="col-md-4 control-label">Intereses de Moratorios </label>
-        <input type="" name="clv_intereses">
+        <input type="number" name="clv_intereses" step="0.01" min="1" required>
       </div>
       <div class="form-group" >
         <label for="" class="col-md-4 control-label">Otros Importes </label>
-        <input type="" name="clv_otros">
+        <input type="number" name="clv_otros" step="0.01" min="1" required>
+      </div>
+
+      <div  class="form-group" style="text-align:center">
+        <input type="submit" value="Bonificaciones" class="btn btn-primary" (click)="getAutoriza();getTipoBonificaciones();confirmarBonificacion()" />
       </div>
 
       </div>
 
-      <!-- Pendiente de habilitar
-        <confirm></confirm>
-      -->
-      
 
+      <confirm></confirm>
         <form [hidden]="!miMensajeAplicaBonsSi" class="form-inline" #f3="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
           <label for="tipoBonific" class="col-md-4 control-label">Tipo de Bonificaciones</label>
@@ -176,7 +179,7 @@
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }">
           <label for="moratorios" class="col-md-4 control-label">Total de moratorios</label>
-          <input type="number" name="moratorios" class="form-control"  id="moratorios" [(ngModel)]="totalmoratorios" #moratorios="ngModel" step="0.01" min="1" max="{{totalmoratorios}}" required>
+          <input type="number" name="moratorios" class="form-control"  id="moratorios" step="0.01" min="1"  required>
           </div>
 
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
@@ -191,7 +194,7 @@
           </div>
         </form>
         <form  class="form-inline" #f3="ngForm" novalidate>
-          <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
+          <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
 
             <input type="submit" value="Pagar s/b" class="btn btn-primary"  />
           </div>
