@@ -75,9 +75,6 @@ export class BonificacionDivComponent implements OnInit {
   @Output() onMessage2 = new EventEmitter<String>();
   
 
-
-
-
   	constructor(
       private router: Router,
       private route: ActivatedRoute,

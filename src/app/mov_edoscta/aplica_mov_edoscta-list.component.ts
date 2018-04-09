@@ -1,6 +1,5 @@
 import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
 
-
 import { Mov_edocta } from './mov_edocta';
 import { Benef } from './benef';
 import { Mov_edoctaService} from './mov_edocta.service';
@@ -8,7 +7,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-import { ConfirmService} from '../_services/index';
 import { Aplicar} from './aplicar';
 
 
@@ -19,7 +17,6 @@ import { TipoBonificacion} from './tipoBonificacion';
 
 import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 import {AplicaBonificService} from './aplicabonificacion.service';
-
 import { Autoriza } from './autoriza';
 
 @Component({

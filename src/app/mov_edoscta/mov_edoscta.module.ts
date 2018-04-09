@@ -7,7 +7,7 @@ import { ServiceUrl } from '../serviceUrl';
 import { Mov_edosctaRoutingModule } from './mov_edoscta-routing.module';
 
 
-import { ImportComponent } from './import.component';
+import { ImportComponent } from './../import.component';
 
 
 
