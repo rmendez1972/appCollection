@@ -23,7 +23,7 @@
             
         </div>
         <div class="form-group" style="text-align:center">
-          <input type="submit" value="Buscar" class="btn btn-primary" (click)="localizaBenefMov_diversos();" />
+          <input type="submit" value="Buscar" class="btn btn-primary" (click)="localizaBenefMov_diversos();getClaveDiversos();getProgramas()" />
           <input type="reset" value="Borrar" class="btn btn-info">
         </div>        
     </form>
@@ -120,17 +120,28 @@
       </div>
 
       <div [hidden]="!miMensajeMovs" >
-        <div class="form-group" >
-          <label for="" class="col-md-4 control-label">¿Clave Diversos? </label>
-          <input type="" name="clv_diverso">
+        <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
+          <label for="clvDiv" class="col-md-4 control-label">¿Clave Diversos? </label>
+          <tbody>
+            <select name="claveDiversos" id="claveDiversos" class="form-control" #claveDiversos="ngModel" [(ngModel)]="model.claveDiversos">
+                <option value="undefined" selected >Selecciona una Clave Diversa</option>
+                <option *ngFor="let div of clavediv" value="{{div.id_clave_div}}" >{{div.descripcion}}</option>
+              </select>
+          </tbody>
         </div>
-        <div class="form-group" >
-          <label for="" class="col-md-4 control-label">¿Cuenta Corriente? o ¿Programa? </label>
-          <input type="" name="clv_cuenta">
+
+        <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
+          <label for="claveCorrient" class="col-md-4 control-label">¿Cuenta Corriente? o ¿Programa? </label>
+          <tbody>
+            <select name="claveCorriente" id="claveCorriente" class="form-control" #claveCorriente="ngModel" [(ngModel)]="model.claveCorriente">
+                <option value="undefined" selected >Selecciona una Cuenta Corriente o Programa </option>
+                <option *ngFor="let prog of programas " value="{{prog.id_bonific}}" >{{prog.clave}} ({{prog.descripcion}})</option>
+              </select>
+          </tbody>
         </div>
         <div class="form-group" >
           <label for="" class="col-md-4 control-label">¿Descripcion del cobro? </label>
-          <input type="" name="clv_descripcion">
+          <input type="textarea" name="clv_descripcion">
         </div>
 
         <div class="form-group" >
