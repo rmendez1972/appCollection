@@ -104,6 +104,7 @@ export class CajaService {
 
   //postUpdate_caja
   postUpdate_caja(): Observable<boolean[]> {
+    console.log('dentro de postUpdate_caja !!!!');
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let id_caja:number;
     for (var elemento in this.currentUser) {

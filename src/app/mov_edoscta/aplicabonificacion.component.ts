@@ -161,7 +161,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
     //Metodo en donde se realizara la insercion de las bonificaciones
     postBonificaciones(tipobonificaciones:number, moratorios:number,autoriza:number) {
-      console.log('DENTRO DE POSTBONIFICACIONES DENTRO DE  aplicabonificacion.component DESPUES DE APLICAR EL PAGO');
+
       this.extraerPost =this.extraerLocalStorage();
 
       //asignando valores a las propiedades
@@ -209,7 +209,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
         {
 
-        console.log('VALOR DE this.id_movedocta antes de llamar al BACK-END '+this.id_movedocta);
+
         return this.aplicabonificservice.postBonificaciones(this.id_movedocta,this.id_benef,this.imp_cap,this.imp_int,this.imp_adm,this.imp_seg,
           this.imp_osg,this.imp_com,this.imp_mor,this.imp_tit,this.id_catbonific,this.estatus,this.id_usuario,this.id_autoriza,
           this.clave_b,this.recibo,this.serie,this.id_catprog);
@@ -217,15 +217,13 @@ export class AplicaBonificacionComponent implements OnInit {
 
         this.k.subscribe(
                        bonificaciones =>{
-                         console.log('SE INSERTO LA BONIFICACION EXITOSAMENTE...');
+
                          this.bonific = bonificaciones;
                          this.messageAplicaBonific('Se insertó la bonificación exitosamente');
                          this.errormessageAplicaBonific(null);
 
-                         console.log('el valor de id_bonificacion es '+bonificaciones[2]);
 
-
-                             this.l=this.route.params
+                        /* this.l=this.route.params
 
                             .switchMap((params: Params) =>
                             {
@@ -242,7 +240,7 @@ export class AplicaBonificacionComponent implements OnInit {
                              error =>{
                                this.errorMessage = <any>error;
 
-                             });
+                             });*/
 
                          let idmovedocta;
                          let idbonificacion;
@@ -260,13 +258,12 @@ export class AplicaBonificacionComponent implements OnInit {
 
                           this.n.subscribe(
                             movedocta =>{
-                              console.log('se actualizo el movedocta');
+
 
                             },
                             error =>{
                               this.errorMessage = <any>error;
-                              //this.errormessageAplicaBonific('Error en la inserción de datos');
-                              //this.messageAplicaBonific(null);
+
                             });
 
 

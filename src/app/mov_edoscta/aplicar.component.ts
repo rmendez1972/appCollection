@@ -11,6 +11,7 @@ import { ConfirmService} from '../_services/index';
 import {Vencidos} from './vencidos'
 import {BonificService} from './bonificacion.service';
 import { AplicaBonificacionComponent} from './aplicabonificacion.component';
+import { CajaService} from '../apertura_caja/caja.service';
 
 
 @Component({
@@ -65,6 +66,7 @@ export class AplicarComponent implements OnInit {
   private aplicar:Aplicar[];
   private k: Observable<Aplicar[]>;
   private j: Observable<Aplicar[]>;
+  private l: Observable<boolean[]>;
 
   private totalmoratorios: number=0;
 
@@ -86,6 +88,7 @@ export class AplicarComponent implements OnInit {
       private confirmService:ConfirmService,
       private router: Router,
       private route: ActivatedRoute,
+      private cajaservice: CajaService,
     )
     {
 
@@ -172,34 +175,33 @@ export class AplicarComponent implements OnInit {
          tipobonificacion,totalmoratorios,qautoriza,function(
            message,fecha,aplicarservice,aplicabonificacioncomponent,route,k,
            tipobonificacion,totalmoratorios,qautoriza){
-              console.log('dentro del SI');
-              console.log('apunto de llamar a aplicarservice.getPagar');
+
               aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
-              //ACTION: Do this If user says YES
-              /*k=route.params
-              .switchMap((params: Params) =>
-              {
-                console.log('apunto de llamar a aplicarservice.getPagar');
-                return aplicarservice.getPagar(fecha,tipobonificacion,totalmoratorios,qautoriza);
-              })*/
 
-              /*k.subscribe(
-                aplicar =>{
-                  console.log('VALOR DE APLICAR DENTRO DE CONFORMCONBONIFICACION '+aplicar);
-                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
-                  if (aplicar.resultado){
-                    console.log('LLEGO DATA AL EVENTO SUBSCRIBE '+aplicar.resultado);
-                    aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
-                  }
-
-                }
-                //error => let error=error
-                  //this.errorMessage = <any>error
-                );*/
 
             },function(){
               //ACTION: Do this if user says NO
       })
+
+      this.l=this.route.params
+
+                            .switchMap((params: Params) =>
+                            {
+                            return this.cajaservice.postUpdate_caja();
+                            })
+
+                            this.l.subscribe(
+
+                             cajas =>{
+                               console.log('se actualizo el folio final de la caja exitosamente');
+
+
+                              },
+                             error =>{
+                               this.errorMessage = <any>error;
+
+                             });
+
 
     };
 

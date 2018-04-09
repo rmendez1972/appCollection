@@ -7,6 +7,9 @@ import { AlertService} from '../_services/index';
 import {Aplicar} from './aplicar';
 import {AplicaBonificacionComponent} from './aplicabonificacion.component';
 
+import { CajaService} from '../apertura_caja/caja.service';
+
+
 
 @Injectable()
 export class AplicarService {
@@ -22,10 +25,14 @@ export class AplicarService {
   private beneficiario:any[];
 
   private UrlAplicarVencidos: String;
+  private l: Observable<boolean[]>;
+   private errorMessage: string;
 
   constructor (private http: Http,
       private url:ServiceUrl,
       private alertService: AlertService,
+      private cajaservice: CajaService,
+
       private aplicabonificacioncomponent: AplicaBonificacionComponent
       ){
 
@@ -42,8 +49,8 @@ export class AplicarService {
 
 
   getPagar(fecha:string,tipobonificacion:number,totalmoratorios:number,qautoriza:number){
-    //console.log("get pagar dentro de aplicar service");
-    console.log('dentro de getPagar de aplicar.service');
+
+
     this.fecha = new Date(fecha).toISOString().substring(0, 10);
     return this.dataPagar(this.fecha,tipobonificacion,totalmoratorios,qautoriza);
 
@@ -194,13 +201,11 @@ export class AplicarService {
       this.aplicar[c].tit,beneficiarioFinal.id_catprog, beneficiarioFinal.numcontrato, usuarioFinal.id_caja)
       .subscribe(
         aplicar =>{
-                  console.log('VALOR DE APLICAR DENTRO DE aplicarservice '+aplicar);
-                  console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
-                  //if (aplicar.resultado){
+
 
                   this.aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
 
-                  //}
+
 
         }
 
@@ -208,6 +213,7 @@ export class AplicarService {
 
 
     }
+
 
 
     return this.dataPagar;
