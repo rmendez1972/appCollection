@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, EventEmitter, Output } from '@angular/core';
 
 import { Aplica_Mov_diversos } from './aplica_mov_diversos';
 import { Benef_div } from './benef_div';
@@ -9,6 +9,15 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
+
+import {Clave_Diversos} from './clave_div';
+import {Programas} from './cat_prog';
+
+import { TipoBonificacion} from './tipoBonificacion';
+import { Autoriza } from './autoriza';
+import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
+
+
 
 @Component({
   selector: 'app-diversos',
@@ -60,6 +69,13 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private benef_div: Benef_div[];
   private k: Observable<Mov_diversos[]>;
   private l: Observable<Benef_div[]>;
+
+  private j: Observable<Clave_Diversos[]>;
+  private m: Observable<Programas []>;
+
+  private h: Observable<TipoBonificacion[]>;
+  private i: Observable<Autoriza[]>;
+
   private miMensajeerrorMovs:String;
   private miMensajeMovs:String;
   private miMensajeBenef:string;
@@ -67,6 +83,13 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private aplicado:String = "fa fa-check";
   private noaplicado: String = "fa fa-times";
 
+  private clavediv: Clave_Diversos[];
+  private programas: Programas[];
+
+  private bonificaciones: TipoBonificacion[];
+  private autoriza: Autoriza[];
+
+  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
 
   optionsSelect = [
     {id:1, value: "clave_lector", name: "Clave de Elector(INE)"},
@@ -81,7 +104,9 @@ private seleccionado:String="clave_b";
       private router: Router,
       private route:  ActivatedRoute,
       private aplica_mov_diversosservice: Aplica_Mov_diversosService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      private confirmService:ConfirmService,
+      private aplicabonificservice: AplicaBonificService,
     )
     {
       
@@ -156,8 +181,64 @@ private seleccionado:String="clave_b";
 
   };
 
+  getClaveDiversos() {
+        this.j=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          return this.aplica_mov_diversosservice.getClaveDiversos()
+        })
+        this.j.subscribe(
+                       clavediv => this.clavediv= clavediv,
+                       error =>  this.errorMessage = <any>error);
 
+    };
+    getProgramas() {
+        this.m=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          return this.aplica_mov_diversosservice.getProgramas()
+        })
+        this.m.subscribe(
+                       programas=> this.programas= programas,
+                       error =>  this.errorMessage = <any>error);
 
-    
+    };
+
+    getTipoBonificaciones() {
+        this.h=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          return this.aplica_mov_diversosservice.getTipoBonificacion()
+        })
+        this.h.subscribe(
+                       bonificaciones => this.bonificaciones= bonificaciones,
+                       error =>  this.errorMessage = <any>error);
+
+    };
+    getAutoriza(){
+      this.i=this.route.params
+      .switchMap((params:Params) =>
+      {
+        return this.aplica_mov_diversosservice.getAutoriza()
+      })
+      this.i.subscribe(
+        autoriza => this.autoriza = autoriza,
+        error => this.errorMessage = <any>error);
+    };
+    confirmarBonificacion() {
+       this.confirmService.confirmBonificacion("Tiene Bonificaciones?",this.aplicabonificservice,this.onMessageAplicaBonificSi,function(bonificservice,eventemmitter){
+              //ACTION: Do this If user says YES
+              //this.pagar = aplicarservice.getPagar(fecha);
+              eventemmitter.emit('SI');
+              //bonificservice.siBonificacion();
+            },function(eventemmitter){
+              //ACTION: Do this if user says NO
+              eventemmitter.emit(null);
+      })
+
+    };
 
 }

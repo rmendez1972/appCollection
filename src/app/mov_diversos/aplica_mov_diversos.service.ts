@@ -7,11 +7,22 @@ import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 import { Mov_diversos } from './mov_diversos';
 
+import {Clave_Diversos} from './clave_div';
+import {Programas} from './cat_prog';
+
+import { TipoBonificacion } from './tipoBonificacion';
+import { Autoriza } from './autoriza';
+
 @Injectable()
 export class Aplica_Mov_diversosService {
 
  private aplica_mov_diversosUrl: string;
  private beneficiarioDivUrl: string;
+ private clavediversosUrl: string;
+ private programasUrl: string;
+
+ private tipoBonificacionUrl: string;
+ private autorizaUrl: string;
 
 
   constructor (private http: Http,
@@ -21,6 +32,10 @@ export class Aplica_Mov_diversosService {
         
         this.aplica_mov_diversosUrl=String(this.url.getUrlmov_diversos());
         this.beneficiarioDivUrl=String(this.url.getUrlBeneficiario_div());
+        this.clavediversosUrl=String(this.url.getUrlclavediv());
+        this.programasUrl=String(this.url.getUrlprogramas());
+        this.tipoBonificacionUrl=String(this.url.getUrlbonificaciones());
+        this.autorizaUrl = String(this.url.getUrlAutoriza());
 
       }
 
@@ -42,6 +57,32 @@ export class Aplica_Mov_diversosService {
 
  }
 
+ getClaveDiversos(): Observable<Clave_Diversos[]> {
+     return this.http.get(this.clavediversosUrl)
+                    .map(this.extractDataClaveDiversos)
+                    .catch(this.handleError);
+  }
+
+
+  getProgramas(): Observable<Programas[]> {
+     return this.http.get(this.programasUrl)
+                    .map(this.extractDataProgramas)
+                    .catch(this.handleError);
+  }
+
+  getTipoBonificacion(): Observable<TipoBonificacion[]> {
+     return this.http.get(this.tipoBonificacionUrl)
+                    .map(this.extractDataTipoBonificacion)
+                    .catch(this.handleError);
+  }
+
+  //get quien autoriza las bonificaciones
+  getAutoriza(): Observable <Autoriza[]>{
+    return this.http.get(this.autorizaUrl).map(this.extractDataAutoriza).catch(this.handleError);
+
+  }
+
+
  private extractDataMov_div(res: Response) {
 
    let body = res.json();
@@ -59,6 +100,29 @@ export class Aplica_Mov_diversosService {
    return body.beneficiario_div || { };
 
  }
+
+ private extractDataClaveDiversos(res: Response) {
+    let body = res.json();
+    console.log(body.clavediv);
+    return body.clavediv|| { };
+  }
+
+  private extractDataProgramas(res: Response) {
+    let body = res.json();
+    console.log(body.programas);
+    return body.programas|| { };
+  }
+
+  private extractDataTipoBonificacion(res: Response) {
+    let body = res.json();
+    console.log(body.bonificaciones);
+    return body.bonificaciones|| { };
+  }
+  private extractDataAutoriza(res: Response){
+    let body = res.json();
+    console.log(body.autoriza);
+    return body.autoriza || {};
+  }
 
  private handleError (error: Response | any) {
 
