@@ -10,6 +10,15 @@ import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
 
+import {Clave_Diversos} from './clave_div';
+import {Programas} from './cat_prog';
+
+import { TipoBonificacion} from './tipoBonificacion';
+
+import { Autoriza } from './autoriza';
+
+
+
 @Component({
   selector: 'app-diversos',
   templateUrl: './aplica_mov_diversos-list.component.html',
@@ -60,6 +69,10 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private benef_div: Benef_div[];
   private k: Observable<Mov_diversos[]>;
   private l: Observable<Benef_div[]>;
+
+  private j: Observable<Clave_Diversos[]>;
+  private m: Observable<Programas []>;
+
   private miMensajeerrorMovs:String;
   private miMensajeMovs:String;
   private miMensajeBenef:string;
@@ -67,6 +80,8 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private aplicado:String = "fa fa-check";
   private noaplicado: String = "fa fa-times";
 
+  private clavediv: Clave_Diversos[];
+  private programas: Programas[];
 
   optionsSelect = [
     {id:1, value: "clave_lector", name: "Clave de Elector(INE)"},
@@ -156,7 +171,30 @@ private seleccionado:String="clave_b";
 
   };
 
+  getClaveDiversos() {
+        this.j=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          return this.aplica_mov_diversosservice.getClaveDiversos()
+        })
+        this.j.subscribe(
+                       clavediv => this.clavediv= clavediv,
+                       error =>  this.errorMessage = <any>error);
 
+    };
+    getProgramas() {
+        this.m=this.route.params
+        // (+) converts string 'id' to a number
+        .switchMap((params: Params) =>
+        {
+          return this.aplica_mov_diversosservice.getProgramas()
+        })
+        this.m.subscribe(
+                       programas=> this.programas= programas,
+                       error =>  this.errorMessage = <any>error);
+
+    };
 
     
 
