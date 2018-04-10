@@ -79,7 +79,7 @@
   </div>
 
 
-  <div class="panel panel-primary">
+  <div class="panel panel-primary" (onMessageAplicaBonificSi)="onMessageAplicaBonificSi($event)">
     <div class="panel-heading">Movimientos del Estado de Cuenta del Beneficiario en Diversos</div>
       <div class="panel-body transparent">
         <div class="table-responsive">
@@ -133,6 +133,7 @@
       </div>
 
       <div [hidden]="!miMensajeMovs" >
+        
         <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
           <label for="clvDiv" class="col-md-4 control-label">¿Clave Diversos? </label>
           <tbody>
@@ -173,14 +174,14 @@
       </div>
 
       <div  class="form-group" style="text-align:center">
-        <input type="submit" value="Bonificaciones" class="btn btn-primary" (click)="getAutoriza();getTipoBonificaciones();bonificacion.confirmar();" />
+        <input type="submit" value="Bonificaciones" class="btn btn-primary" (click)="getAutoriza();getTipoBonificaciones();confirmarBonificacionDiversos();" />
       </div>
 
       </div>
 
 
       <confirm></confirm>
-        <form [hidden]="miMensajeAplicaBonsSi" class="form-inline" #f3="ngForm" novalidate>
+        <form [hidden]="!AplicaBonificSiDiversos" class="form-inline" #f3="ngForm" novalidate>
           <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
           <label for="tipoBonific" class="col-md-4 control-label">Tipo de Bonificaciones</label>
             <tbody >

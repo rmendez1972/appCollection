@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
 
 import { Aplica_Mov_diversos } from './aplica_mov_diversos';
 import { Benef_div } from './benef_div';
@@ -15,9 +15,6 @@ import {Programas} from './cat_prog';
 
 import { TipoBonificacion} from './tipoBonificacion';
 import { Autoriza } from './autoriza';
-
-import { BonificServiceDiversos} from './bonificacion.service';
-import { BonificacionComponentDiversos} from './bonificacion.component';
 
 
 @Component({
@@ -91,12 +88,15 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private autoriza: Autoriza[];
 
 
-  private miMensajeAplicaBonsSi:String;
   private totalmov_diversos: number=0;
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
-  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+  private miMensajeerrorAplicaBons:String;
+  private miMensajeAplicaBonsSi:String;
+
+  @Output() onMessageAplicaBonificSiDiversos = new EventEmitter<String>();
+
 
   optionsSelect = [
     {id:1, value: "clave_lector", name: "Clave de Elector(INE)"},
@@ -119,6 +119,7 @@ private seleccionado:String="clave_b";
     }
 
   	ngOnInit() {
+      console.log('valor de miMensajeAplicaBonsSi '+this.miMensajeAplicaBonsSi);
       this.model.fecha_corte=new Date()
       this.model.valorcriterio=null;
     };
@@ -234,6 +235,21 @@ private seleccionado:String="clave_b";
         autoriza => this.autoriza = autoriza,
         error => this.errorMessage = <any>error);
     };
+
+
+    confirmarBonificacionDiversos(){
+      this.confirmService.confirmBonificacionDiversos("Tiene Bonificaciones?",this.onMessageAplicaBonificSiDiversos,function(eventemmitter){
+              //ACTION: Do this If user says YES
+              //this.pagar = aplicarservice.getPagar(fecha);
+              eventemmitter.emit('SI');
+              console.log("Despues de emitir si");
+              //bonificservice.siBonificacion();
+            },function(eventemmitter){
+              //ACTION: Do this if user says NO
+              eventemmitter.emit(null);
+              console.log("Despues de emitir no/null");
+      })
+    };
     
     getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
 
@@ -270,6 +286,13 @@ private seleccionado:String="clave_b";
         return false;
 
       }
+    };
+
+
+    onMessageAplicaBonificSi(mensaje:String){
+      console.log("mi msj " +mensaje);
+      this.miMensajeAplicaBonsSi = mensaje;
     }
+    
 
 }

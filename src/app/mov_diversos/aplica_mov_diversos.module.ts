@@ -10,12 +10,6 @@ import { Aplica_Mov_diversosRoutingModule } from './aplica_mov_diversos-routing.
 
 import { ImportComponent } from './../import.component';
 
-//import {BonificacionComponentDiversos} from '../mov_diversos/bonificacion.component';
-import {BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
-
-
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -25,13 +19,11 @@ import {BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
   ],
   declarations: [
     Aplica_Mov_diversosListComponent,
-    //BonificacionComponentDiversos,
     
   ],
   providers: [
     ServiceUrl,
     Aplica_Mov_diversosService,
-    BonificServiceDiversos,
   ]
 })
 export class Aplica_Mov_diversosModule {}
