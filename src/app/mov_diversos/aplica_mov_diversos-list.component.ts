@@ -15,8 +15,9 @@ import {Programas} from './cat_prog';
 
 import { TipoBonificacion} from './tipoBonificacion';
 import { Autoriza } from './autoriza';
-import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 
+import { BonificServiceDiversos} from './bonificacion.service';
+import { BonificacionComponentDiversos} from './bonificacion.component';
 
 
 @Component({
@@ -89,6 +90,9 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private bonificaciones: TipoBonificacion[];
   private autoriza: Autoriza[];
 
+
+  private miMensajeAplicaBonsSi:String;
+
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
 
   optionsSelect = [
@@ -106,7 +110,6 @@ private seleccionado:String="clave_b";
       private aplica_mov_diversosservice: Aplica_Mov_diversosService,
       private alertService:AlertService,
       private confirmService:ConfirmService,
-      private aplicabonificservice: AplicaBonificService,
     )
     {
       
@@ -228,18 +231,7 @@ private seleccionado:String="clave_b";
         autoriza => this.autoriza = autoriza,
         error => this.errorMessage = <any>error);
     };
-    confirmarBonificacion() {
-       this.confirmService.confirmBonificacion("Tiene Bonificaciones?",this.aplicabonificservice,this.onMessageAplicaBonificSi,function(bonificservice,eventemmitter){
-              //ACTION: Do this If user says YES
-              //this.pagar = aplicarservice.getPagar(fecha);
-              eventemmitter.emit('SI');
-              //bonificservice.siBonificacion();
-            },function(eventemmitter){
-              //ACTION: Do this if user says NO
-              eventemmitter.emit(null);
-      })
-
-    };
+    
     getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
 
       console.log("Metodo pagar");

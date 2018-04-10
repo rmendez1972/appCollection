@@ -1,4 +1,3 @@
-
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
@@ -11,21 +10,28 @@ import { Aplica_Mov_diversosRoutingModule } from './aplica_mov_diversos-routing.
 
 import { ImportComponent } from './../import.component';
 
+//import {BonificacionComponentDiversos} from '../mov_diversos/bonificacion.component';
+import {BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
+
+
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    Aplica_Mov_diversosRoutingModule,
     ImportComponent,
     
   ],
   declarations: [
     Aplica_Mov_diversosListComponent,
+    //BonificacionComponentDiversos,
     
   ],
   providers: [
-    ServiceUrl,Aplica_Mov_diversosService,
+    ServiceUrl,
+    Aplica_Mov_diversosService,
+    BonificServiceDiversos,
   ]
 })
 export class Aplica_Mov_diversosModule {}
