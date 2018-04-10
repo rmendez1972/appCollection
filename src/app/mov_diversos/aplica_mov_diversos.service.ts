@@ -25,6 +25,9 @@ export class Aplica_Mov_diversosService {
  private autorizaUrl: string;
 
 
+ private aplicabonificacionUrl: string;
+
+
   constructor (private http: Http,
       private url:ServiceUrl,
       private alertService: AlertService)
@@ -36,6 +39,7 @@ export class Aplica_Mov_diversosService {
         this.programasUrl=String(this.url.getUrlprogramas());
         this.tipoBonificacionUrl=String(this.url.getUrlbonificaciones());
         this.autorizaUrl = String(this.url.getUrlAutoriza());
+        this.aplicabonificacionUrl=String(this.url.getUrlAplicabonificacion());
 
       }
 

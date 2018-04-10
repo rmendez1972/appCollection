@@ -36,12 +36,58 @@ export class BonificDivService {
 
   private extractDataBon(res: Response) {
 
+
+    let body = res.json();
+    console.log(body.bonificacion);
+    let mestatus:string=null;
+    let mclave_b:string='Totales:';
+    let mrecibo:string=null;
+    let mserie:string=null;
+    let mautoriza:string=null;
+    let totcapital:number=0;
+    let totinteres:number=0;
+    let totadmon:number=0;
+    let totseguro:number=0;
+    let totoseg:number=0;
+
+        
+    for (var i = 0; i <body.bonificacion.length; i++) {
+      totcapital=totcapital+parseFloat(body.bonificacion[i].imp_cap.toString());
+      totinteres=totinteres+parseFloat(body.bonificacion[i].imp_int.toString());
+      totadmon=totadmon+parseFloat(body.bonificacion[i].imp_adm.toString());
+      totseguro=totseguro+parseFloat(body.bonificacion[i].imp_seg.toString());
+      totoseg=totoseg+parseFloat(body.bonificacion[i].imp_osg.toString());
+
+    }
+
+    let totales_columna={
+      estatus:mestatus,
+      clavebonific:mclave_b,
+      recibo:mrecibo,
+      serie:mserie,
+      nombreautoriza:mautoriza,
+      imp_cap:totcapital,
+      imp_int:totinteres,
+      imp_adm:totadmon,
+      imp_seg:totseguro,
+      imp_osg:totoseg
+
+     }
+
+     body.bonificacion.push(totales_columna);
+     //localStorage.setItem('UserMov',JSON.stringify(body.mov_edoscta));
+    return body.bonificacion || { };
+  }
+
+
+/*
+
     let body = res.json();
     console.log(body.bonificacion);
 
     return body.bonificacion || { };
 
-  }
+  }*/
 
   private handleError (error: Response | any) {
 

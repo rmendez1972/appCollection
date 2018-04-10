@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
 
 import { Aplica_Mov_diversos } from './aplica_mov_diversos';
 import { Benef_div } from './benef_div';
@@ -15,9 +15,8 @@ import {Programas} from './cat_prog';
 
 import { TipoBonificacion} from './tipoBonificacion';
 import { Autoriza } from './autoriza';
-
-import { BonificServiceDiversos} from './bonificacion.service';
-import { BonificacionComponentDiversos} from './bonificacion.component';
+import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
+import {BonificacionDivComponent} from './bonificacion_div.component';
 
 
 @Component({
@@ -81,6 +80,9 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private miMensajeMovs:String;
   private miMensajeBenef:string;
 
+  private miMensajeBonsError:String;//igh
+  private miMensajeBons:String;
+
   private aplicado:String = "fa fa-check";
   private noaplicado: String = "fa fa-times";
 
@@ -91,12 +93,15 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private autoriza: Autoriza[];
 
 
-  private miMensajeAplicaBonsSi:String;
   private totalmov_diversos: number=0;
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
-  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+  private miMensajeerrorAplicaBons:String;
+  private miMensajeAplicaBonsSi:String;
+
+  @Output() onMessageAplicaBonificSiDiversos = new EventEmitter<String>();
+
 
   optionsSelect = [
     {id:1, value: "clave_elector", name: "Clave de Elector(INE)"},
@@ -119,11 +124,13 @@ private seleccionado:String="clave_b";
     }
 
   	ngOnInit() {
+      console.log('valor de miMensajeAplicaBonsSi '+this.miMensajeAplicaBonsSi);
       this.model.fecha_corte=new Date()
       this.model.valorcriterio=null;
     };
 
   	title = 'Movimientos diversos';
+
 
     localizaBenefMov_diversos(){
       console.log('valor de model.criterio '+this.model.criterio);
@@ -239,6 +246,23 @@ private seleccionado:String="clave_b";
         error => this.errorMessage = <any>error);
     };
 
+
+
+    confirmarBonificacionDiversos(){
+      this.confirmService.confirmBonificacionDiversos("Tiene Bonificaciones?",this.onMessageAplicaBonificSiDiversos,function(eventemmitter){
+              //ACTION: Do this If user says YES
+              //this.pagar = aplicarservice.getPagar(fecha);
+              eventemmitter.emit('SI');
+              console.log("Despues de emitir si");
+              //bonificservice.siBonificacion();
+            },function(eventemmitter){
+              //ACTION: Do this if user says NO
+              eventemmitter.emit(null);
+              console.log("Despues de emitir no/null");
+      })
+    };
+
+
     getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
 
       console.log("Metodo pagar");
@@ -266,6 +290,15 @@ private seleccionado:String="clave_b";
       console.log(autoriza);
     };
 
+    //Mensajes para las bonificaciones igh
+    onMessage(mensaje:String){
+      this.miMensajeBons = mensaje;
+
+      }
+
+      onMessage2( mensaje2:String){
+        this.miMensajeBonsError = mensaje2;
+      }
     valida_ultimo(i:number){
       if (i==this.totalmov_diversos) {
         return true;
@@ -274,6 +307,13 @@ private seleccionado:String="clave_b";
         return false;
 
       }
+    };
+
+
+    onMessageAplicaBonificSi(mensaje:String){
+      console.log("mi msj " +mensaje);
+      this.miMensajeAplicaBonsSi = mensaje;
     }
+
 
 }
