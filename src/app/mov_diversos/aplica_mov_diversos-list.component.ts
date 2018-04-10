@@ -147,10 +147,10 @@ private seleccionado:String="clave_b";
         movimientos => {
           this.mov_diversos = movimientos;
 
-          this.miMensajeMovs = "Recuperación Exitosa de los Movimientos diversos";
+          this.miMensajeMovs = "Recuperación Exitosa de los Movimientos Diversos";
           this.errorMessage = null;
          },
-        error =>  {this.errorMessage = "no se pudo localizar los movimientos diversos";
+        error =>  {this.errorMessage = "No se pudo localizar los movimientos diversos";
                    this.miMensajeMovs = null;
                   this.mov_diversos = null;});
 
@@ -174,7 +174,7 @@ private seleccionado:String="clave_b";
 
                      if (this.benef_div.length>0){
                        console.log("Encontrado!!!!");
-                      this.miMensajeBenef="Encontrado";
+                      this.miMensajeBenef="Beneficiario Diverso Encontrado Exitosamente";
                      }else {this.miMensajeBenef=null}
                     },
                      error =>  this.errorMessage = <any>error);
@@ -250,9 +250,9 @@ private seleccionado:String="clave_b";
       console.log(intereses);
       console.log(otros);
     };
-    getPagarBonificacion(diversos:string, 
+    getPagarBonificacion(diversos:string,
       corriente:string,descripcion:string,importe:string,
-      intereses:string,otros:string, 
+      intereses:string,otros:string,
       bonificacion:string, moratorios:string, autoriza:string){
 
       console.log("Metodo pagar con Bonificacion");
