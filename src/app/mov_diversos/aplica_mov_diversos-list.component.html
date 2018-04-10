@@ -97,22 +97,34 @@
             <th>Aprobado</th>
           </thead>
 
-          <tbody *ngFor="let mov of mov_diversos">
-            <td>{{mov.fecha_div}}</td>
-            <td>{{mov.clave_div}}</td>
-            <td>{{mov.descripcion}}</td>
-            <td>{{mov.recibo}}</td>
-            <td>{{mov.serie}}</td>
-            <td>{{mov.cargo}}</td>
-            <td>{{mov.abono}}</td>
-            <td>{{mov.moratorios}}</td>
-            <td>
+          <tbody >
+          <tr style="font-size: 10px" *ngFor="let mov of mov_diversos; let i = index"  [ngSwitch]="valida_ultimo(i)">
+            <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.fecha_div}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.clave_div}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.descripcion}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.recibo}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.serie}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.cargo | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.abono | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" >
                 <div *ngIf="mov.aplicado;then conaplicado else sinaplicado"></div>
 
                 <ng-template #conaplicado><span  [ngClass]="aplicado" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento aplicado"></span></ng-template>
                 <ng-template #sinaplicado> <span  [ngClass]="noaplicado" [style.font-size]="10+'px'" [style.color]="'#3fb7fe'" title="Movimiento no aplicado"></span></ng-template>
 
             </td>
+
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.fecha_div | date:"dd/MM/yyyy"}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.clave_div}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.descripcion}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.recibo}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.serie}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{mov.cargo | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{mov.abono | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right" ><span>{{mov.aplicado}}</span></td>
+          </tr>
           </tbody>
         </table>
         
