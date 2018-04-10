@@ -59,7 +59,7 @@ export class Mov_diversosService {
 
     let body = res.json();
     console.log(body.beneficiario_div);
-
+    localStorage.setItem('beneficiario_div',JSON.stringify(body.beneficiario_div));
     return body.beneficiario_div || { };
 
   }
