@@ -5,13 +5,13 @@
   <table class="table table-condensed table-hover">
   	<thead  style="color: #7b7d80;">
       <tr style="font-size: 12px;font-stretch: condensed;" *ngIf=bonific_div>
+        <th width="">Clave B.</th>
         <th width="">Capital</th>
         <th width="">Interés</th>
         <th width="">Admon</th>
         <th width="">Seguro</th>
         <th width="">Otros S.</th>
         <th width="">Estatus</th>
-        <th width="">Clave B.</th>
         <th width="">Recibo</th>
         <th width="">Serie</th>
         <th width="">Autoriza</th>
@@ -21,13 +21,13 @@
   	</thead>
   	<tbody *ngFor="let bon of bonific_div">
   		<tr style="font-size: 12px;font-stretch: condensed;color:#000;">
+        <td width="">{{bon.clavebonific}}</td>
         <td width=""style="text-align:right">{{bon.imp_cap | number:'1.2-2'}}</td>
   			<td width=""style="text-align:right">{{bon.imp_int | number:'1.2-2'}}</td>
         <td width=""style="text-align:right">{{bon.imp_adm | number:'1.2-2'}}</td>
         <td width=""style="text-align:right">{{bon.imp_seg | number:'1.2-2'}}</td>
         <td width=""style="text-align:right">{{bon.imp_osg | number:'1.2-2'}}</td>
         <td width="">{{bon.estatus}}</td>
-        <td width="">{{bon.clavebonific}}</td>
         <td width="">{{bon.recibo}}</td>
         <td width="">{{bon.serie}}</td>
         <td width="">{{bon.nombreautoriza}}</td>

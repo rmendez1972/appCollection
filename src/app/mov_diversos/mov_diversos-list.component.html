@@ -106,8 +106,9 @@
     </div>  
 
     <div class="panel panel-primary">
-      <div class="panel-heading">Bonificaciones del Beneficiario Diverso.</div>
-        <div class="panel-body transparent">
+        <div class="panel-heading">Bonificaciones del Beneficiario</div>
+      <div class="panel-body transparent">
+          
           <h3 *ngIf="miMensajeerrorMovs; else elseBonificacion"><span class="label label-danger">{{miMensajeBonsError}}</span></h3>
               
           <ng-template #elseBonificacion>
