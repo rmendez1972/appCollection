@@ -31,8 +31,7 @@
 
   <div class="panel panel-primary">
     <div class="panel-heading">Generales del Beneficiario </div>
-    <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
-        <h3 *ngIf=errorMessage><span class="label label-danger">{{errorMessage}}</span></h3>
+    <h3 *ngIf=miMensajeBenef><span class="label label-success">{{miMensajeBenef}}</span></h3>
     <div class="panel-body transparent"  *ngFor="let ben of benef_div">
       <table class="" width="100%">
         <tbody >
@@ -84,6 +83,8 @@
     <div class="panel-heading">Movimientos del Estado de Cuenta del Beneficiario en Diversos</div>
       <div class="panel-body transparent">
         <div class="table-responsive">
+            <h3 *ngIf=miMensajeMovs><span class="label label-success">{{miMensajeMovs}}</span></h3>
+            <h3 *ngIf=errorMessage><span class="label label-danger">{{errorMessage}}</span></h3>
           <table class="table table-condensed table-hover table-bordered">
           <thead style="color: #7b7d80;">
             <th>Fecha Diversos</th>

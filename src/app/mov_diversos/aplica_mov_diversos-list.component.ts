@@ -178,7 +178,7 @@ private seleccionado:String="clave_b";
                      
                      if (this.benef_div.length>0){
                        console.log("Encontrado!!!!");
-                      this.miMensajeBenef="Encontrado";
+                      this.miMensajeBenef="Se encontro el beneficiario";
                      }else {this.miMensajeBenef=null}
                     },
                      error =>  this.errorMessage = <any>error);
