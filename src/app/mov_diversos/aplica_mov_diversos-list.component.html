@@ -121,9 +121,9 @@
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.descripcion}}</strong></td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.recibo}}</strong></td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.serie}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{mov.cargo | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{mov.abono | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.cargo | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.abono | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right" ><span>{{mov.aplicado}}</span></td>
           </tr>
           </tbody>
@@ -235,8 +235,8 @@
           <h3 *ngIf="miMensajeerrorMovs; else elseBonificacion"><span class="label label-danger">{{miMensajeBonsError}}</span></h3>
               
           <ng-template #elseBonificacion>
-            <h3 *ngIf="miMensajeBonsError?.length > 0"> <span class="label label-warning" style="font-style: normal" >{{miMensajeBonsError}}</span></h3>
-            <h3 *ngIf="miMensajeBons?.length > 0" >      <span class="label label-success" style="font-style: normal" >{{miMensajeBons}}</span></h3>
+            <h3 *ngIf="miMensajeBonsError?.length > 1"> <span class="label label-warning" style="font-style: normal" >{{miMensajeBonsError}}</span></h3>
+            <h3 *ngIf="miMensajeBons?.length > 1" >      <span class="label label-success" style="font-style: normal" >{{miMensajeBons}}</span></h3>
           </ng-template>
           
           <!--<app-bonific-div  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>-->

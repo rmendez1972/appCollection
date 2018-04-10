@@ -131,7 +131,7 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
       this.model.valorcriterio=null;
     };
 
-    title = 'Estado de Cuenta por Programas';
+    title = 'Cobranza: por Programas';
     localizaBenefMov(){
       if ((this.model.criterio!=undefined) && (this.model.valorcriterio!=null )){
         this.miMensajeerrorMovs=null;

@@ -62,6 +62,9 @@ export class BonificacionDivComponent implements OnInit {
   private bonific_div: Bonific_div[];
 
   private k: Observable<Bonific_div[]>;
+  private totalbon_diversos:number =0;
+  private totales_style:String = "info";
+  private renglon_style:String = "active";
 
   //private miMensajeerrorMovs:String;
   //private miMensajeBons:String;
@@ -113,7 +116,8 @@ export class BonificacionDivComponent implements OnInit {
 
           bonificaciones_div =>{
             this.bonific_div = bonificaciones_div;
-            if (this.bonific_div.length>0){
+            this.totalbon_diversos = this.bonific_div.length-1;
+            if (this.bonific_div.length>1){
               //this.miMensajeBonsError=null;
               this.message2('');
               this.message('Recuperacion Exitosa de las bonificaciones de diversos');
@@ -135,6 +139,16 @@ export class BonificacionDivComponent implements OnInit {
 
 
     };
+
+    validaUltimoBon(i:number){
+      if (i==this.totalbon_diversos) {
+        return true;
+      }else{
+
+        return false;
+
+      }
+    }
 
 
 }

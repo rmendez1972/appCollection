@@ -98,6 +98,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
   private miMensajeAplicaBonsSi:String;
   private totalmov_diversos: number=0;
+
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
@@ -285,5 +286,7 @@ private seleccionado:String="clave_b";
 
       }
     }
+
+    
 
 }
