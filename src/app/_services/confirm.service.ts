@@ -9,8 +9,8 @@ import { Observable } from 'rxjs/Observable';
 import { AplicaBonificacionComponent} from '../mov_edoscta/aplicabonificacion.component';
 import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 
-import { BonificacionComponentDiversos} from '../mov_diversos/bonificacion.component';
-import { BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
+
+import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.service'
 
 @Injectable() export class ConfirmService {
 	private subject = new Subject<any>();
@@ -18,7 +18,6 @@ import { BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
 	private miroute: ActivatedRoute;
 	private bonificacioncomponent:AplicaBonificacionComponent;
 	private aplicabonificservice:AplicaBonificService;
-    private bonificaciondiversos: BonificServiceDiversos;
 	private mik: Observable<Aplicar[]>;
 	private fecha:string;
     private totalmoratorios:number;
@@ -132,22 +131,18 @@ import { BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
 
 
     //Confirm para movimientos diversos
-    getMessageDiversos(): Observable<any> {
-        return this.subject.asObservable();
-    }
-
-
-    confirmBonificacionDiversos(message: string='',bonificservicediversos:BonificServiceDiversos, 
-        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(component,eventemmitter) 
+    
+    confirmBonificacionDiversos(message: string='', 
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(eventemmitter) 
         =>void,noFn:(eventemmitter)=>void){
 
 
-        this.setConfirmationBonificacionDiversos(message,bonificservicediversos,onMessageAplicaBonificSiDiversos,
+        this.setConfirmationBonificacionDiversos(message,onMessageAplicaBonificSiDiversos,
             siFn,noFn);
     }
 
-    setConfirmationBonificacionDiversos(message:string,bonificservicediversos:BonificServiceDiversos,
-        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(component,eventemmitter)
+    setConfirmationBonificacionDiversos(message:string,
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(eventemmitter)
         =>void,noFn:(eventemmitter)=>void){
         let that = this;
 
@@ -157,13 +152,14 @@ import { BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
 
                         function(component){
                             that.subject.next(); //this will close the modal
-
                             //let aplicarservice=function() { return 'hola' };
-                            siFn(bonificservicediversos,onMessageAplicaBonificSiDiversos);
+                            siFn(onMessageAplicaBonificSiDiversos);
+                            console.log("msj si ");
                         },
                         noFn:function(eventemmitter){
                             that.subject.next();
                             noFn(onMessageAplicaBonificSiDiversos);
+                            console.log("msj no ");
                         }
         });
     }
