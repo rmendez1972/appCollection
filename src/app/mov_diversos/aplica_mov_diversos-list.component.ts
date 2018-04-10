@@ -15,6 +15,8 @@ import {Programas} from './cat_prog';
 
 import { TipoBonificacion} from './tipoBonificacion';
 import { Autoriza } from './autoriza';
+import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
+import {BonificacionDivComponent} from './bonificacion_div.component';
 
 
 @Component({
@@ -78,6 +80,9 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private miMensajeMovs:String;
   private miMensajeBenef:string;
 
+  private miMensajeBonsError:String;//igh
+  private miMensajeBons:String;
+  
   private aplicado:String = "fa fa-check";
   private noaplicado: String = "fa fa-times";
 
@@ -124,7 +129,7 @@ private seleccionado:String="clave_b";
       this.model.valorcriterio=null;
     };
 
-  	title = 'Movimientos diversos';
+  	title = 'Cobranza: movimientos diversos';
  
     localizaBenefMov_diversos(){
       console.log('valor de model.criterio '+this.model.criterio);
@@ -278,6 +283,15 @@ private seleccionado:String="clave_b";
       console.log(autoriza);
     };
 
+    //Mensajes para las bonificaciones igh
+    onMessage(mensaje:String){
+      this.miMensajeBons = mensaje;
+     
+      }
+
+      onMessage2( mensaje2:String){
+        this.miMensajeBonsError = mensaje2;
+      }
     valida_ultimo(i:number){
       if (i==this.totalmov_diversos) {
         return true;

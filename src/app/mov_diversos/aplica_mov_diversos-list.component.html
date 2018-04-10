@@ -1,4 +1,4 @@
-<h3 class="bg-primary encabezado" ><span class="icon-file-text2"> </span>
+<h3 class="bg-primary encabezado" ><span class="icon-coin-dollar"> </span>
   {{title}}
 </h3>
 
@@ -23,7 +23,7 @@
             
         </div>
         <div class="form-group" style="text-align:center">
-          <input type="submit" value="Buscar" class="btn btn-primary" (click)="localizaBenefMov_diversos();getClaveDiversos();getProgramas()" />
+          <input type="submit" value="Buscar" class="btn btn-primary" (click)="localizaBenefMov_diversos();getClaveDiversos();getProgramas(); bonificacion.getBonificaciones()" />
           <input type="reset" value="Borrar" class="btn btn-info">
         </div>        
     </form>
@@ -220,15 +220,31 @@
       
     </div>  
 
-    <div class="panel panel-primary">
-      <div class="panel-heading" > Bonificaciones del Beneficiario</div>
+    <!--<div class="panel panel-primary">
+      <div class="panel-heading" >Bonificaciones del Beneficiario igh</div>
       <div class="panel-body transparent">
         <div class="table-responsive">
         
        </div>
       </div>
       
-    </div>
+    </div>-->
+      <div class="panel panel-primary">
+      <div class="panel-heading">Bonificaciones del Beneficiario.</div>
+      
+        <div class="panel-body transparent">
+          <h3 *ngIf="miMensajeerrorMovs; else elseBonificacion"><span class="label label-danger">{{miMensajeBonsError}}</span></h3>
+              
+          <ng-template #elseBonificacion>
+            <h3 *ngIf="miMensajeBonsError?.length > 0"> <span class="label label-warning" style="font-style: normal" >{{miMensajeBonsError}}</span></h3>
+            <h3 *ngIf="miMensajeBons?.length > 0" >      <span class="label label-success" style="font-style: normal" >{{miMensajeBons}}</span></h3>
+          </ng-template>
+          
+          <!--<app-bonific-div  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>-->
+          <app-bonific-div [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" #bonificacion (onMessage2)="onMessage2($event)"></app-bonific-div>
+          
+        </div>
+      </div>
   
       
   </div>
