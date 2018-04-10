@@ -9,16 +9,22 @@ import { Observable } from 'rxjs/Observable';
 import { AplicaBonificacionComponent} from '../mov_edoscta/aplicabonificacion.component';
 import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 
+import { BonificacionComponentDiversos} from '../mov_diversos/bonificacion.component';
+import { BonificServiceDiversos} from '../mov_diversos/bonificacion.service';
+
 @Injectable() export class ConfirmService {
 	private subject = new Subject<any>();
 	private miservice:AplicarService;
 	private miroute: ActivatedRoute;
 	private bonificacioncomponent:AplicaBonificacionComponent;
 	private aplicabonificservice:AplicaBonificService;
+    private bonificaciondiversos: BonificServiceDiversos;
 	private mik: Observable<Aplicar[]>;
 	private fecha:string;
     private totalmoratorios:number;
     onMessageAplicaBonificSi = new EventEmitter<String>();
+
+    onMessageAplicaBonificSiDiversos = new EventEmitter<String>();
 
 
     constructor(){
@@ -120,5 +126,45 @@ import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
                             noFn(onMessageAplicaBonificSi);
                         }
     	});
+    }
+
+
+
+
+    //Confirm para movimientos diversos
+    getMessageDiversos(): Observable<any> {
+        return this.subject.asObservable();
+    }
+
+
+    confirmBonificacionDiversos(message: string='',bonificservicediversos:BonificServiceDiversos, 
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(component,eventemmitter) 
+        =>void,noFn:(eventemmitter)=>void){
+
+
+        this.setConfirmationBonificacionDiversos(message,bonificservicediversos,onMessageAplicaBonificSiDiversos,
+            siFn,noFn);
+    }
+
+    setConfirmationBonificacionDiversos(message:string,bonificservicediversos:BonificServiceDiversos,
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(component,eventemmitter)
+        =>void,noFn:(eventemmitter)=>void){
+        let that = this;
+
+        this.subject.next({ type: "confirm",
+                           text: message,
+                        siFn:
+
+                        function(component){
+                            that.subject.next(); //this will close the modal
+
+                            //let aplicarservice=function() { return 'hola' };
+                            siFn(bonificservicediversos,onMessageAplicaBonificSiDiversos);
+                        },
+                        noFn:function(eventemmitter){
+                            that.subject.next();
+                            noFn(onMessageAplicaBonificSiDiversos);
+                        }
+        });
     }
 }

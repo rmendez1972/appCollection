@@ -88,6 +88,35 @@ export class Aplica_Mov_diversosService {
    let body = res.json();
    console.log(body.mov_diversos);
 
+   let mfecha_div:string=null;
+   let mmov:string=null;
+   let mdescripcion:string=null;
+   let mrecibo:string=null;
+   let mserie:string="Totales";
+   let totcargo:number=0;
+   let totabono:number=0;
+   let totmoratorios:number=0;
+   let maprobado:string=null;
+
+   for (var i = 0; i < body.mov_diversos.length; i++){
+     totcargo = totcargo+parseFloat(body.mov_diversos[i].cargo.toString());
+     totabono = totabono+parseFloat(body.mov_diversos[i].abono.toString());
+     totmoratorios = totmoratorios+parseFloat(body.mov_diversos[i].moratorios.toString());
+   }
+
+   let totales_columna={
+    fecha_div:mfecha_div,
+    clave_div:mmov,
+    descripcion:mdescripcion,
+    recibo:mrecibo,
+    serie:mserie,
+    cargo:totcargo,
+    abono:totabono,
+    moratorios:totmoratorios,
+    aplicado:maprobado
+   }
+
+    body.mov_diversos.push(totales_columna);
    return body.mov_diversos || { };
 
  }
@@ -96,7 +125,7 @@ export class Aplica_Mov_diversosService {
 
    let body = res.json();
    console.log(body.beneficiario_div);
-
+   localStorage.setItem('beneficiario_div',JSON.stringify(body.beneficiario_div));
    return body.beneficiario_div || { };
 
  }
