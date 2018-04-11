@@ -135,19 +135,17 @@ import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.se
 
 
     //Confirm para movimientos diversos
-    
-    confirmBonificacionDiversos(message: string='',bonificservice:BonificDivService, 
-        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(bonificservice,eventemmitter) 
-        =>void,noFn:(eventemmitter)=>void){
+
+    confirmBonificacionDiversos(message: string='',
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(eventemmitter)=>void,noFn:(eventemmitter)=>void){
 
 
-        this.setConfirmationBonificacionDiversos(message,bonificservice,onMessageAplicaBonificSiDiversos,
+        this.setConfirmationBonificacionDiversos(message,onMessageAplicaBonificSiDiversos,
             siFn,noFn);
     }
 
-    setConfirmationBonificacionDiversos(message:string,bonificservice:BonificDivService,
-        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(bonificservice,eventemmitter)
-        =>void,noFn:(eventemmitter)=>void){
+    setConfirmationBonificacionDiversos(message:string,
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(eventemmitter)=>void,noFn:(eventemmitter)=>void){
         let that = this;
 
         this.subject.next({ type: "confirm",
@@ -157,7 +155,7 @@ import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.se
                         function(component){
                             that.subject.next(); //this will close the modal
                             //let aplicarservice=function() { return 'hola' };
-                            siFn(bonificservice,onMessageAplicaBonificSiDiversos);
+                            siFn(onMessageAplicaBonificSiDiversos);
                         },
                         noFn:function(eventemmitter){
                             that.subject.next();

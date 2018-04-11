@@ -293,7 +293,7 @@ private seleccionado:String="clave_b";
 
 
 
-    onMessageAplicaBonificSi(mensaje:String){
+    onMessageAplicaBonificSiDiversos(mensaje:String){
       this.miMensajeAplicaBonsSi = mensaje;
     }
 
@@ -315,14 +315,6 @@ private seleccionado:String="clave_b";
 
       }
     };
-
-
-
-
-    onMessageAplicaBonificSi(mensaje:String){
-      console.log("mi msj " +mensaje);
-      this.miMensajeAplicaBonsSi = mensaje;
-    }
 
 
 
