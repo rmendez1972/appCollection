@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
 
 import { Aplica_Mov_diversos } from './aplica_mov_diversos';
 import { Benef_div } from './benef_div';
@@ -17,9 +17,6 @@ import { TipoBonificacion} from './tipoBonificacion';
 import { Autoriza } from './autoriza';
 import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 import {BonificacionDivComponent} from './bonificacion_div.component';
-
-import { BonificServiceDiversos} from './bonificacion.service';
-import { BonificacionComponentDiversos} from './bonificacion.component';
 
 
 @Component({
@@ -96,12 +93,14 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private autoriza: Autoriza[];
 
 
-  private miMensajeAplicaBonsSi:String;
   private totalmov_diversos: number=0;
+
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
-  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+  private miMensajeerrorAplicaBons:String;
+  private miMensajeAplicaBonsSi:String;
+
 
   optionsSelect = [
     {id:1, value: "clave_lector", name: "Clave de Elector(INE)"},
@@ -124,6 +123,7 @@ private seleccionado:String="clave_b";
     }
 
   	ngOnInit() {
+      console.log('valor de miMensajeAplicaBonsSi '+this.miMensajeAplicaBonsSi);
       this.model.fecha_corte=new Date()
       this.model.valorcriterio=null;
     };
@@ -239,6 +239,9 @@ private seleccionado:String="clave_b";
         autoriza => this.autoriza = autoriza,
         error => this.errorMessage = <any>error);
     };
+
+
+    
     
     getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
 
@@ -267,13 +270,19 @@ private seleccionado:String="clave_b";
       console.log(autoriza);
     };
 
+
+
+    onMessageAplicaBonificSi(mensaje:String){
+      this.miMensajeAplicaBonsSi = mensaje;
+    }
+
     //Mensajes para las bonificaciones igh
     onMessage(mensaje:String){
       this.miMensajeBons = mensaje;
      
       }
 
-      onMessage2( mensaje2:String){
+    onMessage2( mensaje2:String){
         this.miMensajeBonsError = mensaje2;
       }
     valida_ultimo(i:number){
@@ -284,6 +293,9 @@ private seleccionado:String="clave_b";
         return false;
 
       }
-    }
+    };
+    
+
+    
 
 }

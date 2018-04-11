@@ -123,7 +123,7 @@ export class AplicaBonificService {
 
     return body.registroBonificacion || { };
 
-  }
+  };
 
 
 
