@@ -13,6 +13,7 @@ export class BonificDivService {
 
   //private seguimientosUrl: string;
   private bonificacionUrl: string;
+  
 
 
   constructor (private http: Http,

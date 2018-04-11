@@ -248,7 +248,6 @@ export class Aplica_Mov_edosctaListComponent implements OnInit {
     }
 
     onMessageAplicaBonificSi(mensaje:String){
-
       this.miMensajeAplicaBonsSi = mensaje;
     }
 

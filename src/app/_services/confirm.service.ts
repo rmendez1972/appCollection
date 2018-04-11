@@ -9,6 +9,9 @@ import { Observable } from 'rxjs/Observable';
 import { AplicaBonificacionComponent} from '../mov_edoscta/aplicabonificacion.component';
 import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 
+import {BonificacionDivComponent} from '../mov_diversos/bonificacion_div.component';
+import {BonificDivService} from '../mov_diversos/bonificacion_div.service';
+
 
 import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.service'
 
@@ -21,6 +24,7 @@ import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.se
 	private mik: Observable<Aplicar[]>;
 	private fecha:string;
     private totalmoratorios:number;
+
     onMessageAplicaBonificSi = new EventEmitter<String>();
 
     onMessageAplicaBonificSiDiversos = new EventEmitter<String>();
@@ -132,17 +136,17 @@ import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.se
 
     //Confirm para movimientos diversos
     
-    confirmBonificacionDiversos(message: string='', 
-        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(eventemmitter) 
+    confirmBonificacionDiversos(message: string='',bonificservice:BonificDivService, 
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>, siFn:(bonificservice,eventemmitter) 
         =>void,noFn:(eventemmitter)=>void){
 
 
-        this.setConfirmationBonificacionDiversos(message,onMessageAplicaBonificSiDiversos,
+        this.setConfirmationBonificacionDiversos(message,bonificservice,onMessageAplicaBonificSiDiversos,
             siFn,noFn);
     }
 
-    setConfirmationBonificacionDiversos(message:string,
-        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(eventemmitter)
+    setConfirmationBonificacionDiversos(message:string,bonificservice:BonificDivService,
+        onMessageAplicaBonificSiDiversos:EventEmitter<String>,siFn:(bonificservice,eventemmitter)
         =>void,noFn:(eventemmitter)=>void){
         let that = this;
 
@@ -153,13 +157,11 @@ import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.se
                         function(component){
                             that.subject.next(); //this will close the modal
                             //let aplicarservice=function() { return 'hola' };
-                            siFn(onMessageAplicaBonificSiDiversos);
-                            console.log("msj si ");
+                            siFn(bonificservice,onMessageAplicaBonificSiDiversos);
                         },
                         noFn:function(eventemmitter){
                             that.subject.next();
                             noFn(onMessageAplicaBonificSiDiversos);
-                            console.log("msj no ");
                         }
         });
     }

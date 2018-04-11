@@ -12,8 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-
-
+import { ConfirmService} from '../_services/index';
 
 
 @Component({
@@ -74,12 +73,16 @@ export class BonificacionDivComponent implements OnInit {
   @Output() onMessage = new EventEmitter<String>();
   @Output() onMessage2 = new EventEmitter<String>();
   
+  @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+  
 
   	constructor(
       private router: Router,
       private route: ActivatedRoute,
       private bonificdivservice: BonificDivService,
-      private alertService:AlertService
+      private alertService:AlertService,
+      private confirmService:ConfirmService,
+      private bonificservice: BonificDivService,
     )
     {}
 
@@ -123,8 +126,7 @@ export class BonificacionDivComponent implements OnInit {
               //this.miMensajeBons=null;
               this.message('');
               this.message2('Sin bonificaciones');
-              
-
+      
               
             }
             
@@ -136,5 +138,18 @@ export class BonificacionDivComponent implements OnInit {
 
     };
 
+    confirmarBonificacionDiversos(){
+      this.confirmService.confirmBonificacionDiversos("Tiene Bonificaciones?",this.bonificservice,this.onMessageAplicaBonificSi,function(bonificservice,eventemmitter){
+              //ACTION: Do this If user says YES
+              //this.pagar = aplicarservice.getPagar(fecha);
+              eventemmitter.emit('SI');
+              console.log("Despues de emitir si");
+              //bonificservice.siBonificacion();
+            },function(eventemmitter){
+              //ACTION: Do this if user says NO
+              eventemmitter.emit(null);
+              console.log("Despues de emitir no/null");
+      })
+    };
 
 }
