@@ -94,13 +94,12 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
 
   private totalmov_diversos: number=0;
+
   private totales_style:String = "info";
   private renglon_style:String = "active";
 
   private miMensajeerrorAplicaBons:String;
   private miMensajeAplicaBonsSi:String;
-
-  @Output() onMessageAplicaBonificSiDiversos = new EventEmitter<String>();
 
 
   optionsSelect = [
@@ -248,6 +247,7 @@ private seleccionado:String="clave_b";
 
 
 
+
     confirmarBonificacionDiversos(){
       this.confirmService.confirmBonificacionDiversos("Tiene Bonificaciones?",this.onMessageAplicaBonificSiDiversos,function(eventemmitter){
               //ACTION: Do this If user says YES
@@ -261,6 +261,7 @@ private seleccionado:String="clave_b";
               console.log("Despues de emitir no/null");
       })
     };
+
 
 
     getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
@@ -290,13 +291,19 @@ private seleccionado:String="clave_b";
       console.log(autoriza);
     };
 
+
+
+    onMessageAplicaBonificSi(mensaje:String){
+      this.miMensajeAplicaBonsSi = mensaje;
+    }
+
     //Mensajes para las bonificaciones igh
     onMessage(mensaje:String){
       this.miMensajeBons = mensaje;
 
       }
 
-      onMessage2( mensaje2:String){
+    onMessage2( mensaje2:String){
         this.miMensajeBonsError = mensaje2;
       }
     valida_ultimo(i:number){
@@ -310,10 +317,13 @@ private seleccionado:String="clave_b";
     };
 
 
+
+
     onMessageAplicaBonificSi(mensaje:String){
       console.log("mi msj " +mensaje);
       this.miMensajeAplicaBonsSi = mensaje;
     }
+
 
 
 }
