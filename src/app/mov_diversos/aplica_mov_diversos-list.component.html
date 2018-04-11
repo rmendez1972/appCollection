@@ -136,7 +136,7 @@
       </div>
 
       <div [hidden]="!miMensajeMovs" >
-        
+
         <div class="form-group" [ngClass]="{ 'has-error': f3.submitted }" >
           <label for="clvDiv" class="col-md-4 control-label">¿Clave Diversos? </label>
           <tbody>
@@ -236,25 +236,25 @@
 
 
 =======
-      
+
     </div>-->
       <div class="panel panel-primary">
       <div class="panel-heading">Bonificaciones del Beneficiario.</div>
-      
+
         <div class="panel-body transparent">
           <h3 *ngIf="miMensajeerrorMovs; else elseBonificacion"><span class="label label-danger">{{miMensajeBonsError}}</span></h3>
-              
+
           <ng-template #elseBonificacion>
             <h3 *ngIf="miMensajeBonsError?.length > 0"> <span class="label label-warning" style="font-style: normal" >{{miMensajeBonsError}}</span></h3>
             <h3 *ngIf="miMensajeBons?.length > 0" >      <span class="label label-success" style="font-style: normal" >{{miMensajeBons}}</span></h3>
           </ng-template>
-          
+
           <!--<app-bonific-div  [fecha_corte]=model.fecha_corte [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" ></app-bonific-div>-->
           <app-bonific-div [criterio]=model.criterio [valorcriterio]=model.valorcriterio #bonificacion (onMessage)="onMessage($event)" #bonificacion (onMessage2)="onMessage2($event)"></app-bonific-div>
-          
+
         </div>
       </div>
-  
-      
->>>>>>> 52dc2727bed8cbd2ef99be48de6e5b751b359c92
+
+
+
   </div>
