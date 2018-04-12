@@ -13,6 +13,8 @@ import {Programas} from './cat_prog';
 import { TipoBonificacion } from './tipoBonificacion';
 import { Autoriza } from './autoriza';
 
+import {BonificacionDivComponent} from './bonificacion_div.component';
+
 @Injectable()
 export class Aplica_Mov_diversosService {
 
@@ -28,9 +30,17 @@ export class Aplica_Mov_diversosService {
  private aplicabonificacionUrl: string;
 
 
+ private UrlPagarDiversos: String;
+
+ private currentUser:any[];
+ private beneficiarioDiverso:any[];
+
+
   constructor (private http: Http,
       private url:ServiceUrl,
-      private alertService: AlertService)
+      private alertService: AlertService,
+      //private bonificaciondiversos:BonificacionDivComponent
+      )
       {
         
         this.aplica_mov_diversosUrl=String(this.url.getUrlmov_diversos());
@@ -40,6 +50,7 @@ export class Aplica_Mov_diversosService {
         this.tipoBonificacionUrl=String(this.url.getUrlbonificaciones());
         this.autorizaUrl = String(this.url.getUrlAutoriza());
         this.aplicabonificacionUrl=String(this.url.getUrlAplicabonificacion());
+        this.UrlPagarDiversos= String(this.url.getUrlGuardarDiversos())
 
       }
 
@@ -155,6 +166,127 @@ export class Aplica_Mov_diversosService {
     let body = res.json();
     console.log(body.autoriza);
     return body.autoriza || {};
+  }
+
+  getPagar(diversos:string, corriente:number,
+      descripcion:string,importe:number,
+      intereses:number,otros:number){
+    return this.PagarDiversos(diversos, corriente,descripcion,importe,intereses,otros);
+  }
+
+
+  PagarDiversos(diversos:String, corriente:number,descripcion:String,importe:number,
+      intereses:number,otros:number){
+
+    this.currentUser=[];
+    this.beneficiarioDiverso=[];
+
+    let id_bendiv:String; //beneficiario_div
+    let fecha_div:String; //currentUser
+    let poliza:String; //currentUser
+    let recibo:String; //currentUser
+    let abono:number= 0; // importe de pago
+    let moratorios:number = 0; // intereses de moratorios
+    //otros ; otros importes
+    let estatus :String = 'A' ; //fijo
+    let id_usuario :String ; //currentUser
+    //descripcion; descripcion del cobro
+    //let id_catprog : String; // ¿Cuenta Corriente? o ¿Programa?
+    let serie :String ; // currentUser: serie
+    let clave_b :String ; // beneficiario_div
+    let numcontrato : String; //beneficiario_div
+    let id_caja : String; // currentUser
+    let bonific : number =0; // fijo 0;
+
+    this.currentUser =JSON.parse(localStorage.getItem('currentUser'));
+    this.beneficiarioDiverso =JSON.parse(localStorage.getItem('beneficiario_div'));
+
+    for (var i = 0; i < 1 ; i++) {
+      fecha_div= this.currentUser[i].fecha;
+      poliza = this.currentUser[i].poliza;
+      recibo = this.currentUser[i].folio_final;
+      id_usuario = this.currentUser[i].id;
+      serie= this.currentUser[i].serie;
+      id_caja = this.currentUser[i].id_caja;
+      
+    }
+
+    for (var y = 0; y < 1; ++y) {
+      id_bendiv = this.beneficiarioDiverso[y].id_bendiv;
+      clave_b = this.beneficiarioDiverso[y].clave_b;
+      numcontrato = this.beneficiarioDiverso[y].numcontrato;
+
+    }
+
+    let usuarioFinal = {
+      fecha_div : fecha_div,
+      poliza : poliza,
+      recibo :recibo,
+      id_usuario: id_usuario,
+      serie :serie, 
+      id_caja :id_caja
+
+    };
+    let beneficiarioFinal ={
+      id_bendiv : id_bendiv,
+      clave_b : clave_b,
+      numcontrato : numcontrato
+    }
+
+    this.dataPagarDiversos(beneficiarioFinal.id_bendiv, diversos,
+      usuarioFinal.fecha_div,usuarioFinal.poliza,usuarioFinal.recibo,abono,moratorios,otros,
+      estatus,usuarioFinal.id_usuario,descripcion,corriente,usuarioFinal.serie,
+      beneficiarioFinal.clave_b,beneficiarioFinal.numcontrato,usuarioFinal.id_caja,bonific)
+    .subscribe();
+
+    return this.PagarDiversos;
+
+  };
+
+  private dataPagarDiversos(id_bendiv:String,clave_div:String,fecha_div:String,
+    poliza:String,recibo:String,abono:number,moratorios:number,otros:number,estatus :String,
+    id_usuario :String,descripcion :String,corriente:number,serie :String,clave_b :String,
+    numcontrato : String,id_caja : String,bonific : number):Observable<Aplica_Mov_diversos[]>{
+
+    let param_pagar_diversos={
+      id_bendiv:id_bendiv.toString().trim(),
+      clave_div:clave_div,
+      fecha_div: fecha_div.toString().trim(),
+      poliza: poliza,
+      recibo:recibo.toString().trim(),
+      abono:abono.toString().trim(),
+      moratorios:moratorios.toString().trim(),
+      otros:otros,
+      estatus:estatus.toString().trim(),
+      id_usuario:id_usuario.toString().trim(),
+      descripcion:descripcion,
+      id_catprog:corriente,
+      serie:serie,
+      clave_b:clave_b,
+      numcontrato:numcontrato,
+      id_caja:id_caja.toString().trim(),
+      bonific:bonific.toString().trim(),
+    };
+
+    return this.http.get(this.UrlPagarDiversos+ param_pagar_diversos.id_bendiv+'&clave_div='
+      +param_pagar_diversos.clave_div+'&fecha_div='+param_pagar_diversos.fecha_div+'&poliza='
+      +param_pagar_diversos.poliza+'&recibo='+param_pagar_diversos.recibo+'&abono='
+      +param_pagar_diversos.abono+'&moratorios='+param_pagar_diversos.moratorios+'&otros='
+      +param_pagar_diversos.otros+'&estatus='+param_pagar_diversos.estatus+'&id_usuario='
+      +param_pagar_diversos.id_usuario+'&descripcion='+param_pagar_diversos.descripcion
+      +'&id_catprog='+param_pagar_diversos.id_catprog+'&serie='+param_pagar_diversos.serie
+      +'&clave_b='+param_pagar_diversos.clave_b+'&numcontrato='+param_pagar_diversos.numcontrato
+      +'&id_caja='+param_pagar_diversos.id_caja+'&bonific='+param_pagar_diversos.bonific)
+    .map(this.extractDataPagarDiversos).catch(this.handleError);
+
+  };
+
+
+  private extractDataPagarDiversos (res: Response) {
+    let body = res.json();
+    console.log(body.registroAplicaMovDiversos);
+    return body.registroAplicaMovDiversos|| { };
+
   }
 
  private handleError (error: Response | any) {

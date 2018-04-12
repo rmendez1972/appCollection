@@ -37,6 +37,8 @@ public UrlAutoriza: String;
 
 public URLupdateMovedocta:String;
 
+public UrlguardarDiversos:String;
+
 constructor() {}
 
 
@@ -169,6 +171,10 @@ constructor() {}
 
 		getUrlUpdateMovedocta():String{
 			return this.URLupdateMovedocta = 'http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaBonific&id_movedoscta=';
+		}
+		
+		getUrlGuardarDiversos():String{
+			return this.UrlguardarDiversos ='http://localhost:8080/cobranza/controladormov_diversos?operacion=appNuevoGuardar&id_bendiv=';
 		}
 
 

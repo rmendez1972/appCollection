@@ -247,33 +247,20 @@ private seleccionado:String="clave_b";
     };
 
 
-    
-    
-    getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
+   getPagar(diversos:string, corriente:number,
+      descripcion:string,importe:number,
+      intereses:number,otros:number) {
+      return this.aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
+        otros);
 
-      console.log("Metodo pagar");
-      console.log(diversos);
-      console.log(corriente);
-      console.log(descripcion);
-      console.log(importe);
-      console.log(intereses);
-      console.log(otros);
     };
     getPagarBonificacion(diversos:string, 
-      corriente:string,descripcion:string,importe:string,
-      intereses:string,otros:string, 
-      bonificacion:string, moratorios:string, autoriza:string){
+      corriente:number,descripcion:string,importe:number,
+      intereses:number,otros:number, 
+      bonificacion:string, moratorios:number, autoriza:string){
 
-      console.log("Metodo pagar con Bonificacion");
-      console.log(diversos);
-      console.log(corriente);
-      console.log(descripcion);
-      console.log(importe);
-      console.log(intereses);
-      console.log(otros);
-      console.log(bonificacion);
-      console.log(moratorios);
-      console.log(autoriza);
+      return this.aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
+        otros);
     };
 
 

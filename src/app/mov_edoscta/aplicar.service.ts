@@ -195,7 +195,6 @@ export class AplicarService {
                   console.log('VALOR DE APLICAR DENTRO DE aplicarservice '+aplicar);
                   console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
                   //if (aplicar.resultado){
-
                   this.aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
 
                   //}
@@ -281,7 +280,6 @@ postPagarVencidos(
 
 
   private extractDataPagarVencidos(res: Response) {
-
     let body = res.json();
     let id_mov_edoscta;
     let recibo;
