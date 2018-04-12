@@ -103,7 +103,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
 
   optionsSelect = [
-    {id:1, value: "clave_elector", name: "Clave de Elector(INE)"},
+    {id:1, value: "clave_lector", name: "Clave de Elector(INE)"},
     {id:2, value: "clave_curp", name: "CURP"},
     {id:3, value: "clave_b", name: "Clave SEDETUS"},
     {id:4, value: "nombre", name: "Nombre de Beneficiario"}
@@ -122,14 +122,13 @@ private seleccionado:String="clave_b";
 
     }
 
-  	ngOnInit() {
+    ngOnInit() {
       console.log('valor de miMensajeAplicaBonsSi '+this.miMensajeAplicaBonsSi);
       this.model.fecha_corte=new Date()
       this.model.valorcriterio=null;
     };
 
-  	title = 'Movimientos diversos';
-
+    title = 'Cobranza: movimientos diversos';
 
     localizaBenefMov_diversos(){
       console.log('valor de model.criterio '+this.model.criterio);
@@ -157,14 +156,12 @@ private seleccionado:String="clave_b";
       this.k.subscribe(
 
         movimientos => {
-
           this.mov_diversos = movimientos;
           this.totalmov_diversos = this.mov_diversos.length-1;
           this.miMensajeMovs = "Recuperación Exitosa de los Movimientos diversos";
-
           this.errorMessage = null;
          },
-        error =>  {this.errorMessage = "No se pudo localizar los movimientos diversos";
+        error =>  {this.errorMessage = "no se pudo localizar los movimientos diversos";
                    this.miMensajeMovs = null;
                   this.mov_diversos = null;});
 
@@ -188,9 +185,7 @@ private seleccionado:String="clave_b";
 
                      if (this.benef_div.length>0){
                        console.log("Encontrado!!!!");
-
-                      this.miMensajeBenef="Beneficiario Diverso Encontrado Exitosamente";
-
+                      this.miMensajeBenef="Se encontro el beneficiario";
                      }else {this.miMensajeBenef=null}
                     },
                      error =>  this.errorMessage = <any>error);
@@ -248,22 +243,6 @@ private seleccionado:String="clave_b";
 
 
 
-    confirmarBonificacionDiversos(){
-      this.confirmService.confirmBonificacionDiversos("Tiene Bonificaciones?",this.onMessageAplicaBonificSiDiversos,function(eventemmitter){
-              //ACTION: Do this If user says YES
-              //this.pagar = aplicarservice.getPagar(fecha);
-              eventemmitter.emit('SI');
-              console.log("Despues de emitir si");
-              //bonificservice.siBonificacion();
-            },function(eventemmitter){
-              //ACTION: Do this if user says NO
-              eventemmitter.emit(null);
-              console.log("Despues de emitir no/null");
-      })
-    };
-
-
-
     getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
 
       console.log("Metodo pagar");
@@ -293,7 +272,7 @@ private seleccionado:String="clave_b";
 
 
 
-    onMessageAplicaBonificSiDiversos(mensaje:String){
+    onMessageAplicaBonificSi(mensaje:String){
       this.miMensajeAplicaBonsSi = mensaje;
     }
 
@@ -315,6 +294,7 @@ private seleccionado:String="clave_b";
 
       }
     };
+
 
 
 
