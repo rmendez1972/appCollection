@@ -14,16 +14,20 @@ import {BonificDivService} from '../mov_diversos/bonificacion_div.service';
 
 
 import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.service'
+import { Mov_diversos } from '../mov_diversos/mov_diversos';
 
 @Injectable() export class ConfirmService {
-    private subject = new Subject<any>();
-    private miservice:AplicarService;
-    private miroute: ActivatedRoute;
-    private bonificacioncomponent:AplicaBonificacionComponent;
-    private aplicabonificservice:AplicaBonificService;
+	private subject = new Subject<any>();
+	private miservice:AplicarService;
+	private miroute: ActivatedRoute;
+	private bonificacioncomponent:AplicaBonificacionComponent;
+	private aplicabonificservice:AplicaBonificService;
     private mik: Observable<Aplicar[]>;
-    private fecha:string;
+    private mim: Observable<Mov_diversos[]>;
+	private fecha:string;
+
     private totalmoratorios:number;
+    private miservicesBonDiv:BonificDivService;
 
     onMessageAplicaBonificSi = new EventEmitter<String>();
 
@@ -160,4 +164,37 @@ import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.se
                         }
         });
     }
+
+
+    //Confirm para aplicar los movimientos diversos
+    //confirm sin bonificaciones
+    confirmAplicaDiv(message:string='',diversos:string,corriente:string,descripcion:string,importe:string,intereses:string,otros:string,miservicesBonDiv:BonificDivService,miroute:ActivatedRoute, miM:Observable<Mov_diversos[]>,
+                    siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,route,m)=>void,noFn:()=>void){
+
+        this.setconfirmAplicaDiv(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,miroute, this.mim,siFn,noFn)
+
+    }
+
+    setconfirmAplicaDiv(message:string='',diversos:string,corriente:string,descripcion:string,importe:string,intereses:string,otros:string,miservicesBonDiv:BonificDivService,miroute:ActivatedRoute, miM:Observable<Mov_diversos[]>,
+    siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,route,m)=>void,noFn:()=>void){
+        let that = this;
+        let mm:Observable<Mov_diversos[]>;
+
+        this.subject.next({ type: "confirm",
+        text: message,
+        siFn:
+        function(message,miservicesBonDiv){
+            that.subject.next(); //this will close the modal
+
+            //let aplicarservice=function() { return 'hola' };
+            siFn(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,miroute,mm);
+        },
+        noFn:function(){
+            that.subject.next();
+            noFn();
+        }
+    });
+
+    }
+
 }

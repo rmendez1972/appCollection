@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 //import {Observable} from 'rxjs/Rx';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
+import { Mov_diversos } from './mov_diversos';
 
 
 @Injectable()
@@ -34,6 +35,21 @@ export class BonificDivService {
 
   }
 
+
+  getPagar(diversos,corriente,descripcion,importe,intereses,otros): Observable<Mov_diversos[]>{
+    
+
+      console.log("EN EL METODO GET PAGAR DE BONIFIC SERVICES, ANTES DE IR AL BACK END");
+      console.log(diversos);
+      console.log(corriente);
+      console.log(descripcion);
+      console.log(importe);
+      console.log(intereses);
+      console.log(otros);
+
+      return;
+      
+  }
 
   private extractDataBon(res: Response) {
 

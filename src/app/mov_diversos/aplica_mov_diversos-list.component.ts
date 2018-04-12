@@ -78,6 +78,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
   private miMensajeerrorMovs:String;
   private miMensajeMovs:String;
+
   private miMensajeBenef:string;
 
   private miMensajeBonsError:String;//igh
@@ -183,10 +184,17 @@ private seleccionado:String="clave_b";
                      beneficiario => {
                        this.benef_div = beneficiario;
 
-                     if (this.benef_div.length>0){
+
+                     if (this.benef_div[0]!= null){
+
                        console.log("Encontrado!!!!");
                       this.miMensajeBenef="Se encontro el beneficiario";
-                     }else {this.miMensajeBenef=null}
+                     }else if (this.benef_div[0]== null) {
+                       console.log("No Encontrado!!!!");
+                       this.miMensajeBenef="No se encontro el beneficiario";
+                     }
+                     else {
+                       this.miMensajeBenef=null;}
                     },
                      error =>  this.errorMessage = <any>error);
 
