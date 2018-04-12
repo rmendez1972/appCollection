@@ -109,18 +109,14 @@ export class BonificacionDivComponent implements OnInit {
 
 
     getBonificaciones() {
-
         this.k=this.route.params
         // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
-
           //this.selectedId= +params['id'];
           return this.bonificdivservice.getBonificaciones(this.criterio,this.valorcriterio)
         })
-
         this.k.subscribe(
-
           bonificaciones_div =>{
             this.bonific_div = bonificaciones_div;
             this.totalbon_diversos = this.bonific_div.length-1;
@@ -169,38 +165,7 @@ export class BonificacionDivComponent implements OnInit {
     }
 
     //aplicar los mov_diversos
-    getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
 
-      console.log("Metodo pagar");
-      console.log(diversos);
-      console.log(corriente);
-      console.log(descripcion);
-      console.log(importe);
-      console.log(intereses);
-      console.log(otros);
-
-      this.confirmService.confirmAplicaDiv("¿Desea aplicar ese movimiento?",diversos,corriente,descripcion,importe,intereses,otros,this.bonificdivservice,this.route,this.m,function(message,diversos,corriente,descipcion,importe,intereses,otros,bonificdivservice,route,m){
-        console.log('antes de llamar a bonificdivservices.getpagar');
-        
-        m=route.params
-        .switchMap((params: Params) =>
-              {
-                return bonificdivservice.getPagar(diversos,corriente,descripcion,importe,intereses,otros);
-              })
-
-              m.subscribe(
-                aplicar =>{
-                  //this.message('Pago de las letras vencidas realizadas con exito');
-                  //this.errormessage(null);
-                }
-                //error => let error=error
-                  //this.errorMessage = <any>error
-                );
-
-        },function(){
-      })
-
-    };
 
 
 }
