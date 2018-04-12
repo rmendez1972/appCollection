@@ -210,7 +210,7 @@
         <form  class="form-inline" #f3="ngForm" novalidate>
           <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
 
-            <input type="submit" value="Pagar s/b" class="btn btn-primary"  (click)="getPagar(model.claveDiversos,model.claveCorriente,model.clv_descripcion,model.clv_importe,model.clv_intereses,model.clv_otros)"/>
+            <input type="submit" value="Pagar s/b" class="btn btn-primary"  (click)="bonificacion.getPagar(model.claveDiversos,model.claveCorriente,model.clv_descripcion,model.clv_importe,model.clv_intereses,model.clv_otros)"/>
           </div>
           <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
             <input type="submit" value="Pagar c/b" class="btn btn-primary" (click)="getPagarBonificacion(model.claveDiversos,model.claveCorriente,model.clv_descripcion,model.clv_importe,model.clv_intereses,model.clv_otros,model.tipobonificacion,model.moratorios,model.qautoriza)"/>

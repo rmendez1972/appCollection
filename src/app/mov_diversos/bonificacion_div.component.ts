@@ -13,6 +13,8 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
+//import { Mov_diversos } from '../catalogos/mov_diversos';
+import { Mov_diversos } from './mov_diversos';
 
 
 @Component({
@@ -64,6 +66,7 @@ export class BonificacionDivComponent implements OnInit {
   private totalbon_diversos:number =0;
   private totales_style:String = "info";
   private renglon_style:String = "active";
+  private m: Observable<Mov_diversos[]>;
 
   //private miMensajeerrorMovs:String;
   //private miMensajeBons:String;
@@ -77,6 +80,7 @@ export class BonificacionDivComponent implements OnInit {
   @Output() onMessage2 = new EventEmitter<String>();
   
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
+  
   
 
   	constructor(
@@ -163,6 +167,40 @@ export class BonificacionDivComponent implements OnInit {
 
       }
     }
+
+    //aplicar los mov_diversos
+    getPagar(diversos:string, corriente:string,descripcion:string,importe:string,intereses:string,otros:string){
+
+      console.log("Metodo pagar");
+      console.log(diversos);
+      console.log(corriente);
+      console.log(descripcion);
+      console.log(importe);
+      console.log(intereses);
+      console.log(otros);
+
+      this.confirmService.confirmAplicaDiv("¿Desea aplicar ese movimiento?",diversos,corriente,descripcion,importe,intereses,otros,this.bonificdivservice,this.route,this.m,function(message,diversos,corriente,descipcion,importe,intereses,otros,bonificdivservice,route,m){
+        console.log('antes de llamar a bonificdivservices.getpagar');
+        
+        m=route.params
+        .switchMap((params: Params) =>
+              {
+                return bonificdivservice.getPagar(diversos,corriente,descripcion,importe,intereses,otros);
+              })
+
+              m.subscribe(
+                aplicar =>{
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                }
+                //error => let error=error
+                  //this.errorMessage = <any>error
+                );
+
+        },function(){
+      })
+
+    };
 
 
 }
