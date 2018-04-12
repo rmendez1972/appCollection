@@ -201,6 +201,8 @@ export class AplicarService {
         aplicar =>{
 
 
+
+
                   this.aplicabonificacioncomponent.postBonificaciones(tipobonificacion,totalmoratorios,qautoriza);
 
 
@@ -287,7 +289,6 @@ postPagarVencidos(
 
 
   private extractDataPagarVencidos(res: Response) {
-
     let body = res.json();
     let id_mov_edoscta;
     let recibo;

@@ -45,7 +45,7 @@
 
           <tr>
             <td><strong>CURP: </strong>{{ben.curp}}</td>
-            <td><strong>Contrato: </strong>{{ben.numcontrato}} <strong> Fecha: </strong>{{ben.nombre}}</td>
+            <td><strong>Contrato: </strong>{{ben.numcontrato}} <strong> Fecha: </strong>{{ben.fecha_con| date:"dd/MM/yyyy"}}</td>
           </tr>
 
           <tr>
@@ -55,7 +55,7 @@
 
           <tr>
             <td><strong>Dirección : </strong></td>
-            <td><strong>Poliza: </strong><strong >Fecha: </strong>{{ben.fecha}}</td>
+            <td><strong>Poliza: </strong><strong >Fecha: </strong>{{ben.fecha_pol| date:"dd/MM/yyyy"}}</td>
           </tr>
 
           <tr>
@@ -142,7 +142,7 @@
           <tbody>
             <select name="claveDiversos" id="claveDiversos" class="form-control" #claveDiversos="ngModel" [(ngModel)]="model.claveDiversos">
                 <option value="undefined" selected >Selecciona una Clave Diversa</option>
-                <option *ngFor="let div of clavediv" value="{{div.id_clave_div}}" >{{div.descripcion}}</option>
+                <option *ngFor="let div of clavediv" value="{{div.clave_div}}" >{{div.clave_div}} ({{div.descripcion}})</option>
               </select>
           </tbody>
         </div>
@@ -213,7 +213,7 @@
         <form  class="form-inline" #f3="ngForm" novalidate>
           <div *ngIf=!miMensajeAplicaBonsSi class="form-group" style="text-align:center">
 
-            <input type="submit" value="Pagar s/b" class="btn btn-primary"  (click)="bonificacion.getPagar(model.claveDiversos,model.claveCorriente,model.clv_descripcion,model.clv_importe,model.clv_intereses,model.clv_otros)"/>
+            <input type="submit" value="Pagar s/b" class="btn btn-primary"  (click)="getPagar(model.claveDiversos,model.claveCorriente,model.clv_descripcion,model.clv_importe,model.clv_intereses,model.clv_otros)"/>
           </div>
           <div *ngIf=miMensajeAplicaBonsSi class="form-group" style="text-align:center">
             <input type="submit" value="Pagar c/b" class="btn btn-primary" (click)="getPagarBonificacion(model.claveDiversos,model.claveCorriente,model.clv_descripcion,model.clv_importe,model.clv_intereses,model.clv_otros,model.tipobonificacion,model.moratorios,model.qautoriza)"/>
