@@ -33,11 +33,11 @@
     <div class="panel-heading">Generales del Beneficiario </div>
     <h3 *ngIf=miMensajeBenef><span class="label label-success">{{miMensajeBenef}}</span></h3>
     <div class="panel-body transparent"  *ngFor="let ben of benef_div">
-      <table class="" width="100%">
+      <table class="" width="100%" *ngIf="ben">
         <tbody >
 
           <tr>
-            <td width="60%"><strong>Nombre : </strong>{{ben.nombre}}</td>
+            <td width="60%" ><strong>Nombre : </strong>{{ben.nombre}}</td>
             <td width="40%"><strong>Clave SEDETUS: </strong>{{ben.clave_b}}</td>
           </tr>
 
@@ -68,7 +68,7 @@
 
         </tbody>
       </table>
-      <div [hidden]="!miMensajeerrorMovs" >
+      <div [hidden]="miMensajeMovs" >
           <form  class="form-inline" #f3="ngForm" novalidate>
           <div class="form-group" style="text-align:center">
             <input routerLink="/new_ben_div" type="submit" value="Nuevo Usuario" class="btn btn-primary" />
@@ -79,7 +79,7 @@
   </div>
 
 
-  <div class="panel panel-primary" (onMessageAplicaBonificSiDiversos)="onMessageAplicaBonificSi($event)">
+  <div class="panel panel-primary">
     <div class="panel-heading">Movimientos del Estado de Cuenta del Beneficiario en Diversos</div>
       <div class="panel-body transparent">
         <div class="table-responsive">

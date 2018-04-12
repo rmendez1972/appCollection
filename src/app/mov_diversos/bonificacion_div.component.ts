@@ -147,12 +147,10 @@ export class BonificacionDivComponent implements OnInit {
               //ACTION: Do this If user says YES
               //this.pagar = aplicarservice.getPagar(fecha);
               eventemmitter.emit('SI');
-              console.log("Despues de emitir si");
               //bonificservice.siBonificacion();
             },function(eventemmitter){
               //ACTION: Do this if user says NO
               eventemmitter.emit(null);
-              console.log("Despues de emitir no/null");
       })
     };
 
