@@ -59,5 +59,6 @@ export class AuthenticationService {
         localStorage.removeItem("bon");
         localStorage.removeItem("vencidos");
         localStorage.removeItem('currentUser');
+        localStorage.removeItem("beneficiario_div");
     }
 }
