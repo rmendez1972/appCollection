@@ -185,8 +185,6 @@ export class Aplica_Mov_diversosService {
     let fecha_div:String; //currentUser
     let poliza:String; //currentUser
     let recibo:String; //currentUser
-    let abono:number= 0; // importe de pago
-    let moratorios:number = 0; // intereses de moratorios
     //otros ; otros importes
     let estatus :String = 'A' ; //fijo
     let id_usuario :String ; //currentUser
@@ -234,7 +232,7 @@ export class Aplica_Mov_diversosService {
     }
 
     this.dataPagarDiversos(beneficiarioFinal.id_bendiv, diversos,
-      usuarioFinal.fecha_div,usuarioFinal.poliza,usuarioFinal.recibo,abono,moratorios,otros,
+      usuarioFinal.fecha_div,usuarioFinal.poliza,usuarioFinal.recibo,importe,intereses,otros,
       estatus,usuarioFinal.id_usuario,descripcion,corriente,usuarioFinal.serie,
       beneficiarioFinal.clave_b,beneficiarioFinal.numcontrato,usuarioFinal.id_caja,bonific)
     .subscribe();
