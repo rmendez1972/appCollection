@@ -253,6 +253,10 @@ private seleccionado:String="clave_b";
    getPagar(diversos:string, corriente:number,
       descripcion:string,importe:number,
       intereses:number,otros:number) {
+     console.log("importe"+importe);
+     console.log("interes"+intereses);
+     console.log ("otros: "+ otros)
+
       return this.aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
         otros);
 

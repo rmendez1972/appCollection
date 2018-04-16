@@ -18,7 +18,6 @@ import { ConfirmService} from '../_services/index';
 import { CajaService} from '../apertura_caja/caja.service';
 
 //marlon
-
 @Component({
   selector: 'app-aplicabonific',
   templateUrl: './aplicabonificacion.component.html',
@@ -125,7 +124,7 @@ export class AplicaBonificacionComponent implements OnInit {
 
 
 
-  	ngOnInit() {
+    ngOnInit() {
 
 
       this.extraerInit = this.extraerLocalStorage();
