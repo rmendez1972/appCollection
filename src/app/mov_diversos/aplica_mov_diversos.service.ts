@@ -235,7 +235,9 @@ export class Aplica_Mov_diversosService {
       usuarioFinal.fecha_div,usuarioFinal.poliza,usuarioFinal.recibo,importe,intereses,otros,
       estatus,usuarioFinal.id_usuario,descripcion,corriente,usuarioFinal.serie,
       beneficiarioFinal.clave_b,beneficiarioFinal.numcontrato,usuarioFinal.id_caja,bonific)
-    .subscribe();
+    .subscribe(
+      
+      );
 
     return this.PagarDiversos;
 
@@ -266,15 +268,6 @@ export class Aplica_Mov_diversosService {
       bonific:bonific.toString().trim(),
     };
 
-    console.log(this.UrlPagarDiversos+ param_pagar_diversos.id_bendiv+'&clave_div='
-      +param_pagar_diversos.clave_div+'&fecha_div='+param_pagar_diversos.fecha_div+'&poliza='
-      +param_pagar_diversos.poliza+'&recibo='+param_pagar_diversos.recibo+'&abono='
-      +param_pagar_diversos.abono+'&moratorios='+param_pagar_diversos.moratorios+'&otros='
-      +param_pagar_diversos.otros+'&estatus='+param_pagar_diversos.estatus+'&id_usuario='
-      +param_pagar_diversos.id_usuario+'&descripcion='+param_pagar_diversos.descripcion
-      +'&id_catprog='+param_pagar_diversos.id_catprog+'&serie='+param_pagar_diversos.serie
-      +'&clave_b='+param_pagar_diversos.clave_b+'&numcontrato='+param_pagar_diversos.numcontrato
-      +'&id_caja='+param_pagar_diversos.id_caja+'&bonific='+param_pagar_diversos.bonific);
     
     return this.http.get(this.UrlPagarDiversos+ param_pagar_diversos.id_bendiv+'&clave_div='
       +param_pagar_diversos.clave_div+'&fecha_div='+param_pagar_diversos.fecha_div+'&poliza='

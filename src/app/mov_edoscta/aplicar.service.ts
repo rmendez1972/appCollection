@@ -256,15 +256,7 @@ postPagarVencidos(
       id_caja:id_caja.toString().trim(),
 
     };
-    console.log(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
-      +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
-      "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
-      "&fecha_corte="+param_pagar_vencidos.fecha_corte+"&recibo="+param_pagar_vencidos.recibo+
-      "&o_seguro="+param_pagar_vencidos.o_seguro+"&moratorios="+param_pagar_vencidos.moratorios+
-      "&fecha_pol="+param_pagar_vencidos.fecha_pol+"&id_usuario="+param_pagar_vencidos.id_usuario+
-      "&comisiones="+param_pagar_vencidos.comisiones+"&serie="+param_pagar_vencidos.serie+
-      "&clave_b="+param_pagar_vencidos.clave_b+"&tit="+param_pagar_vencidos.tit+"&id_catprog="+param_pagar_vencidos.id_catprog+
-      "&numcontrato="+param_pagar_vencidos.numcontrato+"&id_caja="+param_pagar_vencidos.id_caja);
+
     return this.http.get(this.UrlAplicarVencidos + param_pagar_vencidos.id_benef+"&capital="+param_pagar_vencidos.capital
       +"&interes="+ param_pagar_vencidos.interes+"&admon="+param_pagar_vencidos.admon+"&seguro="+param_pagar_vencidos.seguro+
       "&clave_mov="+ param_pagar_vencidos.clave_mov+"&poliza="+param_pagar_vencidos.poliza+
