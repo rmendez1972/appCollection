@@ -17,6 +17,7 @@ import { TipoBonificacion} from './tipoBonificacion';
 import { Autoriza } from './autoriza';
 import { AplicaBonificService} from '../mov_edoscta/aplicabonificacion.service';
 import {BonificacionDivComponent} from './bonificacion_div.component';
+import {AplicaBonificacionDivComponent} from './aplicabonificaciondiv.component';
 
 
 @Component({
@@ -261,10 +262,10 @@ private seleccionado:String="clave_b";
     getPagarBonificacion(diversos:string, 
       corriente:number,descripcion:string,importe:number,
       intereses:number,otros:number, 
-      bonificacion:string, moratorios:number, autoriza:string){
+      bonificacion:number, moratorios:number, autoriza:number){
 
-      return this.aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
-        otros);
+      return this.aplica_mov_diversosservice.getPagarBonificacion(diversos,corriente,descripcion,importe,intereses,
+        otros,bonificacion,moratorios,autoriza);
     };
 
 
