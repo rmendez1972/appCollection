@@ -44,6 +44,7 @@ import { ConfirmService } from './_services/index';
   centavos,
   Mov_edosctaListComponent,
   ConfirmComponent,
+  AplicaBonificacionDivComponent,
   ],
   providers: [
   VencidosService,
@@ -63,6 +64,7 @@ import { ConfirmService } from './_services/index';
   VencidosComponent,
   centavos,
   ConfirmComponent,
+  AplicaBonificacionDivComponent,
   ],
 
 })
