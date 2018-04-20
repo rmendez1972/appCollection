@@ -65,7 +65,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
   private errorMessage: string;
   model:any={};
-  private aplcia_mov_diversos: Aplica_Mov_diversos[];
+  private aplica_mov_diversos: Aplica_Mov_diversos[];
   private mov_diversos: Mov_diversos[];
   private benef_div: Benef_div[];
   private k: Observable<Mov_diversos[]>;
@@ -76,6 +76,9 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
   private h: Observable<TipoBonificacion[]>;
   private i: Observable<Autoriza[]>;
+
+  private p: Observable<Aplica_Mov_diversosService[]>;
+  private q: Observable<Aplica_Mov_diversosService[]>;
 
   private miMensajeerrorMovs:String;
   private miMensajeMovs:String;
@@ -252,17 +255,55 @@ private seleccionado:String="clave_b";
       descripcion:string,importe:number,
       intereses:number,otros:number) {
 
-      return this.aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
-        otros);
+     this.confirmService.confirmDiversos("Seguro de aplicar estas mensualidades?",diversos,
+       corriente,
+       descripcion,
+       importe,
+       intereses,
+       otros,this.aplica_mov_diversosservice,this.route,
+       this.p,function(message, diversos,corriente,descripcion,importe,intereses,
+        otros,aplica_mov_diversosservice,route,p){
+              p=route.params.switchMap((params: Params) =>
+              {
+                console.log("Antes de entrar a get pagar");
+                return aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
+        otros); 
+              })
+              p.subscribe(
+                autoriza =>{
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                });
+              }, function(){
+
+              })
 
     };
+
     getPagarBonificacion(diversos:string, 
       corriente:number,descripcion:string,importe:number,
       intereses:number,otros:number, 
       bonificacion:number, moratorios:number, autoriza:number){
 
-      return this.aplica_mov_diversosservice.getPagarBonificacion(diversos,corriente,descripcion,importe,intereses,
+      this.confirmService.confirmDiversosBonificacion("Seguro de aplicar estas mensualidades?",diversos,
+       corriente,descripcion,importe,intereses,otros,bonificacion,moratorios,autoriza, 
+       this.aplica_mov_diversosservice,this.route,
+       this.q,function(message, diversos,corriente,descripcion,importe,intereses,
+        otros,bonificacion,moratorios,autoriza,aplica_mov_diversosservice,route,p){
+              p=route.params.switchMap((params: Params) =>
+              {
+                console.log("Antes de entrar a get pagar");
+                return aplica_mov_diversosservice.getPagarBonificacion(diversos,corriente,descripcion,importe,intereses,
         otros,bonificacion,moratorios,autoriza);
+              })
+              p.subscribe(
+                autoriza =>{
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                });
+              }, function(){
+
+              })
     };
 
 
