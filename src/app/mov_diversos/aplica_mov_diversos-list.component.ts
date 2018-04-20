@@ -78,6 +78,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
   private i: Observable<Autoriza[]>;
 
   private p: Observable<Aplica_Mov_diversosService[]>;
+  private q: Observable<Aplica_Mov_diversosService[]>;
 
   private miMensajeerrorMovs:String;
   private miMensajeMovs:String;
@@ -284,8 +285,25 @@ private seleccionado:String="clave_b";
       intereses:number,otros:number, 
       bonificacion:number, moratorios:number, autoriza:number){
 
-      return this.aplica_mov_diversosservice.getPagarBonificacion(diversos,corriente,descripcion,importe,intereses,
+      this.confirmService.confirmDiversosBonificacion("Seguro de aplicar estas mensualidades?",diversos,
+       corriente,descripcion,importe,intereses,otros,bonificacion,moratorios,autoriza, 
+       this.aplica_mov_diversosservice,this.route,
+       this.q,function(message, diversos,corriente,descripcion,importe,intereses,
+        otros,bonificacion,moratorios,autoriza,aplica_mov_diversosservice,route,p){
+              p=route.params.switchMap((params: Params) =>
+              {
+                console.log("Antes de entrar a get pagar");
+                return aplica_mov_diversosservice.getPagarBonificacion(diversos,corriente,descripcion,importe,intereses,
         otros,bonificacion,moratorios,autoriza);
+              })
+              p.subscribe(
+                autoriza =>{
+                  //this.message('Pago de las letras vencidas realizadas con exito');
+                  //this.errormessage(null);
+                });
+              }, function(){
+
+              })
     };
 
 

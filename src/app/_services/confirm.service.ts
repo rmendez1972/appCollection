@@ -37,6 +37,9 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
     private importe:number;
     private intereses:number;
     private otros:number;
+    private bonificacion: number;
+    private moratorios: number;
+    private autoriza : number;
 
     onMessageAplicaBonificSi = new EventEmitter<String>();
 
@@ -229,6 +232,72 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
                             //let aplicarservice=function() { return 'hola' };
                             siFn(mimessage ,mdiversos,mcorriente,mdescripcion,mimporte,
                                 mintereses,motros, miservice, miroute, miid);
+                        },
+                        noFn:function(){
+                            that.subject.next();
+                            noFn();
+                        }
+        });
+
+    }
+
+    //Confirm de pago de mensualidades diversas con bonificacion
+    confirmDiversosBonificacion(message: string='',diversos:string, 
+      corriente:number,descripcion:string,importe:number,intereses:number,otros:number, 
+      bonificacion:number, moratorios:number, autoriza:number,miservice:Aplica_Mov_diversosService,
+      miroute:ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>,siFn:(message, diversos,
+          corriente,descripcion,importe,intereses,otros,bonificacion,moratorios,autoriza,
+          aplica_mov_diversosservice, routeservice,p)=>void,
+      noFn:()=>void){
+        this.diversos = diversos;
+        this.corriente = corriente;
+        this.descripcion = descripcion;
+        this.importe = importe;
+        this.intereses = intereses;
+        this.otros = otros;
+        this.bonificacion = bonificacion;
+        this.moratorios = moratorios;
+        this.autoriza = autoriza;
+
+
+        this.setConfirmationDiversosBonificacion(message,this.diversos,this.corriente,this.descripcion,this.importe,
+            this.intereses,this.otros,this.bonificacion,this.moratorios,this.autoriza,miservice,miroute,
+            this.mid,siFn,noFn);
+    }
+
+
+    setConfirmationDiversosBonificacion(message: string, diversos:string, 
+      corriente:number,descripcion:string,importe:number,intereses:number,otros:number, 
+      bonificacion:number, moratorios:number, autoriza:number, miservice: Aplica_Mov_diversosService, 
+      miroute: ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>, 
+      siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,bonificacion,
+          moratorios,autoriza ,aplica_mov_diversosservice,routeservice,
+          p)=>void,noFn:()=>void) {
+        let that = this;
+        let mdiversos = diversos;
+        let mcorriente = corriente;
+        let mdescripcion = descripcion;
+        let mimporte = importe;
+        let mintereses = intereses;
+        let motros = otros;
+        let mbonificacion =bonificacion;
+        let mmoratorios =moratorios;
+        let mautoriza = autoriza;
+        let mimessage=message;
+        let miid: Observable<Aplica_Mov_diversosService[]>;
+        //console.log('valor de mifecha dentro de setConfirmation '+ mifecha);
+
+        this.subject.next({ type: "confirm",
+                        text: message,
+                        siFn:
+                        function(message,diversos,corriente,descripcion,importe,intereses,
+                            otros,bonificacion,moratorios,autoriza,aplica_mov_diversosservice){
+                            that.subject.next(); //this will close the modal
+
+                            //let aplicarservice=function() { return 'hola' };
+                            siFn(mimessage ,mdiversos,mcorriente,mdescripcion,mimporte,
+                                mintereses,motros,mbonificacion,mmoratorios,mautoriza, 
+                                miservice, miroute, miid);
                         },
                         noFn:function(){
                             that.subject.next();
