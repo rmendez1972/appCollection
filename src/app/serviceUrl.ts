@@ -172,11 +172,18 @@ constructor() {}
 		getUrlUpdateMovedocta():String{
 			return this.URLupdateMovedocta = 'http://localhost:8080/cobranza/controladormov_edocta?operacion=aplicaMovedoctaBonific&id_movedoscta=';
 		}
-		
+		//insersion de los mov_diversos
 		getUrlGuardarDiversos():String{
 			return this.UrlguardarDiversos ='http://localhost:8080/cobranza/controladormov_diversos?operacion=appNuevoGuardar&id_bendiv=';
 		}
-
+		//insercion de las bonificaciones diversos
+		getUrlAplicabonificacionDiv():String{
+			return this.URLaplicabonificacion='http://localhost:8080/cobranza/controladormovbonific?operacion=aplicaBonificacionesDivApi&id_movdiversos=';
+		}
+		//actualizacion campo bonific mov_diversos
+		getUrlUpdateMovDiversos():String{
+			return this.URLupdateMovedocta = 'http://localhost:8080/cobranza/controladormov_diversos?operacion=aplicaMovdiversosBonific&id_movdiversos=';
+		}
 
 }
 

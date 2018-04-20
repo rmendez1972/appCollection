@@ -16,6 +16,7 @@ export class Mov_diversosService {
 
  private mov_diversosUrl: string;
  private beneficiarioDivUrl: string;
+ private updateMovDiversosUrl: string;
 
 
   constructor (private http: Http,
@@ -25,6 +26,7 @@ export class Mov_diversosService {
         
         this.mov_diversosUrl=String(this.url.getUrlmov_diversos());
         this.beneficiarioDivUrl=String(this.url.getUrlBeneficiario_div());
+        this.updateMovDiversosUrl=String(this.url.getUrlUpdateMovDiversos());
 
       }
 
@@ -46,6 +48,18 @@ export class Mov_diversosService {
 
   }
 
+  postUpdateMovDiversos(id_movdiversos:number, id_bonificacion:number){
+    
+    console.log("valor id_movdiversos: "+id_movdiversos);
+    console.log("valor id_bonificacion: "+id_bonificacion);
+
+    //console.log(this.updateMovedoctaUrl+id_movedocta+"&id_bonificacion="+id_bonificacion);
+
+    return this.http.get(this.updateMovDiversosUrl+id_movdiversos+"&id_bonificacion="+id_bonificacion).map(this.extractDataUpdateMovDiv).catch(this.handleError);
+
+
+  }
+
   private extractDataMov_div(res: Response) {
 
     let body = res.json();
@@ -62,6 +76,13 @@ export class Mov_diversosService {
     localStorage.setItem('beneficiario_div',JSON.stringify(body.beneficiario_div));
     return body.beneficiario_div || { };
 
+  }
+
+  private extractDataUpdateMovDiv(res: Response) {
+    let body = res.json();
+    console.log("regreso del json del update movdiversos :"+body.aplicaMovdiversosBonific);
+    return body.aplicaMovdiversosBonific|| { };
+   
   }
 
   private handleError (error: Response | any) {
