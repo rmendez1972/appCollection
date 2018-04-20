@@ -59,7 +59,7 @@ export class AplicaBonificacionDivComponent implements OnInit {
     return 'relative';
   }
 
-  private miMensajeAplicaBons: string='Aqui debe ir el mensaje';
+  private miMensajeAplicaBons: string;
   private miMensajeerrorAplicaBons: string;
   private errorMessage: string;
   private bonific: Bonific_div[];

@@ -13,8 +13,12 @@ import {BonificacionDivComponent} from '../mov_diversos/bonificacion_div.compone
 import {BonificDivService} from '../mov_diversos/bonificacion_div.service';
 
 
-import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.service'
+import {Aplica_Mov_diversosService} from '../mov_diversos/aplica_mov_diversos.service';
 import { Mov_diversos } from '../mov_diversos/mov_diversos';
+
+import {AplicaBonificServiceDiv} from '../mov_diversos/aplicabonificaciondiv.service';
+import {Bonific_div} from '../mov_diversos/bonific_div';
+import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificaciondiv.component';
 
 @Injectable() export class ConfirmService {
 	private subject = new Subject<any>();
@@ -27,13 +31,14 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
 	private fecha:string;
     private totalmoratorios:number;
     private miservicesBonDiv:BonificDivService;
+    private aplicabonificdivcomponent:AplicaBonificacionDivComponent;
+    private aplicabonificservicediv:AplicaBonificServiceDiv;
+    private b: Observable<Bonific_div[]>;
 
-    private diversos :string;
-    private corriente:string;
-    private descripcion:string;
-    private importe:string;
-    private intereses:string;
-    private otros:string;
+    private tipobonificacion :number;
+    private autoriza:number;
+    private moratorios:number;
+    
 
     onMessageAplicaBonificSi = new EventEmitter<String>();
 
@@ -208,57 +213,6 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
 
     }
 
-    //Confirm para pagos de diversos
-    confirmDiversos(message: string='',diversos:string, corriente:string,
-      descripcion:string,importe:string,
-      intereses:string,otros:string,miservice:AplicarService,miroute:ActivatedRoute,
-      miK:Observable<Aplicar[]>,siFn:(message,diversos,corriente,descripcion,
-          importe,intereses,otros ,aplicarservice, routeservice,k)=>void,noFn:()=>void){
 
-        this.diversos = diversos;
-        this.corriente = corriente;
-        this.descripcion = descripcion;
-        this.importe = importe;
-        this.intereses = intereses;
-        this.otros = otros;
-        this.setConfirmationDiversos(message,this.diversos,this.corriente,this.descripcion,
-            this.importe,this.intereses,this.otros,miservice,miroute,this.mik,siFn,noFn);
-    }
-
-    setConfirmationDiversos(message: string, diversos:string, corriente:string,
-      descripcion:string,importe:string,
-      intereses:string,otros:string, miservice: AplicarService, miroute: ActivatedRoute,
-      miK:Observable<Aplicar[]>, siFn:(message,diversos,corriente,descripcion,importe,intereses,
-      otros ,aplicarservice,routeservice,k)=>void,noFn:()=>void) {
-        let that = this;
-        let midiversos  = diversos;
-        let micorriente = corriente;
-        let midescripcion = descripcion;
-        let miimporte  = importe;
-        let miintereses = intereses;
-        let miotros = otros;
-
-        let mimessage=message;
-        let mk: Observable<Aplicar[]>;
-        //console.log('valor de mifecha dentro de setConfirmation '+ mifecha);
-
-        this.subject.next({ type: "confirm",
-                        text: message,
-                        siFn:
-                        function(message,fecha,aplicarservice){
-                            that.subject.next(); //this will close the modal
-
-                            //let aplicarservice=function() { return 'hola' };
-                            siFn(mimessage ,midiversos,
-                                micorriente,midescripcion,miimporte,
-                                miintereses,miotros, miservice, miroute, mk);
-                        },
-                        noFn:function(){
-                            that.subject.next();
-                            noFn();
-                        }
-        });
-
-    }
 
 }

@@ -99,7 +99,7 @@ export class Aplica_Mov_diversosListComponent implements OnInit {
 
   private totales_style:String = "info";
   private renglon_style:String = "active";
-
+  private miMensajeAplicaBons:String;
   private miMensajeerrorAplicaBons:String;
   private miMensajeAplicaBonsSi:String;
 
@@ -289,6 +289,20 @@ private seleccionado:String="clave_b";
 
       }
     };
+
+    //metodos de aplicabonific
+    //mensaje de exito en la aplicacion de bonificaciones
+    onMessageAplicaBonific(mensaje:String){
+      console.log('DENTRO DE OnMessageAplicaBonific del padre');
+
+      this.miMensajeAplicaBons = mensaje;
+    }
+
+    //mensaje de fracaso en la aplicacion de bonificaciones
+    onerrorMessageAplicaBonific(mensaje:String){
+
+      this.miMensajeerrorAplicaBons = mensaje;
+    }
     
 
     
