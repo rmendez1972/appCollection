@@ -261,20 +261,12 @@ private seleccionado:String="clave_b";
     };
     getPagarBonificacion(diversos:string,
       corriente:number,descripcion:string,importe:number,
-<<<<<<< HEAD
       intereses:number,otros:number,
-      bonificacion:string, moratorios:number, autoriza:string){
-
-      return this.aplica_mov_diversosservice.getPagar(diversos,corriente,descripcion,importe,intereses,
-        otros);
-
-=======
-      intereses:number,otros:number, 
       bonificacion:number, moratorios:number, autoriza:number){
 
       return this.aplica_mov_diversosservice.getPagarBonificacion(diversos,corriente,descripcion,importe,intereses,
         otros,bonificacion,moratorios,autoriza);
->>>>>>> 3c4effb34aada38a6574532ad8443b19201fa0f0
+
     };
 
 
