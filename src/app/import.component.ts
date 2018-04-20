@@ -24,6 +24,8 @@ import {AplicarService} from './mov_edoscta/aplicar.service';
 import {Mov_edosctaListComponent} from './mov_edoscta/mov_edoscta-list.component';
 import {Mov_edoctaService} from './mov_edoscta/mov_edocta.service';
 import {AplicaBonificacionComponent} from './mov_edoscta/aplicabonificacion.component';
+import {AplicaBonificacionDivComponent} from './mov_diversos/aplicabonificaciondiv.component';
+import {AplicaBonificServiceDiv} from './mov_diversos/aplicabonificaciondiv.service';
 
 import { ConfirmComponent } from './_directives/index';
 import { ConfirmService } from './_services/index';
@@ -42,6 +44,7 @@ import { ConfirmService } from './_services/index';
   centavos,
   Mov_edosctaListComponent,
   ConfirmComponent,
+  AplicaBonificacionDivComponent,
   ],
   providers: [
   VencidosService,
@@ -51,6 +54,8 @@ import { ConfirmService } from './_services/index';
   AplicaBonificacionComponent,
   BonificDivService,
   ConfirmService,
+  AplicaBonificacionDivComponent,
+  AplicaBonificServiceDiv
   ],
   exports:[
   Mov_edosctaListComponent,
@@ -59,6 +64,7 @@ import { ConfirmService } from './_services/index';
   VencidosComponent,
   centavos,
   ConfirmComponent,
+  AplicaBonificacionDivComponent,
   ],
 
 })

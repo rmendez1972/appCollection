@@ -14,6 +14,7 @@ import { TipoBonificacion } from './tipoBonificacion';
 import { Autoriza } from './autoriza';
 
 import {BonificacionDivComponent} from './bonificacion_div.component';
+import {AplicaBonificacionDivComponent} from './aplicabonificaciondiv.component';
 
 @Injectable()
 export class Aplica_Mov_diversosService {
@@ -39,6 +40,7 @@ export class Aplica_Mov_diversosService {
   constructor (private http: Http,
       private url:ServiceUrl,
       private alertService: AlertService,
+      private aplicabonificacioncomponent: AplicaBonificacionDivComponent
       //private bonificaciondiversos:BonificacionDivComponent
       )
       {
@@ -168,6 +170,7 @@ export class Aplica_Mov_diversosService {
     return body.autoriza || {};
   }
 
+  //sin bonificacion
   getPagar(diversos:string, corriente:number,
       descripcion:string,importe:number,
       intereses:number,otros:number){
@@ -235,11 +238,97 @@ export class Aplica_Mov_diversosService {
       usuarioFinal.fecha_div,usuarioFinal.poliza,usuarioFinal.recibo,importe,intereses,otros,
       estatus,usuarioFinal.id_usuario,descripcion,corriente,usuarioFinal.serie,
       beneficiarioFinal.clave_b,beneficiarioFinal.numcontrato,usuarioFinal.id_caja,bonific)
-    .subscribe();
+    .subscribe(
+      
+      );
 
     return this.PagarDiversos;
 
   };
+
+
+  //con bonificacion
+  getPagarBonificacion(diversos:string, corriente:number,
+    descripcion:string,importe:number,
+    intereses:number,otros:number, bonificacion:number, moratorios:number, autoriza:number){
+  return this.PagarDiversosBonific(diversos, corriente,descripcion,importe,intereses,otros,bonificacion,moratorios,autoriza);
+}
+
+
+  PagarDiversosBonific(diversos:String, corriente:number,descripcion:String,importe:number,
+      intereses:number,otros:number,bonificacion:number, moratorios:number, autoriza:number){
+
+    this.currentUser=[];
+    this.beneficiarioDiverso=[];
+
+    let id_bendiv:String; //beneficiario_div
+    let fecha_div:String; //currentUser
+    let poliza:String; //currentUser
+    let recibo:String; //currentUser
+    //otros ; otros importes
+    let estatus :String = 'A' ; //fijo
+    let id_usuario :String ; //currentUser
+    //descripcion; descripcion del cobro
+    //let id_catprog : String; // ¿Cuenta Corriente? o ¿Programa?
+    let serie :String ; // currentUser: serie
+    let clave_b :String ; // beneficiario_div
+    let numcontrato : String; //beneficiario_div
+    let id_caja : String; // currentUser
+    let bonific : number =0; // fijo 0;
+
+    this.currentUser =JSON.parse(localStorage.getItem('currentUser'));
+    this.beneficiarioDiverso =JSON.parse(localStorage.getItem('beneficiario_div'));
+
+    for (var i = 0; i < 1 ; i++) {
+      fecha_div= this.currentUser[i].fecha;
+      poliza = this.currentUser[i].poliza;
+      recibo = this.currentUser[i].folio_final;
+      id_usuario = this.currentUser[i].id;
+      serie= this.currentUser[i].serie;
+      id_caja = this.currentUser[i].id_caja;
+      
+    }
+
+    for (var y = 0; y < 1; ++y) {
+      id_bendiv = this.beneficiarioDiverso[y].id_bendiv;
+      clave_b = this.beneficiarioDiverso[y].clave_b;
+      numcontrato = this.beneficiarioDiverso[y].numcontrato;
+
+    }
+
+    let usuarioFinal = {
+      fecha_div : fecha_div,
+      poliza : poliza,
+      recibo :recibo,
+      id_usuario: id_usuario,
+      serie :serie, 
+      id_caja :id_caja
+
+    };
+    let beneficiarioFinal ={
+      id_bendiv : id_bendiv,
+      clave_b : clave_b,
+      numcontrato : numcontrato
+    }
+
+    this.dataPagarDiversos(beneficiarioFinal.id_bendiv, diversos,
+      usuarioFinal.fecha_div,usuarioFinal.poliza,usuarioFinal.recibo,importe,intereses,otros,
+      estatus,usuarioFinal.id_usuario,descripcion,corriente,usuarioFinal.serie,
+      beneficiarioFinal.clave_b,beneficiarioFinal.numcontrato,usuarioFinal.id_caja,bonific)
+    .subscribe(
+      diversos =>{
+        //console.log('VALOR DE APLICAR DENTRO DE aplicarservice '+aplicar);
+        console.log('ME ACOBO DE SUSCRIBIR DENTRO DE GETPAGARCONBONIFIC');
+        //if (aplicar.resultado){
+        this.aplicabonificacioncomponent.postBonificaciones(bonificacion,moratorios,autoriza);
+
+      }
+
+    );
+
+    return this.PagarDiversos;
+
+};
 
   private dataPagarDiversos(id_bendiv:String,clave_div:String,fecha_div:String,
     poliza:String,recibo:String,abono:number,moratorios:number,otros:number,estatus :String,
@@ -266,15 +355,6 @@ export class Aplica_Mov_diversosService {
       bonific:bonific.toString().trim(),
     };
 
-    console.log(this.UrlPagarDiversos+ param_pagar_diversos.id_bendiv+'&clave_div='
-      +param_pagar_diversos.clave_div+'&fecha_div='+param_pagar_diversos.fecha_div+'&poliza='
-      +param_pagar_diversos.poliza+'&recibo='+param_pagar_diversos.recibo+'&abono='
-      +param_pagar_diversos.abono+'&moratorios='+param_pagar_diversos.moratorios+'&otros='
-      +param_pagar_diversos.otros+'&estatus='+param_pagar_diversos.estatus+'&id_usuario='
-      +param_pagar_diversos.id_usuario+'&descripcion='+param_pagar_diversos.descripcion
-      +'&id_catprog='+param_pagar_diversos.id_catprog+'&serie='+param_pagar_diversos.serie
-      +'&clave_b='+param_pagar_diversos.clave_b+'&numcontrato='+param_pagar_diversos.numcontrato
-      +'&id_caja='+param_pagar_diversos.id_caja+'&bonific='+param_pagar_diversos.bonific);
     
     return this.http.get(this.UrlPagarDiversos+ param_pagar_diversos.id_bendiv+'&clave_div='
       +param_pagar_diversos.clave_div+'&fecha_div='+param_pagar_diversos.fecha_div+'&poliza='
@@ -292,6 +372,35 @@ export class Aplica_Mov_diversosService {
 
   private extractDataPagarDiversos (res: Response) {
     let body = res.json();
+    let id_mov_diversos;
+    let recibo;
+    //se extrae los valores del json y se asignan a variables
+    for (var i = 0; i < 1; ++i) {
+      id_mov_diversos = body.registroAplicaMovDiversos[1];
+
+      recibo= body.registroAplicaMovDiversos[2].toString();
+
+    }
+
+    console.log('id_mov_diversos RECIENTEMENTE INSERTADO EN EL BACK-END ES '+id_mov_diversos);
+
+    
+    let pagados ={
+      id_mov_diversos:id_mov_diversos,
+      recibo:recibo
+    }
+    let current = JSON.parse(localStorage.getItem('currentUser'));
+
+    //se añaden a la variable del localstorage las variables que se sacaron del json
+    for (var x = 0; x < 1; ++x) {
+
+      current[x].folio_final= pagados.recibo;
+      current[x].id_mov_diversos = pagados.id_mov_diversos;
+    }
+    //se setea la variable al localstorage 
+    localStorage.setItem('currentUser',JSON.stringify(current));
+
+
     console.log(body.registroAplicaMovDiversos);
     return body.registroAplicaMovDiversos|| { };
 
