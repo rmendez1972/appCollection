@@ -28,12 +28,15 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
     private totalmoratorios:number;
     private miservicesBonDiv:BonificDivService;
 
+
+    private mid:Observable<Aplica_Mov_diversosService[]>
+
     private diversos :string;
-    private corriente:string;
+    private corriente:number;
     private descripcion:string;
-    private importe:string;
-    private intereses:string;
-    private otros:string;
+    private importe:number;
+    private intereses:number;
+    private otros:number;
 
     onMessageAplicaBonificSi = new EventEmitter<String>();
 
@@ -177,81 +180,55 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
     }
 
 
-    //Confirm para aplicar los movimientos diversos
-    //confirm sin bonificaciones
-    confirmAplicaDiv(message:string='',diversos:string,corriente:string,descripcion:string,importe:string,intereses:string,otros:string,miservicesBonDiv:BonificDivService,miroute:ActivatedRoute, miM:Observable<Mov_diversos[]>,
-                    siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,route,m)=>void,noFn:()=>void){
 
-        this.setconfirmAplicaDiv(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,miroute, this.mim,siFn,noFn)         
-
-    }
-
-    setconfirmAplicaDiv(message:string='',diversos:string,corriente:string,descripcion:string,importe:string,intereses:string,otros:string,miservicesBonDiv:BonificDivService,miroute:ActivatedRoute, miM:Observable<Mov_diversos[]>,
-    siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,route,m)=>void,noFn:()=>void){
-        let that = this;
-        let mm:Observable<Mov_diversos[]>;
-
-        this.subject.next({ type: "confirm",
-        text: message,
-        siFn:
-        function(message,miservicesBonDiv){
-            that.subject.next(); //this will close the modal
-
-            //let aplicarservice=function() { return 'hola' };
-            siFn(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,miroute,mm);
-        },
-        noFn:function(){
-            that.subject.next();
-            noFn();
-        }
-    });
-
-    }
-
-    //Confirm para pagos de diversos
-    confirmDiversos(message: string='',diversos:string, corriente:string,
-      descripcion:string,importe:string,
-      intereses:string,otros:string,miservice:AplicarService,miroute:ActivatedRoute,
-      miK:Observable<Aplicar[]>,siFn:(message,diversos,corriente,descripcion,
-          importe,intereses,otros ,aplicarservice, routeservice,k)=>void,noFn:()=>void){
-
+    //Confirm para aplicar diversos sin bonificaciones
+    confirmDiversos(message: string='',diversos:string, corriente:number,
+      descripcion:string,importe:number,intereses:number,otros:number,miservice:Aplica_Mov_diversosService,
+      miroute:ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>,siFn:(message, diversos,
+          corriente,descripcion,importe,intereses,otros,aplica_mov_diversosservice, routeservice,p)=>void,
+      noFn:()=>void){
         this.diversos = diversos;
         this.corriente = corriente;
         this.descripcion = descripcion;
         this.importe = importe;
         this.intereses = intereses;
         this.otros = otros;
-        this.setConfirmationDiversos(message,this.diversos,this.corriente,this.descripcion,
-            this.importe,this.intereses,this.otros,miservice,miroute,this.mik,siFn,noFn);
+
+        this.setConfirmationDiversos(message,this.diversos,
+            this.corriente,
+            this.descripcion,
+            this.importe,
+            this.intereses,
+            this.otros,miservice,miroute,this.mid,siFn,noFn);
     }
 
-    setConfirmationDiversos(message: string, diversos:string, corriente:string,
-      descripcion:string,importe:string,
-      intereses:string,otros:string, miservice: AplicarService, miroute: ActivatedRoute,
-      miK:Observable<Aplicar[]>, siFn:(message,diversos,corriente,descripcion,importe,intereses,
-      otros ,aplicarservice,routeservice,k)=>void,noFn:()=>void) {
-        let that = this;
-        let midiversos  = diversos;
-        let micorriente = corriente;
-        let midescripcion = descripcion;
-        let miimporte  = importe;
-        let miintereses = intereses;
-        let miotros = otros;
 
+    setConfirmationDiversos(message: string, diversos:string, corriente:number,
+      descripcion:string,importe:number,intereses:number,otros:number, miservice: Aplica_Mov_diversosService, 
+      miroute: ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>, 
+      siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,aplica_mov_diversosservice,routeservice,
+          p)=>void,noFn:()=>void) {
+        let that = this;
+        let mdiversos = diversos;
+        let mcorriente = corriente;
+        let mdescripcion = descripcion;
+        let mimporte = importe;
+        let mintereses = intereses;
+        let motros = otros;
         let mimessage=message;
-        let mk: Observable<Aplicar[]>;
+        let miid: Observable<Aplica_Mov_diversosService[]>;
         //console.log('valor de mifecha dentro de setConfirmation '+ mifecha);
 
         this.subject.next({ type: "confirm",
                         text: message,
                         siFn:
-                        function(message,fecha,aplicarservice){
+                        function(message,diversos,corriente,descripcion,importe,intereses,
+                            otros,aplica_mov_diversosservice){
                             that.subject.next(); //this will close the modal
 
                             //let aplicarservice=function() { return 'hola' };
-                            siFn(mimessage ,midiversos,
-                                micorriente,midescripcion,miimporte,
-                                miintereses,miotros, miservice, miroute, mk);
+                            siFn(mimessage ,mdiversos,mcorriente,mdescripcion,mimporte,
+                                mintereses,motros, miservice, miroute, miid);
                         },
                         noFn:function(){
                             that.subject.next();
@@ -260,5 +237,7 @@ import { Mov_diversos } from '../mov_diversos/mov_diversos';
         });
 
     }
+
+
 
 }
