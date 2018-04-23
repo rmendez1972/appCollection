@@ -189,9 +189,7 @@ import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificacion
 
 
 
-<<<<<<< HEAD
-        this.setconfirmAplicaDiv(message,diversos,corriente,descripcion,importe,intereses,otros,miservicesBonDiv,miroute, this.mim,siFn,noFn)
-=======
+
     //Confirm para aplicar diversos sin bonificaciones
     confirmDiversos(message: string='',diversos:string, corriente:number,
       descripcion:string,importe:number,intereses:number,otros:number,miservice:Aplica_Mov_diversosService,
@@ -204,7 +202,7 @@ import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificacion
         this.importe = importe;
         this.intereses = intereses;
         this.otros = otros;
->>>>>>> 6b64d0eaab6b2b1eba3cd964a039f8389728383f
+
 
         this.setConfirmationDiversos(message,this.diversos,
             this.corriente,
@@ -216,8 +214,8 @@ import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificacion
 
 
     setConfirmationDiversos(message: string, diversos:string, corriente:number,
-      descripcion:string,importe:number,intereses:number,otros:number, miservice: Aplica_Mov_diversosService, 
-      miroute: ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>, 
+      descripcion:string,importe:number,intereses:number,otros:number, miservice: Aplica_Mov_diversosService,
+      miroute: ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>,
       siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,aplica_mov_diversosservice,routeservice,
           p)=>void,noFn:()=>void) {
         let that = this;
@@ -251,8 +249,8 @@ import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificacion
     }
 
     //Confirm de pago de mensualidades diversas con bonificacion
-    confirmDiversosBonificacion(message: string='',diversos:string, 
-      corriente:number,descripcion:string,importe:number,intereses:number,otros:number, 
+    confirmDiversosBonificacion(message: string='',diversos:string,
+      corriente:number,descripcion:string,importe:number,intereses:number,otros:number,
       bonificacion:number, moratorios:number, autoriza:number,miservice:Aplica_Mov_diversosService,
       miroute:ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>,siFn:(message, diversos,
           corriente,descripcion,importe,intereses,otros,bonificacion,moratorios,autoriza,
@@ -275,10 +273,10 @@ import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificacion
     }
 
 
-    setConfirmationDiversosBonificacion(message: string, diversos:string, 
-      corriente:number,descripcion:string,importe:number,intereses:number,otros:number, 
-      bonificacion:number, moratorios:number, autoriza:number, miservice: Aplica_Mov_diversosService, 
-      miroute: ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>, 
+    setConfirmationDiversosBonificacion(message: string, diversos:string,
+      corriente:number,descripcion:string,importe:number,intereses:number,otros:number,
+      bonificacion:number, moratorios:number, autoriza:number, miservice: Aplica_Mov_diversosService,
+      miroute: ActivatedRoute,mid:Observable<Aplica_Mov_diversosService[]>,
       siFn:(message,diversos,corriente,descripcion,importe,intereses,otros,bonificacion,
           moratorios,autoriza ,aplica_mov_diversosservice,routeservice,
           p)=>void,noFn:()=>void) {
@@ -305,7 +303,7 @@ import {AplicaBonificacionDivComponent} from '../mov_diversos/aplicabonificacion
 
                             //let aplicarservice=function() { return 'hola' };
                             siFn(mimessage ,mdiversos,mcorriente,mdescripcion,mimporte,
-                                mintereses,motros,mbonificacion,mmoratorios,mautoriza, 
+                                mintereses,motros,mbonificacion,mmoratorios,mautoriza,
                                 miservice, miroute, miid);
                         },
                         noFn:function(){
