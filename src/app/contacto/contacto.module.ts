@@ -4,7 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { ContactoComponent }  from './contacto.component';
 import { ContactoRoutingModule } from './contacto-routing.module';
 
-import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [

@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -52,8 +53,7 @@ export class ContactoComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  title = 'Contacto';
+  title: string = 'Contacto';
   // google maps zoom level
   zoom: number = 17;
   lat: number = 18.49926214;

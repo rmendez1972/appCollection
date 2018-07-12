@@ -5,7 +5,8 @@
   app-salmindf
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, AfterViewInit, ElementRef} from '@angular/core';
+import { Component, OnInit, HostBinding, AfterViewInit, ElementRef} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Salmindf } from './salmindf';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';

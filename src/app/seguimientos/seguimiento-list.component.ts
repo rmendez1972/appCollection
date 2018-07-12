@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding} from '@angular/core';
+import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { Solicitante } from './solicitante';
 import { Solicitud } from './solicitud';
 import { Tramite } from './tramite';

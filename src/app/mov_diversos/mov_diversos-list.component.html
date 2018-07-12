@@ -85,12 +85,12 @@
                 <td width="">{{mov.clave_div}}</td>
                 <td width="">{{mov.descripcion}}</td>
                 <td width="">{{mov.poliza}}</td>
-                <td width=""style="text-align:right">{{mov.cargo | number:'1.2-2'}}</td>
-                <td width=""style="text-align:right">{{mov.abono | number:'1.2-2'}}</td>
-                <td width=""style="text-align:right">{{mov.moratorios | number:'1.2-2'}}</td>
-                <td width=""style="text-align:right">{{mov.otros | number:'1.2-2'}}</td>
-                <td width=""style="text-align:right">{{mov.interes | number:'1.2-2'}}</td>
-                <td width=""style="text-align:right">{{mov.seguro | number:'1.2-2'}}</td>
+                <td width=""style="text-align:right">{{mov.cargo | currency:'MXN'}}</td>
+                <td width=""style="text-align:right">{{mov.abono | currency:'MXN'}}</td>
+                <td width=""style="text-align:right">{{mov.moratorios | currency:'MXN'}}</td>
+                <td width=""style="text-align:right">{{mov.otros | currency:'MXN'}}</td>
+                <td width=""style="text-align:right">{{mov.interes | currency:'MXN'}}</td>
+                <td width=""style="text-align:right">{{mov.seguro | currency:'MXN'}}</td>
                 <td [ngSwitch]="mov.bonific">                  
                   <div *ngSwitchCase="1" [ngClass]="bonific"    [style.color]="'#3fb7fe'" title="Movimiento con Bonificación" > </div>
                   <div *ngSwitchCase="0" [ngClass]="nobonific"  [style.color]="'#3fb7fe'" title="Movimiento sin Bonificación"> </div>

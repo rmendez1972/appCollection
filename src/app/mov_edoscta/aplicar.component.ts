@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, HostBinding,Input, EventEmitter, Output } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 
 import { Aplicar } from './aplicar';
 

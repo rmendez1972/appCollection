@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Seguimiento } from '../seguimientos/seguimiento';
 import { SeguimientoRoutingModule} from '../seguimientos/seguimientos-routing.module';

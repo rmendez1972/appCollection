@@ -1,5 +1,6 @@
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding} from '@angular/core';
+import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { RequestOptions, Headers } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../_models/index';

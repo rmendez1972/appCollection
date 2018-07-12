@@ -5,7 +5,8 @@
   app-cpp
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, HostBinding, AfterViewInit, ElementRef } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Cpp } from './cpp';
 import { Benef_div } from './benef_div';
 import { CatalogosService} from './catalogos.service';

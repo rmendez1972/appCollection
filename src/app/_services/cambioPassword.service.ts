@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { User } from '../_models/index';
 import { ServiceUrl } from '../serviceUrl';
