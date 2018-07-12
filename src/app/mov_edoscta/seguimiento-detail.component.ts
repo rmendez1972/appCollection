@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Solicitante } from './solicitante';
 import {SeguimientoService} from './seguimiento.service';

@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state } from '@angular/core';
+import { Component, OnInit, HostBinding} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Solicitante } from './solicitante';
 
 import { Mov_edocta } from './mov_edocta';

@@ -2,7 +2,7 @@ import { Injectable,  OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationStart, ActivatedRoute, Params } from '@angular/router';
 
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { AplicarService} from '../mov_edoscta/aplicar.service';
 import { Aplicar } from '../mov_edoscta/aplicar';
 import { Observable } from 'rxjs/Observable';

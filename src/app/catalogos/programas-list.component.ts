@@ -5,7 +5,8 @@
   
 */ 
 
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, ElementRef,AfterViewInit} from '@angular/core';
+import { Component, OnInit, HostBinding, ElementRef,AfterViewInit} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Programas } from './programas';
 import { CatalogosService} from './catalogos.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';

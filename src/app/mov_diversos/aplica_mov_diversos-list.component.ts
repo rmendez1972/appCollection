@@ -1,5 +1,5 @@
-import { Component, OnInit, HostBinding, trigger, transition, animate, style, state, Input, EventEmitter, Output} from '@angular/core';
-
+import { Component, OnInit, HostBinding, Input, EventEmitter, Output} from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Aplica_Mov_diversos } from './aplica_mov_diversos';
 import { Benef_div } from './benef_div';
 import { Mov_diversos } from './mov_diversos';
