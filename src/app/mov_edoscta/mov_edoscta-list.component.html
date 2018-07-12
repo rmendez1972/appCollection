@@ -107,14 +107,14 @@
               <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.clave_mov}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.recibo}}</td>
               <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.serie}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.capital | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.interes | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.admon | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.seguro | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.o_seguro | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.comisiones | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.tit | currency:'MXN':true:'.2'}}</td>
-              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN':true:'.2'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.capital | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.interes | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.admon | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.seguro | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.o_seguro | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.comisiones | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.tit | currency:'MXN'}}</td>
+              <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN'}}</td>
 
               <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" >
                   <div *ngIf="mov.bonific;then conbonific else sinbonific"></div>
@@ -127,14 +127,14 @@
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.clave_mov}}</strong></td>
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.recibo}}</strong></td>
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.serie}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.capital | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.interes | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.admon | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.seguro | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.o_seguro | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.comisiones | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.tit | currency:'MXN':true:'.2'}}</strong></td>
-              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.capital | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.interes | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.admon | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.seguro | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.o_seguro | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.comisiones | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.tit | currency:'MXN'}}</strong></td>
+              <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right"><strong>{{mov.moratorios | currency:'MXN'}}</strong></td>
 
               <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right" ><span>{{mov.bonific}}</span></td>
 

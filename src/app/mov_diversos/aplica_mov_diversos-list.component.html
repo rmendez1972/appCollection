@@ -105,9 +105,9 @@
             <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.descripcion}}</td>
             <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.recibo}}</td>
             <td *ngSwitchCase="false" [ngClass]="renglon_style">{{mov.serie}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.cargo | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.abono | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN':true:'.2'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.cargo | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.abono | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{mov.moratorios | currency:'MXN'}}</td>
             <td *ngSwitchCase="false" [ngClass]="renglon_style" style="font-size: 13px" style="text-align: right" >
                 <div *ngIf="mov.aplicado;then conaplicado else sinaplicado"></div>
 
@@ -121,9 +121,9 @@
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.descripcion}}</strong></td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.recibo}}</strong></td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{mov.serie}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.cargo | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.abono | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.moratorios | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.cargo | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.abono | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{mov.moratorios | currency:'MXN'}}</strong></td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" style="text-align: right" ><span>{{mov.aplicado}}</span></td>
           </tr>
           </tbody>

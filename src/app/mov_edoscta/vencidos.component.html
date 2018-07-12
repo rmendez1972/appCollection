@@ -21,27 +21,27 @@
 
             <td *ngSwitchCase="false" [ngClass]="renglon_style"  > {{venc.fecha}}</td>
             <td *ngSwitchCase="false" [ngClass]="renglon_style"  >{{venc.letra }}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.capital | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.interes | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;" >{{venc.seguro | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.admon | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;">{{venc.oseg | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.com | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.tit | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;">{{venc.mor | currency:'MXN':true:'.2'}}</td>
-            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;"><strong>{{venc.total | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.capital | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.interes | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;" >{{venc.seguro | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.admon | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;">{{venc.oseg | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.com | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style"  style="text-align: right;">{{venc.tit | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;">{{venc.mor | currency:'MXN'}}</td>
+            <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right;"><strong>{{venc.total | currency:'MXN'}}</strong></td>
 
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" ><strong>{{venc.fecha}}</strong> </td>
             <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px" ><strong>{{venc.letra }}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.capital | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.interes | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.seguro | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"  ><strong>{{venc.admon | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{venc.oseg | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.com | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.tit | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{venc.mor | currency:'MXN':true:'.2'}}</strong></td>
-            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{venc.total | currency:'MXN':true:'.2'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.capital | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.interes | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.seguro | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"  ><strong>{{venc.admon | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{venc.oseg | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.com | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;" ><strong>{{venc.tit | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{venc.mor | currency:'MXN'}}</strong></td>
+            <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right;"><strong>{{venc.total | currency:'MXN'}}</strong></td>
 
 
       </tr>

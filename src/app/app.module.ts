@@ -117,7 +117,7 @@ import { Aplica_Mov_diversosRoutingModule } from './mov_diversos/aplica_mov_dive
     //fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
-    {provide: LOCALE_ID, useValue: 'es-MX' },
+    ,
   ],
 
   bootstrap: [AppComponent, MenuComponent]

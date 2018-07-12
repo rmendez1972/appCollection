@@ -24,22 +24,22 @@
   
       <tr style="font-size: 10px" *ngFor="let bon of bonific_div; let i = index"  [ngSwitch]="validaUltimoBon(i)">
         <td *ngSwitchCase="false" [ngClass]="renglon_style">{{bon.clavebonific}}</td>
-        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_cap | currency:'MXN':true:'.2'}}</td>
-        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_int | currency:'MXN':true:'.2'}}</td>
-        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_adm | currency:'MXN':true:'.2'}}</td>
-        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_seg | currency:'MXN':true:'.2'}}</td>
-        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_osg | currency:'MXN':true:'.2'}}</td>
+        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_cap | currency:'MXN'}}</td>
+        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_int | currency:'MXN'}}</td>
+        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_adm | currency:'MXN'}}</td>
+        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_seg | currency:'MXN'}}</td>
+        <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.imp_osg | currency:'MXN'}}</td>
         <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: center">{{bon.estatus}}</td>
         <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: right">{{bon.recibo}}</td>
         <td *ngSwitchCase="false" [ngClass]="renglon_style" style="text-align: center">{{bon.serie}}</td>
         <td *ngSwitchCase="false" [ngClass]="renglon_style" >{{bon.nombreautoriza}}</td>
 
         <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px"><strong>{{bon.clavebonific}}</strong></td>
-        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_cap | currency:'MXN':true:'.2'}}</strong></td>
-        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_int | currency:'MXN':true:'.2'}}</strong></td>
-        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_adm | currency:'MXN':true:'.2'}}</strong></td>
-        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_seg | currency:'MXN':true:'.2'}}</strong></td>
-        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_osg | currency:'MXN':true:'.2'}}</strong></td>
+        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_cap | currency:'MXN'}}</strong></td>
+        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_int | currency:'MXN'}}</strong></td>
+        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_adm | currency:'MXN'}}</strong></td>
+        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_seg | currency:'MXN'}}</strong></td>
+        <td *ngSwitchCase="true" [ngClass]="totales_style" style="font-size: 13px; text-align: right"><strong>{{bon.imp_osg | currency:'MXN'}}</strong></td>
         <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: center"><strong>{{bon.estatus}}</strong></td>
         <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: right"><strong>{{bon.recibo}}</strong></td>
         <td *ngSwitchCase="true" [ngClass]="totales_style" style="text-align: center"><strong>{{bon.serie}}</strong></td>
