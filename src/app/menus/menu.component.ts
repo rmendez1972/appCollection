@@ -1,6 +1,6 @@
 import { Component , OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+//import { UserService } from '../_services/index';
 //import { Hero } from './hero';
 //import {HeroService} from './hero.service';
 //import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
 	users: User[] = [];
 	@Output() everySecond: EventEmitter<any> = new EventEmitter();
 
-     constructor(private userService: UserService) {
+     constructor(/*private userService: UserService*/) {
          setInterval(() => this.everySecond.emit(this.currentUser = JSON.parse(localStorage.getItem('currentUser'))), 1000);
 
     }

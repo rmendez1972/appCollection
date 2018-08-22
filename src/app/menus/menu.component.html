@@ -1,71 +1,71 @@
 <div [hidden]="!currentUser">
-<div>
-<ul  class="nav navbar-nav">
+  <div>
+    <ul  class="nav navbar-nav">
 
-	<li class="active" ><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
-   <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobranza<b class="caret"></b></a>
-      <ul class="dropdown-menu">
-
-        <li><a tabindex="-1" routerLink="/cajas/listar" routerLinkActive="active">Apertura Caja</a></li>
-        <li role="separator" class="divider"></li>
-        <li class="dropdown-submenu">
-          <a class="test" tabindex="-1" href="#">Aplicación de Pagos <span class="caret"></span></a>
+    	<li class="active" ><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
+       <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cobranza<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/aplica_mov_edoscta" routerLinkActive="active">Por Programas</a></li>
-            <li><a routerLink="/aplica_mov_diversos" routerLinkActive="active">Por Diversos</a></li>
+
+            <li><a tabindex="-1" routerLink="/cajas/listar" routerLinkActive="active">Apertura Caja</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-submenu">
+              <a class="test" tabindex="-1" href="#">Aplicación de Pagos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/aplica_mov_edoscta" routerLinkActive="active">Por Programas</a></li>
+                <li><a routerLink="/aplica_mov_diversos" routerLinkActive="active">Por Diversos</a></li>
+
+
+              </ul>
+            </li>
+
+
 
 
           </ul>
+      </li>
+      <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estados de Cuenta<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/mov_edoscta" routerLinkActive="active">Por Programas</a></li>
+            <!--<li><a href="single-post.html"><span class="icon-mail3"></span> Cambia tu password</a></li>-->
+            <li><a routerLink="/mov_diversos" routerLinkActive="active">Por Diversos</a></li>
+
+          </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a routerLink="/programas" routerLinkActive="active">Programas</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a routerLink="/cpp" routerLinkActive="active">CPP</a></li>
+              <!--<li><a href="single-post.html"><span class="icon-mail3"></span> Cambia tu password</a></li>-->
+              <li><a routerLink="/salmin" routerLinkActive="active">Salarios Minimos</a></li>
+              <li><a routerLink="/salmindf" routerLinkActive="active">Salarios Minimos DF</a></li>
+              <li><a routerLink="/clavemov" routerLinkActive="active">Claves de Movimientos</a></li>
+              <li><a routerLink="/clavediv" routerLinkActive="active">Claves de Movimientos Diversos</a></li>
+              <li><a routerLink="/bonificaciones" routerLinkActive="active">Bonificaciones</a></li>
+            </ul>
         </li>
 
+      <!-- <li><a routerLink="/seguimientos" routerLinkActive="active">Seguimientos</a></li> -->
+      <li><a routerLink="/contacto" routerLinkActive="active">Contacto</a></li>
+    	<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Salir<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/login" routerLinkActive="active"><span class="icon-lock"></span>Cerrar Sesion</a></li>
+            <!--<li><a href="single-post.html"><span class="icon-mail3"></span> Cambia tu password</a></li>-->
+            <li><a routerLink="/cambia-password" routerLinkActive="active"><span class="icon-pencil"></span> Cambia tu password</a></li>
 
+          </ul>
+      </li>
 
+    </ul>
 
-      </ul>
-  </li>
-  <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estados de Cuenta<b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a routerLink="/mov_edoscta" routerLinkActive="active">Por Programas</a></li>
-        <!--<li><a href="single-post.html"><span class="icon-mail3"></span> Cambia tu password</a></li>-->
-        <li><a routerLink="/mov_diversos" routerLinkActive="active">Por Diversos</a></li>
-
-      </ul>
-  </li>
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/programas" routerLinkActive="active">Programas</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a routerLink="/cpp" routerLinkActive="active">CPP</a></li>
-          <!--<li><a href="single-post.html"><span class="icon-mail3"></span> Cambia tu password</a></li>-->
-          <li><a routerLink="/salmin" routerLinkActive="active">Salarios Minimos</a></li>
-          <li><a routerLink="/salmindf" routerLinkActive="active">Salarios Minimos DF</a></li>
-          <li><a routerLink="/clavemov" routerLinkActive="active">Claves de Movimientos</a></li>
-          <li><a routerLink="/clavediv" routerLinkActive="active">Claves de Movimientos Diversos</a></li>
-          <li><a routerLink="/bonificaciones" routerLinkActive="active">Bonificaciones</a></li>
-        </ul>
-    </li>
-
-  <!-- <li><a routerLink="/seguimientos" routerLinkActive="active">Seguimientos</a></li> -->
-  <li><a routerLink="/contacto" routerLinkActive="active">Contacto</a></li>
-	<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Salir<b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a routerLink="/login" routerLinkActive="active"><span class="icon-lock"></span>Cerrar Sesion</a></li>
-        <!--<li><a href="single-post.html"><span class="icon-mail3"></span> Cambia tu password</a></li>-->
-        <li><a routerLink="/cambia-password" routerLinkActive="active"><span class="icon-pencil"></span> Cambia tu password</a></li>
-
-      </ul>
-  </li>
-
-</ul>
-
-</div>
-<div *ngFor="let usuario of currentUser" style="margin-right: 0px; margin-top: 0px; display: inline-block; font-size: 12px;font-weight: normal;" class="label label-info">
-  <i class="glyphicon glyphicon-user" style="font-size: 16px; margin-right: 5px;"></i>
-  Hola <strong>{{usuario.firstname}}</strong>, bienvenido a la app de Cobranza!
-</div>
+  </div>
+  <div *ngFor="let usuario of currentUser" style="margin-right: 0px; margin-top: 0px; display: inline-block; font-size: 12px;font-weight: normal;" class="label label-info">
+    <i class="glyphicon glyphicon-user" style="font-size: 16px; margin-right: 5px;"></i>
+    Hola <strong>{{usuario.firstname}}</strong>, bienvenido a la app de Cobranza!
+  </div>
 
 </div>

@@ -1,8 +1,8 @@
 /*
-  Módulo de ruteo para movimientos diversos
+  Módulo de ruteo para el menu de catálogos
   Marlon Gomez
   18/08/2017
-  última modificación: 
+  última modificación:
 */
 
 //Librerías y archivos que se requieren imporar.
@@ -20,15 +20,15 @@ import { AuthGuard } from '../_guards/auth.guard';
 
 const catalogosRoutes: Routes = [
 
-  { path: 'catalogos',      component: CatalogosListComponent, canActivate: [AuthGuard] },
+
   { path: 'cpp',            component: CppListComponent, canActivate: [AuthGuard] },
   { path: 'salmin',         component: SalminListComponent, canActivate: [AuthGuard] },
   { path: 'salmindf',       component: SalmindfListComponent, canActivate: [AuthGuard] },
   { path: 'clavemov',       component: ClavemovListComponent, canActivate: [AuthGuard] },
   { path: 'clavediv',       component: ClavedivListComponent, canActivate: [AuthGuard] },
   { path: 'bonificaciones', component: BonificacionesListComponent, canActivate: [AuthGuard] },
-  { path: 'programas',      component: ProgramasListComponent, canActivate: [AuthGuard] },
-  { path: 'catalogos/:id/:idSol', component: CatalogosListComponent, canActivate: [AuthGuard] }
+  { path: 'programas',      component: ProgramasListComponent, canActivate: [AuthGuard] }
+
 
 ];
 
