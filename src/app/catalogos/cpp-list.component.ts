@@ -1,10 +1,3 @@
-/*
-  Componenete para listar los cpp
-  Marlon Gomez
-  23/08/2017
-  app-cpp
-*/ 
-
 import { Component, OnInit, HostBinding, AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Cpp } from './cpp';
@@ -15,6 +8,13 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 declare var $: any;
+
+/**
+ * class CppListComponent()
+ * Clase que realiza la presentación del catalogo de cpp.
+ * @author: Marlon Gomez
+ * @return {export} export class
+ */
 @Component({
   selector: 'app-cpp',
   templateUrl: './cpp-list.component.html',
@@ -57,19 +57,16 @@ export class CppListComponent implements OnInit, AfterViewInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   model:any={};
-  rootNode: any;
-  
+  rootNode: any; 
   private cpp: Cpp[];
- 
-
-  private k: Observable<Cpp[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
+  private k: Observable<Cpp[]>;  
   private miMensaje:    String;
+  title = 'Catálogo de Cpp';
 
   constructor(
       private router: Router,
@@ -86,15 +83,26 @@ export class CppListComponent implements OnInit, AfterViewInit {
   	ngOnInit() {
       this.getCpp();
     };
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
       // viewChild is set after the view has been initialized
       var el = $(this.rootNode.nativeElement).find('#cpp')[0];
       this.paginadorCpp();
     }
 
-  	title = 'Catálogo de Cpp';
-
-
+    /**
+    * getCpp() 
+    * metodo para realizar la busqueda del catalogo cpp
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getCpp() {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -109,11 +117,25 @@ export class CppListComponent implements OnInit, AfterViewInit {
                        cpp => this.cpp = cpp,
                        error =>  this.errorMessage = <any>error);
     };
-
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+
+    /**
+    * paginadorCpp() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginadorCpp() {
       $(document).ready(function() {
         $('#cpp').DataTable();

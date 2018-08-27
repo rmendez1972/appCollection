@@ -1,10 +1,3 @@
-/*
-  Componenete para listar los salarios minimos
-  Marlon Gomez
-  23/08/2017
-  app-clavemov
-*/ 
-
 import { Component, OnInit, HostBinding,AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Clavemov } from './clavemov';
@@ -14,6 +7,14 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 declare var $: any;
+
+/**
+ * class BonificacionesListComponent()
+ * Clase que realiza la presentación del catalogo de los movimientos estado de cuenta.
+ *.@author: Marlon Gomez
+ * @return {export} export class
+ */
+
 @Component({
   selector: 'app-clavemov',
   templateUrl: './clavemov-list.component.html',
@@ -56,19 +57,16 @@ export class ClavemovListComponent implements OnInit,AfterViewInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   model:any={};
   rootNode: any;
-  
   private clavemov: Clavemov[];
- 
-
   private k: Observable<Clavemov[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
   private miMensaje:    String;
+  title = 'Catálogo de Claves de Movimientos';
 
   constructor(
       private router: Router,
@@ -86,15 +84,25 @@ export class ClavemovListComponent implements OnInit,AfterViewInit {
       
       this.getClavemov();
     };
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
-      // viewChild is set after the view has been initialized
       var el = $(this.rootNode.nativeElement).find('#clavemov')[0];
       this.paginadorClaveMov();
     }
 
-  	title = 'Catálogo de Claves de Movimientos';
-
-
+    /**
+    * getClavemov() 
+    * metodo para realizar la busqueda del catalogo de los movimientos estado de cuenta
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getClavemov() {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -110,10 +118,25 @@ export class ClavemovListComponent implements OnInit,AfterViewInit {
                        error =>  this.errorMessage = <any>error);
     };
 
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+
+    /**
+    * paginadorClaveMov() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginadorClaveMov() {
       $(document).ready(function() {
         $('#clavemov').DataTable();

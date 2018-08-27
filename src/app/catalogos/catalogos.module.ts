@@ -1,11 +1,9 @@
-/*
-  Modulo de catalogos
-  Marlon Gomez
-  22/08/2017
-  
+/**
+* catalogos.module()
+* Librerías y archivos que se requieren impotar para el modulo de catalogos.
+* @author: Marlon Gomez
+* @return {export} export class
 */
-
-//Librerías y archivos que se requieren imporar.
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';

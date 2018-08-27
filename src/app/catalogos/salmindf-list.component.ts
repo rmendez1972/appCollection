@@ -14,6 +14,13 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 declare var $: any;
+
+/**
+ * class SalmindfListComponent()
+ * Clase que realiza la presentación del catalogo de los salarios minimos DF
+ *.@author: Marlon Gomez
+ * @return {export} export class
+ */
 @Component({
   selector: 'app-salmindf',
   templateUrl: './salmindf-list.component.html',
@@ -56,18 +63,15 @@ export class SalmindfListComponent implements OnInit, AfterViewInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   model:any={};
   rootNode: any;
-  
+  title = 'Catálogo de Salarios Minimos Distrito Federal';
   private salmindf: Salmindf[];
- 
-
   private k: Observable<Salmindf[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
   private miMensaje:    String;
 
   constructor(
@@ -88,15 +92,25 @@ export class SalmindfListComponent implements OnInit, AfterViewInit {
       
 
     };
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
-      // viewChild is set after the view has been initialized
       var el = $(this.rootNode.nativeElement).find('#salmindf')[0];
       this.paginadorSalMinDF();
     }
 
-  	title = 'Catálogo de Salarios Minimos Distrito Federal';
-
-
+   /**
+    * getSalmindf() 
+    * metodo para realizar la busqueda del catalogo de los salarios minimos DF
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getSalmindf() {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -112,10 +126,25 @@ export class SalmindfListComponent implements OnInit, AfterViewInit {
                        error =>  this.errorMessage = <any>error);
     };
 
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+
+    /**
+    * paginadorSalmin() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginadorSalMinDF() {
       $(document).ready(function() {
         $('#salmindf').DataTable();

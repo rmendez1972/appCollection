@@ -1,9 +1,3 @@
-/*
-  Componenete para listar las claves de movimientos diversos
-  Marlon Gomez
-  23/08/2017
-  app-clavediv
-*/ 
 
 import { Component, OnInit, HostBinding,AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
@@ -14,6 +8,14 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 declare var $: any;
+
+/**
+ * class BonificacionesListComponent()
+ * Clase que realiza la presentación del catalogo de bonificaciones.
+ *.@author: Marlon Gomez
+ * @return {export} export class
+ */
+
 @Component({
   selector: 'app-bonificaciones',
   templateUrl: './bonificaciones-list.component.html',
@@ -56,20 +58,16 @@ export class BonificacionesListComponent implements OnInit, AfterViewInit{
     return 'relative';
   }
 
-
+/**
+* Variables locales
+*/
   private errorMessage: string;
   model:any={};
   rootNode: any;
-
-  
   private bonificaciones: Bonificaciones[];
- 
-
   private k: Observable<Bonificaciones[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
   private miMensaje:    String;
+  title = 'Catálogo de Bonificaciones';
 
   constructor(
       private router: Router,
@@ -77,31 +75,38 @@ export class BonificacionesListComponent implements OnInit, AfterViewInit{
       private catalogosservice: CatalogosService,
       private alertService:AlertService,
       rootNode : ElementRef
-
     )
     {
-    this.rootNode = rootNode;
+      this.rootNode = rootNode;
     }
 
-
   	ngOnInit() {
-      
       this.getBonificaciones();
-      
-
     };
+
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
-      // viewChild is set after the view has been initialized
       var el = $(this.rootNode.nativeElement).find('#bonificaciones')[0];
       this.paginadorBonificaciones();
     }
 
-  	title = 'Catálogo de Bonificaciones';
+  	
 
-
+    /**
+    * getBonificaciones() 
+    * metodo para realizar la busqueda del catalogo de bonificaciones.
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getBonificaciones() {
         this.k=this.route.params
-        // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
 
@@ -114,11 +119,25 @@ export class BonificacionesListComponent implements OnInit, AfterViewInit{
                        error =>  this.errorMessage = <any>error);
     };
 
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
 
+    /**
+    * paginadorBonificaciones() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginadorBonificaciones(){
 
       $(document).ready(function() {

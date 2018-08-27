@@ -1,10 +1,3 @@
-/*
-  Componenete para listar los salarios minimos
-  Marlon Gomez
-  23/08/2017
-  app-salmin
-*/ 
-
 import { Component, OnInit, HostBinding, AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Salmin } from './salmin';
@@ -14,6 +7,13 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 declare var $: any;
+
+/**
+ * class SalminListComponent()
+ * Clase que realiza la presentación del catalogo de los salarios minimos
+ *.@author: Marlon Gomez
+ * @return {export} export class
+ */
 @Component({
   selector: 'app-salmin',
   templateUrl: './salmin-list.component.html',
@@ -56,18 +56,15 @@ export class SalminListComponent implements OnInit, AfterViewInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   model:any={};
   rootNode: any;
-  
+  title = 'Catálogo de Salarios Minimos';
   private salmin: Salmin[];
- 
-
   private k: Observable<Salmin[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
   private miMensaje:    String;
 
   constructor(
@@ -85,15 +82,25 @@ export class SalminListComponent implements OnInit, AfterViewInit {
   	ngOnInit() {
       this.getSalmin();
     };
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
       var el = $(this.rootNode.nativeElement).find('#salmin')[0];
       this.paginadorSalMin();
     }
 
-
-  	title = 'Catálogo de Salarios Minimos';
-
-
+   /**
+    * getSalmin() 
+    * metodo para realizar la busqueda del catalogo de los salarios minimos
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getSalmin() {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -109,10 +116,25 @@ export class SalminListComponent implements OnInit, AfterViewInit {
                        error =>  this.errorMessage = <any>error);
     };
 
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
+
+    /**
+    * paginadorSalmin() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginadorSalMin() {
       $(document).ready(function() {
         $('#salmin').DataTable();

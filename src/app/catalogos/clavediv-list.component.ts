@@ -1,10 +1,3 @@
-/*
-  Componenete para listar las claves de movimientos diversos
-  Marlon Gomez
-  23/08/2017
-  app-clavediv
-*/ 
-
 import { Component, OnInit, HostBinding, AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Clavediv } from './clavediv';
@@ -13,6 +6,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
+
+/**
+ * class ClavedivListComponent()
+ * Clase que realiza la presentación del catalogo de los movimientos diversos.
+ *.@author: Marlon Gomez
+ * @return {export} export class
+ */
 
 declare var $: any;
 
@@ -58,19 +58,16 @@ export class ClavedivListComponent implements OnInit, AfterViewInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   model:any={};
   rootNode: any;
-  
   private clavediv: Clavediv[];
- 
-
   private k: Observable<Clavediv[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
   private miMensaje:    String;
+  title = 'Catálogo de Clave de Movimientos Diversos';
 
   constructor(
       private router: Router,
@@ -88,15 +85,26 @@ export class ClavedivListComponent implements OnInit, AfterViewInit {
       
       this.getClavediv();
     };
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
       // viewChild is set after the view has been initialized
       var el = $(this.rootNode.nativeElement).find('#clavediv')[0];
       this.paginadorClaveDiv();
     }
 
-  	title = 'Catálogo de Clave de Movimientos Diversos';
-
-
+    /**
+    * getClavediv() 
+    * metodo para realizar la busqueda del catalogo de los movimientos diversos
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getClavediv() {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -111,12 +119,24 @@ export class ClavedivListComponent implements OnInit, AfterViewInit {
                        clavediv => this.clavediv = clavediv,
                        error =>  this.errorMessage = <any>error);
     };
-
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     }
-
+    /**
+    * paginadorClaveDiv() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginadorClaveDiv() {
 
       $(document).ready(function() {

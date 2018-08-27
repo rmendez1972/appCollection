@@ -1,10 +1,3 @@
-/*
-  Componente para listar el catalogo de programas (condiciones financieras)
-  igh
-  19/09/2017
-  
-*/ 
-
 import { Component, OnInit, HostBinding, ElementRef,AfterViewInit} from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Programas } from './programas';
@@ -13,12 +6,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
-
-/*
-Aplicando data tables
-*/
-
 declare var $: any;
+
+/**
+ * class ProgramasListComponent()
+ * Clase que realiza la presentación del catalogo de  programas (condiciones financieras)
+ * @author: Ismael Garcia
+ * @return {export} export class
+ */
+
 @Component({
   selector: 'app-programas',
   templateUrl: './programas-list.component.html',
@@ -61,20 +57,16 @@ export class ProgramasListComponent implements OnInit,AfterViewInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   model:any={};
   rootNode: any;
-  
   private programas: Programas[];
- 
-
-  private k: Observable<Programas[]>;
-
-  //private e: Observable<Seguimiento[]>;
-  
+  private k: Observable<Programas[]>; 
   private miMensaje:    String;
-
+  title = 'Catálogo de Programas';
   constructor(
       private router: Router,
       private route:  ActivatedRoute,
@@ -89,19 +81,27 @@ export class ProgramasListComponent implements OnInit,AfterViewInit {
 
   	ngOnInit() {
       this.getProgramas();
-      
-
-      
     };
+    /**
+    * ngAfterViewInit() 
+    * 
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     ngAfterViewInit() {
       // viewChild is set after the view has been initialized
       var el = $(this.rootNode.nativeElement).find('#programas')[0];
       this.paginador();
     }
 
-  	title = 'Catálogo de Programas';
-
-
+    /**
+    * getProgramas() 
+    * metodo para realizar la busqueda del catalogo de programas (condiciones financieras)
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getProgramas() {
         this.k=this.route.params
         // (+) converts string 'id' to a number
@@ -117,10 +117,25 @@ export class ProgramasListComponent implements OnInit,AfterViewInit {
                        error =>  this.errorMessage = <any>error);
     };
 
+    /**
+    * onMessage() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
     onMessage(mensaje:String){
       console.log("Recuperacion exitosa dentro de componente padre "+mensaje);
       this.miMensaje = mensaje;
     };
+
+    /**
+    * paginador() 
+    * metodo que realiza el estilo "datatable"
+    *  @author: Angel Lara
+    *  
+    *  @return {Void}
+    */
     paginador(){
       $(document).ready(function() {
         $('#programas').DataTable();

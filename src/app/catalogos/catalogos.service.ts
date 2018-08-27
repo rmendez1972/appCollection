@@ -8,14 +8,20 @@ import { Bonificaciones } from './bonificaciones';
 import { Programas } from './programas';
 import { Http, Response, Headers,RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-//import {Observable} from 'rxjs/Rx';
 import { ServiceUrl } from '../serviceUrl';
 import { AlertService} from '../_services/index';
 
 @Injectable()
+/**
+* class CatalogosService()
+* Esta clase se usa para conectar con el Back End y obtener los datos a usar.
+* @author: Marlon Gomez
+* @return {export} export class 
+*/
 export class CatalogosService {
-
-  //private seguimientosUrl: string;
+/**
+* Variables locales
+*/
   private cppUrl: string;
   private salminUrl: string;
   private salmindfUrl: string;
@@ -38,8 +44,12 @@ export class CatalogosService {
         this.programasUrl=String(this.url.getUrlprogramas());
 
       }
-
-	//getcpp
+/**
+* getCpp()
+* Metodo para obtener el catalogo de CPP del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getCpp(): Observable<Cpp[]> {
 
      return this.http.get(this.cppUrl)
@@ -48,7 +58,12 @@ export class CatalogosService {
 
   }
 
-  //getsalmin
+/**
+* getSalmin()
+* Metodo para obtener el catalogo de los Salarios Minimos del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getSalmin(): Observable<Salmin[]> {
     
          return this.http.get(this.salminUrl)
@@ -57,7 +72,12 @@ export class CatalogosService {
     
   }
 
-  //getsalmin
+/**
+* getSalmindf()
+* Metodo para obtener el catalogo de los Salarios Minimos DF del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getSalmindf(): Observable<Salmindf[]> {
     
          return this.http.get(this.salmindfUrl)
@@ -66,7 +86,12 @@ export class CatalogosService {
     
   }
 
-  //getclavemov
+/**
+* getSalmin()
+* Metodo para obtener el catalogo clave movimientos del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getClavemov(): Observable<Clavemov[]> {
     
          return this.http.get(this.clavemovUrl)
@@ -75,7 +100,12 @@ export class CatalogosService {
     
   }
 
-  //getclavediv
+/**
+* getClavediv()
+* Metodo para obtener el catalogo clave de movimientos diversos del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getClavediv(): Observable<Clavediv[]> {
     
         return this.http.get(this.clavedivUrl)
@@ -84,7 +114,12 @@ export class CatalogosService {
     
   }
 
-  //getbonificaciones
+/**
+* getBonificaciones()
+* Metodo para obtener el catalogo de las bonificaciones del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getBonificaciones(): Observable<Bonificaciones[]> {
     
         return this.http.get(this.bonificacionesUrl)
@@ -93,7 +128,12 @@ export class CatalogosService {
     
   }
 
-  //getprogramas
+/**
+* getProgramas()
+* Metodo para obtener el catalogo de los Programas del Back End.
+* @author: Marlon Gomez
+* @return {json, error} res, error  
+*/
   getProgramas(): Observable<Programas[]> {
     
         return this.http.get(this.programasUrl)
@@ -102,7 +142,13 @@ export class CatalogosService {
     
   }
 
-
+/**
+* extractDataCpp()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.cpp
+*/
   private extractDataCpp(res: Response) {
 
     let body = res.json();
@@ -111,7 +157,13 @@ export class CatalogosService {
     return body.cpp|| { };
 
   }
-
+/**
+* extractDataSalmin()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.salmin
+*/
   private extractDataSalmin(res: Response) {
     
         let body = res.json();
@@ -120,7 +172,13 @@ export class CatalogosService {
         return body.salmin|| { };
     
   }
-
+/**
+* extractDataSalmindf()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.salmindf
+*/
   private extractDataSalmindf(res: Response) {
     
         let body = res.json();
@@ -129,7 +187,13 @@ export class CatalogosService {
         return body.salmindf|| { };
     
   }
-
+/**
+* extractDataClavemov()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.salmin
+*/
   private extractDataClavemov(res: Response) {
     
         let body = res.json();
@@ -138,7 +202,13 @@ export class CatalogosService {
         return body.clavemov|| { };
     
   }
-
+/**
+* extractDataClavediv()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.salmin
+*/
   private extractDataClavediv(res: Response) {
     
         let body = res.json();
@@ -147,7 +217,13 @@ export class CatalogosService {
         return body.clavediv|| { };
     
   }
-
+/**
+* extractDataBonificaciones()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.bonificaciones
+*/
   private extractDataBonificaciones(res: Response) {
     
         let body = res.json();
@@ -156,7 +232,13 @@ export class CatalogosService {
         return body.bonificaciones|| { };
     
   }
-
+/**
+* extractDataProgramas()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.programas
+*/
   private extractDataProgramas(res: Response) {
     
         let body = res.json();
