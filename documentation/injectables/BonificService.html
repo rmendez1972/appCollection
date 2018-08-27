@@ -1677,7 +1677,20 @@
             <code>src/app/mov_edoscta/bonificacion.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>class BonificService()
+Esta clase se usa para conectar con el Back End y obtener los datos a usar.</p>
 
+            </p>
+
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -1741,7 +1754,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -1832,13 +1845,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:47</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>extractDataBon()
+Metodo para extraer los datos que regresaron del Back End.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -1873,7 +1889,8 @@
 
                             </div>
                                 <div class="io-description">
-                                    
+                                    <p>body.bonificacion</p>
+
                                 </div>
                     </td>
                 </tr>
@@ -1901,13 +1918,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:33</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>getBonificaciones()
+Metodo para obtener las bonificaciones del Back End.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -1954,7 +1974,8 @@
 
                             </div>
                                 <div class="io-description">
-                                    
+                                    <p>, error} res, error  </p>
+
                                 </div>
                     </td>
                 </tr>
@@ -1984,7 +2005,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -2066,10 +2087,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/mov_edoscta/bonificacion.service.ts:19</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variables locales</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2080,33 +2107,58 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-
 import { Bonific } from &#x27;./bonific&#x27;;
 import { Http, Response, Headers,RequestOptions } from &#x27;@angular/http&#x27;;
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 import { ServiceUrl } from &#x27;../serviceUrl&#x27;;
 import { AlertService} from &#x27;../_services/index&#x27;;
 
-
+/**
+* class BonificService()
+* Esta clase se usa para conectar con el Back End y obtener los datos a usar.
+* @author: Marlon Gomez
+* @return {export} export class 
+*/
 @Injectable()
 export class BonificService {
+  /**
+  * Variables locales
+  */
   private bonificacionUrl: string;
-  constructor (private http: Http,
-      private url:ServiceUrl,
-      private alertService: AlertService)
-      {
-        this.bonificacionUrl&#x3D;String(this.url.getUrlbonificacion());
-      }
+
+  constructor (private http: Http, private url:ServiceUrl, private alertService: AlertService){
+          this.bonificacionUrl&#x3D;String(this.url.getUrlbonificacion());
+  }
+
+/**
+* getBonificaciones()
+* Metodo para obtener las bonificaciones del Back End.
+* @author: Marlon Gomez
+* @param {String} criterio
+* @param {String} valorcriterio
+* @return {json, error} res, error  
+*/
   getBonificaciones(criterio:String, valorcriterio:String): Observable&lt;Bonific[]&gt; {
      return this.http.get(this.bonificacionUrl+criterio+&#x27;&amp;valorcriterio&#x3D;&#x27;+valorcriterio)
                     .map(this.extractDataBon)
                     .catch(this.handleError);
   }
+
+
+/**
+* extractDataBon()
+* Metodo para extraer los datos que regresaron del Back End.
+* @author: Marlon Gomez
+* @param {Response } res
+* @return {let} body.bonificacion
+*/
   private extractDataBon(res: Response) {
     let body &#x3D; res.json();
     console.log(body.bonificacion);
     return body.bonificacion || { };
   }
+
+
   private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {

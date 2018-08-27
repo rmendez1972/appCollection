@@ -4,17 +4,16 @@ import { Bonific } from './bonific';
 
 import { BonificService} from './bonificacion.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-//import { AuthGuard } from '../_guards/index';
-
-//import { UploadComponent} from '../upload/upload.component';
-
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 
-
-
+/**
+ * class BonificacionComponent()
+ * Clase que realiza la presentación de las bonificaciones
+ * @author: Marlon Gomez
+ * @return {export} export class
+ */
 
 @Component({
   selector: 'app-bonific',
@@ -57,20 +56,17 @@ export class BonificacionComponent implements OnInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   private bonific: Bonific[];
-
   private k: Observable<Bonific[]>;
-
   @Input() fecha_corte:String;
   @Input() valorcriterio:String;
   @Input() criterio:String;
   @Output() onMessage = new EventEmitter<String>();
   @Output() onerrorMessage = new EventEmitter<String>();
-
-
-
 
   	constructor(
       private router: Router,
@@ -80,36 +76,26 @@ export class BonificacionComponent implements OnInit {
     )
     {}
 
-
   	ngOnInit() {
-
     };
 
-    message(mensaje:String){
-      this.onMessage.emit(mensaje);
-
-    };
-
-    errormessage(mensaje:String){
-      this.onerrorMessage.emit(mensaje);
-
-    };
-
-
+    /**
+    * getBonificaciones() 
+    * metodo para realizar la busqueda del listado de las bonificaciones
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getBonificaciones() {
       console.log('fecha_corte '+this.fecha_corte)
       if (this.fecha_corte!=undefined && this.fecha_corte!=null && this.fecha_corte!=''){
         this.k=this.route.params
-        // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
-
-          //this.selectedId= +params['id'];
           return this.bonificservice.getBonificaciones(this.criterio,this.valorcriterio)
         })
 
         this.k.subscribe(
-
                        bonificaciones =>{
                          this.bonific = bonificaciones;
                          this.message('Recuperacion exitosa de los movimientos de bonificación');
@@ -120,8 +106,6 @@ export class BonificacionComponent implements OnInit {
                          this.errormessage('No hay movimientos de bonificación para este Beneficiario');
                          this.message(null);
                        });
-
-                        //});
       }else{
 
         this.errormessage('Error en la recuperacion de los movimientos de bonificación, favor de introducir fecha válida');
@@ -129,6 +113,29 @@ export class BonificacionComponent implements OnInit {
         this.bonific=null;
       }
     };
+
+    /**
+    * message() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
+    message(mensaje:String){
+      this.onMessage.emit(mensaje);
+    };
+
+    /**
+    * errormessage() 
+    * metodo para mostrar un mensaje de error que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
+    errormessage(mensaje:String){
+      this.onerrorMessage.emit(mensaje);
+    };
+
 
 
 }

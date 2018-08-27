@@ -117,6 +117,7 @@ export class CppListComponent implements OnInit, AfterViewInit {
                        cpp => this.cpp = cpp,
                        error =>  this.errorMessage = <any>error);
     };
+    
     /**
     * onMessage() 
     * metodo para mostrar un mensaje que esta bindiado a la vista

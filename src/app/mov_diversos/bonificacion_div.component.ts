@@ -1,22 +1,20 @@
 import { Component, OnInit, HostBinding, Input, EventEmitter, Output } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Bonific_div } from './bonific_div';
-
 import { BonificDivService} from './bonificacion_div.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-//import { AuthGuard } from '../_guards/index';
-
-//import { UploadComponent} from '../upload/upload.component';
-
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../_services/index';
 import { ConfirmService} from '../_services/index';
-//import { Mov_diversos } from '../catalogos/mov_diversos';
 import { Mov_diversos } from './mov_diversos';
 
-
+/**
+ * class BonificacionDivComponent()
+ * Clase que realiza la presentación de las bonificaciones.
+ * @author: Marlon Gomez
+ * @return {export} export class
+ */
 @Component({
   selector: 'app-bonific-div',
   templateUrl: './bonificacion_div.component.html',
@@ -58,29 +56,23 @@ export class BonificacionDivComponent implements OnInit {
     return 'relative';
   }
 
-
+  /**
+  * Variables locales
+  */
   private errorMessage: string;
   private bonific_div: Bonific_div[];
-
   private k: Observable<Bonific_div[]>;
   private totalbon_diversos:number =0;
   private totales_style:String = "info";
   private renglon_style:String = "active";
   private m: Observable<Mov_diversos[]>;
-
-  //private miMensajeerrorMovs:String;
-  //private miMensajeBons:String;
-  //private miMensajeBonsError:String;
-
- 
   @Input() fecha_corte:String;
   @Input() valorcriterio:String;
   @Input() criterio:String;
   @Output() onMessage = new EventEmitter<String>();
   @Output() onMessage2 = new EventEmitter<String>();
-  
   @Output() onMessageAplicaBonificSi = new EventEmitter<String>();
-  
+  title = 'Bonificaciones';
   
 
   	constructor(
@@ -93,27 +85,21 @@ export class BonificacionDivComponent implements OnInit {
     )
     {}
 
-
   	ngOnInit() {
-
     };
-    title = 'Bonificaciones';
-
-    message(mensaje:String){
-      this.onMessage.emit(mensaje);
-    };
-
-    message2(mensaje2:String){
-      this.onMessage2.emit(mensaje2);
-    };
-
-
+    
+    /**
+    * getBonificaciones() 
+    * metodo para realizar la busqueda del listado de las bonificaciones
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     getBonificaciones() {
         this.k=this.route.params
-        // (+) converts string 'id' to a number
         .switchMap((params: Params) =>
         {
-          //this.selectedId= +params['id'];
+          
           return this.bonificdivservice.getBonificaciones(this.criterio,this.valorcriterio)
         })
         this.k.subscribe(
@@ -121,51 +107,70 @@ export class BonificacionDivComponent implements OnInit {
             this.bonific_div = bonificaciones_div;
             this.totalbon_diversos = this.bonific_div.length-1;
             if (this.bonific_div.length>1){
-              //this.miMensajeBonsError=null;
               this.message2('');
               this.message('Recuperacion Exitosa de las bonificaciones de diversos');
-              
             }
             else{
-              //this.miMensajeBons=null;
-              this.message('');
-              this.message2('Sin bonificaciones');
-      
               
+              this.message('');
+              this.message2('Sin bonificaciones'); 
             }
-            
-            //this.message('Recuperacion Exitosa de las bonificaciones de diversos');
-          
           },
         error =>  this.errorMessage = <any>error);
-
-
     };
 
+    /**
+    * confimarBonificacionDiversos() 
+    * metodo para enviar valores al confirm y realice distintas acciones
+    *  @author: Marlon Gomez
+    * 
+    *  @return {Void}
+    */
     confirmarBonificacionDiversos(){
       this.confirmService.confirmBonificacionDiversos("Tiene Bonificaciones?",this.bonificservice,this.onMessageAplicaBonificSi,function(bonificservice,eventemmitter){
-              //ACTION: Do this If user says YES
-              //this.pagar = aplicarservice.getPagar(fecha);
               eventemmitter.emit('SI');
-              //bonificservice.siBonificacion();
             },function(eventemmitter){
-              //ACTION: Do this if user says NO
               eventemmitter.emit(null);
       })
     };
 
+    /**
+    * validaUltimoBon() 
+    * metodo para validar los ultimos valores del vector
+    *  @author: Marlon Gomez
+    *  @param {Number} i
+    *  @return {Void}
+    */
     validaUltimoBon(i:number){
       if (i==this.totalbon_diversos) {
         return true;
       }else{
 
         return false;
-
       }
     }
 
-    //aplicar los mov_diversos
+    /**
+    * message() 
+    * metodo para mostrar un mensaje que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje
+    *  @return {Void}
+    */
+     message(mensaje:String){
+        this.onMessage.emit(mensaje);
+      };
 
+    /**
+    * message2() 
+    * metodo para mostrar un mensaje de error que esta bindiado a la vista
+    *  @author: Marlon Gomez
+    *  @param {String} mensaje2
+    *  @return {Void}
+    */
+     message2(mensaje2:String){
+        this.onMessage2.emit(mensaje2);
+      };
 
 
 }
